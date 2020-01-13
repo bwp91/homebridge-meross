@@ -2,7 +2,7 @@
   "pluginAlias": "Meross",
   "pluginType": "platform",
   "singular": true,
-  "headerDisplay": "<p align='center'><img width='250px' src='https://user-images.githubusercontent.com/3979615/71876008-d99d7400-3179-11ea-909b-9d2a3d1e670f.png'></p>\n\nThe **Homebridge Meross** plugin allows you to control your Meross Devices from HomeKit. To get started setup your config below.",
+  "headerDisplay": "<p align='center'><img width='250px' src='https://raw.githubusercontent.com/donavanbecker/homebridge-meross/448622892651477ea98ff776f4a3b7e9ff16a6f0/meross/01.png'></p>\n\nThe **Homebridge Meross** plugin allows you to control your Meross Devices from HomeKit. To get started setup your config below.",
   "footerDisplay": "Your Honeywell Home account has been linked. Please raise any issues on our [project page](https://github.com/donavanbecker/homebridge-honeywell-home/issues).",
   "schema": {
     "type": "object",
