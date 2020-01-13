@@ -55,30 +55,6 @@
         "format": "hostname",
         "required": true
       }
-      }
+     }
     }
-  },
-    "layout": [
-      {
-        "type": "fieldset",
-        "title": "Advanced Settings",
-        "expandable": true,
-        "expanded": false,
-        "items": [
-          {
-            "type": "help",
-            "helpvalue": "<h5>TTL</h5><em class='primary-text'>TTL indicates the number of seconds between polls of the Honeywell Home service.</em>"
-          },
-          {
-            "key": "options.ttl",
-            "notitle": true
-          },
-          {
-            "type": "help",
-            "helpvalue": "<h5>Debug Mode</h5><em class='primary-text'>Indicate if debug level logging should be enabled.</em>"
-          },
-          "options.debug"
-        ]
-      }
-    ]
-}
+  }
