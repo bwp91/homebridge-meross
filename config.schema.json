@@ -3,55 +3,58 @@
   "pluginType": "accessory",
   "singular": true,
   "headerDisplay": "<p align='center'><img width='250px' src='https://raw.githubusercontent.com/donavanbecker/homebridge-meross/master/meross/02.png'></p>\n\nThe **Homebridge Meross** plugin allows you to control your Meross Devices from HomeKit. To get started setup your config below.",
-  "footerDisplay": "Your Honeywell Home account has been linked. Please raise any issues on our [project page](https://github.com/donavanbecker/homebridge-honeywell-home/issues).",
+  "footerDisplay": "Your Meross device is setup. Please raise any issues on our [project page](https://github.com/donavanbecker/homebridge-honeywell-home/issues).",
   "schema": {
     "type": "object",
     "properties": {
       "name": {
-        "type": "string",
         "title": "Name",
-        "default": "HoneywellHome",
+        "type": "string",
+        "default": "Meross",
         "required": true
       },
-      "credentials": {
-        "type": "object",
-        "properties": {
-          "consumerKey": {
-            "title": "Consumer Key",
-            "type": "string",
-            "required": true
-          },
-          "consumerSecret": {
-            "title": "Consumer Secret",
-            "type": "string"
-          },
-          "refreshToken": {
-            "title": "Refresh Token",
-            "type": "string",
-            "required": true
-          },
-          "notice": {
-            "title": "Notice",
-            "type": "string",
-            "required": true,
-            "default": "Keep your tokens a secret!"
-          }
-        }
+       "deviceUrl": {
+        "title": "Device IP Address",
+        "type": "string",
+        "required": true,
+        "format": "hostname",
+        "required": true
       },
-      "options": {
-        "type": "object",
-        "properties": {
-          "ttl": {
-            "title": "TTL",
-            "type": "number",
-            "default": 60,
-            "minimum": 20
-          },
-          "debug": {
-            "title": "Debug Mode",
-            "type": "boolean"
-          }
-        }
+        "hardwareVersion": {
+        "title": "Hardware Version",
+        "type": "integer",
+        "required": true,
+        "format": "hostname",
+        "required": true
+      },
+        "channel": {
+        "title": "Device Channel",
+        "type": "integer",
+        "required": true,
+        "format": "hostname",
+        "required": true
+      },
+        "messageId": {
+        "title": "MessageID",
+        "type": "string",
+        "required": true,
+        "format": "hostname",
+        "required": true
+      },
+        "timestamp": {
+        "title": "TimeStamp",
+        "type": "integer",
+        "required": true,
+        "format": "hostname",
+        "required": true
+      },
+        "sign": {
+        "title": "Sign",
+        "type": "string",
+        "required": true,
+        "format": "hostname",
+        "required": true
+      }
       }
     }
   },
