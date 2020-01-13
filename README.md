@@ -15,7 +15,7 @@ This is a plugin for Homebridge. This is a fork of the work originally done by [
 ## Installation
 * For easy Install, Install [homebridge-config-ui-x](https://github.com/oznu/homebridge-config-ui-x).
 * From [homebridge-config-ui-x](https://github.com/oznu/homebridge-config-ui-x) Search for "Meross" on the Plugin Screen.
-* Click Install.
+* Click Install on Homebridge Meross.
 
 ## Auth & Config
 If you're setting this plug up fresh, make sure you go through the
