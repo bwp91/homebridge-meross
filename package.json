@@ -1,0 +1,20 @@
+{
+  "name": "homebridge-meross",
+  "version": "0.0.1",
+  "description": "A Meross Plugin for Homebridge",
+  "main": "src/index.js",
+  "author": "donavanbecker",
+  "repository": "https://github.com/donavanbecker/homebridge-meross.git",
+  "license": "MIT",
+  "keywords": [
+    "homebridge-plugin",
+    "meross",
+    "homebridge"
+  ],
+  "dependencies": {
+    "request": "^2.88.0"
+  },
+  "engines": {
+    "homebridge": ">=0.4.50"
+  }
+}
