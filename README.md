@@ -2,6 +2,8 @@
 
 If you would like to help out with this plugin you can reach out to me on [@slack](http://homebridgeteam.slack.com/)
 
+This is a plugin for Homebridge. This is a fork of the work originally done by [Robdel12](https://github.com/Robdel12) & [dylanfrankcom](https://github.com/dylanfrankcom).
+
 ## Setup
 
 Assuming you have a working Homebridge setup, this is how you add the
