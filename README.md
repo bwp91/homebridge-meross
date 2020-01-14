@@ -29,12 +29,11 @@ A detailed tutorial on how to set up Charles with your iOS device can be found
 
 There are currently
 [two](https://user-images.githubusercontent.com/11139929/57955871-0cca8480-78c5-11e9-8185-6efd358bd1b1.png)
-hardware versions of the MSS110 plug.
+hardware versions.
 There are some differences in requests sent between hardware
 [version 1](https://user-images.githubusercontent.com/11139929/57955231-50bc8a00-78c3-11e9-9989-1d390cc7ca42.png)
 and
-[version 2](https://user-images.githubusercontent.com/11139929/57955272-6b8efe80-78c3-11e9-9bc0-2a54a97d9ac9.png)
-of the MSS110 plug. Note the brown and black markings.
+[version 2](https://user-images.githubusercontent.com/11139929/57955272-6b8efe80-78c3-11e9-9bc0-2a54a97d9ac9.png). Note the brown and black markings.
 This is the information needed for your `config.json` file.
 Also note there is no "channel" attribute for hardware version 1.
 You may safely set that to 0 in your config.
