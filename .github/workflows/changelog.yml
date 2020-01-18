@@ -13,7 +13,7 @@ jobs:
       - uses: teaminkling/autologger@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          github_repository: ${{ github.repository }}
+          github_repository: ${{ github.donavanbecker/homebridge-meross }}
       - uses: teaminkling/autocommit@master
       - uses: ad-m/github-push-action@master
         with:
