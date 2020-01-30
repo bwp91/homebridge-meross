@@ -12,9 +12,9 @@ jobs:
           commit-filter: skip-log, skip-ci, automated
       - uses: autosuite/autolog@5f7402d0ba645a0e5fb01001aca6c300ac5c07a3
         with:
-          github-token: ${{ secrets.YOUR_GITHUB_TOKEN }}
+          github-token: ${{ secrets.CHANGLOG_GITHUB_TOKEN }}
           github-repository: ${{ github.repository }}
       - uses: teaminkling/autocommit@master
       - uses: ad-m/github-push-action@master
         with:
-          github-token: ${{ secrets.YOUR_GITHUB_TOKEN }}
+          github-token: ${{ secrets.CHANGLOG_GITHUB_TOKEN }}
