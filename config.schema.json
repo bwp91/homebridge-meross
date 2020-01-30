@@ -2,7 +2,7 @@
   "pluginAlias": "Meross",
   "pluginType": "accessory",
   "headerDisplay": "<p align='center'><img width='250px' src='https://raw.githubusercontent.com/donavanbecker/homebridge-meross/master/meross/02.png'></p>\n\nThe **Homebridge Meross** plugin allows you to control your Meross Devices from HomeKit. To get started setup your config below.",
-  "footerDisplay": "Your Meross device is setup. Please raise any issues on our [project page](https://github.com/donavanbecker/homebridge-honeywell-home/issues).",
+  "footerDisplay": "Your Meross device is setup. Please raise any issues on our [project page](https://github.com/donavanbecker/homebridge-meross/issues).",
   "schema": {
     "type": "object",
     "properties": {
@@ -16,42 +16,32 @@
         "title": "Device IP Address",
         "type": "string",
         "required": true,
-        "format": "hostname",
+        "format": "ipv4",
         "required": true
       },
         "hardwareVersion": {
         "title": "Hardware Version",
         "type": "integer",
-        "required": true,
-        "format": "hostname",
         "required": true
       },
         "channel": {
         "title": "Device Channel",
         "type": "integer",
-        "required": true,
-        "format": "hostname",
         "required": true
       },
         "messageId": {
         "title": "MessageID",
         "type": "string",
-        "required": true,
-        "format": "hostname",
         "required": true
       },
         "timestamp": {
         "title": "TimeStamp",
         "type": "integer",
-        "required": true,
-        "format": "hostname",
         "required": true
       },
         "sign": {
         "title": "Sign",
         "type": "string",
-        "required": true,
-        "format": "hostname",
         "required": true
       }
      }
