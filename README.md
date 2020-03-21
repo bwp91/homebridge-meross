@@ -1,7 +1,7 @@
 
 #  Meross Plugin for Homebridge
 
-[![npm](https://badgen.net/npm/v/homebridge-meross)](https://www.npmjs.com/package/homebridge-meross)
+[![npm](https://badgen.net/npm/v/homebridge-meross?icon=npm)](https://www.npmjs.com/package/homebridge-meross)
 [![npm](https://badgen.net/npm/dt/homebridge-meross)](https://www.npmjs.com/package/homebridge-meross)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/donavanbecker/homebridge-meross/Node)](https://github.com/donavanbecker/homebridge-meross/actions?query=workflow%3ANode)
 
