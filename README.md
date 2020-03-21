@@ -2,8 +2,9 @@
 #  Meross Plugin for Homebridge
 
 [![npm](https://badgen.net/npm/v/homebridge-meross?icon=npm)](https://www.npmjs.com/package/homebridge-meross)
-[![npm](https://badgen.net/npm/dt/homebridge-meross)](https://www.npmjs.com/package/homebridge-meross)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/donavanbecker/homebridge-meross/Node)](https://github.com/donavanbecker/homebridge-meross/actions?query=workflow%3ANode)
+[![npm](https://badgen.net/npm/dt/homebridge-meross?icon=npm)](https://www.npmjs.com/package/homebridge-meross)
+[![Node](https://github.com/donavanbecker/homebridge-meross/workflows/Node/badge.svg?branch=master&event=push)](https://github.com/donavanbecker/homebridge-meross/actions?query=workflow%3ANode)
+
 
 If you would like to help out with this plugin you can reach out to me on [discord](https://discord.gg/bHjKNkN)
 
