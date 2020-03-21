@@ -15,6 +15,6 @@
     "request": "^2.88.0"
   },
   "engines": {
-    "homebridge": ">=0.4.50"
+    "homebridge": ">=0.4.52"
   }
 }
