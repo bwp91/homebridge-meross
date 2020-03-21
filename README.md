@@ -5,7 +5,7 @@
 [![npm](https://badgen.net/npm/dt/homebridge-meross)](https://www.npmjs.com/package/homebridge-meross)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/donavanbecker/homebridge-meross/Node)](https://github.com/donavanbecker/homebridge-meross/actions?query=workflow%3ANode)
 
-If you would like to help out with this plugin you can reach out to me on [@slack](http://homebridgeteam.slack.com/)
+If you would like to help out with this plugin you can reach out to me on [discord](https://discord.gg/bHjKNkN)
 
 This is a plugin for Homebridge. This is a fork of the work originally done by [Robdel12](https://github.com/Robdel12) & [dylanfrankcom](https://github.com/dylanfrankcom).
 
