@@ -10,12 +10,12 @@
   },
   "author": "donavanbecker",
   "repository": {
-        "type": "git",
-        "url": "git://github.com/donavanbecker/homebridge-meross.git"
-    },
+    "type": "git",
+    "url": "git://github.com/donavanbecker/homebridge-meross.git"
+  },
   "bugs": {
     "url": "https://github.com/donavanbecker/homebridge-meross/issues"
-    },
+  },
   "license": "MIT",
   "keywords": [
     "homebridge-plugin",
@@ -25,9 +25,9 @@
   "dependencies": {
     "request": "^2.88.0"
   },
-    "devDependencies": {
-        "homebridge-config-ui-x": "4.13.3",
-        "homebridge": "0.4.53"
+  "devDependencies": {
+    "homebridge-config-ui-x": "4.13.3",
+    "homebridge": "0.4.53"
   },
   "engines": {
     "node": ">=0.12.0",
