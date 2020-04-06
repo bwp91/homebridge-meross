@@ -1,20 +1,43 @@
-## [0.1.1](https://github.com/donavanbecker/homebridge-meross/tree/0.1.1) (2020-03-22)
+# Change Log
 
-[Full Changelog](https://github.com/donavanbecker/homebridge-meross/compare/v0.1.0...0.1.1)
+All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
-**Merged pull requests:**
+## 1.0.0 (2020-04-06)
 
-- \[RELEASE\] 0.1.1 [\#11](https://github.com/donavanbecker/homebridge-meross/pull/11) ([github-actions[bot]](https://github.com/apps/github-actions))
+## [Version 1.0.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v0.1.0...1.0.0)
 
-## [v0.1.0](https://github.com/donavanbecker/homebridge-meross/tree/v0.1.0) (2020-03-21)
+#### Changes
 
-[Full Changelog](https://github.com/donavanbecker/homebridge-meross/compare/v0.0.8...v0.1.0)
+- Update Readme
 
-**Closed issues:**
+## 0.1.0 (2020-03-21)
 
-- Dependabot needs permission to see skip-commit [\#10](https://github.com/donavanbecker/homebridge-meross/issues/10)
+## [Version 0.1.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v0.0.8...0.1.0)
 
-**Merged pull requests:**
+#### Changes
 
-- Bump request from 2.88.0 to 2.88.2 [\#8](https://github.com/donavanbecker/homebridge-meross/pull/8) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Bump request from 2.88.0 to 2.88.2 [#8](https://github.com/donavanbecker/homebridge-meross/pull/8)
 
+## 0.0.8 (2020-01-30)
+
+## [Version 0.0.8](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v0.0.7...0.0.8)
+
+#### Changes
+
+- Fixed config.schema.json
+
+## 0.0.7 (2020-01-30)
+
+## [Version 0.0.7](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v0.0.6...0.0.7)
+
+#### Changes
+
+- Update dependencies
+
+## 0.0.6 (2020-01-30)
+
+## [Version 0.0.6](https://github.com/donavanbecker/homebridge-meross/tree/v0.0.6)
+
+#### Changes
+
+- Allowing for multiple devices.

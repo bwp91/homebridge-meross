@@ -1,18 +1,23 @@
+<span align="center">
 
-#  Meross Plugin for Homebridge
+<a href="https://github.com/homebridge/verified/blob/master/verified-plugins.json"><img alt="homebridge-verified" src="https://raw.githubusercontent.com/donavanbecker/homebridge-meross/master/meross/03.png" width="150px"></a>
 
-[![npm](https://badgen.net/npm/v/homebridge-meross?icon=npm)](https://www.npmjs.com/package/homebridge-meross)
-[![npm](https://badgen.net/npm/dt/homebridge-meross?icon=npm)](https://www.npmjs.com/package/homebridge-meross)
+# Homebridge Meross
 
+<a href="https://www.npmjs.com/package/homebridge-meross"><img title="npm version" src="https://badgen.net/npm/v/homebridge-meross?icon=npm" ></a>
+<a href="https://www.npmjs.com/package/homebridge-meross"><img title="npm downloads" src="https://badgen.net/npm/dt/homebridge-meross?icon=npm" ></a>
 
-If you would like to help out with this plugin you can reach out to me on [discord](https://discord.gg/bHjKNkN)
+<p>The <a href="https://www.meross.com">Meross</a> plugin for
+  <a href="https://homebridge.io">Homebridge</a>.
 
-This is a plugin for Homebridge. This is a fork of the work originally done by [Robdel12](https://github.com/Robdel12) & [dylanfrankcom](https://github.com/dylanfrankcom).
+  This Plugin allows you to control your Meross Devices from HomeKit.
+</p>
 
+</span>
 
 ## Installation
-* For easy Install, Install [homebridge-config-ui-x](https://github.com/oznu/homebridge-config-ui-x).
-* From [homebridge-config-ui-x](https://github.com/oznu/homebridge-config-ui-x) Search for "Meross" on the Plugin Screen.
+* Install [config-ui-x](https://github.com/oznu/homebridge-config-ui-x).
+* Search for "Meross" on the Plugin Screen of [config-ui-x](https://github.com/oznu/homebridge-config-ui-x) .
 * Click Install on Homebridge Meross.
 
 ## Auth & Config
