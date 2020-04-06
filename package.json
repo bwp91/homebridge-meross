@@ -4,8 +4,10 @@
   "description": "A Meross Plugin for Homebridge",
   "main": "index.js",
   "scripts": {
-  "developer": "DEBUG=meross homebridge -D -U `pwd` -P `pwd`",
-  "lint": "jshint package.json *.js",
+    "developer": "DEBUG=meross homebridge -D -U `pwd` -P `pwd`",
+    "lint": "jshint package.json *.js",
+    "watch": "nodemon"
+  },
   "author": "donavanbecker",
   "repository": {
         "type": "git",
