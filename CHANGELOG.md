@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
+## 1.0.1 (2020-04-08)
+
+## [Version 1.0.1](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v1.0.0...1.0.1)
+
+#### Changes
+
+- Update devDependencies homebridge-config-ui-x and homebridge
+
 ## 1.0.0 (2020-04-06)
 
 ## [Version 1.0.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v0.1.0...1.0.0)

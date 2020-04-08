@@ -11,7 +11,7 @@ enhancement:
   - ./package.json
   - ./pakcage-lock.json
   - ./config.schema.json
-  
+
 # Add 'workflow' to any changes within 'workflow' folder or any subfolders
 workflow:
-  - .github/workflows/*
+  - /github/workflows/*

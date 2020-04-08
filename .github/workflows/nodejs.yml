@@ -18,14 +18,14 @@ jobs:
       id: cache
       with:
         path: node_modules
-        key: ${{ runner.OS }}-node-modules-${{ hashFiles('**/package-lock.json') }} 
+        key: ${{ runner.OS }}-node-modules-${{ hashFiles('**/package-lock.json') }}
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, update, and outdated
       run: |
-        npm ci
+        npm install
         npm run build --if-present
         npm update
         npm outdated

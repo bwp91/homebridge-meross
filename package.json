@@ -1,6 +1,6 @@
 {
   "name": "homebridge-meross",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Meross Plugin for Homebridge",
   "main": "index.js",
   "scripts": {
@@ -23,11 +23,12 @@
     "homebridge"
   ],
   "dependencies": {
-    "request": "^2.88.0"
+    "request": ">=2.88.0"
   },
   "devDependencies": {
-    "homebridge-config-ui-x": "4.13.3",
-    "homebridge": "0.4.53"
+    "homebridge-config-ui-x": ">=4.13.3",
+    "homebridge": ">=0.4.53",
+    "nodemon": ">=2.0.2"
   },
   "engines": {
     "node": ">=0.12.0",
