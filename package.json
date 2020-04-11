@@ -26,8 +26,6 @@
     "request": ">=2.88.0"
   },
   "devDependencies": {
-    "homebridge-config-ui-x": ">=4.13.3",
-    "homebridge": ">=0.4.53",
     "nodemon": ">=2.0.2"
   },
   "engines": {
