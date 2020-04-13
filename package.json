@@ -1,6 +1,6 @@
 {
   "name": "homebridge-meross",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Meross Plugin for Homebridge",
   "main": "index.js",
   "scripts": {

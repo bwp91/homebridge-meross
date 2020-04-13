@@ -6,6 +6,12 @@
   "schema": {
     "type": "object",
     "properties": {
+      "name": {
+              "title": "Name",
+              "type": "string",
+              "default": "Meross",
+              "required": true
+            },
       "accessories": {
         "type": "array",
         "items": {
@@ -14,14 +20,14 @@
             "name": {
               "title": "Name",
               "type": "string",
-              "default": "Meross",
+              "placeholder": "Meross",
               "required": true
             },
             "deviceUrl": {
               "title": "Device IP Address",
               "type": "string",
               "required": true,
-              "format": "ipv4"
+              "placeholder": "192.168.1.17"
             },
             "hardwareVersion": {
               "title": "Hardware Version",
