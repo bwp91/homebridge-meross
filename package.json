@@ -29,7 +29,7 @@
     "nodemon": ">=2.0.2"
   },
   "engines": {
-    "node": ">=8.15.1",
-    "homebridge": ">=0.4.29"
+    "node": ">=10.20.1",
+    "homebridge": ">=0.4.46"
   }
 }
