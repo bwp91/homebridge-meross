@@ -1,6 +1,7 @@
 "use strict";
 
 const request = require("request");
+const MerossCloud   = require('meross-cloud');
 let Service, Characteristic;
 
 // Wrap request with a promise to make it awaitable
