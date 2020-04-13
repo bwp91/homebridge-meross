@@ -6,44 +6,51 @@
   "schema": {
     "type": "object",
     "properties": {
-      "name": {
-        "title": "Name",
-        "type": "string",
-        "default": "Meross",
-        "required": true
-      },
-       "deviceUrl": {
-        "title": "Device IP Address",
-        "type": "string",
-        "required": true,
-        "format": "ipv4",
-        "required": true
-      },
-        "hardwareVersion": {
-        "title": "Hardware Version",
-        "type": "integer",
-        "required": true
-      },
-        "channel": {
-        "title": "Device Channel",
-        "type": "integer",
-        "required": true
-      },
-        "messageId": {
-        "title": "MessageID",
-        "type": "string",
-        "required": true
-      },
-        "timestamp": {
-        "title": "TimeStamp",
-        "type": "integer",
-        "required": true
-      },
-        "sign": {
-        "title": "Sign",
-        "type": "string",
-        "required": true
+      "accessories": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Name",
+              "type": "string",
+              "default": "Meross",
+              "required": true
+            },
+            "deviceUrl": {
+              "title": "Device IP Address",
+              "type": "string",
+              "required": true,
+              "format": "ipv4"
+            },
+            "hardwareVersion": {
+              "title": "Hardware Version",
+              "type": "integer",
+              "required": true
+            },
+            "channel": {
+              "title": "Device Channel",
+              "type": "integer",
+              "required": true
+            },
+            "messageId": {
+              "title": "MessageID",
+              "type": "string",
+              "required": true
+            },
+            "timestamp": {
+              "title": "TimeStamp",
+              "type": "integer",
+              "required": true
+            },
+            "sign": {
+              "title": "Sign",
+              "type": "string",
+              "required": true
+            }
+          }
+        }
       }
-     }
     }
   }
+}
