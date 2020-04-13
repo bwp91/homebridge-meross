@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
+## 1.0.4 (2020-04-13)
+
+## [Version 1.0.4](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v1.0.3...1.0.4)
+
+#### Changes
+
+- fix config.schema.json
+
 ## 1.0.3 (2020-04-13)
 
 ## [Version 1.0.3](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v1.0.2...1.0.3)
