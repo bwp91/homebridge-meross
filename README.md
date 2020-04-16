@@ -20,7 +20,7 @@
 * Search for "Meross" on the Plugin Screen of [config-ui-x](https://github.com/oznu/homebridge-config-ui-x) .
 * Click Install on Homebridge Meross.
 
-## Auth & Config
+## Authorization & Configuration
 If you're setting this plug up fresh, make sure you go through the
 typical Meross app for initial setup.
 
