@@ -71,7 +71,7 @@ class MerossPlug {
 
   async setOnCharacteristicHandler(value, callback) {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
-    this.log(this.config, `${this.config.deviceUrl}/config`);
+    this.log(this.config, `http://${this.config.deviceUrl}/config`);
     let response;
 
     /*
@@ -87,7 +87,7 @@ class MerossPlug {
             json: true,
             method: "POST",
             strictSSL: false,
-            url: `${this.config.deviceUrl}/config`,
+            url: `http://${this.config.deviceUrl}/config`,
             headers: {
               "Content-Type": "application/json"
             },
@@ -100,7 +100,7 @@ class MerossPlug {
               header: {
                 messageId: `${this.config.messageId}`,
                 method: "SET",
-                from: `${this.config.deviceUrl}\/config`,
+                from: `http://${this.config.deviceUrl}\/config`,
                 namespace: "Appliance.Control.Toggle",
                 timestamp: this.config.timestamp,
                 sign: `${this.config.sign}`,
@@ -118,7 +118,7 @@ class MerossPlug {
             json: true,
             method: "POST",
             strictSSL: false,
-            url: `${this.config.deviceUrl}/config`,
+            url: `http://${this.config.deviceUrl}/config`,
             headers: {
               "Content-Type": "application/json"
             },
@@ -132,7 +132,7 @@ class MerossPlug {
               header: {
                 messageId: `${this.config.messageId}`,
                 method: "SET",
-                from: `${this.config.deviceUrl}\/config`,
+                from: `http://${this.config.deviceUrl}\/config`,
                 namespace: "Appliance.Control.ToggleX",
                 timestamp: this.config.timestamp,
                 sign: `${this.config.sign}`,
@@ -176,7 +176,7 @@ class MerossPlug {
         json: true,
         method: "POST",
         strictSSL: false,
-        url: `${this.config.deviceUrl}/config`,
+        url: `http://${this.config.deviceUrl}/config`,
         headers: {
           "Content-Type": "application/json"
         },
@@ -185,7 +185,7 @@ class MerossPlug {
           header: {
             messageId: `${this.config.messageId}`,
             method: "GET",
-            from: `${this.config.deviceUrl}/config`,
+            from: `http://${this.config.deviceUrl}/config`,
             namespace: "Appliance.System.All",
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
