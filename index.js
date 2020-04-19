@@ -71,6 +71,7 @@ class MerossPlug {
 
   async setOnCharacteristicHandler(value, callback) {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
+    /* deviceUrl only requires ip address */
     this.log(this.config, `http://${this.config.deviceUrl}/config`);
     let response;
 
