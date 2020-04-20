@@ -1,33 +1,145 @@
 {
   "pluginAlias": "Meross",
   "pluginType": "accessory",
-  "headerDisplay": "<p align='center'><img width='150px' src='https://raw.githubusercontent.com/donavanbecker/homebridge-meross/master/meross/03.png'></p>\n\nThe **Homebridge Meross** plugin allows you to control your Meross Devices from HomeKit. To get started setup your config below.",
-  "footerDisplay": "Your Meross device is setup. Please raise any issues on our [project page](https://github.com/donavanbecker/homebridge-meross/issues).",
+  "headerDisplay": "<p align='center'><img width='150px' src='https://raw.githubusercontent.com/donavanbecker/homebridge-meross/master/meross/03.png'></p>\n\nThe **Homebridge Meross** plugin allows you to control your Meross Devices from HomeKit. To get started setup your config below. For information regarding your MessageID, timestamp, and sign please refer to the [Wiki](https://github.com/donavanbecker/homebridge-meross/wiki).",
+  "footerDisplay": "Please raise any issues on our [project page](https://github.com/donavanbecker/homebridge-meross/issues).",
   "schema": {
     "type": "object",
     "properties": {
+      "model": {
+        "title": "Model",
+        "description": "Meross Product Model.",
+        "type": "string",
+        "required": true,
+        "oneOf": [
+          {
+            "title": "MSS-110 1.0",
+            "enum": ["MSS110-1"]
+          },
+          {
+            "title": "MSS-110 2.0",
+            "enum": ["MSS110-2"]
+          },
+          {
+            "title": "MSS-210",
+            "enum": ["MSS210"]
+          },
+          {
+            "title": "MSS-310",
+            "enum": ["MSS310"]
+          },
+          {
+            "title": "MSS-420F",
+            "enum": ["MSS420F"]
+          },
+          {
+            "title": "MSS-425",
+            "enum": ["MSS425"]
+          },
+          {
+            "title": "MSS-425E",
+            "enum": ["MSS425E"]
+          },
+          {
+            "title": "MSS-425F",
+            "enum": ["MSS425F"]
+          },
+          {
+            "title": "MSS-510",
+            "enum": ["MSS510"]
+          },
+          {
+            "title": "MSS-510M",
+            "enum": ["MSS510M"]
+          },
+          {
+            "title": "MSS-550",
+            "enum": ["MSS550"]
+          },
+          {
+            "title": "MSS-560",
+            "enum": ["MSS560"]
+          },
+          {
+            "title": "MSS-570",
+            "enum": ["MSS570"]
+          },
+          {
+            "title": "MSS-5X0",
+            "enum": ["MSS5X0"]
+          },
+          {
+            "title": "MSS-620",
+            "enum": ["MSS620"]
+          },
+          {
+            "title": "MSS-710",
+            "enum": ["MSS710"]
+          },
+          {
+            "title": "MSG-100",
+            "enum": ["MSG100"]
+          },
+          {
+            "title": "MSL-100",
+            "enum": ["MSL100"]
+          },
+          {
+            "title": "MSL-120",
+            "enum": ["MSL120"]
+          },
+          {
+            "title": "MSL-420",
+            "enum": ["MSL420"]
+          },
+          {
+            "title": "MTS-100",
+            "enum": ["MTS100"]
+          },
+          {
+            "title": "MTS-100H",
+            "enum": ["MTS100H"]
+          },
+          {
+            "title": "MS-100",
+            "enum": ["MS100"]
+          },
+          {
+            "title": "MS-100H",
+            "enum": ["MS100H"]
+          },
+          {
+            "title": "MSX-H0",
+            "enum": ["MSXH0"]
+          },
+          {
+            "title": "MRS-110",
+            "enum": ["MRS110"]
+          }
+        ]
+      },
       "name": {
         "title": "Name",
+        "description": "The name for the device to be shown in the Home App. This can be changed within the Home App later.",
         "type": "string",
         "placeholder": "Living Room Switch",
         "required": true
       },
       "deviceUrl": {
-        "title": "Device IP Address",
+        "title": "IP Address",
+        "description": "The device's IP address. It is recommended to set a static IP for the device.",
         "type": "string",
         "required": true,
         "format": "ipv4",
         "placeholder": "192.168.1.17"
       },
-      "hardwareVersion": {
-        "title": "Hardware Version",
-        "type": "integer",
-        "required": true
-      },
       "channel": {
         "title": "Device Channel",
+        "description": "Used to map outlets on a Power Strip. Leave as 0 if your device is not a Power Strip. If you are configuring a Power Strip, treat each outlet as its own accessory. Each outlet on the strip must be added as a new accessory and provided a different channel number, typically 0 - 4.",
         "type": "integer",
-        "required": true
+        "placeholder": "0",
+        "default": 0,
+        "required": false
       },
       "messageId": {
         "title": "MessageID",
