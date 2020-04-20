@@ -19,10 +19,10 @@ function doRequest(options) {
 module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
-  homebridge.registerAccessory("homebridge-meross", "Meross", MerossPlug);
+  homebridge.registerAccessory("homebridge-meross", "Meross", Meross);
 };
 
-class MerossPlug {
+class Meross {
   constructor(log, config) {
     /*
      * The constructor function is called when the plugin is registered.
@@ -40,7 +40,51 @@ class MerossPlug {
      * Search for "* Service" to tab through each available service type.
      * Take note of the available "Required" and "Optional" Characteristics for the service you are creating
      */
-    this.service = new Service.Switch(this.config.name);
+    switch (config.model) {
+      case "MSS110-1":
+      case "MSS110-2":
+      case "MSS210":
+      case "MSS310":
+      case "MSS420F":
+      case "MSS425":
+      case "MSS425E":
+      case "MSS425F":
+      case "MSS620":
+        this.service = new Service.Outlet(this.config.name);
+        break;
+      case "MSS510":
+      case "MSS510M":
+      case "MSS550":
+      case "MSS560":
+      case "MSS570":
+      case "MSS5X0":
+        this.service = new Service.Switch(this.config.name);
+        break;
+      case "MSG100":
+        this.service = new Service.GarageDoorOpener(this.config.name);
+        break;
+      case "MSL100":
+      case "MSL120":
+      case "MSL420":
+        this.service = new Service.Lightbulb(this.config.name);
+        break;
+      case "MTS100":
+      case "MTS100H":
+        this.service = new Service.Thermostat(this.config.name);
+        break;
+      case "MS100":
+      case "MS100H":
+        this.service = new Service.TemperatureSensor(this.config.name);
+        break;
+      case "MSXH0":
+        this.service = new Service.HumidifierDehumidifier(this.config.name);
+        break;
+      case "MRS110":
+        this.service = new Service.WindowCovering(this.config.name);
+        break;
+      default:
+        this.service = new Service.Outlet(this.config.name);
+    }
   }
 
   getServices() {
@@ -51,9 +95,9 @@ class MerossPlug {
 
     /* Create a new information service. This just tells HomeKit about our accessory. */
     const informationService = new Service.AccessoryInformation()
-      .setCharacteristic(Characteristic.Manufacturer, "meross")
-      .setCharacteristic(Characteristic.Model, "MSS110")
-      .setCharacteristic(Characteristic.SerialNumber, "lol");
+      .setCharacteristic(Characteristic.Manufacturer, "Meross")
+      .setCharacteristic(Characteristic.Model, this.config.model)
+      .setCharacteristic(Characteristic.SerialNumber, "❤️");
 
     /*
      * For each of the service characteristics we need to register setters and getter functions
@@ -72,17 +116,19 @@ class MerossPlug {
   async setOnCharacteristicHandler(value, callback) {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
     /* deviceUrl only requires ip address */
-    this.log(this.config, `http://${this.config.deviceUrl}/config`);
+    
+    //this.log(this.config, this.config.deviceUrl);
     let response;
 
+    /* Log to the console whenever this function is called */
+    this.log(`calling setOnCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
+
     /*
-     * This assumes future versions of MSS110 plugs will adopt the 2.x.x + payload. Easy enough to adapt if neccessary.
-     * case 1 - Hardware version 1.x.x
-     * default - Hardware version 2.x.x +
+     * Differentiate requests based on device model.
      */
 
-    switch (this.config.hardwareVersion) {
-      case 1:
+    switch (this.config.model) {
+      case "MSS110-1":
         try {
           response = await doRequest({
             json: true,
@@ -110,7 +156,7 @@ class MerossPlug {
             }
           });
         } catch (e) {
-          this.log("Failed to POST to the Meross Plug: ", e);
+          this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
         }
         break;
       default:
@@ -142,7 +188,7 @@ class MerossPlug {
             }
           });
         } catch (e) {
-          this.log("Failed to POST to the Meross Plug:", e);
+          this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
         }
     }
 
@@ -155,7 +201,7 @@ class MerossPlug {
     }
 
     /* Log to the console the value whenever this function is called */
-    this.log("calling setOnCharacteristicHandler:", value);
+    this.log("setOnCharacteristicHandler:", value);
 
     /*
      * The callback function should be called to return the value
@@ -169,8 +215,12 @@ class MerossPlug {
      * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
      * it's called each time you open the Home app or when you open control center
      */
-
+    
+    //this.log(this.config, this.config.deviceUrl);
     let response;
+
+    /* Log to the console whenever this function is called */
+    this.log(`calling getOnCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
 
     try {
       response = await doRequest({
@@ -195,11 +245,15 @@ class MerossPlug {
         }
       });
     } catch (e) {
-      this.log("Failed to POST to the Meross Plug:", e);
+      this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
     }
 
-    switch (this.config.hardwareVersion) {
-      case 1:
+    /*
+     * Differentiate response based on device model.
+     */
+
+    switch (this.config.model) {
+      case "MSS110-1":
         if (response) {
           let onOff = response.payload.all.control.toggle.onoff;
 
@@ -224,7 +278,9 @@ class MerossPlug {
         }
     }
 
-    this.log("calling getOnCharacteristicHandler:", this.isOn);
+    /* Log to the console the value whenever this function is called */
+    this.log("getOnCharacteristicHandler:", this.isOn);
+
     /*
      * The callback function should be called to return the value
      * The first argument in the function should be null unless and error occured
