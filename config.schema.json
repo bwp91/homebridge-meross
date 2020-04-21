@@ -1,7 +1,7 @@
 {
   "pluginAlias": "Meross",
   "pluginType": "accessory",
-  "headerDisplay": "<p align='center'><img width='150px' src='https://raw.githubusercontent.com/donavanbecker/homebridge-meross/master/meross/03.png'></p>\n\nThe **Homebridge Meross** plugin allows you to control your Meross Devices from HomeKit. To get started setup your config below. For information regarding your MessageID, timestamp, and sign please refer to the [Wiki](https://github.com/donavanbecker/homebridge-meross/wiki).",
+  "headerDisplay": "<p align='center'><img width='400px' src='https://raw.githubusercontent.com/donavanbecker/homebridge-meross/master/meross/Meross_x_Homebridge.svg'></p>\n\nThe **Homebridge Meross** plugin allows you to control your Meross Devices from HomeKit. To get started setup your config below. For information regarding your MessageID, timestamp, and sign please refer to the [Wiki](https://github.com/donavanbecker/homebridge-meross/wiki).",
   "footerDisplay": "Please raise any issues on our [project page](https://github.com/donavanbecker/homebridge-meross/issues).",
   "schema": {
     "type": "object",
