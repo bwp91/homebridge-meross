@@ -40,7 +40,9 @@ class Meross {
      * Search for "* Service" to tab through each available service type.
      * Take note of the available "Required" and "Optional" Characteristics for the service you are creating
      */
-    switch (config.model) {
+     
+     /* To be used later
+     switch (config.model) {
       case "MSS110-1":
       case "MSS110-2":
       case "MSS210":
@@ -81,6 +83,30 @@ class Meross {
         break;
       case "MRS110":
         this.service = new Service.WindowCovering(this.config.name);
+        break;
+      default:
+        this.service = new Service.Outlet(this.config.name);
+    }
+     */
+    switch (config.model) {
+      case "MSS110-1":
+      case "MSS110-2":
+      case "MSS210":
+      case "MSS310":
+      case "MSS420F":
+      case "MSS425":
+      case "MSS425E":
+      case "MSS425F":
+      case "MSS620":
+        this.service = new Service.Outlet(this.config.name);
+        break;
+      case "MSS510":
+      case "MSS510M":
+      case "MSS550":
+      case "MSS560":
+      case "MSS570":
+      case "MSS5X0":
+        this.service = new Service.Switch(this.config.name);
         break;
       default:
         this.service = new Service.Outlet(this.config.name);
