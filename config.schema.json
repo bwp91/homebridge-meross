@@ -1,8 +1,8 @@
 {
   "pluginAlias": "Meross",
   "pluginType": "accessory",
-  "headerDisplay": "<p align='center'><img width='400px' src='https://raw.githubusercontent.com/donavanbecker/homebridge-meross/master/meross/Meross_x_Homebridge.svg'></p>\n\nThe **Homebridge Meross** plugin allows you to control your Meross Devices from HomeKit. To get started setup your config below. If the device you are trying to setup is not listed below, please request support on our [project page](https://github.com/donavanbecker/homebridge-meross/issues). For information regarding your MessageID, timestamp, and sign please refer to the [Wiki](https://github.com/donavanbecker/homebridge-meross/wiki).",
-  "footerDisplay": "Please raise any issues on our [project page](https://github.com/donavanbecker/homebridge-meross/issues).",
+  "headerDisplay": "<p align='center'><img width='400px' src='https://raw.githubusercontent.com/donavanbecker/homebridge-meross/master/meross/Meross_x_Homebridge.svg'></p>\n\nThe **Homebridge Meross** plugin allows you to control your Meross Devices from HomeKit. To get started setup your config below. For information regarding your `messageId`, `timestamp`, and `sign` please refer to our Credentials [Wiki](https://github.com/donavanbecker/homebridge-meross/wiki/Getting-Credentials), and for multi-outlet units see specific model configurations [Wiki](https://github.com/donavanbecker/homebridge-meross/wiki/Specific-Model-Configurations).",
+  "footerDisplay": "Visit our [Wiki](https://github.com/donavanbecker/homebridge-meross/wiki) for answer to commonly asked questions. If the device you are trying to setup is not listed above or you need more assistance, please open an issue on our [project page](https://github.com/donavanbecker/homebridge-meross/issues).",
   "schema": {
     "type": "object",
     "properties": {
@@ -95,7 +95,7 @@
       },
       "channel": {
         "title": "Device Channel",
-        "description": "Used to map outlets on a Power Strip. Leave as 0 if your device is not a Power Strip. If you are configuring a Power Strip, treat each outlet as its own accessory. Each outlet on the strip must be added as a new accessory and provided a different channel number, typically 0 - 4.",
+        "description": "Keep this as 0, Unless you have a device with multiple outlets.",
         "type": "integer",
         "placeholder": "0",
         "default": 0,
