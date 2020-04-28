@@ -75,46 +75,6 @@
           {
             "title": "MSS-710",
             "enum": ["MSS710"]
-          },
-          {
-            "title": "MSG-100",
-            "enum": ["MSG100"]
-          },
-          {
-            "title": "MSL-100",
-            "enum": ["MSL100"]
-          },
-          {
-            "title": "MSL-120",
-            "enum": ["MSL120"]
-          },
-          {
-            "title": "MSL-420",
-            "enum": ["MSL420"]
-          },
-          {
-            "title": "MTS-100",
-            "enum": ["MTS100"]
-          },
-          {
-            "title": "MTS-100H",
-            "enum": ["MTS100H"]
-          },
-          {
-            "title": "MS-100",
-            "enum": ["MS100"]
-          },
-          {
-            "title": "MS-100H",
-            "enum": ["MS100H"]
-          },
-          {
-            "title": "MSX-H0",
-            "enum": ["MSXH0"]
-          },
-          {
-            "title": "MRS-110",
-            "enum": ["MRS110"]
           }
         ]
       },
