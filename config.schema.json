@@ -1,61 +1,120 @@
 {
   "pluginAlias": "Meross",
   "pluginType": "accessory",
-  "headerDisplay": "<p align='center'><img width='400px' src='https://raw.githubusercontent.com/donavanbecker/homebridge-meross/master/meross/Meross_x_Homebridge.svg'></p>\n\nThe **Homebridge Meross** plugin allows you to control your Meross Devices from HomeKit. To get started setup your config below.",
-  "footerDisplay": "Your Meross device is setup. Please raise any issues on our [project page](https://github.com/donavanbecker/homebridge-meross/issues).",
+  "headerDisplay": "<p align='center'><img width='400px' src='https://raw.githubusercontent.com/donavanbecker/homebridge-meross/master/meross/Meross_x_Homebridge.svg'></p>\n\nThe **Homebridge Meross** plugin allows you to control your Meross Devices from HomeKit. To get started setup your config below. For information regarding your `messageId`, `timestamp`, and `sign` please refer to our Credentials [Wiki](https://github.com/donavanbecker/homebridge-meross/wiki/Getting-Credentials), and for multi-outlet units see specific model configurations [Wiki](https://github.com/donavanbecker/homebridge-meross/wiki/Specific-Model-Configurations).",
+  "footerDisplay": "Visit our [Wiki](https://github.com/donavanbecker/homebridge-meross/wiki) for answer to commonly asked questions. If the device you are trying to setup is not listed above or you need more assistance, please open an issue on our [project page](https://github.com/donavanbecker/homebridge-meross/issues).",
   "schema": {
     "type": "object",
     "properties": {
-      "name": {
-              "title": "Name",
-              "type": "string",
-              "default": "Meross",
-              "required": true
-            },
-      "accessories": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "title": "Name",
-              "type": "string",
-              "placeholder": "Meross",
-              "required": true
-            },
-            "deviceUrl": {
-              "title": "Device IP Address",
-              "type": "string",
-              "required": true,
-              "placeholder": "192.168.1.17"
-            },
-            "hardwareVersion": {
-              "title": "Hardware Version",
-              "type": "integer",
-              "required": true
-            },
-            "channel": {
-              "title": "Device Channel",
-              "type": "integer",
-              "required": true
-            },
-            "messageId": {
-              "title": "MessageID",
-              "type": "string",
-              "required": true
-            },
-            "timestamp": {
-              "title": "TimeStamp",
-              "type": "integer",
-              "required": true
-            },
-            "sign": {
-              "title": "Sign",
-              "type": "string",
-              "required": true
-            }
+      "model": {
+        "title": "Model",
+        "description": "Meross Product Model.",
+        "type": "string",
+        "required": true,
+        "oneOf": [
+          {
+            "title": "MSS-110 1.0",
+            "enum": ["MSS110-1"]
+          },
+          {
+            "title": "MSS-110 2.0",
+            "enum": ["MSS110-2"]
+          },
+          {
+            "title": "MSS-210",
+            "enum": ["MSS210"]
+          },
+          {
+            "title": "MSS-310",
+            "enum": ["MSS310"]
+          },
+          {
+            "title": "MSS-420F",
+            "enum": ["MSS420F"]
+          },
+          {
+            "title": "MSS-425",
+            "enum": ["MSS425"]
+          },
+          {
+            "title": "MSS-425E",
+            "enum": ["MSS425E"]
+          },
+          {
+            "title": "MSS-425F",
+            "enum": ["MSS425F"]
+          },
+          {
+            "title": "MSS-510",
+            "enum": ["MSS510"]
+          },
+          {
+            "title": "MSS-510M",
+            "enum": ["MSS510M"]
+          },
+          {
+            "title": "MSS-550",
+            "enum": ["MSS550"]
+          },
+          {
+            "title": "MSS-560",
+            "enum": ["MSS560"]
+          },
+          {
+            "title": "MSS-570",
+            "enum": ["MSS570"]
+          },
+          {
+            "title": "MSS-5X0",
+            "enum": ["MSS5X0"]
+          },
+          {
+            "title": "MSS-620",
+            "enum": ["MSS620"]
+          },
+          {
+            "title": "MSS-710",
+            "enum": ["MSS710"]
           }
-        }
+        ]
+      },
+      "name": {
+        "title": "Name",
+        "description": "The name for the device to be shown in the Home App. This can be changed within the Home App later.",
+        "type": "string",
+        "placeholder": "Living Room Switch",
+        "required": true
+      },
+      "deviceUrl": {
+        "title": "IP Address",
+        "description": "The device's IP address. It is recommended to set a static IP for the device.",
+        "type": "string",
+        "required": true,
+        "format": "ipv4",
+        "placeholder": "192.168.1.17"
+      },
+      "channel": {
+        "title": "Device Channel",
+        "description": "Keep this as 0, Unless you have a device with multiple outlets.",
+        "type": "integer",
+        "placeholder": "0",
+        "default": 0,
+        "required": false
+      },
+      "messageId": {
+        "title": "MessageID",
+        "type": "string",
+        "required": true
+      },
+      "timestamp": {
+        "title": "TimeStamp",
+        "type": "integer",
+        "required": true
+      },
+      "sign": {
+        "title": "Sign",
+        "type": "string",
+        "required": true
       }
     }
   }
