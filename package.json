@@ -1,6 +1,6 @@
 {
   "name": "homebridge-meross",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "A Meross Plugin for Homebridge",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "lint": "jshint package.json *.js",
     "watch": "nodemon"
   },
-  "author": "donavanbecker",
+  "author": "donavanbecker/dylanfrankcom",
   "repository": {
     "type": "git",
     "url": "git://github.com/donavanbecker/homebridge-meross.git"

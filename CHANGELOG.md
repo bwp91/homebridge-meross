@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
+## 1.1.0 (2020-04-13)
+
+## [Version 1.1.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v1.0.4...1.1.0)
+
+#### Changes
+- Update config.schema.json with specific models that are supported.
+- Changed requirements for specific models on what fields are needed.
+- Added helpful wiki links to repo
+
+# IMPORTANT
+#### Change to Config Needed!
+- We have replaced the `hardware revision` with `model`.
+- We also changed the `deviceUrl` to only require the device IP Address.
+- You will have to change your config to match the new config.schema.json layout.
+
 ## 1.0.4 (2020-04-13)
 
 ## [Version 1.0.4](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v1.0.3...1.0.4)
