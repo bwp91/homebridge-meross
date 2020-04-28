@@ -25,4 +25,4 @@ If you're setting this plug up fresh, make sure you go through the
 typical Meross app for initial setup.
 
 You will also have to obtain some information that the Meross mobile
-app uses in its HTTP request headers. See [Getting Credentials Wiki](https://github.com/donavanbecker/homebridge-meross/wiki/Getting-Credentials) for more details.
+app uses in its HTTP request headers. Visit [Credentials Wiki](https://github.com/donavanbecker/homebridge-meross/wiki/Getting-Credentials) for more details.
