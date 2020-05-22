@@ -135,8 +135,6 @@ class Meross {
      */
     switch (this.config.model) {
       case "MSG100":
-        this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSED);
-        this.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.CLOSED);
         this.service
           .getCharacteristic(Characteristic.CurrentDoorState)
           .on("get", this.getDoorStateHandler.bind(this));
@@ -351,17 +349,19 @@ class Meross {
      * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
      * it's called each time you open the Home app or when you open control center
      */
-    this.log(`calling getDoorStateHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
+    this.log(`getDoorStateHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
     
-    let self = this;
     this.getDoorState()
     .then(function(state) {
-      self.log("Get current door state:", state);
       callback(null, state);
+    })
+    .catch(function(error) {
+      
     });
   }
 
   async getObstructionDetectedHandler(callback) {
+    this.log(`getObstructionDetectedHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
     callback(null, Characteristic.ObstructionDetected.NO);
   }
 
@@ -369,8 +369,10 @@ class Meross {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
     /* deviceUrl only requires ip address */
 
+    this.log(`setDoorStateHandler ${value} for ${this.config.model} at ${this.config.deviceUrl}...`);
+
     // Stop requesting state
-    clearInterval(this.checkStateInterval);
+    this.stopRequestingDoorState()
 
     let self = this;
     this.getDoorState()
@@ -391,7 +393,7 @@ class Meross {
           self.currentState = Characteristic.CurrentDoorState.OPEN;
           self.setDoorState(false);
           callback();
-          self.service.updateCharacteristic(Characteristic.TargetDoorState, Characteristic.CurrentDoorState.OPEN);
+          self.service.updateCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.OPEN);
           self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPEN);
         } else if (state === Characteristic.CurrentDoorState.CLOSING) {
           self.log("Target CLOSED, Current CLOSING, no change");
@@ -423,12 +425,11 @@ class Meross {
           self.currentState = Characteristic.CurrentDoorState.OPENING;
           callback();
         } else if (state === Characteristic.CurrentDoorState.CLOSING) {
-          self.log("Target OPEN, Current CLOSING, stop the door (then it stays in open state)");
-          self.currentState = Characteristic.CurrentDoorState.OPEN;
-          self.setDoorState(true);
+          self.log("Target OPEN, Current CLOSING, Meross doesn't accept OPEN request while closing since the sensor is already open, no change.");
+          self.currentState = Characteristic.CurrentDoorState.CLOSING;
           callback();
-          self.service.updateCharacteristic(Characteristic.TargetDoorState, Characteristic.CurrentDoorState.OPEN);
-          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPEN);
+          self.service.updateCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.CLOSING);
+          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSING);
         } else if (state === Characteristic.CurrentDoorState.STOPPED) {
           self.log("Target OPEN, Current STOPPED, open the door");
           self.currentState = Characteristic.CurrentDoorState.OPENING;
@@ -440,21 +441,19 @@ class Meross {
           callback();
         }
       }
-      // Update state repeatedly
-      if (state === Characteristic.CurrentDoorState.OPENING || state === Characteristic.CurrentDoorState.CLOSING) {
-        self.checkStateInterval = setInterval(function() {
-          self.getDoorState().then(function (state) {
-            self.service.setCharacteristic(Characteristic.CurrentDoorState, state);
-            if (state != Characteristic.CurrentDoorState.OPENING && state != Characteristic.CurrentDoorState.CLOSING) {
-              clearInterval(self.checkStateInterval);
-            }
-          });
-        }, 2000);
+
+      if (self.currentState === Characteristic.CurrentDoorState.OPENING ||
+         self.currentState === Characteristic.CurrentDoorState.CLOSING) {
+        self.startRequestingDoorState()
       }
+    })
+    .catch(function(error) {
+      
     });
   }
 
   async setDoorState(open) {
+    this.lastSetTime = Math.floor(Date.now() / 1000);
     let response;
     try {
       response = await doRequest({
@@ -517,23 +516,78 @@ class Meross {
       });
     } catch (e) {
       this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
+      throw e;
     }
 
     if (response) {
-      const garageDoor = response.payload.all.digest.garageDoor[`${this.config.channel}`];
-      if (garageDoor.open) { // Magnetic sensor not detected
-        const lastModTime = garageDoor.lmTime;
+      // Open means magnetic sensor not detected, doesn't really mean the door is open
+      const isOpen = response.payload.all.digest.garageDoor[`${this.config.channel}`].open;
+      if (isOpen) {
         const currentTime = Math.floor(Date.now() / 1000);
-        const elapsedTime = currentTime - lastModTime;
+        const elapsedTime = currentTime - this.lastSetTime;
         if (this.currentState === Characteristic.CurrentDoorState.OPENING) {
           this.currentState = elapsedTime < 20 ? Characteristic.CurrentDoorState.OPENING : Characteristic.CurrentDoorState.OPEN;
         } else if (this.currentState === Characteristic.CurrentDoorState.CLOSING) {
           this.currentState = elapsedTime < 20 ? Characteristic.CurrentDoorState.CLOSING : Characteristic.CurrentDoorState.OPEN;
+        } else {
+          this.currentState =  Characteristic.CurrentDoorState.OPEN
         }
-      } else { // Magnetic sensor detected
+      } else {
         this.currentState = Characteristic.CurrentDoorState.CLOSED;
       }
     }
+
+    switch (this.currentState) {
+      case Characteristic.CurrentDoorState.OPEN:
+        this.log("Got state OPEN");
+        break;
+      case Characteristic.CurrentDoorState.CLOSED:
+        this.log("Got state CLOSED");
+        break;
+      case Characteristic.CurrentDoorState.OPENING:
+        this.log("Got state OPENING");
+        break;
+      case Characteristic.CurrentDoorState.CLOSING:
+        this.log("Got state CLOSING");
+        break;
+      case Characteristic.CurrentDoorState.STOPPED:
+        this.log("Got state STOPPED");
+        break;
+      default:
+        this.log("Got state UNKNOWN");
+    }
+
     return this.currentState;
+  }
+
+  startRequestingDoorState() {
+    this.stopRequestingDoorState()
+    this.log("startRequestingDoorState");
+    let self = this;
+    // Update state repeatedly
+    self.checkStateInterval = setInterval(function() {
+      self.getDoorState()
+      .then(function (state) {
+        self.service.setCharacteristic(Characteristic.CurrentDoorState, state);
+        if (state != Characteristic.CurrentDoorState.OPENING && state != Characteristic.CurrentDoorState.CLOSING) {
+          self.stopRequestingDoorState();
+        }
+      })
+      .catch(function(error) {
+        self.stopRequestingDoorState();
+      });
+    }, 2000);
+    // Stop updating after 20 seconds
+    self.checkStateTimeout = setTimeout(function () {
+      self.stopRequestingDoorState();
+    }, 20000);
+  }
+
+  stopRequestingDoorState() {
+    this.log("stopRequestingDoorState");
+    clearInterval(this.checkStateInterval);
+    this.checkStateInterval = undefined;
+    clearTimeout(this.checkStateTimeout);
+    this.checkStateTimeout = undefined;
   }
 }
