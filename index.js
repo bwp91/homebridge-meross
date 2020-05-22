@@ -387,12 +387,12 @@ class Meross {
           self.currentState = Characteristic.CurrentDoorState.CLOSED;
           callback();
         } else if (state === Characteristic.CurrentDoorState.OPENING) {
-          self.log("Target CLOSED, Current OPENING, stop the door");
-          self.currentState = Characteristic.CurrentDoorState.STOPPED;
+          self.log("Target CLOSED, Current OPENING, stop the door (then it stays in open state)");
+          self.currentState = Characteristic.CurrentDoorState.OPEN;
           self.setDoorState(false);
           callback();
           self.service.updateCharacteristic(Characteristic.TargetDoorState, Characteristic.CurrentDoorState.OPEN);
-          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.STOPPED);
+          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPEN);
         } else if (state === Characteristic.CurrentDoorState.CLOSING) {
           self.log("Target CLOSED, Current CLOSING, no change");
           self.currentState = Characteristic.CurrentDoorState.CLOSING;
@@ -423,12 +423,12 @@ class Meross {
           self.currentState = Characteristic.CurrentDoorState.OPENING;
           callback();
         } else if (state === Characteristic.CurrentDoorState.CLOSING) {
-          self.log("Target OPEN, Current CLOSING, stop the door");
-          self.currentState = Characteristic.CurrentDoorState.STOPPED;
+          self.log("Target OPEN, Current CLOSING, stop the door (then it stays in open state)");
+          self.currentState = Characteristic.CurrentDoorState.OPEN;
           self.setDoorState(true);
           callback();
-          self.service.updateCharacteristic(Characteristic.TargetDoorState, Characteristic.CurrentDoorState.CLOSED);
-          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.STOPPED);
+          self.service.updateCharacteristic(Characteristic.TargetDoorState, Characteristic.CurrentDoorState.OPEN);
+          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPEN);
         } else if (state === Characteristic.CurrentDoorState.STOPPED) {
           self.log("Target OPEN, Current STOPPED, open the door");
           self.currentState = Characteristic.CurrentDoorState.OPENING;
@@ -528,7 +528,7 @@ class Meross {
         if (this.currentState === Characteristic.CurrentDoorState.OPENING) {
           this.currentState = elapsedTime < 20 ? Characteristic.CurrentDoorState.OPENING : Characteristic.CurrentDoorState.OPEN;
         } else if (this.currentState === Characteristic.CurrentDoorState.CLOSING) {
-          this.currentState = elapsedTime < 20 ? Characteristic.CurrentDoorState.CLOSING : Characteristic.CurrentDoorState.STOPPED;
+          this.currentState = elapsedTime < 20 ? Characteristic.CurrentDoorState.CLOSING : Characteristic.CurrentDoorState.OPEN;
         }
       } else { // Magnetic sensor detected
         this.currentState = Characteristic.CurrentDoorState.CLOSED;
