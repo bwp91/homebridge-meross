@@ -393,7 +393,7 @@ class Meross {
           self.currentState = Characteristic.CurrentDoorState.OPEN;
           self.setDoorState(false);
           callback();
-          self.service.updateCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.OPEN);
+          self.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.OPEN);
           self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPEN);
         } else if (state === Characteristic.CurrentDoorState.CLOSING) {
           self.log("Target CLOSED, Current CLOSING, no change");
@@ -428,7 +428,7 @@ class Meross {
           self.log("Target OPEN, Current CLOSING, Meross doesn't accept OPEN request while closing since the sensor is already open, no change.");
           self.currentState = Characteristic.CurrentDoorState.CLOSING;
           callback();
-          self.service.updateCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.CLOSING);
+          self.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.CLOSING);
           self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSING);
         } else if (state === Characteristic.CurrentDoorState.STOPPED) {
           self.log("Target OPEN, Current STOPPED, open the door");
@@ -539,22 +539,22 @@ class Meross {
 
     switch (this.currentState) {
       case Characteristic.CurrentDoorState.OPEN:
-        this.log("Got state OPEN");
+        this.log("Current state OPEN");
         break;
       case Characteristic.CurrentDoorState.CLOSED:
-        this.log("Got state CLOSED");
+        this.log("Current state CLOSED");
         break;
       case Characteristic.CurrentDoorState.OPENING:
-        this.log("Got state OPENING");
+        this.log("Current state OPENING");
         break;
       case Characteristic.CurrentDoorState.CLOSING:
-        this.log("Got state CLOSING");
+        this.log("Current state CLOSING");
         break;
       case Characteristic.CurrentDoorState.STOPPED:
-        this.log("Got state STOPPED");
+        this.log("Current state STOPPED");
         break;
       default:
-        this.log("Got state UNKNOWN");
+        this.log("Current state UNKNOWN");
     }
 
     return this.currentState;
@@ -562,7 +562,6 @@ class Meross {
 
   startRequestingDoorState() {
     this.stopRequestingDoorState()
-    this.log("startRequestingDoorState");
     let self = this;
     // Update state repeatedly
     self.checkStateInterval = setInterval(function() {
@@ -584,7 +583,6 @@ class Meross {
   }
 
   stopRequestingDoorState() {
-    this.log("stopRequestingDoorState");
     clearInterval(this.checkStateInterval);
     this.checkStateInterval = undefined;
     clearTimeout(this.checkStateTimeout);
