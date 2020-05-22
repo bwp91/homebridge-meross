@@ -25,7 +25,7 @@ jobs:
           CI: true
 
   publish-npm:
-    if: github.repository == 'donavanbecker/homebridge-meross'
+    if: github.repository == 'homebridge-plugins/homebridge-meross'
 
     needs: build
 
