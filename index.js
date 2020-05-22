@@ -5,8 +5,8 @@ let Service, Characteristic;
 
 // Wrap request with a promise to make it awaitable
 function doRequest(options) {
-  return new Promise(function(resolve, reject) {
-    request(options, function(error, res, body) {
+  return new Promise(function (resolve, reject) {
+    request(options, function (error, res, body) {
       if (!error && res.statusCode == 200) {
         resolve(body);
       } else {
@@ -16,7 +16,7 @@ function doRequest(options) {
   });
 }
 
-module.exports = function(homebridge) {
+module.exports = function (homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
   homebridge.registerAccessory("homebridge-meross", "Meross", Meross);
@@ -40,8 +40,8 @@ class Meross {
      * Search for "* Service" to tab through each available service type.
      * Take note of the available "Required" and "Optional" Characteristics for the service you are creating
      */
-     
-     /* To be used later
+
+    /* To be used later
      switch (config.model) {
       case "MSS110-1":
       case "MSS110-2":
@@ -108,6 +108,9 @@ class Meross {
       case "MSS5X0":
         this.service = new Service.Switch(this.config.name);
         break;
+      case "MSG100":
+        this.service = new Service.GarageDoorOpener(this.config.name);
+        break;
       default:
         this.service = new Service.Outlet(this.config.name);
     }
@@ -130,10 +133,27 @@ class Meross {
      * 'get' is called when HomeKit wants to retrieve the current state of the characteristic
      * 'set' is called when HomeKit wants to update the value of the characteristic
      */
-    this.service
-      .getCharacteristic(Characteristic.On)
-      .on("get", this.getOnCharacteristicHandler.bind(this))
-      .on("set", this.setOnCharacteristicHandler.bind(this));
+    switch (this.config.model) {
+      case "MSG100":
+        this.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSED);
+        this.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.CLOSED);
+        this.service
+          .getCharacteristic(Characteristic.CurrentDoorState)
+          .on("get", this.getDoorStateHandler.bind(this));
+        this.service
+          .getCharacteristic(Characteristic.TargetDoorState)
+          .on("get", this.getDoorStateHandler.bind(this))
+          .on("set", this.setDoorStateHandler.bind(this));
+        this.service
+          .getCharacteristic(Characteristic.ObstructionDetected)
+          .on("get", this.getObstructionDetectedHandler.bind(this));
+        break;
+      default:
+        this.service
+          .getCharacteristic(Characteristic.On)
+          .on("get", this.getOnCharacteristicHandler.bind(this))
+          .on("set", this.setOnCharacteristicHandler.bind(this));
+    }
 
     /* Return both the main service (this.service) and the informationService */
     return [informationService, this.service];
@@ -142,7 +162,7 @@ class Meross {
   async setOnCharacteristicHandler(value, callback) {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
     /* deviceUrl only requires ip address */
-    
+
     //this.log(this.config, this.config.deviceUrl);
     let response;
 
@@ -162,13 +182,13 @@ class Meross {
             strictSSL: false,
             url: `http://${this.config.deviceUrl}/config`,
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
             },
             body: {
               payload: {
                 toggle: {
-                  onoff: value ? 1 : 0
-                }
+                  onoff: value ? 1 : 0,
+                },
               },
               header: {
                 messageId: `${this.config.messageId}`,
@@ -177,12 +197,15 @@ class Meross {
                 namespace: "Appliance.Control.Toggle",
                 timestamp: this.config.timestamp,
                 sign: `${this.config.sign}`,
-                payloadVersion: 1
-              }
-            }
+                payloadVersion: 1,
+              },
+            },
           });
         } catch (e) {
-          this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
+          this.log(
+            `Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`,
+            e
+          );
         }
         break;
       default:
@@ -193,14 +216,14 @@ class Meross {
             strictSSL: false,
             url: `http://${this.config.deviceUrl}/config`,
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
             },
             body: {
               payload: {
                 togglex: {
                   onoff: value ? 1 : 0,
-                  channel: `${this.config.channel}`
-                }
+                  channel: `${this.config.channel}`,
+                },
               },
               header: {
                 messageId: `${this.config.messageId}`,
@@ -209,12 +232,15 @@ class Meross {
                 namespace: "Appliance.Control.ToggleX",
                 timestamp: this.config.timestamp,
                 sign: `${this.config.sign}`,
-                payloadVersion: 1
-              }
-            }
+                payloadVersion: 1,
+              },
+            },
           });
         } catch (e) {
-          this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
+          this.log(
+            `Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`,
+            e
+          );
         }
     }
 
@@ -241,12 +267,14 @@ class Meross {
      * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
      * it's called each time you open the Home app or when you open control center
      */
-    
+
     //this.log(this.config, this.config.deviceUrl);
     let response;
 
     /* Log to the console whenever this function is called */
-    this.log(`calling getOnCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
+    this.log(
+      `calling getOnCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`
+    );
 
     try {
       response = await doRequest({
@@ -255,7 +283,7 @@ class Meross {
         strictSSL: false,
         url: `http://${this.config.deviceUrl}/config`,
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: {
           payload: {},
@@ -266,12 +294,15 @@ class Meross {
             namespace: "Appliance.System.All",
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
-            payloadVersion: 1
-          }
-        }
+            payloadVersion: 1,
+          },
+        },
       });
     } catch (e) {
-      this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
+      this.log(
+        `Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`,
+        e
+      );
     }
 
     /*
@@ -290,7 +321,6 @@ class Meross {
           this.isOn = false;
         }
         break;
-
       default:
         if (response) {
           let onOff =
@@ -314,5 +344,186 @@ class Meross {
      * This is just an example so we will return the value from `this.isOn` which is where we stored the value in the set handler
      */
     callback(null, this.isOn);
+  }
+
+  async getDoorStateHandler(callback) {
+    /*
+     * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
+     * it's called each time you open the Home app or when you open control center
+     */
+    this.log(`calling getDoorStateHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
+    
+    let self = this;
+    this.getDoorState()
+    .then(function(currState) {
+      self.log("Get current door state:", currState);
+      callback(null, currState);
+    });
+  }
+
+  async getObstructionDetectedHandler(callback) {
+    callback(null, Characteristic.ObstructionDetected.NO);
+  }
+
+  async setDoorStateHandler(value, callback) {
+    /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
+    /* deviceUrl only requires ip address */
+    this.log(`calling setDoorStateHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
+
+    let self = this;
+    this.getDoorState()
+    .then(function(currState) {
+      if (value == Characteristic.TargetDoorState.CLOSED) {
+        if (currState == Characteristic.CurrentDoorState.OPEN) {
+          self.log("Target CLOSED, Current OPEN, close the door");
+          self.isClosing = true;
+          self.setDoorState(false);
+          callback();
+          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSING);
+        } else if (currState == Characteristic.CurrentDoorState.CLOSED) {
+          self.log("Target CLOSED, Current CLOSED, no change");
+          callback();
+        } else if (currState == Characteristic.CurrentDoorState.OPENING) {
+          self.log("Target CLOSED, Current OPENING, stop the door");
+          self.setDoorState(false);
+          callback();
+          self.service.updateCharacteristic(Characteristic.TargetDoorState, Characteristic.CurrentDoorState.OPEN);
+          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.STOPPED);
+        } else if (currState == Characteristic.CurrentDoorState.CLOSING) {
+          self.log("Target CLOSED, Current CLOSING, no change");
+          callback();
+        } else if (currState == Characteristic.CurrentDoorState.STOPPED) {
+          self.log("Target CLOSED, Current STOPPED, close the door");
+          self.isClosing = true;
+          self.setDoorState(false);
+          callback();
+          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSING);
+        } else {
+          self.log("Target CLOSED, Current UNKOWN, no change");
+          callback();
+        }
+      } else if (value == Characteristic.TargetDoorState.OPEN) {
+        if (currState == Characteristic.CurrentDoorState.OPEN) {
+          self.log("Target OPEN, Current OPEN, no change");
+          callback();
+        } else if (currState == Characteristic.CurrentDoorState.CLOSED) {
+          self.log("Target OPEN, Current CLOSED, open the door");
+          self.setDoorState(true);
+          callback();
+          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPENING);
+        } else if (currState == Characteristic.CurrentDoorState.OPENING) {
+          self.log("Target OPEN, Current OPENING, no change");
+          callback();
+        } else if (currState == Characteristic.CurrentDoorState.CLOSING) {
+          self.log("Target OPEN, Current CLOSING, stop the door");
+          self.setDoorState(true);
+          callback();
+          self.service.updateCharacteristic(Characteristic.TargetDoorState, Characteristic.CurrentDoorState.CLOSED);
+          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.STOPPED);
+        } else if (currState == Characteristic.CurrentDoorState.STOPPED) {
+          self.log("Target OPEN, Current STOPPED, open the door");
+          self.setDoorState(true);
+          callback();
+          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPENING);
+        } else {
+          self.log("Target OPEN, Current UNKOWN, no change");
+          callback();
+        }
+      }
+      // Update state after 20 seconds
+      setTimeout(function(){
+        self.getDoorState().then(function (currState) {
+          self.service.setCharacteristic(Characteristic.CurrentDoorState, currState);
+        });
+       }, 20000);
+    });
+  }
+
+  async setDoorState(open) {
+    let response;
+    try {
+      response = await doRequest({
+        json: true,
+        method: "POST",
+        strictSSL: false,
+        url: `http://${this.config.deviceUrl}/config`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+          payload: {
+            state: {
+              channel: 0,
+              open: open ? 1 : 0,
+              uuid: `${this.config.deviceUrl}`,
+            },
+          },
+          header: {
+            messageId: `${this.config.messageId}`,
+            method: "SET",
+            from: `http://${this.config.deviceUrl}\/config`,
+            namespace: "Appliance.GarageDoor.State",
+            timestamp: this.config.timestamp,
+            sign: `${this.config.sign}`,
+            payloadVersion: 1,
+            triggerSrc: "iOS",
+          },
+        },
+      });
+    } catch (e) {
+      this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
+    }
+    return response;
+  }
+
+  async getDoorState() {
+    let response;
+    try {
+      this.log(`Try getting current state. POST http://${this.config.deviceUrl}/config`);
+      response = await doRequest({
+        json: true,
+        method: "POST",
+        strictSSL: false,
+        url: `http://${this.config.deviceUrl}/config`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+          payload: {},
+          header: {
+            messageId: `${this.config.messageId}`,
+            method: "GET",
+            from: `http://${this.config.deviceUrl}/config`,
+            namespace: "Appliance.System.All",
+            timestamp: this.config.timestamp,
+            sign: `${this.config.sign}`,
+            payloadVersion: 1,
+          },
+        },
+      });
+    } catch (e) {
+      this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
+    }
+
+    if (response) {
+      const garageDoor = response.payload.all.digest.garageDoor[`${this.config.channel}`];
+      const open = garageDoor.open;
+      if (open) { // Magnetic sensor not detected
+        const lastModTime = garageDoor.lmTime;
+        const currentTime = Math.floor(Date.now() / 1000);
+        const elapsedTime = currentTime - lastModTime;
+        this.log(`lastModTime ${lastModTime} currentTime ${currentTime} elapsedTime ${elapsedTime}`);
+        if (this.isClosing) {
+          return elapsedTime < 20 ? Characteristic.CurrentDoorState.CLOSING : Characteristic.CurrentDoorState.STOPPED;
+        } else {
+          return elapsedTime < 20 ? Characteristic.CurrentDoorState.OPENING : Characteristic.CurrentDoorState.OPEN;
+        }
+      } else { // Magnetic sensor detected
+        this.isClosing = false;
+        return Characteristic.CurrentDoorState.CLOSED;
+      }
+    } else {
+      return Characteristic.CurrentDoorState.STOPPED;
+    }
   }
 }
