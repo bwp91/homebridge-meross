@@ -576,10 +576,10 @@ class Meross {
         self.stopRequestingDoorState();
       });
     }, 2000);
-    // Stop updating after 20 seconds
+    // Stop updating after 22 seconds
     self.checkStateTimeout = setTimeout(function () {
       self.stopRequestingDoorState();
-    }, 20000);
+    }, 22000);
   }
 
   stopRequestingDoorState() {
