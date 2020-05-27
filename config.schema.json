@@ -75,6 +75,10 @@
           {
             "title": "MSS-710",
             "enum": ["MSS710"]
+          },
+          {
+            "title": "MSG-100",
+            "enum": ["MSG100"]
           }
         ]
       },
@@ -84,6 +88,12 @@
         "type": "string",
         "placeholder": "Living Room Switch",
         "required": true
+      },
+      "deviceUuid": {
+        "title": "Device UUID",
+        "description": "Device UUID, seems it still works well even it's empty",
+        "type": "string",
+        "required": false
       },
       "deviceUrl": {
         "title": "IP Address",
