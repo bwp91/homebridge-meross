@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
+## 2.2.0 (2020-05-27)
+
+## [Version 2.0.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v1.1.0...2.0.0)
+
+#### Changes
+- added Support for MSG-100 (Garage Door Opener).
+
+## IMPORTANT
+#### Homebridge v1.0.0
+- Changed homebridge requirement to be v1.0.0 or higher.
+
 ## 1.1.0 (2020-04-13)
 
 ## [Version 1.1.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v1.0.4...1.1.0)
