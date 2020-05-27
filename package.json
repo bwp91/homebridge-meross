@@ -1,6 +1,6 @@
 {
   "name": "homebridge-meross",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A Meross Plugin for Homebridge",
   "main": "index.js",
   "scripts": {
@@ -11,10 +11,10 @@
   "author": "donavanbecker/dylanfrankcom",
   "repository": {
     "type": "git",
-    "url": "git://github.com/donavanbecker/homebridge-meross.git"
+    "url": "git://github.com/homebridge-plugins/homebridge-meross.git"
   },
   "bugs": {
-    "url": "https://github.com/donavanbecker/homebridge-meross/issues"
+    "url": "https://github.com/homebridge-plugins/homebridge-meross/issues"
   },
   "license": "MIT",
   "keywords": [
@@ -30,6 +30,6 @@
   },
   "engines": {
     "node": ">=10.20.1",
-    "homebridge": ">=0.4.46"
+    "homebridge": ">=1.0.0"
   }
 }
