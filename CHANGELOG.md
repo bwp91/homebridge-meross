@@ -2,7 +2,16 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
-## 2.2.0 (2020-05-27)
+## 2.1.0 (2020-04-13)
+
+## [Version 2.1.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v2.0.0...2.1.0)
+
+#### Changes
+- Changed Log to only display On & Off States.
+- Compressed all other logging to debug.
+    - To View This logging, turn on Homebridge Debug (-D) in Homebridge Settings of Config UI X.
+
+## 2.0.0 (2020-05-27)
 
 ## [Version 2.0.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v1.1.0...2.0.0)
 

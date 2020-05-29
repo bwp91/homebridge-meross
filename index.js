@@ -165,7 +165,7 @@ class Meross {
     let response;
 
     /* Log to the console whenever this function is called */
-    this.log(`calling setOnCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
+    this.log.debug(`calling setOnCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
 
     /*
      * Differentiate requests based on device model.
@@ -244,14 +244,15 @@ class Meross {
 
     if (response) {
       this.isOn = value;
-      this.log("Set succeeded:", response);
+      this.log.debug("Set succeeded:", response);
+      this.log(`${this.config.model} turned`, value ? "On" : "Off");
     } else {
       this.isOn = false;
       this.log("Set failed:", this.isOn);
     }
 
     /* Log to the console the value whenever this function is called */
-    this.log("setOnCharacteristicHandler:", value);
+    this.log.debug("setOnCharacteristicHandler:", value);
 
     /*
      * The callback function should be called to return the value
@@ -270,7 +271,7 @@ class Meross {
     let response;
 
     /* Log to the console whenever this function is called */
-    this.log(
+    this.log.debug(
       `calling getOnCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`
     );
 
@@ -324,16 +325,16 @@ class Meross {
           let onOff =
             response.payload.all.digest.togglex[`${this.config.channel}`].onoff;
 
-          this.log("Retrieved status successfully: ", onOff);
+          this.log.debug("Retrieved status successfully: ", onOff);
           this.isOn = onOff;
         } else {
-          this.log("Retrieved status unsuccessfully.");
+          this.log.debug("Retrieved status unsuccessfully.");
           this.isOn = false;
         }
     }
 
     /* Log to the console the value whenever this function is called */
-    this.log("getOnCharacteristicHandler:", this.isOn);
+    this.log.debug("getOnCharacteristicHandler:", this.isOn);
 
     /*
      * The callback function should be called to return the value
@@ -349,7 +350,7 @@ class Meross {
      * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
      * it's called each time you open the Home app or when you open control center
      */
-    this.log(`getDoorStateHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
+    this.log.debug(`getDoorStateHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
     
     this.getDoorState()
     .then(function(state) {
@@ -361,7 +362,7 @@ class Meross {
   }
 
   async getObstructionDetectedHandler(callback) {
-    this.log(`getObstructionDetectedHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
+    this.log.debug(`getObstructionDetectedHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
     callback(null, Characteristic.ObstructionDetected.NO);
   }
 
@@ -369,7 +370,7 @@ class Meross {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
     /* deviceUrl only requires ip address */
 
-    this.log(`setDoorStateHandler ${value} for ${this.config.model} at ${this.config.deviceUrl}...`);
+    this.log.debug(`setDoorStateHandler ${value} for ${this.config.model} at ${this.config.deviceUrl}...`);
 
     // Stop requesting state
     this.stopRequestingDoorState()
@@ -539,22 +540,22 @@ class Meross {
 
     switch (this.currentState) {
       case Characteristic.CurrentDoorState.OPEN:
-        this.log("Current state OPEN");
+        this.log.debug("Current state OPEN");
         break;
       case Characteristic.CurrentDoorState.CLOSED:
-        this.log("Current state CLOSED");
+        this.log.debug("Current state CLOSED");
         break;
       case Characteristic.CurrentDoorState.OPENING:
-        this.log("Current state OPENING");
+        this.log.debug("Current state OPENING");
         break;
       case Characteristic.CurrentDoorState.CLOSING:
-        this.log("Current state CLOSING");
+        this.log.debug("Current state CLOSING");
         break;
       case Characteristic.CurrentDoorState.STOPPED:
-        this.log("Current state STOPPED");
+        this.log.debug("Current state STOPPED");
         break;
       default:
-        this.log("Current state UNKNOWN");
+        this.log.debug("Current state UNKNOWN");
     }
 
     return this.currentState;
