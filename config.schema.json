@@ -124,7 +124,6 @@
         "title": "Garage Door Opening Time",
         "description": "Different garage door openers may take different time duration to open or close garage door. Please choose the proper time duration below for your garage door opener so that app can use it as a timeout parameter to confirm the status of your garage.",
         "type": "integer",
-        "default": 20,
         "placeholder": 20,
         "required": false,
         "oneOf": [
