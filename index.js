@@ -527,9 +527,9 @@ class Meross {
         const currentTime = Math.floor(Date.now() / 1000);
         const elapsedTime = currentTime - this.lastSetTime;
         if (this.currentState === Characteristic.CurrentDoorState.OPENING) {
-          this.currentState = elapsedTime < 20 ? Characteristic.CurrentDoorState.OPENING : Characteristic.CurrentDoorState.OPEN;
+          this.currentState = elapsedTime < this.config.garageDoorOpeningTime ? Characteristic.CurrentDoorState.OPENING : Characteristic.CurrentDoorState.OPEN;
         } else if (this.currentState === Characteristic.CurrentDoorState.CLOSING) {
-          this.currentState = elapsedTime < 20 ? Characteristic.CurrentDoorState.CLOSING : Characteristic.CurrentDoorState.OPEN;
+          this.currentState = elapsedTime < this.config.garageDoorOpeningTime ? Characteristic.CurrentDoorState.CLOSING : Characteristic.CurrentDoorState.OPEN;
         } else {
           this.currentState =  Characteristic.CurrentDoorState.OPEN
         }
@@ -580,7 +580,7 @@ class Meross {
     // Stop updating after 22 seconds
     self.checkStateTimeout = setTimeout(function () {
       self.stopRequestingDoorState();
-    }, 22000);
+    }, this.config.garageDoorOpeningTime * 1000 + 2000);
   }
 
   stopRequestingDoorState() {
