@@ -8,8 +8,6 @@ All notable changes to this project will be documented in this file. This projec
 
 #### Changes
 - Add support for garage door opening time parameter. (#36) Thanks CocoaBob!
-- Compressed all other logging to debug.
-    - To View This logging, turn on Homebridge Debug (-D) in Homebridge Settings of Config UI X.\
 
 ## 2.1.0 (2020-04-13)
 
