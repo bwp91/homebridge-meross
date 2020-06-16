@@ -122,9 +122,8 @@
       },
       "garageDoorOpeningTime": {
         "title": "Garage Door Opening Time",
-        "description": "Different garage door openers may take different time duration to open or close garage door. Please choose the proper time duration below for your garage door opener so that app can use it as a timeout parameter to confirm the status of your garage.",
+        "description": "Choose the proper time duration for your garage door opener, the parameter will confirm the status of your garage. /n/n20 seconds is most common, but different garage door openers may take different time duration to open or close garage door.",
         "type": "integer",
-        "placeholder": 20,
         "required": false,
         "oneOf": [
           {
