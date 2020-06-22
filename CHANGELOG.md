@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
+## Next (2020-06-16)
+
+## [Version Next](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v2.2.0...2.X.X)
+
+#### Changes
+-  (#41) Thanks CocoaBob!
+
 ## 2.2.0 (2020-06-16)
 
 ## [Version 2.2.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v2.1.0...2.2.0)
