@@ -565,6 +565,7 @@ class Meross {
       })
       .catch( e => this.log.debug(`${e}`));
     }, 2000);
+  }
 
   stopUpdatingDoorState() {
     clearInterval(this.checkStateInterval);
