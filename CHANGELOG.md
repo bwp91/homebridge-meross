@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
-## 2.2.0 (2020-06-16)
+## 2.3.0 (2020-06-22)
+
+## [Version 2.3.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v2.2.0...2.3.0)
+
+#### Changes
+-  Get garage door status change notification by requesting status every 2s all the time. (#41) Thanks CocoaBob!
+
+## 2.3.0 (2020-06-16)
 
 ## [Version 2.2.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v2.1.0...2.2.0)
 
