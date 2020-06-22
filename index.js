@@ -110,6 +110,7 @@ class Meross {
         break;
       case "MSG100":
         this.service = new Service.GarageDoorOpener(this.config.name);
+        this.startUpdatingDoorState()
         break;
       default:
         this.service = new Service.Outlet(this.config.name);
@@ -372,9 +373,6 @@ class Meross {
 
     this.log.debug(`setDoorStateHandler ${value} for ${this.config.model} at ${this.config.deviceUrl}...`);
 
-    // Stop requesting state
-    this.stopRequestingDoorState()
-
     let self = this;
     this.getDoorState()
     .then(function(state) {
@@ -441,11 +439,6 @@ class Meross {
           self.log("Target OPEN, Current UNKOWN, no change");
           callback();
         }
-      }
-
-      if (self.currentState === Characteristic.CurrentDoorState.OPENING ||
-         self.currentState === Characteristic.CurrentDoorState.CLOSING) {
-        self.startRequestingDoorState()
       }
     })
     .catch(function(error) {
@@ -561,32 +554,26 @@ class Meross {
     return this.currentState;
   }
 
-  startRequestingDoorState() {
-    this.stopRequestingDoorState()
+  startUpdatingDoorState() {
+    this.stopUpdatingDoorState()
     let self = this;
     // Update state repeatedly
     self.checkStateInterval = setInterval(function() {
       self.getDoorState()
       .then(function (state) {
         self.service.setCharacteristic(Characteristic.CurrentDoorState, state);
-        if (state != Characteristic.CurrentDoorState.OPENING && state != Characteristic.CurrentDoorState.CLOSING) {
-          self.stopRequestingDoorState();
-        }
       })
-      .catch(function(error) {
-        self.stopRequestingDoorState();
-      });
+      .catch( e => this.log.debug(`${e}`));
     }, 2000);
+    
     // Stop updating after 22 seconds
     self.checkStateTimeout = setTimeout(function () {
       self.stopRequestingDoorState();
     }, this.config.garageDoorOpeningTime * 1000 + 2000);
   }
 
-  stopRequestingDoorState() {
+  stopUpdatingDoorState() {
     clearInterval(this.checkStateInterval);
     this.checkStateInterval = undefined;
-    clearTimeout(this.checkStateTimeout);
-    this.checkStateTimeout = undefined;
   }
 }
