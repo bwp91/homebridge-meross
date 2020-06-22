@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file. This projec
 ## [Version Next](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v2.2.0...2.X.X)
 
 #### Changes
--  Get garage door status change notification by requesting status every 2s all the time.(#41) Thanks CocoaBob!
+-  Get garage door status change notification by requesting status every 2s all the time. (#41) Thanks CocoaBob!
 
 ## 2.2.0 (2020-06-16)
 
