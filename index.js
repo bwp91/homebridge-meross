@@ -565,12 +565,6 @@ class Meross {
       })
       .catch( e => this.log.debug(`${e}`));
     }, 2000);
-    
-    // Stop updating after 22 seconds
-    self.checkStateTimeout = setTimeout(function () {
-      self.stopRequestingDoorState();
-    }, this.config.garageDoorOpeningTime * 1000 + 2000);
-  }
 
   stopUpdatingDoorState() {
     clearInterval(this.checkStateInterval);
