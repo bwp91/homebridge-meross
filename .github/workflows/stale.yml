@@ -25,3 +25,5 @@ jobs:
         exempt-issue-labels: 'pin'
         exempt-pr-labels: 'awaiting-approval,work-in-progress'
         remove-stale-when-updated: true
+        close-issue-message: 'This issue has been automatically closed because it has not had recent activity. Thank you for your contributions.'
+        close-pr-message: 'This pull request has been automatically closed because it has not had recent activity. Thank you for your contributions.'
