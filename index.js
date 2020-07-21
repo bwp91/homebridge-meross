@@ -354,12 +354,8 @@ class Meross {
     this.log.debug(`getDoorStateHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
     
     this.getDoorState()
-    .then(function(state) {
-      callback(null, state);
-    })
-    .catch(function(error) {
-      
-    });
+    .then(state => callback(null, state))
+    .catch(e => this.log(`${e}`));
   }
 
   async getObstructionDetectedHandler(callback) {
@@ -441,9 +437,7 @@ class Meross {
         }
       }
     })
-    .catch(function(error) {
-      
-    });
+    .catch(e => this.log(`${e}`));
   }
 
   async setDoorState(open) {
@@ -560,11 +554,9 @@ class Meross {
     // Update state repeatedly
     self.checkStateInterval = setInterval(function() {
       self.getDoorState()
-      .then(function (state) {
-        self.service.setCharacteristic(Characteristic.CurrentDoorState, state);
-      })
-      .catch( e => this.log.debug(`${e}`));
-    }, 2000);
+      .then(state => self.service.setCharacteristic(Characteristic.CurrentDoorState, state))
+      .catch(e => this.log(`${e}`));
+    }, 5000);
   }
 
   stopUpdatingDoorState() {
