@@ -14,7 +14,7 @@
   },
   "engines": {
     "node": ">=12.18.3",
-    "homebridge": ">=1.1.6"
+    "homebridge": ">=1.2.0"
   },
   "main": "dist/index.js",
   "scripts": {
@@ -37,8 +37,7 @@
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.1.0",
     "eslint": "^7.9.0",
-    "homebridge": "^1.1.6",
-    "homebridge-config-ui-x": "^4.27.1",
+    "homebridge": "^1.2.0",
     "nodemon": "^2.0.4",
     "rimraf": "^3.0.2",
     "ts-node": "^9.0.0",
