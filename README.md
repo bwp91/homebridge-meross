@@ -10,19 +10,21 @@
 <p>The <a href="https://www.meross.com">Meross</a> plugin for
   <a href="https://homebridge.io">Homebridge</a>.
 
-  This Plugin allows you to control your Meross Devices from HomeKit.
+This Plugin allows you to control your Meross Devices from HomeKit.
+
 </p>
 
 </span>
 
 ## Installation
-* Install [config-ui-x](https://github.com/oznu/homebridge-config-ui-x).
-* Search for "Meross" on the Plugin Screen of [config-ui-x](https://github.com/oznu/homebridge-config-ui-x) .
-* Click Install on Homebridge Meross.
+
+1. Search for "Meross" on the plugin screen of [Homebridge Config UI X](https://github.com/oznu/homebridge-config-ui-x).
+2. Click **Install**.
 
 ## Authorization & Configuration
-If you're setting this plug up fresh, make sure you go through the
-typical Meross app for initial setup.
 
-You will also have to obtain some information that the Meross mobile
-app uses in its HTTP request headers. Visit [Credentials Wiki](https://github.com/donavanbecker/homebridge-meross/wiki/Getting-Credentials) for more details.
+1. If you're setting this plug up fresh, make sure you go through the
+   typical Meross app for initial setup.
+
+2. You will also have to obtain some information that the Meross mobile
+   app uses in its HTTP request headers. Visit [Credentials Wiki](https://github.com/donavanbecker/homebridge-meross/wiki/Getting-Credentials) for more details.

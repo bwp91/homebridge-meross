@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
+## 3.0.0 (2020-09-**)
+
+## [Version 3.0.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v2.3.1....3.0.0)
+
+#### Changes
+-  Converted Project to Typescript.
+
 ## 2.3.1 (2020-07-21)
 
 ## [Version 2.3.1](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v2.3.0...2.3.1)
