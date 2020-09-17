@@ -1,12 +1,13 @@
-"use strict";
+/* eslint-disable no-useless-escape */
+'use strict';
 
-const request = require("request");
+import request from 'request';
 let Service, Characteristic;
 
 // Wrap request with a promise to make it awaitable
 function doRequest(options) {
-  return new Promise(function (resolve, reject) {
-    request(options, function (error, res, body) {
+  return new Promise((resolve, reject) => {
+    request(options, (error, res, body) => {
       if (!error && res.statusCode === 200) {
         resolve(body);
       } else {
@@ -19,10 +20,17 @@ function doRequest(options) {
 module.exports = function (homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
-  homebridge.registerAccessory("homebridge-meross", "Meross", Meross);
+  homebridge.registerAccessory('homebridge-meross', 'Meross', Meross);
 };
 
 class Meross {
+  log: any;
+  config: any;
+  service: any;
+  isOn: any;
+  currentState: any;
+  lastSetTime!: number;
+  checkStateInterval!: NodeJS.Timeout;
   constructor(log, config) {
     /*
      * The constructor function is called when the plugin is registered.
@@ -89,28 +97,28 @@ class Meross {
     }
      */
     switch (config.model) {
-      case "MSS110-1":
-      case "MSS110-2":
-      case "MSS210":
-      case "MSS310":
-      case "MSS420F":
-      case "MSS425":
-      case "MSS425E":
-      case "MSS425F":
-      case "MSS620":
+      case 'MSS110-1':
+      case 'MSS110-2':
+      case 'MSS210':
+      case 'MSS310':
+      case 'MSS420F':
+      case 'MSS425':
+      case 'MSS425E':
+      case 'MSS425F':
+      case 'MSS620':
         this.service = new Service.Outlet(this.config.name);
         break;
-      case "MSS510":
-      case "MSS510M":
-      case "MSS550":
-      case "MSS560":
-      case "MSS570":
-      case "MSS5X0":
+      case 'MSS510':
+      case 'MSS510M':
+      case 'MSS550':
+      case 'MSS560':
+      case 'MSS570':
+      case 'MSS5X0':
         this.service = new Service.Switch(this.config.name);
         break;
-      case "MSG100":
+      case 'MSG100':
         this.service = new Service.GarageDoorOpener(this.config.name);
-        this.startUpdatingDoorState()
+        this.startUpdatingDoorState();
         break;
       default:
         this.service = new Service.Outlet(this.config.name);
@@ -125,9 +133,9 @@ class Meross {
 
     /* Create a new information service. This just tells HomeKit about our accessory. */
     const informationService = new Service.AccessoryInformation()
-      .setCharacteristic(Characteristic.Manufacturer, "Meross")
+      .setCharacteristic(Characteristic.Manufacturer, 'Meross')
       .setCharacteristic(Characteristic.Model, this.config.model)
-      .setCharacteristic(Characteristic.SerialNumber, "❤️");
+      .setCharacteristic(Characteristic.SerialNumber, '❤️');
 
     /*
      * For each of the service characteristics we need to register setters and getter functions
@@ -135,23 +143,23 @@ class Meross {
      * 'set' is called when HomeKit wants to update the value of the characteristic
      */
     switch (this.config.model) {
-      case "MSG100":
+      case 'MSG100':
         this.service
           .getCharacteristic(Characteristic.CurrentDoorState)
-          .on("get", this.getDoorStateHandler.bind(this));
+          .on('get', this.getDoorStateHandler.bind(this));
         this.service
           .getCharacteristic(Characteristic.TargetDoorState)
-          .on("get", this.getDoorStateHandler.bind(this))
-          .on("set", this.setDoorStateHandler.bind(this));
+          .on('get', this.getDoorStateHandler.bind(this))
+          .on('set', this.setDoorStateHandler.bind(this));
         this.service
           .getCharacteristic(Characteristic.ObstructionDetected)
-          .on("get", this.getObstructionDetectedHandler.bind(this));
+          .on('get', this.getObstructionDetectedHandler.bind(this));
         break;
       default:
         this.service
           .getCharacteristic(Characteristic.On)
-          .on("get", this.getOnCharacteristicHandler.bind(this))
-          .on("set", this.setOnCharacteristicHandler.bind(this));
+          .on('get', this.getOnCharacteristicHandler.bind(this))
+          .on('set', this.setOnCharacteristicHandler.bind(this));
     }
 
     /* Return both the main service (this.service) and the informationService */
@@ -166,22 +174,24 @@ class Meross {
     let response;
 
     /* Log to the console whenever this function is called */
-    this.log.debug(`calling setOnCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
+    this.log.debug(
+      `calling setOnCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`,
+    );
 
     /*
      * Differentiate requests based on device model.
      */
 
     switch (this.config.model) {
-      case "MSS110-1":
+      case 'MSS110-1':
         try {
           response = await doRequest({
             json: true,
-            method: "POST",
+            method: 'POST',
             strictSSL: false,
             url: `http://${this.config.deviceUrl}/config`,
             headers: {
-              "Content-Type": "application/json",
+              'Content-Type': 'application/json',
             },
             body: {
               payload: {
@@ -191,9 +201,9 @@ class Meross {
               },
               header: {
                 messageId: `${this.config.messageId}`,
-                method: "SET",
+                method: 'SET',
                 from: `http://${this.config.deviceUrl}\/config`,
-                namespace: "Appliance.Control.Toggle",
+                namespace: 'Appliance.Control.Toggle',
                 timestamp: this.config.timestamp,
                 sign: `${this.config.sign}`,
                 payloadVersion: 1,
@@ -203,7 +213,7 @@ class Meross {
         } catch (e) {
           this.log(
             `Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`,
-            e
+            e,
           );
         }
         break;
@@ -211,11 +221,11 @@ class Meross {
         try {
           response = await doRequest({
             json: true,
-            method: "POST",
+            method: 'POST',
             strictSSL: false,
             url: `http://${this.config.deviceUrl}/config`,
             headers: {
-              "Content-Type": "application/json",
+              'Content-Type': 'application/json',
             },
             body: {
               payload: {
@@ -226,9 +236,9 @@ class Meross {
               },
               header: {
                 messageId: `${this.config.messageId}`,
-                method: "SET",
+                method: 'SET',
                 from: `http://${this.config.deviceUrl}\/config`,
-                namespace: "Appliance.Control.ToggleX",
+                namespace: 'Appliance.Control.ToggleX',
                 timestamp: this.config.timestamp,
                 sign: `${this.config.sign}`,
                 payloadVersion: 1,
@@ -238,22 +248,22 @@ class Meross {
         } catch (e) {
           this.log(
             `Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`,
-            e
+            e,
           );
         }
     }
 
     if (response) {
       this.isOn = value;
-      this.log.debug("Set succeeded:", response);
-      this.log(`${this.config.model} turned`, value ? "On" : "Off");
+      this.log.debug('Set succeeded:', response);
+      this.log(`${this.config.model} turned`, value ? 'On' : 'Off');
     } else {
       this.isOn = false;
-      this.log("Set failed:", this.isOn);
+      this.log('Set failed:', this.isOn);
     }
 
     /* Log to the console the value whenever this function is called */
-    this.log.debug("setOnCharacteristicHandler:", value);
+    this.log.debug('setOnCharacteristicHandler:', value);
 
     /*
      * The callback function should be called to return the value
@@ -273,25 +283,25 @@ class Meross {
 
     /* Log to the console whenever this function is called */
     this.log.debug(
-      `calling getOnCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`
+      `calling getOnCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`,
     );
 
     try {
       response = await doRequest({
         json: true,
-        method: "POST",
+        method: 'POST',
         strictSSL: false,
         url: `http://${this.config.deviceUrl}/config`,
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: {
           payload: {},
           header: {
             messageId: `${this.config.messageId}`,
-            method: "GET",
+            method: 'GET',
             from: `http://${this.config.deviceUrl}/config`,
-            namespace: "Appliance.System.All",
+            namespace: 'Appliance.System.All',
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
             payloadVersion: 1,
@@ -301,7 +311,7 @@ class Meross {
     } catch (e) {
       this.log(
         `Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`,
-        e
+        e,
       );
     }
 
@@ -310,32 +320,32 @@ class Meross {
      */
 
     switch (this.config.model) {
-      case "MSS110-1":
+      case 'MSS110-1':
         if (response) {
-          let onOff = response.payload.all.control.toggle.onoff;
+          const onOff = response.payload.all.control.toggle.onoff;
 
-          this.log("Retrieved status successfully: ", onOff);
+          this.log('Retrieved status successfully: ', onOff);
           this.isOn = onOff;
         } else {
-          this.log("Retrieved status unsuccessfully.");
+          this.log('Retrieved status unsuccessfully.');
           this.isOn = false;
         }
         break;
       default:
         if (response) {
-          let onOff =
+          const onOff =
             response.payload.all.digest.togglex[`${this.config.channel}`].onoff;
 
-          this.log.debug("Retrieved status successfully: ", onOff);
+          this.log.debug('Retrieved status successfully: ', onOff);
           this.isOn = onOff;
         } else {
-          this.log.debug("Retrieved status unsuccessfully.");
+          this.log.debug('Retrieved status unsuccessfully.');
           this.isOn = false;
         }
     }
 
     /* Log to the console the value whenever this function is called */
-    this.log.debug("getOnCharacteristicHandler:", this.isOn);
+    this.log.debug('getOnCharacteristicHandler:', this.isOn);
 
     /*
      * The callback function should be called to return the value
@@ -351,15 +361,19 @@ class Meross {
      * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
      * it's called each time you open the Home app or when you open control center
      */
-    this.log.debug(`getDoorStateHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
-    
+    this.log.debug(
+      `getDoorStateHandler for ${this.config.model} at ${this.config.deviceUrl}...`,
+    );
+
     this.getDoorState()
-    .then(state => callback(null, state))
-    .catch(e => this.log(`${e}`));
+      .then((state) => callback(null, state))
+      .catch((e) => this.log(`${e}`));
   }
 
   async getObstructionDetectedHandler(callback) {
-    this.log.debug(`getObstructionDetectedHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
+    this.log.debug(
+      `getObstructionDetectedHandler for ${this.config.model} at ${this.config.deviceUrl}...`,
+    );
     callback(null, Characteristic.ObstructionDetected.NO);
   }
 
@@ -367,77 +381,107 @@ class Meross {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
     /* deviceUrl only requires ip address */
 
-    this.log.debug(`setDoorStateHandler ${value} for ${this.config.model} at ${this.config.deviceUrl}...`);
+    this.log.debug(
+      `setDoorStateHandler ${value} for ${this.config.model} at ${this.config.deviceUrl}...`,
+    );
 
-    let self = this;
     this.getDoorState()
-    .then(function(state) {
-      if (value === Characteristic.TargetDoorState.CLOSED) {
-        if (state === Characteristic.CurrentDoorState.OPEN) {
-          self.log("Target CLOSED, Current OPEN, close the door");
-          self.currentState = Characteristic.CurrentDoorState.CLOSING;
-          self.setDoorState(false);
-          callback();
-          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSING);
-        } else if (state === Characteristic.CurrentDoorState.CLOSED) {
-          self.log("Target CLOSED, Current CLOSED, no change");
-          self.currentState = Characteristic.CurrentDoorState.CLOSED;
-          callback();
-        } else if (state === Characteristic.CurrentDoorState.OPENING) {
-          self.log("Target CLOSED, Current OPENING, stop the door (then it stays in open state)");
-          self.currentState = Characteristic.CurrentDoorState.OPEN;
-          self.setDoorState(false);
-          callback();
-          self.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.OPEN);
-          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPEN);
-        } else if (state === Characteristic.CurrentDoorState.CLOSING) {
-          self.log("Target CLOSED, Current CLOSING, no change");
-          self.currentState = Characteristic.CurrentDoorState.CLOSING;
-          callback();
-        } else if (state === Characteristic.CurrentDoorState.STOPPED) {
-          self.log("Target CLOSED, Current STOPPED, close the door");
-          self.currentState = Characteristic.CurrentDoorState.CLOSING;
-          self.setDoorState(false);
-          callback();
-          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSING);
-        } else {
-          self.log("Target CLOSED, Current UNKOWN, no change");
-          callback();
+      .then((state) => {
+        if (value === Characteristic.TargetDoorState.CLOSED) {
+          if (state === Characteristic.CurrentDoorState.OPEN) {
+            this.log('Target CLOSED, Current OPEN, close the door');
+            this.currentState = Characteristic.CurrentDoorState.CLOSING;
+            this.setDoorState(false);
+            callback();
+            this.service.setCharacteristic(
+              Characteristic.CurrentDoorState,
+              Characteristic.CurrentDoorState.CLOSING,
+            );
+          } else if (state === Characteristic.CurrentDoorState.CLOSED) {
+            this.log('Target CLOSED, Current CLOSED, no change');
+            this.currentState = Characteristic.CurrentDoorState.CLOSED;
+            callback();
+          } else if (state === Characteristic.CurrentDoorState.OPENING) {
+            this.log(
+              'Target CLOSED, Current OPENING, stop the door (then it stays in open state)',
+            );
+            this.currentState = Characteristic.CurrentDoorState.OPEN;
+            this.setDoorState(false);
+            callback();
+            this.service.setCharacteristic(
+              Characteristic.TargetDoorState,
+              Characteristic.TargetDoorState.OPEN,
+            );
+            this.service.setCharacteristic(
+              Characteristic.CurrentDoorState,
+              Characteristic.CurrentDoorState.OPEN,
+            );
+          } else if (state === Characteristic.CurrentDoorState.CLOSING) {
+            this.log('Target CLOSED, Current CLOSING, no change');
+            this.currentState = Characteristic.CurrentDoorState.CLOSING;
+            callback();
+          } else if (state === Characteristic.CurrentDoorState.STOPPED) {
+            this.log('Target CLOSED, Current STOPPED, close the door');
+            this.currentState = Characteristic.CurrentDoorState.CLOSING;
+            this.setDoorState(false);
+            callback();
+            this.service.setCharacteristic(
+              Characteristic.CurrentDoorState,
+              Characteristic.CurrentDoorState.CLOSING,
+            );
+          } else {
+            this.log('Target CLOSED, Current UNKOWN, no change');
+            callback();
+          }
+        } else if (value === Characteristic.TargetDoorState.OPEN) {
+          if (state === Characteristic.CurrentDoorState.OPEN) {
+            this.log('Target OPEN, Current OPEN, no change');
+            this.currentState = Characteristic.CurrentDoorState.OPEN;
+            callback();
+          } else if (state === Characteristic.CurrentDoorState.CLOSED) {
+            this.log('Target OPEN, Current CLOSED, open the door');
+            this.currentState = Characteristic.CurrentDoorState.OPENING;
+            this.setDoorState(true);
+            callback();
+            this.service.setCharacteristic(
+              Characteristic.CurrentDoorState,
+              Characteristic.CurrentDoorState.OPENING,
+            );
+          } else if (state === Characteristic.CurrentDoorState.OPENING) {
+            this.log('Target OPEN, Current OPENING, no change');
+            this.currentState = Characteristic.CurrentDoorState.OPENING;
+            callback();
+          } else if (state === Characteristic.CurrentDoorState.CLOSING) {
+            this.log(
+              'Target OPEN, Current CLOSING, Meross does not accept OPEN request while closing',
+              ' since the sensor is already open, no change.',
+            );
+            this.currentState = Characteristic.CurrentDoorState.CLOSING;
+            callback();
+            this.service.setCharacteristic(
+              Characteristic.TargetDoorState,
+              Characteristic.TargetDoorState.CLOSING,
+            );
+            this.service.setCharacteristic(
+              Characteristic.CurrentDoorState,
+              Characteristic.CurrentDoorState.CLOSING,
+            );
+          } else if (state === Characteristic.CurrentDoorState.STOPPED) {
+            this.log('Target OPEN, Current STOPPED, open the door');
+            this.currentState = Characteristic.CurrentDoorState.OPENING;
+            this.setDoorState(true);
+            callback();
+            this.service.setCharacteristic(
+              Characteristic.CurrentDoorState,
+              Characteristic.CurrentDoorState.OPENING,
+            );
+          } else {
+            this.log('Target OPEN, Current UNKOWN, no change');
+            callback();
+          }
         }
-      } else if (value === Characteristic.TargetDoorState.OPEN) {
-        if (state === Characteristic.CurrentDoorState.OPEN) {
-          self.log("Target OPEN, Current OPEN, no change");
-          self.currentState = Characteristic.CurrentDoorState.OPEN;
-          callback();
-        } else if (state === Characteristic.CurrentDoorState.CLOSED) {
-          self.log("Target OPEN, Current CLOSED, open the door");
-          self.currentState = Characteristic.CurrentDoorState.OPENING;
-          self.setDoorState(true);
-          callback();
-          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPENING);
-        } else if (state === Characteristic.CurrentDoorState.OPENING) {
-          self.log("Target OPEN, Current OPENING, no change");
-          self.currentState = Characteristic.CurrentDoorState.OPENING;
-          callback();
-        } else if (state === Characteristic.CurrentDoorState.CLOSING) {
-          self.log("Target OPEN, Current CLOSING, Meross doesn't accept OPEN request while closing since the sensor is already open, no change.");
-          self.currentState = Characteristic.CurrentDoorState.CLOSING;
-          callback();
-          self.service.setCharacteristic(Characteristic.TargetDoorState, Characteristic.TargetDoorState.CLOSING);
-          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.CLOSING);
-        } else if (state === Characteristic.CurrentDoorState.STOPPED) {
-          self.log("Target OPEN, Current STOPPED, open the door");
-          self.currentState = Characteristic.CurrentDoorState.OPENING;
-          self.setDoorState(true);
-          callback();
-          self.service.setCharacteristic(Characteristic.CurrentDoorState, Characteristic.CurrentDoorState.OPENING);
-        } else {
-          self.log("Target OPEN, Current UNKOWN, no change");
-          callback();
-        }
-      }
-    })
-    .catch(e => this.log(`${e}`));
+      })
+      .catch((e) => this.log(`${e}`));
   }
 
   async setDoorState(open) {
@@ -446,11 +490,11 @@ class Meross {
     try {
       response = await doRequest({
         json: true,
-        method: "POST",
+        method: 'POST',
         strictSSL: false,
         url: `http://${this.config.deviceUrl}/config`,
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: {
           payload: {
@@ -462,18 +506,21 @@ class Meross {
           },
           header: {
             messageId: `${this.config.messageId}`,
-            method: "SET",
+            method: 'SET',
             from: `http://${this.config.deviceUrl}\/config`,
-            namespace: "Appliance.GarageDoor.State",
+            namespace: 'Appliance.GarageDoor.State',
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
             payloadVersion: 1,
-            triggerSrc: "iOS",
+            triggerSrc: 'iOS',
           },
         },
       });
     } catch (e) {
-      this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
+      this.log(
+        `Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`,
+        e,
+      );
     }
     return response;
   }
@@ -483,19 +530,19 @@ class Meross {
     try {
       response = await doRequest({
         json: true,
-        method: "POST",
+        method: 'POST',
         strictSSL: false,
         url: `http://${this.config.deviceUrl}/config`,
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: {
           payload: {},
           header: {
             messageId: `${this.config.messageId}`,
-            method: "GET",
+            method: 'GET',
             from: `http://${this.config.deviceUrl}/config`,
-            namespace: "Appliance.System.All",
+            namespace: 'Appliance.System.All',
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
             payloadVersion: 1,
@@ -503,22 +550,34 @@ class Meross {
         },
       });
     } catch (e) {
-      this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
+      this.log(
+        `Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`,
+        e,
+      );
       throw e;
     }
 
     if (response) {
       // Open means magnetic sensor not detected, doesn't really mean the door is open
-      const isOpen = response.payload.all.digest.garageDoor[`${this.config.channel}`].open;
+      const isOpen =
+        response.payload.all.digest.garageDoor[`${this.config.channel}`].open;
       if (isOpen) {
         const currentTime = Math.floor(Date.now() / 1000);
         const elapsedTime = currentTime - this.lastSetTime;
         if (this.currentState === Characteristic.CurrentDoorState.OPENING) {
-          this.currentState = elapsedTime < this.config.garageDoorOpeningTime ? Characteristic.CurrentDoorState.OPENING : Characteristic.CurrentDoorState.OPEN;
-        } else if (this.currentState === Characteristic.CurrentDoorState.CLOSING) {
-          this.currentState = elapsedTime < this.config.garageDoorOpeningTime ? Characteristic.CurrentDoorState.CLOSING : Characteristic.CurrentDoorState.OPEN;
+          this.currentState =
+            elapsedTime < this.config.garageDoorOpeningTime
+              ? Characteristic.CurrentDoorState.OPENING
+              : Characteristic.CurrentDoorState.OPEN;
+        } else if (
+          this.currentState === Characteristic.CurrentDoorState.CLOSING
+        ) {
+          this.currentState =
+            elapsedTime < this.config.garageDoorOpeningTime
+              ? Characteristic.CurrentDoorState.CLOSING
+              : Characteristic.CurrentDoorState.OPEN;
         } else {
-          this.currentState =  Characteristic.CurrentDoorState.OPEN
+          this.currentState = Characteristic.CurrentDoorState.OPEN;
         }
       } else {
         this.currentState = Characteristic.CurrentDoorState.CLOSED;
@@ -527,40 +586,41 @@ class Meross {
 
     switch (this.currentState) {
       case Characteristic.CurrentDoorState.OPEN:
-        this.log.debug("Current state OPEN");
+        this.log.debug('Current state OPEN');
         break;
       case Characteristic.CurrentDoorState.CLOSED:
-        this.log.debug("Current state CLOSED");
+        this.log.debug('Current state CLOSED');
         break;
       case Characteristic.CurrentDoorState.OPENING:
-        this.log.debug("Current state OPENING");
+        this.log.debug('Current state OPENING');
         break;
       case Characteristic.CurrentDoorState.CLOSING:
-        this.log.debug("Current state CLOSING");
+        this.log.debug('Current state CLOSING');
         break;
       case Characteristic.CurrentDoorState.STOPPED:
-        this.log.debug("Current state STOPPED");
+        this.log.debug('Current state STOPPED');
         break;
       default:
-        this.log.debug("Current state UNKNOWN");
+        this.log.debug('Current state UNKNOWN');
     }
 
     return this.currentState;
   }
 
   startUpdatingDoorState() {
-    this.stopUpdatingDoorState()
-    let self = this;
+    this.stopUpdatingDoorState();
     // Update state repeatedly
-    self.checkStateInterval = setInterval(function() {
-      self.getDoorState()
-      .then(state => self.service.setCharacteristic(Characteristic.CurrentDoorState, state))
-      .catch(e => this.log(`${e}`));
+    this.checkStateInterval = setInterval(() => {
+      this.getDoorState()
+        .then((state) =>
+          this.service.setCharacteristic(Characteristic.CurrentDoorState, state),
+        )
+        .catch((e) => this.log(`${e}`));
     }, 5000);
   }
 
   stopUpdatingDoorState() {
     clearInterval(this.checkStateInterval);
-    this.checkStateInterval = undefined;
+    this.checkStateInterval;
   }
 }

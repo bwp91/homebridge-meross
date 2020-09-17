@@ -1,22 +1,28 @@
 {
+  "displayName": "Homebridge Meross",
   "name": "homebridge-meross",
-  "version": "2.3.1",
-  "description": "A Meross Plugin for Homebridge",
-  "main": "index.js",
-  "scripts": {
-    "developer": "DEBUG=meross homebridge -D -U `pwd` -P `pwd`",
-    "lint": "jshint package.json *.js",
-    "watch": "nodemon"
-  },
+  "version": "3.0.0",
+  "description": "A Meross Plugin for Homebridge.",
+  "license": "Apache-2.0",
   "author": "donavanbecker/dylanfrankcom",
   "repository": {
     "type": "git",
-    "url": "git://github.com/homebridge-plugins/homebridge-meross.git"
+    "url": "git://github.com/donavanbecker/homebridge-meross.git"
   },
   "bugs": {
-    "url": "https://github.com/homebridge-plugins/homebridge-meross/issues"
+    "url": "https://github.com/donavanbecker/homebridge-meross/issues"
   },
-  "license": "MIT",
+  "engines": {
+    "node": ">=12.18.3",
+    "homebridge": ">=1.2.2"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint src/**.ts",
+    "watch": "npm run build && npm link && nodemon",
+    "build": "rimraf ./dist && tsc",
+    "prepublishOnly": "npm run lint && npm run build"
+  },
   "keywords": [
     "homebridge-plugin",
     "meross",
@@ -26,10 +32,14 @@
     "request": ">=2.88.0"
   },
   "devDependencies": {
-    "nodemon": ">=2.0.2"
-  },
-  "engines": {
-    "node": ">=10.20.1",
-    "homebridge": ">=1.0.0"
+    "@types/node": "^14.10.3",
+    "@typescript-eslint/eslint-plugin": "^4.1.1",
+    "@typescript-eslint/parser": "^4.1.1",
+    "eslint": "^7.9.0",
+    "homebridge": "^1.2.2",
+    "nodemon": "^2.0.4",
+    "rimraf": "^3.0.2",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
   }
 }

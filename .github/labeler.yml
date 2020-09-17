@@ -7,7 +7,7 @@ repo:
 
 # Add 'enhancement' label to any change to index.js file
 enhancement:
-  - ./index.js
+  - ./src/*
   - ./package.json
   - ./pakcage-lock.json
   - ./config.schema.json

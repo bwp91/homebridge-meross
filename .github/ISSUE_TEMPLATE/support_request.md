@@ -4,7 +4,6 @@ about: Need help?
 title: ''
 labels: question
 assignees: ''
-
 ---
 
 <!-- You must use the issue template below when submitting a support request -->
@@ -16,15 +15,21 @@ assignees: ''
 <!-- Support requests that do not contain logs may be closed without warning. -->
 
 ```
-Show the Homebridge logs here.
-Remove any sensative information.
+Show the Homebridge logs here. If using Homebridge Config-UI-X, you can easly downlaod your log by visiting the log page on the UI and Clicking the Download Icon in the top right.
+Remove any sensitive information, such as yourhomebridge-meross timestamp / sign / messageId / deviceUrl.
+
+Please Turn on Debug Mode before submitting your Issue so more logs can be shared to fix the issue being submitted.
+
+***Read and Paste over this Text the Text Above^^^^^^
 ```
 
 **Homebridge Config:**
 
 ```json
-Show your homebridge config.json here. 
-Remove any sensitive information, such as your homebridge-gsh / google-smarthome token.
+Paste your homebridge config.json here.
+Remove any sensitive information, such as your homebridge-meross timestamp / sign / messageId / deviceUrl.
+
+***Read and Paste over this Text the Text Above^^^^^^
 ```
 
 **Screenshots:**
