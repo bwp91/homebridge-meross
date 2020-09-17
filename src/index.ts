@@ -453,7 +453,8 @@ class Meross {
             callback();
           } else if (state === Characteristic.CurrentDoorState.CLOSING) {
             this.log(
-              'Target OPEN, Current CLOSING, Meross doesn\'t accept OPEN request while closing since the sensor is already open, no change.',
+              'Target OPEN, Current CLOSING, Meross does not accept OPEN request while closing',
+              ' since the sensor is already open, no change.',
             );
             this.currentState = Characteristic.CurrentDoorState.CLOSING;
             callback();
