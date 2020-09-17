@@ -10,8 +10,7 @@
     "sourceType": "module"
   },
   "ignorePatterns": [
-    "dist",
-    "server"
+    "dist"
   ],
   "rules": {
     "quotes": [
