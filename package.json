@@ -23,6 +23,20 @@
     "build": "rimraf ./dist && tsc",
     "prepublishOnly": "npm run lint && npm run build"
   },
+  "funding": [
+    {
+      "type": "Paypal",
+      "url": "https://www.paypal.me/donavanbecker"
+    },
+    {
+      "type": "Buy Me a Coffee",
+      "url": "buymeacoff.ee/donavanbecker"
+    },
+    {
+      "type": "Cash",
+      "url": "https://cash.app/$donavanbecker"
+    }
+  ],
   "keywords": [
     "homebridge-plugin",
     "meross",
