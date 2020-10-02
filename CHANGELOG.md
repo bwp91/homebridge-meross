@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
+## [Version 3.1.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v3.0.0....3.1.0) (2020-10-02)
+
+#### Changes
+
+- Added brightness changing support to the MSS560 switch.
+
 ## [Version 3.0.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v2.3.1....3.0.0) (2020-09-17)
 
 #### Changes
