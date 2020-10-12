@@ -65,6 +65,7 @@ class Meross {
         break;
       case "MSS510":
       case "MSS510M":
+      case 'MSS530H':
       case "MSS550":
       case "MSS560":
       case "MSS570":
@@ -111,6 +112,7 @@ class Meross {
         break;
       case 'MSS510':
       case 'MSS510M':
+      case 'MSS530H':
       case 'MSS550':
       case 'MSS570':
       case 'MSS5X0':
