@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
+## [Version 3.2.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v3.1.0....3.2.0) (2020-10-15)
+
+#### Changes
+
+- Added support for the MSS530H.
+  - You set an ChannelID 1, 2 or 3.
+    - Channel 1 is the Top Outlet.
+    - Channel 2 the bottom left.
+    - Channel 3 the bottom right.
+
 ## [Version 3.1.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v3.0.0....3.1.0) (2020-10-02)
 
 #### Changes
