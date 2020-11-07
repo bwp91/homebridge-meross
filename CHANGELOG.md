@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
+## [Version 3.3.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v3.2.0....3.3.0) (2020-11-06)
+
+#### Changes
+
+- Added basic support for MSL-100, MSL-120.
+
 ## [Version 3.2.0](https://github.com/donavanbecker/homebridge-honeywell-home/compare/v3.1.0....3.2.0) (2020-10-15)
 
 #### Changes

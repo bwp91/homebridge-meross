@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-useless-escape */
 'use strict';
 
@@ -6,41 +7,53 @@ let Service, Characteristic;
 
 // convert three r,g,b integers (each 0-255) to a single decimal integer (something between 0 and ~16m)
 function colourToNumber(r, g, b) {
-  return (r << 16) + (g << 8) + (b);
+  return (r << 16) + (g << 8) + b;
 }
 
 // convert it back again (to a string)
 function numberToColour(number) {
   const r = (number & 0xff0000) >> 16;
   const g = (number & 0x00ff00) >> 8;
-  const b = (number & 0x0000ff);
+  const b = number & 0x0000ff;
   return [r, g, b];
 }
 
-function HSLToRGB(h,s,l) {
+function HSLToRGB(h, s, l) {
   // Must be fractions of 1
   s /= 100;
   l /= 100;
 
   let c = (1 - Math.abs(2 * l - 1)) * s,
-      x = c * (1 - Math.abs((h / 60) % 2 - 1)),
-      m = l - c/2,
-      r = 0,
-      g = 0,
-      b = 0;
+    x = c * (1 - Math.abs(((h / 60) % 2) - 1)),
+    m = l - c / 2,
+    r = 0,
+    g = 0,
+    b = 0;
 
   if (0 <= h && h < 60) {
-      r = c; g = x; b = 0;
+    r = c;
+    g = x;
+    b = 0;
   } else if (60 <= h && h < 120) {
-      r = x; g = c; b = 0;
+    r = x;
+    g = c;
+    b = 0;
   } else if (120 <= h && h < 180) {
-      r = 0; g = c; b = x;
+    r = 0;
+    g = c;
+    b = x;
   } else if (180 <= h && h < 240) {
-      r = 0; g = x; b = c;
+    r = 0;
+    g = x;
+    b = c;
   } else if (240 <= h && h < 300) {
-      r = x; g = 0; b = c;
+    r = x;
+    g = 0;
+    b = c;
   } else if (300 <= h && h < 360) {
-      r = c; g = 0; b = x;
+    r = c;
+    g = 0;
+    b = x;
   }
   r = Math.round((r + m) * 255);
   g = Math.round((g + m) * 255);
@@ -49,52 +62,57 @@ function HSLToRGB(h,s,l) {
   return [r, g, b];
 }
 
-function RGBToHSL(r,g,b) {
+function RGBToHSL(r, g, b) {
   // Make r, g, and b fractions of 1
   r /= 255;
   g /= 255;
   b /= 255;
 
   // Find greatest and smallest channel values
-  let cmin = Math.min(r,g,b),
-      cmax = Math.max(r,g,b),
-      delta = cmax - cmin,
-      h = 0,
-      s = 0,
-      l = 0;
+  let cmin = Math.min(r, g, b),
+    cmax = Math.max(r, g, b),
+    delta = cmax - cmin,
+    h = 0,
+    s = 0,
+    l = 0;
 
   // Calculate hue
   // No difference
-  if (delta == 0)
-      h = 0;
+  if (delta == 0) {
+    h = 0;
+  }
   // Red is max
-  else if (cmax == r)
-      h = ((g - b) / delta) % 6;
+  else if (cmax == r) {
+    h = ((g - b) / delta) % 6;
+  }
   // Green is max
-  else if (cmax == g)
-      h = (b - r) / delta + 2;
+  else if (cmax == g) {
+    h = (b - r) / delta + 2;
+  }
   // Blue is max
-  else
-      h = (r - g) / delta + 4;
+  else {
+    h = (r - g) / delta + 4;
+  }
 
   h = Math.round(h * 60);
-      
-  // Make negative hues positive behind 360°
-  if (h < 0)
-      h += 360;
 
-   // Calculate lightness
+  // Make negative hues positive behind 360°
+  if (h < 0) {
+    h += 360;
+  }
+
+  // Calculate lightness
   l = (cmax + cmin) / 2;
 
   // Calculate saturation
   s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
-      
+
   // Multiply l and s by 100
   s = +(s * 100).toFixed(1);
   l = +(l * 100).toFixed(1);
 
   //return "hsl(" + h + "," + s + "%," + l + "%)";
-  return [h,s,l];
+  return [h, s, l];
 }
 
 // Wrap request with a promise to make it awaitable
@@ -197,12 +215,12 @@ class Meross {
     switch (config.model) {
       case 'MSS110-1':
       case 'MSS110-2':
-      case "MSL-100":
-          this.service = new Service.Lightbulb(this.config.name);
-          break;    
-      case "MSL-120":
-          this.service = new Service.Lightbulb(this.config.name);
-          break;  
+      case 'MSL-100':
+        this.service = new Service.Lightbulb(this.config.name);
+        break;
+      case 'MSL-120':
+        this.service = new Service.Lightbulb(this.config.name);
+        break;
       case 'MSS210':
       case 'MSS310':
       case 'MSS420F':
@@ -264,48 +282,48 @@ class Meross {
         break;
       case 'MSL-100':
         this.service
-            .getCharacteristic(Characteristic.Hue)
-            .on('get', this.getHueCharacteristicHandler.bind(this))
-            .on('set', this.setHueCharacteristicHandler.bind(this) );  
+          .getCharacteristic(Characteristic.Hue)
+          .on('get', this.getHueCharacteristicHandler.bind(this))
+          .on('set', this.setHueCharacteristicHandler.bind(this));
         this.service
-            .getCharacteristic(Characteristic.ColorTemperature)
-            .on('get', this.getColorTemperatureCharacteristicHandler.bind(this))
-            .on('set', this.setColorTemperatureCharacteristicHandler.bind(this) );      
+          .getCharacteristic(Characteristic.ColorTemperature)
+          .on('get', this.getColorTemperatureCharacteristicHandler.bind(this))
+          .on('set', this.setColorTemperatureCharacteristicHandler.bind(this));
         this.service
-            .getCharacteristic(Characteristic.Saturation)
-            .on('get', this.getSaturationCharacteristicHandler.bind(this))
-            .on('set', this.setSaturationCharacteristicHandler.bind(this));
+          .getCharacteristic(Characteristic.Saturation)
+          .on('get', this.getSaturationCharacteristicHandler.bind(this))
+          .on('set', this.setSaturationCharacteristicHandler.bind(this));
         this.service
-            .getCharacteristic(Characteristic.Brightness)
-            .on('get', this.getBrightnessCharacteristicHandler.bind(this))
-            .on('set', this.setBrightnessCharacteristicHandler.bind(this));
+          .getCharacteristic(Characteristic.Brightness)
+          .on('get', this.getBrightnessCharacteristicHandler.bind(this))
+          .on('set', this.setBrightnessCharacteristicHandler.bind(this));
         this.service
-            .getCharacteristic(Characteristic.On)
-            .on('get', this.getOnCharacteristicHandler.bind(this))
-            .on('set', this.setOnCharacteristicHandler.bind(this));
-        break;   
+          .getCharacteristic(Characteristic.On)
+          .on('get', this.getOnCharacteristicHandler.bind(this))
+          .on('set', this.setOnCharacteristicHandler.bind(this));
+        break;
       case 'MSL-120':
         this.service
-            .getCharacteristic(Characteristic.Hue)
-            .on('get', this.getHueCharacteristicHandler.bind(this))
-            .on('set', this.setHueCharacteristicHandler.bind(this) );  
+          .getCharacteristic(Characteristic.Hue)
+          .on('get', this.getHueCharacteristicHandler.bind(this))
+          .on('set', this.setHueCharacteristicHandler.bind(this));
         this.service
-            .getCharacteristic(Characteristic.ColorTemperature)
-            .on('get', this.getColorTemperatureCharacteristicHandler.bind(this))
-            .on('set', this.setColorTemperatureCharacteristicHandler.bind(this) );      
+          .getCharacteristic(Characteristic.ColorTemperature)
+          .on('get', this.getColorTemperatureCharacteristicHandler.bind(this))
+          .on('set', this.setColorTemperatureCharacteristicHandler.bind(this));
         this.service
-            .getCharacteristic(Characteristic.Saturation)
-            .on('get', this.getSaturationCharacteristicHandler.bind(this))
-            .on('set', this.setSaturationCharacteristicHandler.bind(this));
+          .getCharacteristic(Characteristic.Saturation)
+          .on('get', this.getSaturationCharacteristicHandler.bind(this))
+          .on('set', this.setSaturationCharacteristicHandler.bind(this));
         this.service
-            .getCharacteristic(Characteristic.Brightness)
-            .on('get', this.getBrightnessCharacteristicHandler.bind(this))
-            .on('set', this.setBrightnessCharacteristicHandler.bind(this));
+          .getCharacteristic(Characteristic.Brightness)
+          .on('get', this.getBrightnessCharacteristicHandler.bind(this))
+          .on('set', this.setBrightnessCharacteristicHandler.bind(this));
         this.service
-            .getCharacteristic(Characteristic.On)
-            .on('get', this.getOnCharacteristicHandler.bind(this))
-            .on('set', this.setOnCharacteristicHandler.bind(this));
-        break;   
+          .getCharacteristic(Characteristic.On)
+          .on('get', this.getOnCharacteristicHandler.bind(this))
+          .on('set', this.setOnCharacteristicHandler.bind(this));
+        break;
       case 'MSS560':
         this.service
           .getCharacteristic(Characteristic.Brightness)
@@ -517,7 +535,6 @@ class Meross {
     callback(null, this.isOn);
   }
 
-
   async setBrightnessCharacteristicHandler(value, callback) {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
     /* deviceUrl only requires ip address */
@@ -530,12 +547,12 @@ class Meross {
       `calling setBrightnessCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`,
     );
 
-    var payload;
+    let payload;
     if (this.config.model === 'MSL-100' || this.config.model === 'MSL-120') {
       payload = {
         light: {
           luminance: value,
-          capacity: 4
+          capacity: 4,
         },
       };
     } else {
@@ -650,8 +667,7 @@ class Meross {
     switch (this.config.model) {
       default:
         if (response) {
-          const luminance =
-            response.payload.all.digest.light.luminance;
+          const luminance = response.payload.all.digest.light.luminance;
 
           this.log.debug('Retrieved status successfully: ', luminance);
           this.brightness = luminance;
@@ -674,334 +690,379 @@ class Meross {
   }
 
   async setColorTemperatureCharacteristicHandler(value, callback) {
-        let response;
-        // Range on HomeKit is 140 - 500. 500 being yellow, 140 being white.
-        // Range on Meross is 1-100. 1 being yellow, 100 being white.
-        var mired = value;
-        var mr_temp = mired - 140;
-        mr_temp = 360 - mr_temp;
-        mr_temp = mr_temp / 360;
-        mr_temp = Math.round( mr_temp * 100 );
-        mr_temp = mr_temp === 0 ? 1 : mr_temp;
+    let response;
+    // Range on HomeKit is 140 - 500. 500 being yellow, 140 being white.
+    // Range on Meross is 1-100. 1 being yellow, 100 being white.
+    let mired = value;
+    let mr_temp = mired - 140;
+    mr_temp = 360 - mr_temp;
+    mr_temp = mr_temp / 360;
+    mr_temp = Math.round(mr_temp * 100);
+    mr_temp = mr_temp === 0 ? 1 : mr_temp;
 
-        this.log.debug(`calling setColorTemperatureCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
-        /*
-         * Differentiate requests based on device model.
-         */
-        switch (this.config.model) {
-            default:
-                try {
-                    response = await doRequest({
-                        json: true,
-                        method: 'POST',
-                        strictSSL: false,
-                        url: `http://${this.config.deviceUrl}/config`,
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: {
-                            payload: {
-                                light: {
-                                    temperature: mr_temp,
-                                    capacity: 2
-                                },
-                            },
-                            header: {
-                                messageId: `${this.config.messageId}`,
-                                method: 'SET',
-                                from: `http://${this.config.deviceUrl}\/config`,
-                                namespace: 'Appliance.Control.Light',
-                                timestamp: this.config.timestamp,
-                                sign: `${this.config.sign}`,
-                                payloadVersion: 1,
-                            },
-                        },
-                    });
-                }
-                catch (e) {
-                    this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
-                }
+    this.log.debug(
+      `calling setColorTemperatureCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`,
+    );
+    /*
+     * Differentiate requests based on device model.
+     */
+    switch (this.config.model) {
+      default:
+        try {
+          response = await doRequest({
+            json: true,
+            method: 'POST',
+            strictSSL: false,
+            url: `http://${this.config.deviceUrl}/config`,
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: {
+              payload: {
+                light: {
+                  temperature: mr_temp,
+                  capacity: 2,
+                },
+              },
+              header: {
+                messageId: `${this.config.messageId}`,
+                method: 'SET',
+                from: `http://${this.config.deviceUrl}\/config`,
+                namespace: 'Appliance.Control.Light',
+                timestamp: this.config.timestamp,
+                sign: `${this.config.sign}`,
+                payloadVersion: 1,
+              },
+            },
+          });
+        } catch (e) {
+          this.log(
+            `Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`,
+            e,
+          );
         }
+    }
+    if (response) {
+      this.temperature = mr_temp;
+      this.log.debug('Set succeeded:', response);
+      this.log(
+        `${this.config.model} set ColorTemperature to`,
+        this.temperature,
+      );
+    }
+    /* Log to the console the value whenever this function is called */
+    this.log.debug(
+      'setColorTemperatureCharacteristicHandler:',
+      this.temperature,
+    );
+    /*
+     * The callback function should be called to return the value
+     * The first argument in the function should be null unless and error occured
+     */
+    callback(null, this.temperature);
+  }
+
+  async getColorTemperatureCharacteristicHandler(callback) {
+    /*
+     * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
+     * it's called each time you open the Home app or when you open control center
+     */
+    let response;
+    /* Log to the console whenever this function is called */
+    this.log.debug(
+      `calling getColorTemperatureCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`,
+    );
+    try {
+      response = await doRequest({
+        json: true,
+        method: 'POST',
+        strictSSL: false,
+        url: `http://${this.config.deviceUrl}/config`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: {
+          payload: {},
+          header: {
+            messageId: `${this.config.messageId}`,
+            method: 'GET',
+            from: `http://${this.config.deviceUrl}/config`,
+            namespace: 'Appliance.System.All',
+            timestamp: this.config.timestamp,
+            sign: `${this.config.sign}`,
+            payloadVersion: 1,
+          },
+        },
+      });
+    } catch (e) {
+      this.log(
+        `Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`,
+        e,
+      );
+    }
+    /*
+     * Differentiate response based on device model.
+     */
+    switch (this.config.model) {
+      default:
         if (response) {
-            this.temperature = mr_temp;
-            this.log.debug('Set succeeded:', response);
-            this.log(`${this.config.model} set ColorTemperature to`, this.temperature);
+          let tmp_temperature = response.payload.all.digest.light.temperature;
+          let mr_temp = (tmp_temperature / 100) * 360;
+          mr_temp = 360 - mr_temp;
+          mr_temp = mr_temp + 140;
+          mr_temp = Math.round(mr_temp);
+          this.temperature = mr_temp;
+          this.log.debug(
+            'Retrieved temp status successfully: ',
+            this.temperature,
+          );
         }
-        /* Log to the console the value whenever this function is called */
-        this.log.debug('setColorTemperatureCharacteristicHandler:', this.temperature);
-        /*
-         * The callback function should be called to return the value
-         * The first argument in the function should be null unless and error occured
-         */
-        callback(null, this.temperature);
     }
-    async getColorTemperatureCharacteristicHandler(callback) {
-        /*
-         * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
-         * it's called each time you open the Home app or when you open control center
-         */
-        let response;
-        /* Log to the console whenever this function is called */
-        this.log.debug(`calling getColorTemperatureCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
-        try {
-            response = await doRequest({
-                json: true,
-                method: 'POST',
-                strictSSL: false,
-                url: `http://${this.config.deviceUrl}/config`,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: {
-                    payload: {},
-                    header: {
-                        messageId: `${this.config.messageId}`,
-                        method: 'GET',
-                        from: `http://${this.config.deviceUrl}/config`,
-                        namespace: 'Appliance.System.All',
-                        timestamp: this.config.timestamp,
-                        sign: `${this.config.sign}`,
-                        payloadVersion: 1,
-                    },
-                },
-            });
-        }
-        catch (e) {
-            this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
-        }
-        /*
-         * Differentiate response based on device model.
-         */
-        switch (this.config.model) {
-            default:
-                if (response) {
-                    var tmp_temperature = response.payload.all.digest.light.temperature;
-                    var mr_temp = (tmp_temperature / 100) * 360;
-                    mr_temp = 360 - mr_temp;
-                    mr_temp = mr_temp + 140;
-                    mr_temp = Math.round(mr_temp);
-                    this.temperature = mr_temp;
-                    this.log.debug('Retrieved temp status successfully: ', this.temperature);
-                }
-        }
-        /* Log to the console the value whenever this function is called */
-        this.log.debug('getColorTemperatureCharacteristicHandler:', this.temperature);
-        /*
-         * The callback function should be called to return the value
-         * The first argument in the function should be null unless and error occured
-         * The second argument in the function should be the current value of the characteristic
-         * This is just an example so we will return the value from `this.ColorTemperature` which is where we stored the value in the set handler
-         */
-        callback(null, this.temperature);
-    }
-    async setHueCharacteristicHandler(value, callback) {
-        /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
-        /* deviceUrl only requires ip address */
-        //this.log(this.config, this.config.deviceUrl);
-        let response;
-        this.hue = value;
-        /* Log to the console whenever this function is called */
-        this.log.debug(`calling setHueCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
-        this.log.debug('Hue succeeded:', this.hue);
-        this.log.debug('Sat succeeded:', this.saturation);
+    /* Log to the console the value whenever this function is called */
+    this.log.debug(
+      'getColorTemperatureCharacteristicHandler:',
+      this.temperature,
+    );
+    /*
+     * The callback function should be called to return the value
+     * The first argument in the function should be null unless and error occured
+     * The second argument in the function should be the current value of the characteristic
+     * This is just an example so we will return the value from `this.ColorTemperature` which is where we stored the value in the set handler
+     */
+    callback(null, this.temperature);
+  }
 
-        callback(null, this.hue);
-    }
-    async getHueCharacteristicHandler(callback) {
-        /*
-         * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
-         * it's called each time you open the Home app or when you open control center
-         */
-        //this.log(this.config, this.config.deviceUrl);
-        let response;
-        /* Log to the console whenever this function is called */
-        this.log.debug(`calling gethueCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
-        try {
-            response = await doRequest({
-                json: true,
-                method: 'POST',
-                strictSSL: false,
-                url: `http://${this.config.deviceUrl}/config`,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: {
-                    payload: {},
-                    header: {
-                        messageId: `${this.config.messageId}`,
-                        method: 'GET',
-                        from: `http://${this.config.deviceUrl}/config`,
-                        namespace: 'Appliance.System.All',
-                        timestamp: this.config.timestamp,
-                        sign: `${this.config.sign}`,
-                        payloadVersion: 1,
-                    },
-                },
-            });
-        }
-        catch (e) {
-            this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
-        }
-        /*
-         * Differentiate response based on device model.
-         */
-        switch (this.config.model) {
-            default:
-                if (response) {
-                    this.log.debug('Retrieved status successfully: ', response.payload.all.digest.light);                    
+  async setHueCharacteristicHandler(value, callback) {
+    /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
+    /* deviceUrl only requires ip address */
+    //this.log(this.config, this.config.deviceUrl);
+    let response;
+    this.hue = value;
+    /* Log to the console whenever this function is called */
+    this.log.debug(
+      `calling setHueCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`,
+    );
+    this.log.debug('Hue succeeded:', this.hue);
+    this.log.debug('Sat succeeded:', this.saturation);
 
-                    var light_rgb = response.payload.all.digest.light.rgb;
-                    var rgb = numberToColour(light_rgb);
-                    var hsl = RGBToHSL( rgb[0], rgb[1], rgb[2] );
-                    const hue = hsl[0];
-                    this.log.debug('Retrieved hue status successfully: ', hue);
-                    this.hue = hue;
-                }
-                else {
-                    this.log.debug('Retrieved status unsuccessfully.');
-                }
-        }
-        /* Log to the console the value whenever this function is called */
-        this.log.debug('gethueCharacteristicHandler:', this.hue);
-        /*
-         * The callback function should be called to return the value
-         * The first argument in the function should be null unless and error occured
-         * The second argument in the function should be the current value of the characteristic
-         * This is just an example so we will return the value from `this.hue` which is where we stored the value in the set handler
-         */
-        callback(null, this.hue);
-    }
-    async setSaturationCharacteristicHandler(value, callback) {
-        /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
-        /* deviceUrl only requires ip address */
-        //this.log(this.config, this.config.deviceUrl);
-        let response;
-        this.saturation = value;
-        var rgb = HSLToRGB(this.hue, this.saturation, 50);
-        var rgb_d = colourToNumber(rgb[0], rgb[1], rgb[2]);
+    callback(null, this.hue);
+  }
 
-        /* Log to the console whenever this function is called */
-        this.log.debug(`calling setsaturationCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
-        /*
-         * Differentiate requests based on device model.
-         */
-        switch (this.config.model) {
-            default:
-                try {
-                    response = await doRequest({
-                        json: true,
-                        method: 'POST',
-                        strictSSL: false,
-                        url: `http://${this.config.deviceUrl}/config`,
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: {
-                            payload: {
-                                light: {
-                                    rgb: rgb_d,
-                                    capacity: 1,
-                                    luminance: this.brightness
-                                },
-                            },
-                            header: {
-                                messageId: `${this.config.messageId}`,
-                                method: 'SET',
-                                from: `http://${this.config.deviceUrl}\/config`,
-                                namespace: 'Appliance.Control.Light',
-                                timestamp: this.config.timestamp,
-                                sign: `${this.config.sign}`,
-                                payloadVersion: 1,
-                            },
-                        },
-                    });
-                }
-                catch (e) {
-                    this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
-                }
-        }
+  async getHueCharacteristicHandler(callback) {
+    /*
+     * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
+     * it's called each time you open the Home app or when you open control center
+     */
+    //this.log(this.config, this.config.deviceUrl);
+    let response;
+    /* Log to the console whenever this function is called */
+    this.log.debug(
+      `calling gethueCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`,
+    );
+    try {
+      response = await doRequest({
+        json: true,
+        method: 'POST',
+        strictSSL: false,
+        url: `http://${this.config.deviceUrl}/config`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: {
+          payload: {},
+          header: {
+            messageId: `${this.config.messageId}`,
+            method: 'GET',
+            from: `http://${this.config.deviceUrl}/config`,
+            namespace: 'Appliance.System.All',
+            timestamp: this.config.timestamp,
+            sign: `${this.config.sign}`,
+            payloadVersion: 1,
+          },
+        },
+      });
+    } catch (e) {
+      this.log(
+        `Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`,
+        e,
+      );
+    }
+    /*
+     * Differentiate response based on device model.
+     */
+    switch (this.config.model) {
+      default:
         if (response) {
-            this.saturation = value;
-            this.log.debug('Set succeeded:', response);
-            this.log(`${this.config.model} set saturation to`, value);
-        }
-        else {
-            this.log('Set failed:', this.saturation);
-        }
-        /* Log to the console the value whenever this function is called */
-        this.log.debug('setsaturationCharacteristicHandler:', value);
-        /*
-         * The callback function should be called to return the value
-         * The first argument in the function should be null unless and error occured
-         */
-        callback(null, this.saturation);
-    }
-    async getSaturationCharacteristicHandler(callback) {
-        /*
-         * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
-         * it's called each time you open the Home app or when you open control center
-         */
-        //this.log(this.config, this.config.deviceUrl);
-        let response;
-        /* Log to the console whenever this function is called */
-        this.log.debug(`calling getsaturationCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`);
-        try {
-            response = await doRequest({
-                json: true,
-                method: 'POST',
-                strictSSL: false,
-                url: `http://${this.config.deviceUrl}/config`,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: {
-                    payload: {},
-                    header: {
-                        messageId: `${this.config.messageId}`,
-                        method: 'GET',
-                        from: `http://${this.config.deviceUrl}/config`,
-                        namespace: 'Appliance.System.All',
-                        timestamp: this.config.timestamp,
-                        sign: `${this.config.sign}`,
-                        payloadVersion: 1,
-                    },
-                },
-            });
-        }
-        catch (e) {
-            this.log(`Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`, e);
-        }
-        /*
-         * Differentiate response based on device model.
-         */
-        switch (this.config.model) {
-            default:
-                if (response) {
-                    this.brightness = response.payload.all.digest.light.luminance;
-                    this.temperature = response.payload.all.digest.light.temperature;
+          this.log.debug(
+            'Retrieved status successfully: ',
+            response.payload.all.digest.light,
+          );
 
-                    var light_rgb = response.payload.all.digest.light.rgb;
-                    var rgb = numberToColour(light_rgb);
-                    var hsl = RGBToHSL( rgb[0], rgb[1], rgb[2] );
-                    const saturation = hsl[1];
-                    this.log.debug('Retrieved saturation status successfully: ', saturation);
-                    this.log.debug('Retrieved saturation/hue status successfully: ', this.hue);
-                    this.saturation = saturation;
-                }
-                else {
-                    this.log.debug('Retrieved status unsuccessfully.');
-                    this.saturation = this.isOn ? 100 : 0;
-                }
+          let light_rgb = response.payload.all.digest.light.rgb;
+          let rgb = numberToColour(light_rgb);
+          let hsl = RGBToHSL(rgb[0], rgb[1], rgb[2]);
+          const hue = hsl[0];
+          this.log.debug('Retrieved hue status successfully: ', hue);
+          this.hue = hue;
+        } else {
+          this.log.debug('Retrieved status unsuccessfully.');
         }
-        /* Log to the console the value whenever this function is called */
-        this.log.debug('getsaturationCharacteristicHandler:', this.saturation);
-        /*
-         * The callback function should be called to return the value
-         * The first argument in the function should be null unless and error occured
-         * The second argument in the function should be the current value of the characteristic
-         * This is just an example so we will return the value from `this.hue` which is where we stored the value in the set handler
-         */
-        callback(null, this.saturation);
+    }
+    /* Log to the console the value whenever this function is called */
+    this.log.debug('gethueCharacteristicHandler:', this.hue);
+    /*
+     * The callback function should be called to return the value
+     * The first argument in the function should be null unless and error occured
+     * The second argument in the function should be the current value of the characteristic
+     * This is just an example so we will return the value from `this.hue` which is where we stored the value in the set handler
+     */
+    callback(null, this.hue);
+  }
+
+  async setSaturationCharacteristicHandler(value, callback) {
+    /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
+    /* deviceUrl only requires ip address */
+    //this.log(this.config, this.config.deviceUrl);
+    let response;
+    this.saturation = value;
+    let rgb = HSLToRGB(this.hue, this.saturation, 50);
+    let rgb_d = colourToNumber(rgb[0], rgb[1], rgb[2]);
+
+    /* Log to the console whenever this function is called */
+    this.log.debug(
+      `calling setsaturationCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`,
+    );
+    /*
+     * Differentiate requests based on device model.
+     */
+    switch (this.config.model) {
+      default:
+        try {
+          response = await doRequest({
+            json: true,
+            method: 'POST',
+            strictSSL: false,
+            url: `http://${this.config.deviceUrl}/config`,
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: {
+              payload: {
+                light: {
+                  rgb: rgb_d,
+                  capacity: 1,
+                  luminance: this.brightness,
+                },
+              },
+              header: {
+                messageId: `${this.config.messageId}`,
+                method: 'SET',
+                from: `http://${this.config.deviceUrl}\/config`,
+                namespace: 'Appliance.Control.Light',
+                timestamp: this.config.timestamp,
+                sign: `${this.config.sign}`,
+                payloadVersion: 1,
+              },
+            },
+          });
+        } catch (e) {
+          this.log(
+            `Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`,
+            e,
+          );
+        }
+    }
+    if (response) {
+      this.saturation = value;
+      this.log.debug('Set succeeded:', response);
+      this.log(`${this.config.model} set saturation to`, value);
+    } else {
+      this.log('Set failed:', this.saturation);
+    }
+    /* Log to the console the value whenever this function is called */
+    this.log.debug('setsaturationCharacteristicHandler:', value);
+    /*
+     * The callback function should be called to return the value
+     * The first argument in the function should be null unless and error occured
+     */
+    callback(null, this.saturation);
+  }
+
+  async getSaturationCharacteristicHandler(callback) {
+    /*
+     * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
+     * it's called each time you open the Home app or when you open control center
+     */
+    //this.log(this.config, this.config.deviceUrl);
+    let response;
+    /* Log to the console whenever this function is called */
+    this.log.debug(
+      `calling getsaturationCharacteristicHandler for ${this.config.model} at ${this.config.deviceUrl}...`,
+    );
+    try {
+      response = await doRequest({
+        json: true,
+        method: 'POST',
+        strictSSL: false,
+        url: `http://${this.config.deviceUrl}/config`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: {
+          payload: {},
+          header: {
+            messageId: `${this.config.messageId}`,
+            method: 'GET',
+            from: `http://${this.config.deviceUrl}/config`,
+            namespace: 'Appliance.System.All',
+            timestamp: this.config.timestamp,
+            sign: `${this.config.sign}`,
+            payloadVersion: 1,
+          },
+        },
+      });
+    } catch (e) {
+      this.log(
+        `Failed to POST to the Meross Device ${this.config.model} at ${this.config.deviceUrl}:`,
+        e,
+      );
+    }
+    /*
+     * Differentiate response based on device model.
+     */
+    switch (this.config.model) {
+      default:
+        if (response) {
+          this.brightness = response.payload.all.digest.light.luminance;
+          this.temperature = response.payload.all.digest.light.temperature;
+
+          let light_rgb = response.payload.all.digest.light.rgb;
+          let rgb = numberToColour(light_rgb);
+          let hsl = RGBToHSL(rgb[0], rgb[1], rgb[2]);
+          const saturation = hsl[1];
+          this.log.debug(
+            'Retrieved saturation status successfully: ',
+            saturation,
+          );
+          this.log.debug(
+            'Retrieved saturation/hue status successfully: ',
+            this.hue,
+          );
+          this.saturation = saturation;
+        } else {
+          this.log.debug('Retrieved status unsuccessfully.');
+          this.saturation = this.isOn ? 100 : 0;
+        }
+    }
+    /* Log to the console the value whenever this function is called */
+    this.log.debug('getsaturationCharacteristicHandler:', this.saturation);
+    /*
+     * The callback function should be called to return the value
+     * The first argument in the function should be null unless and error occured
+     * The second argument in the function should be the current value of the characteristic
+     * This is just an example so we will return the value from `this.hue` which is where we stored the value in the set handler
+     */
+    callback(null, this.saturation);
   }
 
   async getDoorStateHandler(callback) {
