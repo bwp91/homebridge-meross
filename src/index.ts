@@ -78,19 +78,13 @@ function RGBToHSL(r, g, b) {
 
   // Calculate hue
   // No difference
-  if (delta == 0) {
+  if (delta === 0) {
     h = 0;
-  }
-  // Red is max
-  else if (cmax == r) {
+  } else if (cmax === r) {  // Red is max
     h = ((g - b) / delta) % 6;
-  }
-  // Green is max
-  else if (cmax == g) {
+  } else if (cmax === g) {  // Green is max
     h = (b - r) / delta + 2;
-  }
-  // Blue is max
-  else {
+  } else {  // Blue is max
     h = (r - g) / delta + 4;
   }
 
@@ -105,7 +99,7 @@ function RGBToHSL(r, g, b) {
   l = (cmax + cmin) / 2;
 
   // Calculate saturation
-  s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+  s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
 
   // Multiply l and s by 100
   s = +(s * 100).toFixed(1);
@@ -830,7 +824,8 @@ class Meross {
      * The callback function should be called to return the value
      * The first argument in the function should be null unless and error occured
      * The second argument in the function should be the current value of the characteristic
-     * This is just an example so we will return the value from `this.ColorTemperature` which is where we stored the value in the set handler
+     * This is just an example so we will return the value from `this.ColorTemperature`
+        * which is where we stored the value in the set handler
      */
     callback(null, this.temperature);
   }
@@ -839,7 +834,6 @@ class Meross {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
     /* deviceUrl only requires ip address */
     //this.log(this.config, this.config.deviceUrl);
-    let response;
     this.hue = value;
     /* Log to the console whenever this function is called */
     this.log.debug(
@@ -1272,10 +1266,8 @@ class Meross {
     if (response) {
       // Open means magnetic sensor not detected, doesn't really mean the door is open
       let isOpen = (this.currentState === Characteristic.CurrentDoorState.OPEN);
-      for(var i = 0; i < response.payload.all.digest.garageDoor.length; i++)
-      {
-        if(response.payload.all.digest.garageDoor[i].channel == this.config.channel)
-        {
+      for(let i = 0; i < response.payload.all.digest.garageDoor.length; i++) {
+        if(response.payload.all.digest.garageDoor[i].channel === this.config.channel) {
           isOpen = response.payload.all.digest.garageDoor[i].open;
         }
       }
