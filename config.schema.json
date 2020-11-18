@@ -91,6 +91,10 @@
           {
             "title": "MSG-100",
             "enum": ["MSG100"]
+          },
+          {
+            "title": "MSG-200",
+            "enum": ["MSG200"]
           }
         ]
       },

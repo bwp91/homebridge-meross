@@ -187,6 +187,7 @@ class Meross {
         this.service = new Service.Switch(this.config.name);
         break;
       case "MSG100":
+      case "MSG200":
         this.service = new Service.GarageDoorOpener(this.config.name);
         break;
       case "MSL100":
@@ -242,6 +243,7 @@ class Meross {
         this.service = new Service.Lightbulb(this.config.name);
         break;
       case 'MSG100':
+      case 'MSG200':
         this.service = new Service.GarageDoorOpener(this.config.name);
         this.startUpdatingDoorState();
         break;
@@ -269,6 +271,7 @@ class Meross {
      */
     switch (this.config.model) {
       case 'MSG100':
+      case 'MSG200':
         this.service
           .getCharacteristic(Characteristic.CurrentDoorState)
           .on('get', this.getDoorStateHandler.bind(this));
@@ -1208,7 +1211,7 @@ class Meross {
         body: {
           payload: {
             state: {
-              channel: 0,
+              channel: `${this.config.channel}`,
               open: open ? 1 : 0,
               uuid: `${this.config.deviceUrl}`,
             },
@@ -1268,8 +1271,14 @@ class Meross {
 
     if (response) {
       // Open means magnetic sensor not detected, doesn't really mean the door is open
-      const isOpen =
-        response.payload.all.digest.garageDoor[`${this.config.channel}`].open;
+      let isOpen = (this.currentState === Characteristic.CurrentDoorState.OPEN);
+      for(var i = 0; i < response.payload.all.digest.garageDoor.length; i++)
+      {
+        if(response.payload.all.digest.garageDoor[i].channel == this.config.channel)
+        {
+          isOpen = response.payload.all.digest.garageDoor[i].open;
+        }
+      }
       if (isOpen) {
         const currentTime = Math.floor(Date.now() / 1000);
         const elapsedTime = currentTime - this.lastSetTime;
