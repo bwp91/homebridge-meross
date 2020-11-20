@@ -509,11 +509,11 @@ class Meross {
         break;
       default:
         if (response) {
-          const onOff =
-            response.payload.all.digest.togglex[`${this.config.channel}`].onoff;
-
-          this.log.debug('Retrieved status successfully: ', onOff);
-          this.isOn = onOff;
+          if (response?.payload?.all?.digest?.togglex){
+            let onOff = response.payload.all.digest.togglex[`${this.config.channel}`].onoff;
+            this.log.debug('Retrieved status successfully: ', onOff);
+            this.isOn = onOff;
+          }
         } else {
           this.log.debug('Retrieved status unsuccessfully.');
           this.isOn = false;
@@ -663,9 +663,8 @@ class Meross {
 
     switch (this.config.model) {
       default:
-        if (response) {
+        if (response?.payload?.all?.digest?.light?.luminance) {
           const luminance = response.payload.all.digest.light.luminance;
-
           this.log.debug('Retrieved status successfully: ', luminance);
           this.brightness = luminance;
         } else {
@@ -802,7 +801,7 @@ class Meross {
      */
     switch (this.config.model) {
       default:
-        if (response) {
+        if (response?.payload?.all?.digest?.light?.temperature) {
           let tmp_temperature = response.payload.all.digest.light.temperature;
           let mr_temp = (tmp_temperature / 100) * 360;
           mr_temp = 360 - mr_temp;
@@ -889,7 +888,7 @@ class Meross {
      */
     switch (this.config.model) {
       default:
-        if (response) {
+        if (response?.payload?.all?.digest?.light) {
           this.log.debug(
             'Retrieved status successfully: ',
             response.payload.all.digest.light,
@@ -1029,7 +1028,7 @@ class Meross {
      */
     switch (this.config.model) {
       default:
-        if (response) {
+        if (response?.payload?.all?.digest?.light) {
           this.brightness = response.payload.all.digest.light.luminance;
           this.temperature = response.payload.all.digest.light.temperature;
 
@@ -1263,7 +1262,7 @@ class Meross {
       throw e;
     }
 
-    if (response) {
+    if (response?.payload?.all?.digest?.garageDoor) {
       // Open means magnetic sensor not detected, doesn't really mean the door is open
       let isOpen = (this.currentState === Characteristic.CurrentDoorState.OPEN);
       for(let i = 0; i < response.payload.all.digest.garageDoor.length; i++) {
