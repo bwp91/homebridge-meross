@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
-## [Version 3.4.0](https://github.com/donavanbecker/homebridge-meross/compare/v3.3.0....3.4.0) (2020-11-20)
+## [Version 3.4.0](https://github.com/donavanbecker/homebridge-meross/compare/v3.3.0....3.4.0) (2020-11-19)
 
 ### Changes
 
