@@ -78,19 +78,13 @@ function RGBToHSL(r, g, b) {
 
   // Calculate hue
   // No difference
-  if (delta == 0) {
+  if (delta === 0) {
     h = 0;
-  }
-  // Red is max
-  else if (cmax == r) {
+  } else if (cmax === r) {  // Red is max
     h = ((g - b) / delta) % 6;
-  }
-  // Green is max
-  else if (cmax == g) {
+  } else if (cmax === g) {  // Green is max
     h = (b - r) / delta + 2;
-  }
-  // Blue is max
-  else {
+  } else {  // Blue is max
     h = (r - g) / delta + 4;
   }
 
@@ -105,7 +99,7 @@ function RGBToHSL(r, g, b) {
   l = (cmax + cmin) / 2;
 
   // Calculate saturation
-  s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+  s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
 
   // Multiply l and s by 100
   s = +(s * 100).toFixed(1);
@@ -187,6 +181,7 @@ class Meross {
         this.service = new Service.Switch(this.config.name);
         break;
       case "MSG100":
+      case "MSG200":
         this.service = new Service.GarageDoorOpener(this.config.name);
         break;
       case "MSL100":
@@ -242,6 +237,7 @@ class Meross {
         this.service = new Service.Lightbulb(this.config.name);
         break;
       case 'MSG100':
+      case 'MSG200':
         this.service = new Service.GarageDoorOpener(this.config.name);
         this.startUpdatingDoorState();
         break;
@@ -269,6 +265,7 @@ class Meross {
      */
     switch (this.config.model) {
       case 'MSG100':
+      case 'MSG200':
         this.service
           .getCharacteristic(Characteristic.CurrentDoorState)
           .on('get', this.getDoorStateHandler.bind(this));
@@ -512,11 +509,11 @@ class Meross {
         break;
       default:
         if (response) {
-          const onOff =
-            response.payload.all.digest.togglex[`${this.config.channel}`].onoff;
-
-          this.log.debug('Retrieved status successfully: ', onOff);
-          this.isOn = onOff;
+          if (response?.payload?.all?.digest?.togglex){
+            let onOff = response.payload.all.digest.togglex[`${this.config.channel}`].onoff;
+            this.log.debug('Retrieved status successfully: ', onOff);
+            this.isOn = onOff;
+          }
         } else {
           this.log.debug('Retrieved status unsuccessfully.');
           this.isOn = false;
@@ -666,9 +663,8 @@ class Meross {
 
     switch (this.config.model) {
       default:
-        if (response) {
+        if (response?.payload?.all?.digest?.light?.luminance) {
           const luminance = response.payload.all.digest.light.luminance;
-
           this.log.debug('Retrieved status successfully: ', luminance);
           this.brightness = luminance;
         } else {
@@ -805,7 +801,7 @@ class Meross {
      */
     switch (this.config.model) {
       default:
-        if (response) {
+        if (response?.payload?.all?.digest?.light?.temperature) {
           let tmp_temperature = response.payload.all.digest.light.temperature;
           let mr_temp = (tmp_temperature / 100) * 360;
           mr_temp = 360 - mr_temp;
@@ -827,7 +823,8 @@ class Meross {
      * The callback function should be called to return the value
      * The first argument in the function should be null unless and error occured
      * The second argument in the function should be the current value of the characteristic
-     * This is just an example so we will return the value from `this.ColorTemperature` which is where we stored the value in the set handler
+     * This is just an example so we will return the value from `this.ColorTemperature`
+        * which is where we stored the value in the set handler
      */
     callback(null, this.temperature);
   }
@@ -836,7 +833,6 @@ class Meross {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
     /* deviceUrl only requires ip address */
     //this.log(this.config, this.config.deviceUrl);
-    let response;
     this.hue = value;
     /* Log to the console whenever this function is called */
     this.log.debug(
@@ -892,7 +888,7 @@ class Meross {
      */
     switch (this.config.model) {
       default:
-        if (response) {
+        if (response?.payload?.all?.digest?.light) {
           this.log.debug(
             'Retrieved status successfully: ',
             response.payload.all.digest.light,
@@ -1032,7 +1028,7 @@ class Meross {
      */
     switch (this.config.model) {
       default:
-        if (response) {
+        if (response?.payload?.all?.digest?.light) {
           this.brightness = response.payload.all.digest.light.luminance;
           this.temperature = response.payload.all.digest.light.temperature;
 
@@ -1208,7 +1204,7 @@ class Meross {
         body: {
           payload: {
             state: {
-              channel: 0,
+              channel: `${this.config.channel}`,
               open: open ? 1 : 0,
               uuid: `${this.config.deviceUrl}`,
             },
@@ -1266,10 +1262,14 @@ class Meross {
       throw e;
     }
 
-    if (response) {
+    if (response?.payload?.all?.digest?.garageDoor) {
       // Open means magnetic sensor not detected, doesn't really mean the door is open
-      const isOpen =
-        response.payload.all.digest.garageDoor[`${this.config.channel}`].open;
+      let isOpen = (this.currentState === Characteristic.CurrentDoorState.OPEN);
+      for(let i = 0; i < response.payload.all.digest.garageDoor.length; i++) {
+        if(response.payload.all.digest.garageDoor[i].channel === this.config.channel) {
+          isOpen = response.payload.all.digest.garageDoor[i].open;
+        }
+      }
       if (isOpen) {
         const currentTime = Math.floor(Date.now() / 1000);
         const elapsedTime = currentTime - this.lastSetTime;
