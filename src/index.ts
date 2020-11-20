@@ -1272,10 +1272,8 @@ class Meross {
     if (response) {
       // Open means magnetic sensor not detected, doesn't really mean the door is open
       let isOpen = (this.currentState === Characteristic.CurrentDoorState.OPEN);
-      for(var i = 0; i < response.payload.all.digest.garageDoor.length; i++)
-      {
-        if(response.payload.all.digest.garageDoor[i].channel == this.config.channel)
-        {
+      for(let i = 0; i < response.payload.all.digest.garageDoor.length; i++) {
+        if(response.payload.all.digest.garageDoor[i].channel === this.config.channel) {
           isOpen = response.payload.all.digest.garageDoor[i].open;
         }
       }
