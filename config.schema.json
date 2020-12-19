@@ -98,23 +98,23 @@
           }
         ]
       },
-      "serialNumber": {
-        "name": "Serial Number",
-        "type": "string",
-        "placeholder": "SerialNumber",
-        "description": "Set the serial number for display in the Home app."
-      },
-      "firmwareRevision": {
-        "name": "Firmware Revision",
-        "type": "string",
-        "description": "Set the firmware revision for display in the Home app."
-      },
       "name": {
         "title": "Name",
         "description": "The name for the device to be shown in the Home App. This can be changed within the Home App later.",
         "type": "string",
         "placeholder": "Living Room Switch",
         "required": true
+      },
+      "serialNumber": {
+        "name": "Serial Number",
+        "type": "string",
+        "placeholder": "SerialNumber",
+        "description": "Set the Serial Number that will display in the Home app."
+      },
+      "firmwareRevision": {
+        "name": "Firmware Version",
+        "type": "string",
+        "description": "Set the Firmware Version that will display in the Home app."
       },
       "deviceUrl": {
         "title": "IP Address",
