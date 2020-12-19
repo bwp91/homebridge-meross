@@ -105,6 +105,17 @@
         "placeholder": "Living Room Switch",
         "required": true
       },
+      "serialNumber": {
+        "name": "Serial Number",
+        "type": "string",
+        "placeholder": "SerialNumber",
+        "description": "Set the Serial Number that will display in the Home app."
+      },
+      "firmwareRevision": {
+        "name": "Firmware Version",
+        "type": "string",
+        "description": "Set the Firmware Version that will display in the Home app."
+      },
       "deviceUrl": {
         "title": "IP Address",
         "description": "The device's IP address. It is recommended to set a static IP for the device.",

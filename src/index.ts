@@ -256,7 +256,8 @@ class Meross {
     const informationService = new Service.AccessoryInformation()
       .setCharacteristic(Characteristic.Manufacturer, 'Meross')
       .setCharacteristic(Characteristic.Model, this.config.model)
-      .setCharacteristic(Characteristic.SerialNumber, this.config.deviceUrl);
+      .setCharacteristic(Characteristic.SerialNumber, this.config.serialNumber || this.config.deviceUrl)
+      .setCharacteristic(Characteristic.FirmwareRevision, this.config.firmwareRevision || this.config.deviceUrl);
 
     /*
      * For each of the service characteristics we need to register setters and getter functions
