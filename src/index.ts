@@ -8,4 +8,3 @@ import { MerossPlatform } from './platform';
 export = (api: API): void => {
   api.registerPlatform(PLATFORM_NAME, MerossPlatform);
 };
-('homebridge-meross', 'Meross', Meross);
