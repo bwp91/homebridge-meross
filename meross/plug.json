@@ -1,0 +1,30 @@
+{
+    "uuid": "1912093483313290806448e1e912fc2e",
+    "onlineStatus": 1,
+    "devName": "Smart Outdoor Plug",
+    "devIconId": "device026",
+    "bindTime": 1600396516,
+    "deviceType": "mss620",
+    "subType": "us",
+    "channels": [
+        {},
+        {
+            "type": "Switch",
+            "devName": "Switch 1",
+            "devIconId": "device001"
+        },
+        {
+            "type": "Switch",
+            "devName": "Switch 2",
+            "devIconId": "device001"
+        }
+    ],
+    "region": "us",
+    "fmwareVersion": "4.1.29",
+    "hdwareVersion": "4.0.0",
+    "userDevIcon": "",
+    "iconType": 1,
+    "skillNumber": "",
+    "domain": "mqtt-us.meross.com",
+    "reservedDomain": "mqtt-us-alter.meross.com"
+}
