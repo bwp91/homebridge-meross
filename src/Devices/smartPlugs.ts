@@ -1,6 +1,5 @@
 import { Service, PlatformAccessory } from 'homebridge';
 import { MerossPlatform } from '../platform';
-import { MerossCloudDevice, DeviceDefinition } from 'meross-cloud';
 
 /**
  * Platform Accessory
@@ -16,9 +15,7 @@ export class smartPlugs {
   constructor(
     private readonly platform: MerossPlatform,
     private accessory: PlatformAccessory,
-    public deviceId: DeviceDefinition['uuid'],
-    public deviceDef: DeviceDefinition,
-    public device: MerossCloudDevice,
+    public deviceDef,
   ) {
     // default placeholders
     this.On;
