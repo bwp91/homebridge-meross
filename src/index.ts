@@ -548,7 +548,7 @@ class Meross {
     );
 
     let payload;
-    if (this.config.model === 'MSL-100' || this.config.model === 'MSL-120' || this.config.model == 'MSL-420') {
+    if (this.config.model === 'MSL-100' || this.config.model === 'MSL-120' || this.config.model === 'MSL-420') {
       payload = {
         light: {
           luminance: value,
