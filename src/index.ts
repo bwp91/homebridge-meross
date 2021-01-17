@@ -210,6 +210,8 @@ class Meross {
     switch (config.model) {
       case 'MSS110-1':
       case 'MSS110-2':
+        this.service = new Service.Outlet(this.config.name);
+        break;
       case 'MSL-100':
         this.service = new Service.Lightbulb(this.config.name);
         break;
