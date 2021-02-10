@@ -222,6 +222,7 @@ class Meross {
       case 'MSS425':
       case 'MSS425E':
       case 'MSS425F':
+      case 'MSS630':
       case 'MSS620':
         this.service = new Service.Outlet(this.config.name);
         break;
