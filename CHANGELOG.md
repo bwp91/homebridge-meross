@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
+## [Version 3.5.0](https://github.com/donavanbecker/homebridge-meross/compare/v3.4.1....3.5.0) (2021-2-13)
+
+### Changes
+
+- Add support for MSL-420 (#167), Thanks @123marvin123!
+- Fixed MSS110-1 and MSS110-2 Type Error (#170), Thanks @MrJer!
+- Adds support for MSS630 device (#196), Thanks @rcoletti116!
+
 ## [Version 3.4.1](https://github.com/donavanbecker/homebridge-meross/compare/v3.4.0....3.4.1) (2020-12-19)
 
 ### Changes

@@ -210,7 +210,10 @@ class Meross {
     switch (config.model) {
       case 'MSS110-1':
       case 'MSS110-2':
+        this.service = new Service.Outlet(this.config.name);
+        break;
       case 'MSL-100':
+      case 'MSL-420':
         this.service = new Service.Lightbulb(this.config.name);
         break;
       case 'MSL-120':
@@ -222,6 +225,7 @@ class Meross {
       case 'MSS425':
       case 'MSS425E':
       case 'MSS425F':
+      case 'MSS630':
       case 'MSS620':
         this.service = new Service.Outlet(this.config.name);
         break;
@@ -279,6 +283,7 @@ class Meross {
           .on('get', this.getObstructionDetectedHandler.bind(this));
         break;
       case 'MSL-100':
+      case 'MSL-420':
         this.service
           .getCharacteristic(Characteristic.Hue)
           .on('get', this.getHueCharacteristicHandler.bind(this))
@@ -546,7 +551,7 @@ class Meross {
     );
 
     let payload;
-    if (this.config.model === 'MSL-100' || this.config.model === 'MSL-120') {
+    if (this.config.model === 'MSL-100' || this.config.model === 'MSL-120' || this.config.model === 'MSL-420') {
       payload = {
         light: {
           luminance: value,
