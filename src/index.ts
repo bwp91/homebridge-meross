@@ -488,7 +488,7 @@ class Meross {
     //RGB led lightstrips use a different endpoint for retrieving current on / off status
     let namespace = 'Appliance.System.All';
     if (this.config.model === 'MSL-320' ) {
-    	namespace = 'Appliance.System.Online'
+        namespace = 'Appliance.System.Online';
     }
 
     //this.log(this.config, this.config.deviceUrl);
@@ -661,7 +661,7 @@ class Meross {
     //RGB led lightstrips use a different endpoint for retrieving current on / off status
     let namespace = 'Appliance.System.All';
     if (this.config.model === 'MSL-320' ) {
-    	namespace = 'Appliance.System.Online'
+        namespace = 'Appliance.System.Online';
     }
     
     //this.log(this.config, this.config.deviceUrl);
@@ -810,7 +810,7 @@ class Meross {
 	//RGB led lightstrips use a different endpoint for retrieving current on / off status
     let namespace = 'Appliance.System.All';
     if (this.config.model === 'MSL-320' ) {
-    	namespace = 'Appliance.System.Online'
+        namespace = 'Appliance.System.Online';
     }
      
     let response;
@@ -903,8 +903,8 @@ class Meross {
     //RGB led lightstrips use a different endpoint for retrieving current on / off status
     let namespace = 'Appliance.System.All';
     if (this.config.model === 'MSL-320' ) {
-    	namespace = 'Appliance.System.Online'
-    }     
+        namespace = 'Appliance.System.Online';
+    }   
      
     //this.log(this.config, this.config.deviceUrl);
     let response;
@@ -1050,7 +1050,7 @@ class Meross {
 	//RGB led lightstrips use a different endpoint for retrieving current on / off status
     let namespace = 'Appliance.System.All';
     if (this.config.model === 'MSL-320' ) {
-    	namespace = 'Appliance.System.Online'
+        namespace = 'Appliance.System.Online';
     }
      
     //this.log(this.config, this.config.deviceUrl);
