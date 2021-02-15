@@ -219,7 +219,7 @@ class Meross {
       case 'MSL-120':
         this.service = new Service.Lightbulb(this.config.name);
         break;
-  		case 'MSL-320':
+      case 'MSL-320':
         this.service = new Service.Lightbulb(this.config.name);
         break;
       case 'MSS210':
