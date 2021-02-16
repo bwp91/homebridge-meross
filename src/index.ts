@@ -219,6 +219,9 @@ class Meross {
       case 'MSL-120':
         this.service = new Service.Lightbulb(this.config.name);
         break;
+      case 'MSL-320':
+        this.service = new Service.Lightbulb(this.config.name);
+        break;
       case 'MSS210':
       case 'MSS310':
       case 'MSS420F':
@@ -306,6 +309,28 @@ class Meross {
           .on('set', this.setOnCharacteristicHandler.bind(this));
         break;
       case 'MSL-120':
+        this.service
+          .getCharacteristic(Characteristic.Hue)
+          .on('get', this.getHueCharacteristicHandler.bind(this))
+          .on('set', this.setHueCharacteristicHandler.bind(this));
+        this.service
+          .getCharacteristic(Characteristic.ColorTemperature)
+          .on('get', this.getColorTemperatureCharacteristicHandler.bind(this))
+          .on('set', this.setColorTemperatureCharacteristicHandler.bind(this));
+        this.service
+          .getCharacteristic(Characteristic.Saturation)
+          .on('get', this.getSaturationCharacteristicHandler.bind(this))
+          .on('set', this.setSaturationCharacteristicHandler.bind(this));
+        this.service
+          .getCharacteristic(Characteristic.Brightness)
+          .on('get', this.getBrightnessCharacteristicHandler.bind(this))
+          .on('set', this.setBrightnessCharacteristicHandler.bind(this));
+        this.service
+          .getCharacteristic(Characteristic.On)
+          .on('get', this.getOnCharacteristicHandler.bind(this))
+          .on('set', this.setOnCharacteristicHandler.bind(this));
+        break;
+      case 'MSL-320':
         this.service
           .getCharacteristic(Characteristic.Hue)
           .on('get', this.getHueCharacteristicHandler.bind(this))
@@ -460,6 +485,12 @@ class Meross {
      * it's called each time you open the Home app or when you open control center
      */
 
+    //RGB led lightstrips use a different endpoint for retrieving current on / off status
+    let namespace = 'Appliance.System.All';
+    if (this.config.model === 'MSL-320' ) {
+        namespace = 'Appliance.System.Online';
+    }
+
     //this.log(this.config, this.config.deviceUrl);
     let response;
 
@@ -483,7 +514,7 @@ class Meross {
             messageId: `${this.config.messageId}`,
             method: 'GET',
             from: `http://${this.config.deviceUrl}/config`,
-            namespace: 'Appliance.System.All',
+            namespace: namespace,
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
             payloadVersion: 1,
@@ -551,7 +582,7 @@ class Meross {
     );
 
     let payload;
-    if (this.config.model === 'MSL-100' || this.config.model === 'MSL-120' || this.config.model === 'MSL-420') {
+    if (this.config.model === 'MSL-100' || this.config.model === 'MSL-120' || this.config.model === 'MSL-320' || this.config.model === 'MSL-420') {
       payload = {
         light: {
           luminance: value,
@@ -627,6 +658,12 @@ class Meross {
      * it's called each time you open the Home app or when you open control center
      */
 
+    //RGB led lightstrips use a different endpoint for retrieving current on / off status
+    let namespace = 'Appliance.System.All';
+    if (this.config.model === 'MSL-320' ) {
+        namespace = 'Appliance.System.Online';
+    }
+    
     //this.log(this.config, this.config.deviceUrl);
     let response;
 
@@ -650,7 +687,7 @@ class Meross {
             messageId: `${this.config.messageId}`,
             method: 'GET',
             from: `http://${this.config.deviceUrl}/config`,
-            namespace: 'Appliance.System.All',
+            namespace: namespace,
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
             payloadVersion: 1,
@@ -769,6 +806,13 @@ class Meross {
      * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
      * it's called each time you open the Home app or when you open control center
      */
+     
+	//RGB led lightstrips use a different endpoint for retrieving current on / off status
+    let namespace = 'Appliance.System.All';
+    if (this.config.model === 'MSL-320' ) {
+        namespace = 'Appliance.System.Online';
+    }
+     
     let response;
     /* Log to the console whenever this function is called */
     this.log.debug(
@@ -789,7 +833,7 @@ class Meross {
             messageId: `${this.config.messageId}`,
             method: 'GET',
             from: `http://${this.config.deviceUrl}/config`,
-            namespace: 'Appliance.System.All',
+            namespace: namespace,
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
             payloadVersion: 1,
@@ -855,6 +899,13 @@ class Meross {
      * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
      * it's called each time you open the Home app or when you open control center
      */
+     
+    //RGB led lightstrips use a different endpoint for retrieving current on / off status
+    let namespace = 'Appliance.System.All';
+    if (this.config.model === 'MSL-320' ) {
+        namespace = 'Appliance.System.Online';
+    }   
+     
     //this.log(this.config, this.config.deviceUrl);
     let response;
     /* Log to the console whenever this function is called */
@@ -876,7 +927,7 @@ class Meross {
             messageId: `${this.config.messageId}`,
             method: 'GET',
             from: `http://${this.config.deviceUrl}/config`,
-            namespace: 'Appliance.System.All',
+            namespace: namespace,
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
             payloadVersion: 1,
@@ -995,6 +1046,13 @@ class Meross {
      * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
      * it's called each time you open the Home app or when you open control center
      */
+     
+	//RGB led lightstrips use a different endpoint for retrieving current on / off status
+    let namespace = 'Appliance.System.All';
+    if (this.config.model === 'MSL-320' ) {
+        namespace = 'Appliance.System.Online';
+    }
+     
     //this.log(this.config, this.config.deviceUrl);
     let response;
     /* Log to the console whenever this function is called */
@@ -1016,7 +1074,7 @@ class Meross {
             messageId: `${this.config.messageId}`,
             method: 'GET',
             from: `http://${this.config.deviceUrl}/config`,
-            namespace: 'Appliance.System.All',
+            namespace: namespace,
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
             payloadVersion: 1,
