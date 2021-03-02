@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
+## [Version 4.0.0](https://github.com/donavanbecker/homebridge-meross/compare/v3.5.0....4.0.0) (2021-3-02)
+
+### Major Changes
+
+- Homebridge support has moved to v1.3.1
+  - Homebridge v1.3.1 must be installed before updating to this version.
+  - Support for the new onGet/onSet introdcued in Homebridge v1.3.0.
+
+### Changes
+
+- Adding in MSL-320
+
 ## [Version 3.5.0](https://github.com/donavanbecker/homebridge-meross/compare/v3.4.1....3.5.0) (2021-2-13)
 
 ### Changes

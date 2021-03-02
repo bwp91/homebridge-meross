@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-useless-escape */
 'use strict';
-
+import { CharacteristicValue } from 'homebridge';
 import request from 'request';
 let Service, Characteristic;
 
@@ -219,6 +219,9 @@ class Meross {
       case 'MSL-120':
         this.service = new Service.Lightbulb(this.config.name);
         break;
+      case 'MSL-320':
+        this.service = new Service.Lightbulb(this.config.name);
+        break;
       case 'MSS210':
       case 'MSS310':
       case 'MSS420F':
@@ -273,82 +276,104 @@ class Meross {
       case 'MSG200':
         this.service
           .getCharacteristic(Characteristic.CurrentDoorState)
-          .on('get', this.getDoorStateHandler.bind(this));
+          .onGet(this.getDoorStateHandler.bind(this));
         this.service
           .getCharacteristic(Characteristic.TargetDoorState)
-          .on('get', this.getDoorStateHandler.bind(this))
-          .on('set', this.setDoorStateHandler.bind(this));
+          .onGet(this.getDoorStateHandler.bind(this))
+          .onSet(this.setDoorStateHandler.bind(this));
         this.service
           .getCharacteristic(Characteristic.ObstructionDetected)
-          .on('get', this.getObstructionDetectedHandler.bind(this));
+          .onGet(this.getObstructionDetectedHandler.bind(this));
         break;
       case 'MSL-100':
       case 'MSL-420':
         this.service
           .getCharacteristic(Characteristic.Hue)
-          .on('get', this.getHueCharacteristicHandler.bind(this))
-          .on('set', this.setHueCharacteristicHandler.bind(this));
+          .onGet(this.getHueCharacteristicHandler.bind(this))
+          .onSet(this.setHueCharacteristicHandler.bind(this));
         this.service
           .getCharacteristic(Characteristic.ColorTemperature)
-          .on('get', this.getColorTemperatureCharacteristicHandler.bind(this))
-          .on('set', this.setColorTemperatureCharacteristicHandler.bind(this));
+          .onGet(this.getColorTemperatureCharacteristicHandler.bind(this))
+          .onSet(this.setColorTemperatureCharacteristicHandler.bind(this));
         this.service
           .getCharacteristic(Characteristic.Saturation)
-          .on('get', this.getSaturationCharacteristicHandler.bind(this))
-          .on('set', this.setSaturationCharacteristicHandler.bind(this));
+          .onGet(this.getSaturationCharacteristicHandler.bind(this))
+          .onSet(this.setSaturationCharacteristicHandler.bind(this));
         this.service
           .getCharacteristic(Characteristic.Brightness)
-          .on('get', this.getBrightnessCharacteristicHandler.bind(this))
-          .on('set', this.setBrightnessCharacteristicHandler.bind(this));
+          .onGet(this.getBrightnessCharacteristicHandler.bind(this))
+          .onSet(this.setBrightnessCharacteristicHandler.bind(this));
         this.service
           .getCharacteristic(Characteristic.On)
-          .on('get', this.getOnCharacteristicHandler.bind(this))
-          .on('set', this.setOnCharacteristicHandler.bind(this));
+          .onGet(this.getOnCharacteristicHandler.bind(this))
+          .onSet(this.setOnCharacteristicHandler.bind(this));
         break;
       case 'MSL-120':
         this.service
           .getCharacteristic(Characteristic.Hue)
-          .on('get', this.getHueCharacteristicHandler.bind(this))
-          .on('set', this.setHueCharacteristicHandler.bind(this));
+          .onGet(this.getHueCharacteristicHandler.bind(this))
+          .onSet(this.setHueCharacteristicHandler.bind(this));
         this.service
           .getCharacteristic(Characteristic.ColorTemperature)
-          .on('get', this.getColorTemperatureCharacteristicHandler.bind(this))
-          .on('set', this.setColorTemperatureCharacteristicHandler.bind(this));
+          .onGet(this.getColorTemperatureCharacteristicHandler.bind(this))
+          .onSet(this.setColorTemperatureCharacteristicHandler.bind(this));
         this.service
           .getCharacteristic(Characteristic.Saturation)
-          .on('get', this.getSaturationCharacteristicHandler.bind(this))
-          .on('set', this.setSaturationCharacteristicHandler.bind(this));
+          .onGet(this.getSaturationCharacteristicHandler.bind(this))
+          .onSet(this.setSaturationCharacteristicHandler.bind(this));
         this.service
           .getCharacteristic(Characteristic.Brightness)
-          .on('get', this.getBrightnessCharacteristicHandler.bind(this))
-          .on('set', this.setBrightnessCharacteristicHandler.bind(this));
+          .onGet(this.getBrightnessCharacteristicHandler.bind(this))
+          .onSet(this.setBrightnessCharacteristicHandler.bind(this));
         this.service
           .getCharacteristic(Characteristic.On)
-          .on('get', this.getOnCharacteristicHandler.bind(this))
-          .on('set', this.setOnCharacteristicHandler.bind(this));
+          .onGet(this.getOnCharacteristicHandler.bind(this))
+          .onSet(this.setOnCharacteristicHandler.bind(this));
+        break;
+      case 'MSL-320':
+        this.service
+          .getCharacteristic(Characteristic.Hue)
+          .onGet(this.getHueCharacteristicHandler.bind(this))
+          .onSet(this.setHueCharacteristicHandler.bind(this));
+        this.service
+          .getCharacteristic(Characteristic.ColorTemperature)
+          .onGet(this.getColorTemperatureCharacteristicHandler.bind(this))
+          .onSet(this.setColorTemperatureCharacteristicHandler.bind(this));
+        this.service
+          .getCharacteristic(Characteristic.Saturation)
+          .onGet(this.getSaturationCharacteristicHandler.bind(this))
+          .onSet(this.setSaturationCharacteristicHandler.bind(this));
+        this.service
+          .getCharacteristic(Characteristic.Brightness)
+          .onGet(this.getBrightnessCharacteristicHandler.bind(this))
+          .onSet(this.setBrightnessCharacteristicHandler.bind(this));
+        this.service
+          .getCharacteristic(Characteristic.On)
+          .onGet(this.getOnCharacteristicHandler.bind(this))
+          .onSet(this.setOnCharacteristicHandler.bind(this));
         break;
       case 'MSS560':
         this.service
           .getCharacteristic(Characteristic.Brightness)
-          .on('get', this.getBrightnessCharacteristicHandler.bind(this))
-          .on('set', this.setBrightnessCharacteristicHandler.bind(this));
+          .onGet(this.getBrightnessCharacteristicHandler.bind(this))
+          .onSet(this.setBrightnessCharacteristicHandler.bind(this));
         this.service
           .getCharacteristic(Characteristic.On)
-          .on('get', this.getOnCharacteristicHandler.bind(this))
-          .on('set', this.setOnCharacteristicHandler.bind(this));
+          .onGet(this.getOnCharacteristicHandler.bind(this))
+          .onSet(this.setOnCharacteristicHandler.bind(this));
         break;
       default:
         this.service
           .getCharacteristic(Characteristic.On)
-          .on('get', this.getOnCharacteristicHandler.bind(this))
-          .on('set', this.setOnCharacteristicHandler.bind(this));
+          .onGet(this.getOnCharacteristicHandler.bind(this))
+          .onSet(this.setOnCharacteristicHandler.bind(this));
     }
 
     /* Return both the main service (this.service) and the informationService */
     return [informationService, this.service];
   }
 
-  async setOnCharacteristicHandler(value, callback) {
+  public async setOnCharacteristicHandler(value: CharacteristicValue) {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
     /* deviceUrl only requires ip address */
 
@@ -446,19 +471,19 @@ class Meross {
 
     /* Log to the console the value whenever this function is called */
     this.log.debug('setOnCharacteristicHandler:', value);
-
-    /*
-     * The callback function should be called to return the value
-     * The first argument in the function should be null unless and error occured
-     */
-    callback(null, this.isOn);
   }
 
-  async getOnCharacteristicHandler(callback) {
+  public async getOnCharacteristicHandler() {
     /*
      * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
      * it's called each time you open the Home app or when you open control center
      */
+
+    //RGB led lightstrips use a different endpoint for retrieving current on / off status
+    let namespace = 'Appliance.System.All';
+    if (this.config.model === 'MSL-320') {
+      namespace = 'Appliance.System.Online';
+    }
 
     //this.log(this.config, this.config.deviceUrl);
     let response;
@@ -483,7 +508,7 @@ class Meross {
             messageId: `${this.config.messageId}`,
             method: 'GET',
             from: `http://${this.config.deviceUrl}/config`,
-            namespace: 'Appliance.System.All',
+            namespace: namespace,
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
             payloadVersion: 1,
@@ -515,7 +540,7 @@ class Meross {
         break;
       default:
         if (response) {
-          if (response?.payload?.all?.digest?.togglex){
+          if (response?.payload?.all?.digest?.togglex) {
             let onOff = response.payload.all.digest.togglex[`${this.config.channel}`].onoff;
             this.log.debug('Retrieved status successfully: ', onOff);
             this.isOn = onOff;
@@ -528,17 +553,9 @@ class Meross {
 
     /* Log to the console the value whenever this function is called */
     this.log.debug('getOnCharacteristicHandler:', this.isOn);
-
-    /*
-     * The callback function should be called to return the value
-     * The first argument in the function should be null unless and error occured
-     * The second argument in the function should be the current value of the characteristic
-     * This is just an example so we will return the value from `this.isOn` which is where we stored the value in the set handler
-     */
-    callback(null, this.isOn);
   }
 
-  async setBrightnessCharacteristicHandler(value, callback) {
+  public async setBrightnessCharacteristicHandler(value: CharacteristicValue) {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
     /* deviceUrl only requires ip address */
 
@@ -551,7 +568,10 @@ class Meross {
     );
 
     let payload;
-    if (this.config.model === 'MSL-100' || this.config.model === 'MSL-120' || this.config.model === 'MSL-420') {
+    if (this.config.model === 'MSL-100' ||
+      this.config.model === 'MSL-120' ||
+      this.config.model === 'MSL-320' ||
+      this.config.model === 'MSL-420') {
       payload = {
         light: {
           luminance: value,
@@ -613,19 +633,19 @@ class Meross {
 
     /* Log to the console the value whenever this function is called */
     this.log.debug('setBrightnessCharacteristicHandler:', value);
-
-    /*
-     * The callback function should be called to return the value
-     * The first argument in the function should be null unless and error occured
-     */
-    callback(null, this.brightness);
   }
 
-  async getBrightnessCharacteristicHandler(callback) {
+  public async getBrightnessCharacteristicHandler() {
     /*
      * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
      * it's called each time you open the Home app or when you open control center
      */
+
+    //RGB led lightstrips use a different endpoint for retrieving current on / off status
+    let namespace = 'Appliance.System.All';
+    if (this.config.model === 'MSL-320') {
+      namespace = 'Appliance.System.Online';
+    }
 
     //this.log(this.config, this.config.deviceUrl);
     let response;
@@ -650,7 +670,7 @@ class Meross {
             messageId: `${this.config.messageId}`,
             method: 'GET',
             from: `http://${this.config.deviceUrl}/config`,
-            namespace: 'Appliance.System.All',
+            namespace: namespace,
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
             payloadVersion: 1,
@@ -681,22 +701,14 @@ class Meross {
 
     /* Log to the console the value whenever this function is called */
     this.log.debug('getBrightnessCharacteristicHandler:', this.brightness);
-
-    /*
-     * The callback function should be called to return the value
-     * The first argument in the function should be null unless and error occured
-     * The second argument in the function should be the current value of the characteristic
-     * This is just an example so we will return the value from `this.brightness` which is where we stored the value in the set handler
-     */
-    callback(null, this.brightness);
   }
 
-  async setColorTemperatureCharacteristicHandler(value, callback) {
+  public async setColorTemperatureCharacteristicHandler(value: CharacteristicValue) {
     let response;
     // Range on HomeKit is 140 - 500. 500 being yellow, 140 being white.
     // Range on Meross is 1-100. 1 being yellow, 100 being white.
     let mired = value;
-    let mr_temp = mired - 140;
+    let mr_temp = Number(mired) - 140;
     mr_temp = 360 - mr_temp;
     mr_temp = mr_temp / 360;
     mr_temp = Math.round(mr_temp * 100);
@@ -757,18 +769,20 @@ class Meross {
       'setColorTemperatureCharacteristicHandler:',
       this.temperature,
     );
-    /*
-     * The callback function should be called to return the value
-     * The first argument in the function should be null unless and error occured
-     */
-    callback(null, this.temperature);
   }
 
-  async getColorTemperatureCharacteristicHandler(callback) {
+  public async getColorTemperatureCharacteristicHandler() {
     /*
      * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
      * it's called each time you open the Home app or when you open control center
      */
+
+    //RGB led lightstrips use a different endpoint for retrieving current on / off status
+    let namespace = 'Appliance.System.All';
+    if (this.config.model === 'MSL-320') {
+      namespace = 'Appliance.System.Online';
+    }
+
     let response;
     /* Log to the console whenever this function is called */
     this.log.debug(
@@ -789,7 +803,7 @@ class Meross {
             messageId: `${this.config.messageId}`,
             method: 'GET',
             from: `http://${this.config.deviceUrl}/config`,
-            namespace: 'Appliance.System.All',
+            namespace: namespace,
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
             payloadVersion: 1,
@@ -825,17 +839,9 @@ class Meross {
       'getColorTemperatureCharacteristicHandler:',
       this.temperature,
     );
-    /*
-     * The callback function should be called to return the value
-     * The first argument in the function should be null unless and error occured
-     * The second argument in the function should be the current value of the characteristic
-     * This is just an example so we will return the value from `this.ColorTemperature`
-        * which is where we stored the value in the set handler
-     */
-    callback(null, this.temperature);
   }
 
-  async setHueCharacteristicHandler(value, callback) {
+  public setHueCharacteristicHandler(value: CharacteristicValue) {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
     /* deviceUrl only requires ip address */
     //this.log(this.config, this.config.deviceUrl);
@@ -846,15 +852,20 @@ class Meross {
     );
     this.log.debug('Hue succeeded:', this.hue);
     this.log.debug('Sat succeeded:', this.saturation);
-
-    callback(null, this.hue);
   }
 
-  async getHueCharacteristicHandler(callback) {
+  public async getHueCharacteristicHandler() {
     /*
      * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
      * it's called each time you open the Home app or when you open control center
      */
+
+    //RGB led lightstrips use a different endpoint for retrieving current on / off status
+    let namespace = 'Appliance.System.All';
+    if (this.config.model === 'MSL-320') {
+      namespace = 'Appliance.System.Online';
+    }
+
     //this.log(this.config, this.config.deviceUrl);
     let response;
     /* Log to the console whenever this function is called */
@@ -876,7 +887,7 @@ class Meross {
             messageId: `${this.config.messageId}`,
             method: 'GET',
             from: `http://${this.config.deviceUrl}/config`,
-            namespace: 'Appliance.System.All',
+            namespace: namespace,
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
             payloadVersion: 1,
@@ -912,16 +923,9 @@ class Meross {
     }
     /* Log to the console the value whenever this function is called */
     this.log.debug('gethueCharacteristicHandler:', this.hue);
-    /*
-     * The callback function should be called to return the value
-     * The first argument in the function should be null unless and error occured
-     * The second argument in the function should be the current value of the characteristic
-     * This is just an example so we will return the value from `this.hue` which is where we stored the value in the set handler
-     */
-    callback(null, this.hue);
   }
 
-  async setSaturationCharacteristicHandler(value, callback) {
+  public async setSaturationCharacteristicHandler(value: CharacteristicValue) {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
     /* deviceUrl only requires ip address */
     //this.log(this.config, this.config.deviceUrl);
@@ -983,18 +987,20 @@ class Meross {
     }
     /* Log to the console the value whenever this function is called */
     this.log.debug('setsaturationCharacteristicHandler:', value);
-    /*
-     * The callback function should be called to return the value
-     * The first argument in the function should be null unless and error occured
-     */
-    callback(null, this.saturation);
   }
 
-  async getSaturationCharacteristicHandler(callback) {
+  public async getSaturationCharacteristicHandler() {
     /*
      * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
      * it's called each time you open the Home app or when you open control center
      */
+
+    //RGB led lightstrips use a different endpoint for retrieving current on / off status
+    let namespace = 'Appliance.System.All';
+    if (this.config.model === 'MSL-320') {
+      namespace = 'Appliance.System.Online';
+    }
+
     //this.log(this.config, this.config.deviceUrl);
     let response;
     /* Log to the console whenever this function is called */
@@ -1016,7 +1022,7 @@ class Meross {
             messageId: `${this.config.messageId}`,
             method: 'GET',
             from: `http://${this.config.deviceUrl}/config`,
-            namespace: 'Appliance.System.All',
+            namespace: namespace,
             timestamp: this.config.timestamp,
             sign: `${this.config.sign}`,
             payloadVersion: 1,
@@ -1058,16 +1064,9 @@ class Meross {
     }
     /* Log to the console the value whenever this function is called */
     this.log.debug('getsaturationCharacteristicHandler:', this.saturation);
-    /*
-     * The callback function should be called to return the value
-     * The first argument in the function should be null unless and error occured
-     * The second argument in the function should be the current value of the characteristic
-     * This is just an example so we will return the value from `this.hue` which is where we stored the value in the set handler
-     */
-    callback(null, this.saturation);
   }
 
-  async getDoorStateHandler(callback) {
+  public getDoorStateHandler(callback) {
     /*
      * this is called when HomeKit wants to retrieve the current state of the characteristic as defined in our getServices() function
      * it's called each time you open the Home app or when you open control center
@@ -1081,14 +1080,14 @@ class Meross {
       .catch((e) => this.log(`${e}`));
   }
 
-  async getObstructionDetectedHandler(callback) {
+  public getObstructionDetectedHandler(callback) {
     this.log.debug(
       `getObstructionDetectedHandler for ${this.config.model} at ${this.config.deviceUrl}...`,
     );
     callback(null, Characteristic.ObstructionDetected.NO);
   }
 
-  async setDoorStateHandler(value, callback) {
+  public setDoorStateHandler(value: CharacteristicValue) {
     /* this is called when HomeKit wants to update the value of the characteristic as defined in our getServices() function */
     /* deviceUrl only requires ip address */
 
@@ -1103,7 +1102,6 @@ class Meross {
             this.log('Target CLOSED, Current OPEN, close the door');
             this.currentState = Characteristic.CurrentDoorState.CLOSING;
             this.setDoorState(false);
-            callback();
             this.service.setCharacteristic(
               Characteristic.CurrentDoorState,
               Characteristic.CurrentDoorState.CLOSING,
@@ -1111,14 +1109,12 @@ class Meross {
           } else if (state === Characteristic.CurrentDoorState.CLOSED) {
             this.log('Target CLOSED, Current CLOSED, no change');
             this.currentState = Characteristic.CurrentDoorState.CLOSED;
-            callback();
           } else if (state === Characteristic.CurrentDoorState.OPENING) {
             this.log(
               'Target CLOSED, Current OPENING, stop the door (then it stays in open state)',
             );
             this.currentState = Characteristic.CurrentDoorState.OPEN;
             this.setDoorState(false);
-            callback();
             this.service.setCharacteristic(
               Characteristic.TargetDoorState,
               Characteristic.TargetDoorState.OPEN,
@@ -1130,30 +1126,25 @@ class Meross {
           } else if (state === Characteristic.CurrentDoorState.CLOSING) {
             this.log('Target CLOSED, Current CLOSING, no change');
             this.currentState = Characteristic.CurrentDoorState.CLOSING;
-            callback();
           } else if (state === Characteristic.CurrentDoorState.STOPPED) {
             this.log('Target CLOSED, Current STOPPED, close the door');
             this.currentState = Characteristic.CurrentDoorState.CLOSING;
             this.setDoorState(false);
-            callback();
             this.service.setCharacteristic(
               Characteristic.CurrentDoorState,
               Characteristic.CurrentDoorState.CLOSING,
             );
           } else {
             this.log('Target CLOSED, Current UNKOWN, no change');
-            callback();
           }
         } else if (value === Characteristic.TargetDoorState.OPEN) {
           if (state === Characteristic.CurrentDoorState.OPEN) {
             this.log('Target OPEN, Current OPEN, no change');
             this.currentState = Characteristic.CurrentDoorState.OPEN;
-            callback();
           } else if (state === Characteristic.CurrentDoorState.CLOSED) {
             this.log('Target OPEN, Current CLOSED, open the door');
             this.currentState = Characteristic.CurrentDoorState.OPENING;
             this.setDoorState(true);
-            callback();
             this.service.setCharacteristic(
               Characteristic.CurrentDoorState,
               Characteristic.CurrentDoorState.OPENING,
@@ -1161,14 +1152,12 @@ class Meross {
           } else if (state === Characteristic.CurrentDoorState.OPENING) {
             this.log('Target OPEN, Current OPENING, no change');
             this.currentState = Characteristic.CurrentDoorState.OPENING;
-            callback();
           } else if (state === Characteristic.CurrentDoorState.CLOSING) {
             this.log(
               'Target OPEN, Current CLOSING, Meross does not accept OPEN request while closing',
               ' since the sensor is already open, no change.',
             );
             this.currentState = Characteristic.CurrentDoorState.CLOSING;
-            callback();
             this.service.setCharacteristic(
               Characteristic.TargetDoorState,
               Characteristic.TargetDoorState.CLOSING,
@@ -1181,14 +1170,12 @@ class Meross {
             this.log('Target OPEN, Current STOPPED, open the door');
             this.currentState = Characteristic.CurrentDoorState.OPENING;
             this.setDoorState(true);
-            callback();
             this.service.setCharacteristic(
               Characteristic.CurrentDoorState,
               Characteristic.CurrentDoorState.OPENING,
             );
           } else {
             this.log('Target OPEN, Current UNKOWN, no change');
-            callback();
           }
         }
       })
@@ -1271,8 +1258,8 @@ class Meross {
     if (response?.payload?.all?.digest?.garageDoor) {
       // Open means magnetic sensor not detected, doesn't really mean the door is open
       let isOpen = (this.currentState === Characteristic.CurrentDoorState.OPEN);
-      for(let i = 0; i < response.payload.all.digest.garageDoor.length; i++) {
-        if(response.payload.all.digest.garageDoor[i].channel === this.config.channel) {
+      for (let i = 0; i < response.payload.all.digest.garageDoor.length; i++) {
+        if (response.payload.all.digest.garageDoor[i].channel === this.config.channel) {
           isOpen = response.payload.all.digest.garageDoor[i].open;
         }
       }
