@@ -471,6 +471,9 @@ class Meross {
 
     /* Log to the console the value whenever this function is called */
     this.log.debug('setOnCharacteristicHandler:', value);
+    if (this.isOn !== undefined) {
+      this.service.updateCharacteristic(Characteristic.On, this.isOn);
+    }
   }
 
   public async getOnCharacteristicHandler() {
@@ -553,6 +556,9 @@ class Meross {
 
     /* Log to the console the value whenever this function is called */
     this.log.debug('getOnCharacteristicHandler:', this.isOn);
+    if (this.isOn !== undefined) {
+      this.service.updateCharacteristic(Characteristic.On, this.isOn);
+    }
   }
 
   public async setBrightnessCharacteristicHandler(value: CharacteristicValue) {
@@ -633,6 +639,9 @@ class Meross {
 
     /* Log to the console the value whenever this function is called */
     this.log.debug('setBrightnessCharacteristicHandler:', value);
+    if (this.brightness !== undefined) {
+      this.service.updateCharacteristic(Characteristic.brightness, this.brightness);
+    }
   }
 
   public async getBrightnessCharacteristicHandler() {
@@ -701,6 +710,9 @@ class Meross {
 
     /* Log to the console the value whenever this function is called */
     this.log.debug('getBrightnessCharacteristicHandler:', this.brightness);
+    if (this.brightness !== undefined) {
+      this.service.updateCharacteristic(Characteristic.brightness, this.brightness);
+    }
   }
 
   public async setColorTemperatureCharacteristicHandler(value: CharacteristicValue) {
@@ -769,6 +781,9 @@ class Meross {
       'setColorTemperatureCharacteristicHandler:',
       this.temperature,
     );
+    if (this.temperature !== undefined) {
+      this.service.updateCharacteristic(Characteristic.ColorTemperature, this.temperature);
+    }
   }
 
   public async getColorTemperatureCharacteristicHandler() {
@@ -839,6 +854,9 @@ class Meross {
       'getColorTemperatureCharacteristicHandler:',
       this.temperature,
     );
+    if (this.temperature !== undefined) {
+      this.service.updateCharacteristic(Characteristic.ColorTemperature, this.temperature);
+    }
   }
 
   public setHueCharacteristicHandler(value: CharacteristicValue) {
@@ -852,6 +870,9 @@ class Meross {
     );
     this.log.debug('Hue succeeded:', this.hue);
     this.log.debug('Sat succeeded:', this.saturation);
+    if (this.hue !== undefined) {
+      this.service.updateCharacteristic(Characteristic.Hue, this.hue);
+    }
   }
 
   public async getHueCharacteristicHandler() {
@@ -923,6 +944,9 @@ class Meross {
     }
     /* Log to the console the value whenever this function is called */
     this.log.debug('gethueCharacteristicHandler:', this.hue);
+    if (this.hue !== undefined) {
+      this.service.updateCharacteristic(Characteristic.Hue, this.hue);
+    }
   }
 
   public async setSaturationCharacteristicHandler(value: CharacteristicValue) {
@@ -987,6 +1011,9 @@ class Meross {
     }
     /* Log to the console the value whenever this function is called */
     this.log.debug('setsaturationCharacteristicHandler:', value);
+    if (this.saturation !== undefined) {
+      this.service.updateCharacteristic(Characteristic.Saturation, this.saturation);
+    }
   }
 
   public async getSaturationCharacteristicHandler() {
@@ -1064,6 +1091,9 @@ class Meross {
     }
     /* Log to the console the value whenever this function is called */
     this.log.debug('getsaturationCharacteristicHandler:', this.saturation);
+    if (this.saturation !== undefined) {
+      this.service.updateCharacteristic(Characteristic.Saturation, this.saturation);
+    }
   }
 
   public getDoorStateHandler(callback) {
@@ -1180,6 +1210,9 @@ class Meross {
         }
       })
       .catch((e) => this.log(`${e}`));
+    if (this.currentState !== undefined) {
+      this.service.updateCharacteristic(Characteristic.CurrentDoorState, this.currentState);
+    }
   }
 
   async setDoorState(open) {
