@@ -256,7 +256,7 @@ export class lightBulb {
       });
       
       const powerState = this.On ? 'On' : 'Off';
-      this.platform.log.info('Setting power state state to %s for %s', powerState, this.accessory.displayName);
+      this.platform.log.info('Setting power state to %s for %s', powerState, this.accessory.displayName);
       this.platform.log.debug('%s %s Changes pushed -', this.device.model, this.accessory.displayName, JSON.stringify(push.data));
     } catch (e) {
       this.platform.log.error(
