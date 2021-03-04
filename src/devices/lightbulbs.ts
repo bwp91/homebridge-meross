@@ -1,7 +1,6 @@
 import { Service, PlatformAccessory, CharacteristicValue } from 'homebridge';
 import { Meross } from '../platform';
 import { interval } from 'rxjs';
-import { skipWhile } from 'rxjs/operators';
 import { DevicesConfig, data, numberToColour, RGBToHSL, colourToNumber, HSLToRGB, PLATFORM_NAME, payload, light, header } from '../settings';
 
 export class lightBulb {
@@ -13,7 +12,6 @@ export class lightBulb {
   ColorTemperature?: CharacteristicValue;
   Hue?: CharacteristicValue;
 
-  UpdateInProgress!: boolean;
   deviceStatus: any;
   Namespace!: header['namespace'];
   Payload!: payload;
@@ -85,7 +83,6 @@ export class lightBulb {
 
     // Start an update interval
     interval(this.platform.config.refreshRate! * 1000)
-      .pipe(skipWhile(() => this.UpdateInProgress))
       .subscribe(() => {
         this.refreshStatus();
       });
