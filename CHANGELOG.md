@@ -9,40 +9,45 @@ All notable changes to this project will be documented in this file. This projec
 - The Plugin has been been changed from an `accessory` type to a `platform` type.
 - You will have to change you config completely if you update to this version.
   - You can take your current `accessory` and move it to the platform config.
+  - See (Specific Model Configurations)[https://github.com/donavanbecker/homebridge-meross/wiki/Specific-Model-Configurations] Wiki for more examples.
   - Example: 
-    - `Before`:
+   #### Before:
     ```json
-    {
-      "model": "MSS620",
-      "name": "Outlet",
-      "deviceUrl": "192.168.1.1",
-      "channel": 0,
-      "messageId": "abcdefghijklmnopqrstuvwxyz123456789",
-      "timestamp": 123456789,
-      "sign": "abcdefghijklmnopqrstuvwxyz123456789",
-      "accessory": "Meross"
-    }
-    ```
-    - `After`:
-    ```json
-    {
-    "name": "Meross",
-    "devices": [
-        // This is the from above
+    "accessories": [
         {
-        "model": "MSS620",
-        "name": "Outlet",
-        "deviceUrl": "192.168.1.1",
-        "channel": 0,
-        "messageId": "abcdefghijklmnopqrstuvwxyz123456789",
-        "timestamp": 123456789,
-        "sign": "abcdefghijklmnopqrstuvwxyz123456789",
-        "accessory": "Meross" //Remove this.
+          "model": "MSS620",
+          "name": "Outlet",
+          "deviceUrl": "192.168.1.1",
+          "channel": 0,
+          "messageId": "abcdefghijklmnopqrstuvwxyz123456789",
+          "timestamp": 123456789,
+          "sign": "abcdefghijklmnopqrstuvwxyz123456789",
+          "accessory": "Meross"
         }
-        // Ends here from above
-      ],
-    "platform": "Meross"
-    }
+    ]
+    ```
+   #### After:
+    ```json
+    "platforms": [
+        {
+        "name": "Meross",
+        "devices": [
+            <This_is_from_above>
+            {
+            "model": "MSS620",
+            "name": "Outlet",
+            "deviceUrl": "192.168.1.1",
+            "channel": 0,
+            "messageId": "abcdefghijklmnopqrstuvwxyz123456789",
+            "timestamp": 123456789,
+            "sign": "abcdefghijklmnopqrstuvwxyz123456789",
+            "accessory": "Meross" <You_Can_Remove_This.>
+            }
+            <Ends_here_from_above>
+          ],
+        "platform": "Meross"
+        }
+    ]
     ```
 
 ## [Version 4.0.0](https://github.com/donavanbecker/homebridge-meross/compare/v3.5.0....4.0.0) (2021-3-02)

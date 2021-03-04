@@ -1,7 +1,10 @@
 import { API, DynamicPlatformPlugin, Logger, PlatformAccessory, Service, Characteristic } from 'homebridge';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { PLATFORM_NAME, PLUGIN_NAME, MerossCloudPlatformConfig } from './settings';
-import { Outlet } from './devices';
+import { GarageDoor } from './devices/garagedoors';
+import { lightBulb } from './devices/lightbulbs';
+import { Outlet } from './devices/outlets';
+import { Switch } from './devices/switches';
 
 /**
  * HomebridgePlatform
@@ -157,7 +160,39 @@ export class Meross implements DynamicPlatformPlugin {
 
         // create the accessory handler for the restored accessory
         // this is imported from `devices.ts`
-        new Outlet(this, existingAccessory, device);
+        switch (device.model) {
+          case 'MSL-100':
+          case 'MSL-420':
+          case 'MSL-120':
+          case 'MSL-320':
+          case 'MSS560':
+            new lightBulb(this, existingAccessory, device);
+            break;
+          case 'MSS510':
+          case 'MSS510M':
+          case 'MSS530H':
+          case 'MSS550':
+          case 'MSS570':
+          case 'MSS5X0':
+            new Switch(this, existingAccessory, device);
+            break;
+          case 'MSG100':
+          case 'MSG200':
+            new GarageDoor(this, existingAccessory, device);
+            break;
+          case 'MSS210':
+          case 'MSS310':
+          case 'MSS420F':
+          case 'MSS425':
+          case 'MSS425E':
+          case 'MSS425F':
+          case 'MSS630':
+          case 'MSS620':
+          case 'MSS110-1':
+          case 'MSS110-2':
+          default:
+            new Outlet(this, existingAccessory, device);
+        }
       } else {
         // the accessory does not yet exist, so we need to create it
         this.log.info('Adding new accessory:', device.name);
@@ -171,8 +206,39 @@ export class Meross implements DynamicPlatformPlugin {
 
         // create the accessory handler for the newly create accessory
         // this is imported from `platformAccessory.ts`
-        new Outlet(this, accessory, device);
-
+        switch (device.model) {
+          case 'MSL-100':
+          case 'MSL-120':
+          case 'MSL-320':
+          case 'MSL-420':
+          case 'MSS560':
+            new lightBulb(this, accessory, device);
+            break;
+          case 'MSS510':
+          case 'MSS510M':
+          case 'MSS530H':
+          case 'MSS550':
+          case 'MSS570':
+          case 'MSS5X0':
+            new Switch(this, accessory, device);
+            break;
+          case 'MSG100':
+          case 'MSG200':
+            new GarageDoor(this, accessory, device);
+            break;
+          case 'MSS210':
+          case 'MSS310':
+          case 'MSS420F':
+          case 'MSS425':
+          case 'MSS425E':
+          case 'MSS425F':
+          case 'MSS630':
+          case 'MSS620':
+          case 'MSS110-1':
+          case 'MSS110-2':
+          default:
+            new Outlet(this, accessory, device);
+        }
         // link the accessory to your platform
         this.api.registerPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [accessory]);
       }

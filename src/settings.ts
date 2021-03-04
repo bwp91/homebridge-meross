@@ -33,25 +33,48 @@ export type DevicesConfig = {
 };
 
 export type data = {
-  payload: {
-    togglex?: {
-      onoff: number;
-      channel: string;
-    };
-    toggle?: {
-      onoff: number;
-    };
-  };
-  header: {
-    messageId: string;
-    method: string;
-    from: string;
-    namespace: string;
-    timestamp: number | undefined;
-    sign: string;
-    payloadVersion: number;
-    triggerSrc?: string;
-  };
+  payload: payload;
+  header: header;
+};
+
+export type payload = {
+  togglex?: togglex;
+  toggle?: toggle;
+  light?: light;
+  state?: state;
+};
+
+export type togglex = {
+  onoff: number;
+  channel: string;
+};
+
+export type toggle = {
+  onoff: number;
+};
+
+export type light = {
+  temperature?: number,
+  rgb?: any,
+  luminance?: number,
+  capacity?: number,
+};
+
+export type state = {
+  channel: string;
+  open: any;
+  uuid: string;
+};
+
+export type header = {
+  messageId: string;
+  method: string;
+  from: string;
+  namespace: string;
+  timestamp: number | undefined;
+  sign: string;
+  payloadVersion: number;
+  triggerSrc?: string;
 };
 
 export function HSLToRGB(h, s, l) {
