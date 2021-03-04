@@ -1,6 +1,6 @@
 import { API, DynamicPlatformPlugin, Logger, PlatformAccessory, Service, Characteristic } from 'homebridge';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import { PLATFORM_NAME, PLUGIN_NAME, MerossCloudPlatformConfig, DevicesConfig } from './settings';
+import { PLATFORM_NAME, PLUGIN_NAME, MerossCloudPlatformConfig } from './settings';
 import { Outlet } from './devices';
 
 /**
@@ -20,6 +20,7 @@ export class Meross implements DynamicPlatformPlugin {
   });
 
   debugMode!: boolean;
+  existingAccessory: PlatformAccessory<Record<string, any>> | undefined;
 
   constructor(
     public readonly log: Logger,
@@ -54,9 +55,6 @@ export class Meross implements DynamicPlatformPlugin {
 
     // setup axios interceptor to add headers / api key to each request
     this.axios.interceptors.request.use((request: AxiosRequestConfig) => {
-      request.headers.Authorization = `Bearer ${this.config.credentials?.accessToken}`;
-      request.params = request.params || {};
-      request.params.apikey = this.config.credentials?.consumerKey;
       request.headers['Content-Type'] = 'application/json';
       return request;
     });
@@ -94,27 +92,29 @@ export class Meross implements DynamicPlatformPlugin {
     this.config.name;
 
     if (this.config.devices) {
-      this.config.devices?.forEach((devices: DevicesConfig) => {
-
-        if (!devices!.name) {
-          throw new Error(`The devices config section is missing the name in the config. This device will be skipped. ${devices.name}`);
+      for (const device of this.config.devices!) {
+        if (!device.name) {
+          throw new Error(`The devices config section is missing the name in the config. This device will be skipped. ${device.name}`);
         }
-        if (!devices!.model) {
-          throw new Error(`The devices config section is missing the model the config. This device will be skipped. ${devices.name}`);
+        if (!device.model) {
+          throw new Error(`The devices config section is missing the model the config. This device will be skipped. ${device.name}`);
         }
-        if (!devices!.deviceUrl) {
-          throw new Error(`The devices config section is missing the deviceUrl the config. This device will be skipped. ${devices.name}`);
+        if (!device.deviceUrl) {
+          throw new Error(`The devices config section is missing the deviceUrl the config. This device will be skipped. ${device.name}`);
         }
-        if (!devices!.messageId) {
-          throw new Error(`The devices config section is missing the messageId the config. This device will be skipped. ${devices.name}`);
+        if (!device.messageId) {
+          throw new Error(`The devices config section is missing the messageId the config. This device will be skipped. ${device.name}`);
         }
-        if (!devices!.timestamp) {
-          throw new Error(`The devices config section is missing the timestamp the config. This device will be skipped. ${devices.name}`);
+        if (!device.timestamp) {
+          throw new Error(`The devices config section is missing the timestamp the config. This device will be skipped. ${device.name}`);
         }
-        if (!devices!.sign) {
-          throw new Error(`The devices config section is missing the sign the config. This device will be skipped. ${devices.name}`);
+        if (!device.sign) {
+          throw new Error(`The devices config section is missing the sign the config. This device will be skipped. ${device.name}`);
         }
-      });
+        if (!device.channel) {
+          device.channel = 0;
+        }
+      }
     } else {
       throw new Error('The devices config section is missing from the config. This device will be skipped.');
     }
@@ -141,35 +141,23 @@ export class Meross implements DynamicPlatformPlugin {
    * must not be registered again to prevent "duplicate UUID" errors.
    */
   discoverDevices() {
-
-    // loop over the discovered devices and register each one if it has not already been registered
     for (const device of this.config.devices!) {
 
-      // generate a unique id for the accessory this should be generated from
-      // something globally unique, but constant, for example, the device serial
-      // number or MAC address
+      // generate a unique id for the accessory
       const uuid = this.api.hap.uuid.generate(`${device.name!}-${device.deviceUrl!}`);
 
       // see if an accessory with the same uuid has already been registered and restored from
       // the cached devices we stored in the `configureAccessory` method above
       const existingAccessory = this.accessories.find(accessory => accessory.UUID === uuid);
+      this.existingAccessory = existingAccessory;
 
       if (existingAccessory) {
         // the accessory already exists
         this.log.info('Restoring existing accessory from cache:', existingAccessory.displayName);
 
-        // if you need to update the accessory.context then you should run `api.updatePlatformAccessories`. eg.:
-        // existingAccessory.context.device = device;
-        // this.api.updatePlatformAccessories([existingAccessory]);
-
         // create the accessory handler for the restored accessory
-        // this is imported from `platformAccessory.ts`
+        // this is imported from `devices.ts`
         new Outlet(this, existingAccessory, device);
-
-        // it is possible to remove platform accessories at any time using `api.unregisterPlatformAccessories`, eg.:
-        // remove platform accessories when no longer present
-        // this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [existingAccessory]);
-        // this.log.info('Removing existing accessory from cache:', existingAccessory.displayName);
       } else {
         // the accessory does not yet exist, so we need to create it
         this.log.info('Adding new accessory:', device.name);
