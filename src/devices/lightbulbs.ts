@@ -273,6 +273,12 @@ export class lightBulb {
  * Pushes the requested changes to the Meross Device
  */
   async pushOnChanges() {
+
+    if(this.On === undefined) {
+      //value is actually not defined, we cannot make a valid request for this one...
+      return;
+    }
+
     this.Payload = {
       togglex: {
         onoff: this.On ? 1 : 0,
@@ -299,18 +305,20 @@ export class lightBulb {
       url: `http://${this.device.deviceUrl}/config`,
       method: 'post',
       data: this.Data,
-    },
-    );
-    if (this.On) {
-      this.Request = 'On';
-    } else {
-      this.Request = 'Off';
-    }
-    this.platform.log.info('Sending request %s for %s', this.Request, this.accessory.displayName);
+    });
+    
+    let powerState = this.On ? "On" : "Off";
+    this.platform.log.info('Setting power state state to %s for %s', powerState, this.accessory.displayName);
     this.platform.log.debug('%s %s Changes pushed -', this.device.model, this.accessory.displayName, JSON.stringify(push.data));
   }
 
   async pushBrightnessChanges() {
+
+    if(this.Brightness === undefined) {
+      //value is actually not defined, we cannot make a valid request for this one...
+      return;
+    }
+
     // Payload
     switch (this.device.model) {
       case 'MSL-100':
@@ -353,13 +361,25 @@ export class lightBulb {
       url: `http://${this.device.deviceUrl}/config`,
       method: 'post',
       data: this.Data,
-    },
-    );
-    this.platform.log.info('Sending request %s for %s', this.Brightness, this.accessory.displayName);
+    });
+
+    this.platform.log.info('Setting brightness to %s for %s', this.Brightness, this.accessory.displayName);
     this.platform.log.debug('%s %s Changes pushed -', this.device.model, this.accessory.displayName, JSON.stringify(push.data));
   }
 
   async pushColorTemperatureChanges() {
+
+    if(this.ColorTemperature === undefined || this.ColorTemperature < 140) { 
+      //value is actually not defined / invalid, we cannot make a valid request for this one...
+      return; 
+    }
+
+    this.mr_temp = Number(this.ColorTemperature) - 140;
+    this.mr_temp = 360 - this.mr_temp;
+    this.mr_temp = this.mr_temp / 360;
+    this.mr_temp = Math.round(this.mr_temp * 100);
+    this.mr_temp = this.mr_temp === 0 ? 1 : this.mr_temp;
+
     // Payload
     this.Payload = {
       light: {
@@ -387,14 +407,22 @@ export class lightBulb {
       url: `http://${this.device.deviceUrl}/config`,
       method: 'post',
       data: this.Data,
-    },
-    );
-    this.ColorTemperature = this.mr_temp;
-    this.platform.log.info('Sending request %s for %s', this.Request, this.accessory.displayName);
+    });
+
+    this.platform.log.info('Changing color temperature to %s for %s', this.ColorTemperature, this.accessory.displayName);
     this.platform.log.debug('%s %s Changes pushed -', this.device.model, this.accessory.displayName, JSON.stringify(push.data));
   }
 
   async pushSaturationChanges() {
+
+    if(this.Hue === undefined || this.Saturation === undefined) {
+      //value is actually not defined / invalid, we cannot make a valid request for this one...
+      return; 
+    }
+
+    const rgb = HSLToRGB(this.Hue, this.Saturation, 50);
+    this.rgb_d = colourToNumber(rgb[0], rgb[1], rgb[2]);
+
     // Payload
     this.Payload = {
       light: {
@@ -423,14 +451,9 @@ export class lightBulb {
       url: `http://${this.device.deviceUrl}/config`,
       method: 'post',
       data: this.Data,
-    },
-    );
-    if (this.On) {
-      this.Request = 'On';
-    } else {
-      this.Request = 'Off';
-    }
-    this.platform.log.info('Sending request %s for %s', this.Request, this.accessory.displayName);
+    });
+
+    this.platform.log.info('Changing light saturation to rgb value %s for %s', this.rgb_d, this.accessory.displayName);
     this.platform.log.debug('%s %s Changes pushed -', this.device.model, this.accessory.displayName, JSON.stringify(push.data));
   }
 
@@ -493,7 +516,7 @@ export class lightBulb {
     this.platform.log.debug('%s %s - Set On: %s', this.device.model, this.accessory.displayName, value);
 
     this.On = value;
-    this.doUpdate.next();
+    this.pushOnChanges();
   }
 
   /**
@@ -503,7 +526,7 @@ export class lightBulb {
     this.platform.log.debug('%s %s - Set Brightness: %s', this.device.model, this.accessory.displayName, value);
 
     this.Brightness = value;
-    this.doUpdate.next();
+    this.pushBrightnessChanges();
   }
 
   /**
@@ -513,12 +536,7 @@ export class lightBulb {
     this.platform.log.debug('%s %s - Set ColorTemperature: %s', this.device.model, this.accessory.displayName, value);
 
     this.ColorTemperature = value;
-    this.mr_temp = Number(this.ColorTemperature) - 140;
-    this.mr_temp = 360 - this.mr_temp;
-    this.mr_temp = this.mr_temp / 360;
-    this.mr_temp = Math.round(this.mr_temp * 100);
-    this.mr_temp = this.mr_temp === 0 ? 1 : this.mr_temp;
-    this.doUpdate.next();
+    this.pushColorTemperatureChanges();
   }
 
   /**
@@ -528,7 +546,7 @@ export class lightBulb {
     this.platform.log.debug('%s %s - Set Hue: %s', this.device.model, this.accessory.displayName, value);
 
     this.Hue = value;
-    this.doUpdate.next();
+    this.pushSaturationChanges();
   }
 
   /**
@@ -538,9 +556,7 @@ export class lightBulb {
     this.platform.log.debug('%s %s - Set Saturation: %s', this.device.model, this.accessory.displayName, value);
 
     this.Saturation = value;
-    const rgb = HSLToRGB(this.Hue, this.Saturation, 50);
-    this.rgb_d = colourToNumber(rgb[0], rgb[1], rgb[2]);
-    this.doUpdate.next();
+    this.pushSaturationChanges();
   }
 
 }
