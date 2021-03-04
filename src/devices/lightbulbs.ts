@@ -1,7 +1,6 @@
 import { Service, PlatformAccessory, CharacteristicValue } from 'homebridge';
 import { Meross } from '../platform';
-import { interval, Subject } from 'rxjs';
-import { debounceTime, skipWhile, tap } from 'rxjs/operators';
+import { interval } from 'rxjs';
 import { DevicesConfig, data, numberToColour, RGBToHSL, colourToNumber, HSLToRGB, PLATFORM_NAME, payload, light, header } from '../settings';
 
 export class lightBulb {
@@ -13,8 +12,6 @@ export class lightBulb {
   ColorTemperature?: CharacteristicValue;
   Hue?: CharacteristicValue;
 
-  UpdateInProgress!: boolean;
-  doUpdate!: Subject<unknown>;
   deviceStatus: any;
   Namespace!: header['namespace'];
   Payload!: payload;
@@ -30,10 +27,6 @@ export class lightBulb {
   ) {
     // default placeholders
     this.On = false;
-
-    // this is subject we use to track when we need to POST changes to the SwitchBot API
-    this.doUpdate = new Subject();
-    this.UpdateInProgress = false;
 
     // Retrieve initial values and updateHomekit
     this.refreshStatus();
@@ -90,49 +83,8 @@ export class lightBulb {
 
     // Start an update interval
     interval(this.platform.config.refreshRate! * 1000)
-      .pipe(skipWhile(() => this.UpdateInProgress))
       .subscribe(() => {
         this.refreshStatus();
-      });
-
-
-    // Watch for Plug change events
-    // We put in a debounce of 100ms so we don't make duplicate calls
-    this.doUpdate
-      .pipe(
-        tap(() => {
-          this.UpdateInProgress = true;
-        }),
-        debounceTime(this.platform.config.pushRate! * 1000),
-      )
-      .subscribe(async () => {
-        try {
-          switch (device.model) {
-            case 'MSL-100':
-            case 'MSL-420':
-            case 'MSL-120':
-            case 'MSL-320':
-              await this.pushOnChanges();
-              await this.pushBrightnessChanges();
-              await this.pushSaturationChanges();
-              await this.pushColorTemperatureChanges();
-              break;
-            case 'MSS560':
-            default:
-              await this.pushOnChanges();
-              await this.pushBrightnessChanges();
-          }
-        } catch (e) {
-          this.platform.log.error(
-            'Failed to POST to the Meross Device %s at %s:',
-            this.device.model,
-            this.device.deviceUrl,
-            JSON.stringify(e.message),
-          );
-          this.platform.log.debug('Plug %s -', accessory.displayName, JSON.stringify(e));
-          this.apiError(e);
-        }
-        this.UpdateInProgress = false;
       });
   }
 
@@ -274,11 +226,6 @@ export class lightBulb {
  */
   async pushOnChanges() {
 
-    if(this.On === undefined) {
-      //value is actually not defined, we cannot make a valid request for this one...
-      return;
-    }
-
     this.Payload = {
       togglex: {
         onoff: this.On ? 1 : 0,
@@ -300,16 +247,27 @@ export class lightBulb {
       },
     };
 
-    // Make request
-    const push = await this.platform.axios({
-      url: `http://${this.device.deviceUrl}/config`,
-      method: 'post',
-      data: this.Data,
-    });
-    
-    let powerState = this.On ? "On" : "Off";
-    this.platform.log.info('Setting power state state to %s for %s', powerState, this.accessory.displayName);
-    this.platform.log.debug('%s %s Changes pushed -', this.device.model, this.accessory.displayName, JSON.stringify(push.data));
+    try {
+      // Make request
+      const push = await this.platform.axios({
+        url: `http://${this.device.deviceUrl}/config`,
+        method: 'post',
+        data: this.Data,
+      });
+      
+      let powerState = this.On ? "On" : "Off";
+      this.platform.log.info('Setting power state state to %s for %s', powerState, this.accessory.displayName);
+      this.platform.log.debug('%s %s Changes pushed -', this.device.model, this.accessory.displayName, JSON.stringify(push.data));
+    } catch (e) {
+      this.platform.log.error(
+        'Failed to POST to the Meross Device %s at %s:',
+        this.device.model,
+        this.device.deviceUrl,
+        JSON.stringify(e.message),
+      );
+      this.platform.log.debug('Plug %s -', this.accessory.displayName, JSON.stringify(e));
+      this.apiError(e);
+    }
   }
 
   async pushBrightnessChanges() {
@@ -356,15 +314,26 @@ export class lightBulb {
       },
     };
 
-    // Make request
-    const push = await this.platform.axios({
-      url: `http://${this.device.deviceUrl}/config`,
-      method: 'post',
-      data: this.Data,
-    });
+    try {
+      // Make request
+      const push = await this.platform.axios({
+        url: `http://${this.device.deviceUrl}/config`,
+        method: 'post',
+        data: this.Data,
+      });
 
-    this.platform.log.info('Setting brightness to %s for %s', this.Brightness, this.accessory.displayName);
-    this.platform.log.debug('%s %s Changes pushed -', this.device.model, this.accessory.displayName, JSON.stringify(push.data));
+      this.platform.log.info('Setting brightness to %s for %s', this.Brightness, this.accessory.displayName);
+      this.platform.log.debug('%s %s Changes pushed -', this.device.model, this.accessory.displayName, JSON.stringify(push.data));
+    } catch (e) {
+      this.platform.log.error(
+        'Failed to POST to the Meross Device %s at %s:',
+        this.device.model,
+        this.device.deviceUrl,
+        JSON.stringify(e.message),
+      );
+      this.platform.log.debug('Plug %s -', this.accessory.displayName, JSON.stringify(e));
+      this.apiError(e);
+    }
   }
 
   async pushColorTemperatureChanges() {
@@ -402,15 +371,26 @@ export class lightBulb {
       },
     };
 
-    // Make request
-    const push = await this.platform.axios({
-      url: `http://${this.device.deviceUrl}/config`,
-      method: 'post',
-      data: this.Data,
-    });
+    try {
+      // Make request
+      const push = await this.platform.axios({
+        url: `http://${this.device.deviceUrl}/config`,
+        method: 'post',
+        data: this.Data,
+      });
 
-    this.platform.log.info('Changing color temperature to %s for %s', this.ColorTemperature, this.accessory.displayName);
-    this.platform.log.debug('%s %s Changes pushed -', this.device.model, this.accessory.displayName, JSON.stringify(push.data));
+      this.platform.log.info('Changing color temperature to %s for %s', this.ColorTemperature, this.accessory.displayName);
+      this.platform.log.debug('%s %s Changes pushed -', this.device.model, this.accessory.displayName, JSON.stringify(push.data));
+    } catch (e) {
+      this.platform.log.error(
+        'Failed to POST to the Meross Device %s at %s:',
+        this.device.model,
+        this.device.deviceUrl,
+        JSON.stringify(e.message),
+      );
+      this.platform.log.debug('Plug %s -', this.accessory.displayName, JSON.stringify(e));
+      this.apiError(e);
+    }
   }
 
   async pushSaturationChanges() {
@@ -446,15 +426,26 @@ export class lightBulb {
       },
     };
 
-    // Make request
-    const push = await this.platform.axios({
-      url: `http://${this.device.deviceUrl}/config`,
-      method: 'post',
-      data: this.Data,
-    });
+    try {
+      // Make request
+      const push = await this.platform.axios({
+        url: `http://${this.device.deviceUrl}/config`,
+        method: 'post',
+        data: this.Data,
+      });
 
-    this.platform.log.info('Changing light saturation to rgb value %s for %s', this.rgb_d, this.accessory.displayName);
-    this.platform.log.debug('%s %s Changes pushed -', this.device.model, this.accessory.displayName, JSON.stringify(push.data));
+      this.platform.log.info('Changing light saturation to rgb value %s for %s', this.rgb_d, this.accessory.displayName);
+      this.platform.log.debug('%s %s Changes pushed -', this.device.model, this.accessory.displayName, JSON.stringify(push.data));
+    } catch (e) {
+      this.platform.log.error(
+        'Failed to POST to the Meross Device %s at %s:',
+        this.device.model,
+        this.device.deviceUrl,
+        JSON.stringify(e.message),
+      );
+      this.platform.log.debug('Plug %s -', this.accessory.displayName, JSON.stringify(e));
+      this.apiError(e);
+    }
   }
 
   updateHomeKitCharacteristics() {
@@ -546,7 +537,13 @@ export class lightBulb {
     this.platform.log.debug('%s %s - Set Hue: %s', this.device.model, this.accessory.displayName, value);
 
     this.Hue = value;
-    this.pushSaturationChanges();
+
+    switch (this.device.model) {
+      case "MSS560":
+        break;
+      default:
+        this.pushSaturationChanges();
+    }
   }
 
   /**
@@ -556,7 +553,13 @@ export class lightBulb {
     this.platform.log.debug('%s %s - Set Saturation: %s', this.device.model, this.accessory.displayName, value);
 
     this.Saturation = value;
-    this.pushSaturationChanges();
+
+    switch (this.device.model) {
+      case "MSS560":
+        break;
+      default:
+        this.pushSaturationChanges();
+    }
   }
 
 }
