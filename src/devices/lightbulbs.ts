@@ -255,7 +255,7 @@ export class lightBulb {
         data: this.Data,
       });
       
-      let powerState = this.On ? "On" : "Off";
+      const powerState = this.On ? 'On' : 'Off';
       this.platform.log.info('Setting power state state to %s for %s', powerState, this.accessory.displayName);
       this.platform.log.debug('%s %s Changes pushed -', this.device.model, this.accessory.displayName, JSON.stringify(push.data));
     } catch (e) {
@@ -539,7 +539,7 @@ export class lightBulb {
     this.Hue = value;
 
     switch (this.device.model) {
-      case "MSS560":
+      case 'MSS560':
         break;
       default:
         this.pushSaturationChanges();
@@ -555,7 +555,7 @@ export class lightBulb {
     this.Saturation = value;
 
     switch (this.device.model) {
-      case "MSS560":
+      case 'MSS560':
         break;
       default:
         this.pushSaturationChanges();
