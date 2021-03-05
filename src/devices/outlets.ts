@@ -59,7 +59,7 @@ export class Outlet {
       .getCharacteristic(this.platform.Characteristic.On)
       .onSet(this.OnSet.bind(this));
 
-    this.service.setCharacteristic((this.platform.Characteristic.OutletInUse), true);
+    this.service.setCharacteristic((this.platform.Characteristic.OutletInUse), this.OutletInUse || true);
 
     // Update Homekit
     this.updateHomeKitCharacteristics();
@@ -85,6 +85,7 @@ export class Outlet {
         try {
           await this.pushOnChanges();
         } catch (e) {
+          this.apiError(e);
           this.platform.log.error(
             'Failed to POST to the Meross Device %s at %s:',
             this.device.model,
@@ -92,7 +93,6 @@ export class Outlet {
             JSON.stringify(e.message),
           );
           this.platform.log.debug('Plug %s -', accessory.displayName, JSON.stringify(e));
-          this.apiError(e);
         }
         this.UpdateInProgress = false;
       });
@@ -229,7 +229,7 @@ export class Outlet {
   public apiError(e: any) {
     this.service.updateCharacteristic(this.platform.Characteristic.On, e);
     this.service.updateCharacteristic(this.platform.Characteristic.OutletInUse, e);
-    throw new this.platform.api.hap.HapStatusError(HAPStatus.OPERATION_TIMED_OUT);
+    new this.platform.api.hap.HapStatusError(HAPStatus.OPERATION_TIMED_OUT);
   }
 
   /**

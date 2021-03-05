@@ -26,7 +26,22 @@ export class lightBulb {
     public device: DevicesConfig,
   ) {
     // default placeholders
-    this.On = false;
+    switch (device.model) {
+      case 'MSL-100':
+      case 'MSL-420':
+      case 'MSL-120':
+      case 'MSL-320':
+        this.On = false;
+        this.Brightness = 0;
+        this.Hue = 0;
+        this.Saturation = 0;
+        this.ColorTemperature = 140;
+        break;
+      case 'MSS560':
+      default:
+        this.On = false;
+        this.Brightness = 0;
+    }
 
     // Retrieve initial values and updateHomekit
     this.refreshStatus();
@@ -498,7 +513,7 @@ export class lightBulb {
         this.service.updateCharacteristic(this.platform.Characteristic.On, e);
         this.service.updateCharacteristic(this.platform.Characteristic.Brightness, e);
     }
-    throw new this.platform.api.hap.HapStatusError(HAPStatus.OPERATION_TIMED_OUT);
+    new this.platform.api.hap.HapStatusError(HAPStatus.OPERATION_TIMED_OUT);
   }
 
   /**

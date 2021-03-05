@@ -26,6 +26,11 @@ export class GarageDoor {
     private accessory: PlatformAccessory,
     public device: DevicesConfig,
   ) {
+    // default placeholders
+    this.TargetDoorState = this.platform.Characteristic.TargetDoorState.CLOSED;
+    this.CurrentDoorState = this.platform.Characteristic.CurrentDoorState.CLOSED;
+    this.ObstructionDetected = false;
+
     // this is subject we use to track when we need to POST changes to the SwitchBot API
     this.doUpdate = new Subject();
     this.UpdateInProgress = false;
@@ -58,7 +63,7 @@ export class GarageDoor {
       .getCharacteristic(this.platform.Characteristic.TargetDoorState)
       .onSet(this.TargetDoorStateSet.bind(this));
 
-    this.service.setCharacteristic((this.platform.Characteristic.ObstructionDetected), false);
+    this.service.setCharacteristic((this.platform.Characteristic.ObstructionDetected), this.ObstructionDetected || false);
 
     // Update Homekit
     this.updateHomeKitCharacteristics();
@@ -252,7 +257,7 @@ export class GarageDoor {
     this.service.updateCharacteristic(this.platform.Characteristic.TargetDoorState, e);
     this.service.updateCharacteristic(this.platform.Characteristic.CurrentDoorState, e);
     this.service.updateCharacteristic(this.platform.Characteristic.ObstructionDetected, e);
-    throw new this.platform.api.hap.HapStatusError(HAPStatus.OPERATION_TIMED_OUT);
+    new this.platform.api.hap.HapStatusError(HAPStatus.OPERATION_TIMED_OUT);
   }
 
   /**
