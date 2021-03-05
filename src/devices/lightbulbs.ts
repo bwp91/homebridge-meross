@@ -1,4 +1,4 @@
-import { Service, PlatformAccessory, CharacteristicValue } from 'homebridge';
+import { Service, PlatformAccessory, CharacteristicValue, HAPStatus } from 'homebridge';
 import { Meross } from '../platform';
 import { interval } from 'rxjs';
 import { DevicesConfig, data, numberToColour, RGBToHSL, colourToNumber, HSLToRGB, PLATFORM_NAME, payload, light, header } from '../settings';
@@ -498,6 +498,7 @@ export class lightBulb {
         this.service.updateCharacteristic(this.platform.Characteristic.On, e);
         this.service.updateCharacteristic(this.platform.Characteristic.Brightness, e);
     }
+    throw new this.platform.api.hap.HapStatusError(HAPStatus.OPERATION_TIMED_OUT);
   }
 
   /**

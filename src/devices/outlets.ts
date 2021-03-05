@@ -1,4 +1,4 @@
-import { Service, PlatformAccessory, CharacteristicValue } from 'homebridge';
+import { Service, PlatformAccessory, CharacteristicValue, HAPStatus } from 'homebridge';
 import { Meross } from '../platform';
 import { interval, Subject } from 'rxjs';
 import { debounceTime, skipWhile, tap } from 'rxjs/operators';
@@ -229,6 +229,7 @@ export class Outlet {
   public apiError(e: any) {
     this.service.updateCharacteristic(this.platform.Characteristic.On, e);
     this.service.updateCharacteristic(this.platform.Characteristic.OutletInUse, e);
+    throw new this.platform.api.hap.HapStatusError(HAPStatus.OPERATION_TIMED_OUT);
   }
 
   /**
