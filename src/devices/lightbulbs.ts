@@ -38,6 +38,7 @@ export class lightBulb {
         this.ColorTemperature = 140;
         break;
       case 'MSS560':
+      case 'MSS570x':
       default:
         this.On = false;
         this.Brightness = 0;
@@ -90,6 +91,7 @@ export class lightBulb {
           .onSet(this.SaturationSet.bind(this));
         break;
       case 'MSS560':
+      case 'MSS570x':
       default:
     }
 
@@ -307,6 +309,7 @@ export class lightBulb {
         };
         break;
       case 'MSS560':
+      case 'MSS570x':
       default:
         this.Payload = {
           light: {
@@ -486,6 +489,7 @@ export class lightBulb {
         }
         break;
       case 'MSS560':
+      case 'MSS570x':
       default:
         if (this.On !== undefined) {
           this.service.updateCharacteristic(this.platform.Characteristic.On, this.On);
@@ -509,6 +513,7 @@ export class lightBulb {
         this.service.updateCharacteristic(this.platform.Characteristic.Hue, e);
         break;
       case 'MSS560':
+      case 'MSS570x':
       default:
         this.service.updateCharacteristic(this.platform.Characteristic.On, e);
         this.service.updateCharacteristic(this.platform.Characteristic.Brightness, e);
@@ -556,6 +561,7 @@ export class lightBulb {
 
     switch (this.device.model) {
       case 'MSS560':
+      case 'MSS570x':
         break;
       default:
         this.pushSaturationChanges();
@@ -572,6 +578,7 @@ export class lightBulb {
 
     switch (this.device.model) {
       case 'MSS560':
+      case 'MSS570x':
         break;
       default:
         this.pushSaturationChanges();

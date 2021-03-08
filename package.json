@@ -45,12 +45,12 @@
     "rxjs": "^6.6.6"
   },
   "devDependencies": {
-    "@types/node": "^14.14.31",
+    "@types/node": "^14.14.32",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
     "eslint": "^7.21.0",
     "homebridge": "^1.3.2",
-    "homebridge-config-ui-x": "^4.39.1",
+    "homebridge-config-ui-x": "^4.40.0",
     "nodemon": "^2.0.7",
     "rimraf": "^3.0.2",
     "ts-node": "^9.1.1",

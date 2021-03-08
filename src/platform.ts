@@ -166,6 +166,7 @@ export class Meross implements DynamicPlatformPlugin {
           case 'MSL-120':
           case 'MSL-320':
           case 'MSS560':
+          case 'MSS570x':
             new lightBulb(this, existingAccessory, device);
             break;
           case 'MSS510':
@@ -212,14 +213,15 @@ export class Meross implements DynamicPlatformPlugin {
           case 'MSL-320':
           case 'MSL-420':
           case 'MSS560':
+          case 'MSS570x':
             new lightBulb(this, accessory, device);
             break;
           case 'MSS510':
           case 'MSS510M':
           case 'MSS530H':
           case 'MSS550':
-          case 'MSS570':
-          case 'MSS5X0':
+          case 'MSS570': 
+          case 'MSS5X0': 
             new Switch(this, accessory, device);
             break;
           case 'MSG100':

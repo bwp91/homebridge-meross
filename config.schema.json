@@ -133,6 +133,12 @@
                                 ]
                             },
                             {
+                                "title": "MSS-560",
+                                "enum": [
+                                    "MSS570x"
+                                ]
+                            },
+                            {
                                 "title": "MSS-570",
                                 "enum": [
                                     "MSS570"
