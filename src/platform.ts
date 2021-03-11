@@ -53,7 +53,6 @@ export class Meross implements DynamicPlatformPlugin {
       return;
     }
 
-
     this.debugMode = process.argv.includes('-D') || process.argv.includes('--debug');
 
     // setup axios interceptor to add headers / api key to each request
