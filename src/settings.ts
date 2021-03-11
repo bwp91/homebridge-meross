@@ -62,7 +62,7 @@ export type light = {
 
 export type state = {
   channel: string;
-  open: any;
+  open: number;
   uuid: string;
 };
 

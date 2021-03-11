@@ -232,7 +232,7 @@ export class GarageDoor {
       data: this.Data,
     },
     );
-    if (this.Open) {
+    if (this.Open === 0 ) {
       this.Request = 'Open';
     } else {
       this.Request = 'Close';
@@ -261,17 +261,17 @@ export class GarageDoor {
   }
 
   /**
-   * Handle requests to set the value of the "Saturation" characteristic
+   * Handle requests to set the value of the "TargetDoorState" characteristic
    */
   TargetDoorStateSet(value: CharacteristicValue) {
-    this.platform.log.debug('%s %s - Set Saturation: %s', this.device.model, this.accessory.displayName, value);
+    this.platform.log.debug('%s %s - Set TargertDoorState: %s', this.device.model, this.accessory.displayName, value);
 
     this.TargetDoorState = value;
     if (value === this.platform.Characteristic.TargetDoorState.CLOSED) {
       if (this.CurrentDoorState === this.platform.Characteristic.CurrentDoorState.OPEN) {
         this.platform.log.debug('Target CLOSED, Current OPEN, close the door');
         this.CurrentDoorState = this.platform.Characteristic.CurrentDoorState.CLOSING;
-        this.Open = false;
+        this.Open = 0;
         this.service.setCharacteristic(
           this.platform.Characteristic.CurrentDoorState,
           this.platform.Characteristic.CurrentDoorState.CLOSING,
@@ -284,7 +284,7 @@ export class GarageDoor {
           'Target CLOSED, Current OPENING, stop the door (then it stays in open state)',
         );
         this.CurrentDoorState = this.platform.Characteristic.CurrentDoorState.OPEN;
-        this.Open = false;
+        this.Open = 0;
         this.service.setCharacteristic(
           this.platform.Characteristic.TargetDoorState,
           this.platform.Characteristic.TargetDoorState.OPEN,
@@ -299,7 +299,7 @@ export class GarageDoor {
       } else if (this.CurrentDoorState === this.platform.Characteristic.CurrentDoorState.STOPPED) {
         this.platform.log.debug('Target CLOSED, Current STOPPED, close the door');
         this.CurrentDoorState = this.platform.Characteristic.CurrentDoorState.CLOSING;
-        this.Open = false;
+        this.Open = 0;
         this.service.setCharacteristic(
           this.platform.Characteristic.CurrentDoorState,
           this.platform.Characteristic.CurrentDoorState.CLOSING,
@@ -314,7 +314,7 @@ export class GarageDoor {
       } else if (this.CurrentDoorState === this.platform.Characteristic.CurrentDoorState.CLOSED) {
         this.platform.log.debug('Target OPEN, Current CLOSED, open the door');
         this.CurrentDoorState = this.platform.Characteristic.CurrentDoorState.OPENING;
-        this.Open = true;
+        this.Open = 1;
         this.service.setCharacteristic(
           this.platform.Characteristic.CurrentDoorState,
           this.platform.Characteristic.CurrentDoorState.OPENING,
@@ -339,7 +339,7 @@ export class GarageDoor {
       } else if (this.CurrentDoorState === this.platform.Characteristic.CurrentDoorState.STOPPED) {
         this.platform.log.debug('Target OPEN, Current STOPPED, open the door');
         this.CurrentDoorState = this.platform.Characteristic.CurrentDoorState.OPENING;
-        this.Open = true;
+        this.Open = 1;
         this.service.setCharacteristic(
           this.platform.Characteristic.CurrentDoorState,
           this.platform.Characteristic.CurrentDoorState.OPENING,
