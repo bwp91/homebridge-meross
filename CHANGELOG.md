@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
-## [Version 4.0.0](https://github.com/donavanbecker/homebridge-meross/compare/v3.5.0....4.0.0) (2021-3-02)
+## [Version 4.0.1](https://github.com/donavanbecker/homebridge-meross/compare/v4.0.0....4.0.1) (2020-03-12)
+
+### Changes
+
+- Fixes a bug that does not retrieve the status of an outlet device.
+
+## [Version 4.0.0](https://github.com/donavanbecker/homebridge-meross/compare/v3.5.0....4.0.0) (2021-03-02)
 
 ### Major Changes
 
@@ -14,7 +20,7 @@ All notable changes to this project will be documented in this file. This projec
 
 - Adding in MSL-320
 
-## [Version 3.5.0](https://github.com/donavanbecker/homebridge-meross/compare/v3.4.1....3.5.0) (2021-2-13)
+## [Version 3.5.0](https://github.com/donavanbecker/homebridge-meross/compare/v3.4.1....3.5.0) (2021-02-13)
 
 ### Changes
 
