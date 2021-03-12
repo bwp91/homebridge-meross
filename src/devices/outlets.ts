@@ -152,6 +152,7 @@ export class Outlet {
         this.accessory.displayName,
         JSON.stringify(deviceStatus),
       );
+      this.deviceStatus = deviceStatus;
       this.parseStatus();
       this.updateHomeKitCharacteristics();
     } catch (e) {
