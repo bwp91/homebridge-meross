@@ -543,7 +543,7 @@ class Meross {
           if (response?.payload?.all?.digest?.togglex) {
             let onOff = response.payload.all.digest.togglex[`${this.config.channel}`].onoff;
             this.log.debug('Retrieved status successfully: ', onOff);
-            this.isOn = onOff;
+            this.isOn = onOff? true : false; // the received value was 1, not a boolean typed value.
           }
         } else {
           this.log.debug('Retrieved status unsuccessfully.');
@@ -553,6 +553,7 @@ class Meross {
 
     /* Log to the console the value whenever this function is called */
     this.log.debug('getOnCharacteristicHandler:', this.isOn);
+    return this.isOn;
   }
 
   public async setBrightnessCharacteristicHandler(value: CharacteristicValue) {
