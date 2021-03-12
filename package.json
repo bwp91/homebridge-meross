@@ -1,7 +1,7 @@
 {
   "displayName": "Homebridge Meross",
   "name": "homebridge-meross",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A Meross Plugin for Homebridge.",
   "license": "Apache-2.0",
   "author": "donavanbecker",
@@ -13,8 +13,8 @@
     "url": "https://github.com/donavanbecker/homebridge-meross/issues"
   },
   "engines": {
-    "node": ">=14.15.4",
-    "homebridge": ">=1.3.1"
+    "node": ">=14.16.0",
+    "homebridge": ">=1.3.3"
   },
   "main": "dist/index.js",
   "scripts": {
@@ -43,17 +43,17 @@
     "request": ">=2.88.2"
   },
   "devDependencies": {
-    "@types/node": "^14.14.31",
-    "@typescript-eslint/eslint-plugin": "^4.16.1",
-    "@typescript-eslint/parser": "^4.16.1",
+    "@types/node": "^14.14.33",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
     "eslint": "^7.21.0",
     "eslint-plugin-prettier": "^3.3.1",
-    "homebridge": "^1.3.1",
-    "homebridge-config-ui-x": "^4.39.1",
+    "homebridge": "^1.3.3",
+    "homebridge-config-ui-x": "^4.40.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
     "ts-node": "^9.1.1",
-    "typescript": "^4.1.5"
+    "typescript": "^4.2.3"
   }
 }
