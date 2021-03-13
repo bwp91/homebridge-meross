@@ -218,7 +218,7 @@ export class GarageDoor {
         messageId: `${this.device.messageId}`,
         method: 'SET',
         from: `http://${this.device.deviceUrl}/config`,
-        namespace: 'Appliance.GarageDoor.State"',
+        namespace: 'Appliance.GarageDoor.State',
         timestamp: this.device.timestamp,
         sign: `${this.device.sign}`,
         payloadVersion: 1,
