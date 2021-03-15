@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
+## [Version 5.0.0](https://github.com/donavanbecker/homebridge-meross/compare/v4.0.0....5.0.0) (2021-03-14)
+
+### Breaking Changes
+
+- The Plugin has been been changed from an `accessory` type to a `platform` type.
+- You will have to change you config completely if you update to this version.
+  - You can take your current `accessory` and move it to the platform config.
+  - See (Specific Model Configurations)[https://github.com/donavanbecker/homebridge-meross/wiki/Specific-Model-Configurations] Wiki for more examples.
+  - Example: 
+   #### Before:
+    ```json
+    "accessories": [
+        {
+          "model": "MSS620",
+          "name": "Outlet",
+          "deviceUrl": "192.168.1.1",
+          "channel": 0,
+          "messageId": "abcdefghijklmnopqrstuvwxyz123456789",
+          "timestamp": 123456789,
+          "sign": "abcdefghijklmnopqrstuvwxyz123456789",
+          "accessory": "Meross"
+        }
+    ]
+    ```
+   #### After:
+    ```json
+    "platforms": [
+        {
+        "name": "Meross",
+        "devices": [
+            <This_is_from_above>
+            {
+            "model": "MSS620",
+            "name": "Outlet",
+            "deviceUrl": "192.168.1.1",
+            "channel": 0,
+            "messageId": "abcdefghijklmnopqrstuvwxyz123456789",
+            "timestamp": 123456789,
+            "sign": "abcdefghijklmnopqrstuvwxyz123456789",
+            "accessory": "Meross" <You_Can_Remove_This.>
+            }
+            <Ends_here_from_above>
+          ],
+        "platform": "Meross"
+        }
+    ]
+    ```
+- Added Config for Refresh Rate.
+  - default is 5 seconds and if updating to often can be set in the config.
+
 ## [Version 4.0.1](https://github.com/donavanbecker/homebridge-meross/compare/v4.0.0....4.0.1) (2020-03-12)
 
 ### Changes
