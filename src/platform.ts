@@ -126,8 +126,8 @@ export class Meross implements DynamicPlatformPlugin {
     }
 
     if (!this.config.refreshRate) {
-      this.config.refreshRate! = 60;
-      this.log.warn('Using Default Refresh Rate.');
+      this.config.refreshRate! = 5;
+      this.log.warn('Using Default Refresh Rate: 5 seconds.');
     }
 
     if (!this.config.pushRate) {

@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
-## [Beta Version 5.0.0](https://github.com/donavanbecker/homebridge-meross/compare/v4.0.0....5.0.0) (2021-XX-XX)
+## [Version 5.0.0](https://github.com/donavanbecker/homebridge-meross/compare/v4.0.0....5.0.0) (2021-03-14)
 
 ### Breaking Changes
 
@@ -49,6 +49,8 @@ All notable changes to this project will be documented in this file. This projec
         }
     ]
     ```
+- Added Config for Refresh Rate.
+  - default is 5 seconds and if updating to often can be set in the config.
 
 ## [Version 4.0.0](https://github.com/donavanbecker/homebridge-meross/compare/v3.5.0....4.0.0) (2021-3-02)
 
