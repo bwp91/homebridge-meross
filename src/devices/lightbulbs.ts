@@ -15,8 +15,9 @@ export class lightBulb {
   deviceStatus: any;
   Namespace!: header['namespace'];
   Payload!: payload;
-  Data!: data;
   Request!: string;
+  Method!: string;
+  Data!: data;
   rgb_d: light['rgb'];
   mr_temp!: light['temperature'];
 
@@ -193,9 +194,15 @@ export class lightBulb {
     switch (this.device.model) {
       case 'MSL-320':
         this.Namespace = 'Appliance.System.Online';
+        this.Method = 'GET';
+        break;
+      case 'MSL-120':
+        this.Namespace = 'Appliance.System.All';
+        this.Method = 'GETACK';
         break;
       default:
         this.Namespace = 'Appliance.System.All';
+        this.Method = 'GET';
     }
 
     try {
@@ -208,7 +215,7 @@ export class lightBulb {
             payload: {},
             header: {
               messageId: `${this.device.messageId}`,
-              method: 'GET',
+              method: this.Method,
               from: `http://${this.device.deviceUrl}/config`,
               namespace: this.Namespace,
               timestamp: this.device.timestamp,
