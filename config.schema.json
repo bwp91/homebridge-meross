@@ -247,14 +247,16 @@
                 }
             }
         },
-        "refreshToken": {
-            "title": "Refresh Token",
-            "type": "string",
-            "required": true
+        "refreshRate": {
+            "title": "Refresh Rate",
+            "type": "number",
+            "required": false,
+            "description": "Indicates the number of seconds between polls to Meross Device."
         },
         "pushRate": {
             "title": "Push Rate",
             "type": "number",
+            "required": false,
             "description": "Indicates the number of seconds between pushes to Meross Device."
         }
     },
