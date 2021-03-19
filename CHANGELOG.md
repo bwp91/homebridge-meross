@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Changes
 
-- Fixes a issue with `config.schema.json` where it wouldn't save changes to `refreshRate`.
+- Fixes an issue with `config.schema.json` where it wouldn't save changes to `refreshRate`.
 - Added the ability to enter a custom value for `garageDoorOpeningTime`.
 - Updated dependencies.
 
