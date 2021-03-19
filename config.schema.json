@@ -229,65 +229,34 @@
                     },
                     "garageDoorOpeningTime": {
                         "title": "Garage Door Opening Time",
-                        "description": "Only for MSG-100 Garage Door Opener, choose the proper time duration for your garage door opener. This parameter will confirm the status of your garage door. Most common is 20 seconds, but different garage door openers may take different time duration to open or close garage door.",
+                        "description": "<em class='primary-text'>In Seconds</em><h6>Only for MSG-100 Garage Door Opener, choose the proper time duration for your garage door opener. This parameter will confirm the status of your garage door. Most common is 20 seconds, but different garage door openers may take different time duration to open or close garage door.</h6>",
                         "type": "number",
+                        "placeholder": "10",
                         "required": false,
-                        "oneOf": [
-                            {
-                                "title": "10 seconds",
-                                "enum": [
-                                    10
-                                ]
-                            },
-                            {
-                                "title": "15 seconds",
-                                "enum": [
-                                    15
-                                ]
-                            },
-                            {
-                                "title": "20 seconds",
-                                "enum": [
-                                    20
-                                ]
-                            },
-                            {
-                                "title": "25 seconds",
-                                "enum": [
-                                    25
-                                ]
-                            },
-                            {
-                                "title": "30 seconds",
-                                "enum": [
-                                    30
-                                ]
-                            },
-                            {
-                                "title": "35 seconds",
-                                "enum": [
-                                    35
-                                ]
-                            },
-                            {
-                                "title": "40 seconds",
-                                "enum": [
-                                    40
-                                ]
-                            }
-                        ]
+                        "typeahead": {
+                            "source": [
+                                10,
+                                15,
+                                20,
+                                30,
+                                35,
+                                40
+                            ]
+                        }
                     }
                 }
             }
         },
-        "refreshToken": {
-            "title": "Refresh Token",
-            "type": "string",
-            "required": true
+        "refreshRate": {
+            "title": "Refresh Rate",
+            "type": "number",
+            "required": false,
+            "description": "Indicates the number of seconds between polls to Meross Device."
         },
         "pushRate": {
             "title": "Push Rate",
             "type": "number",
+            "required": false,
             "description": "Indicates the number of seconds between pushes to Meross Device."
         }
     },

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. This project uses [Semantic Versioning](https://semver.org/).
 
+## [Version 5.0.1](https://github.com/donavanbecker/homebridge-meross/compare/v5.0.0....4.0.1) (2020-03-19)
+
+### Changes
+
+- Fixes an issue with `config.schema.json` where it wouldn't save changes to `refreshRate`.
+- Added the ability to enter a custom value for `garageDoorOpeningTime`.
+- Updated dependencies.
+
 ## [Version 5.0.0](https://github.com/donavanbecker/homebridge-meross/compare/v4.0.0....5.0.0) (2021-03-14)
 
 ### Breaking Changes
