@@ -106,6 +106,14 @@ export class lightBulb {
       });
   }
 
+  calculateTemperature(payload_temperature: number) {
+    let mr_temp = (payload_temperature / 100) * 360;
+    mr_temp = 360 - mr_temp;
+    mr_temp = mr_temp + 140;
+    mr_temp = Math.round(mr_temp);
+    return mr_temp;
+  }
+
   parseStatus() {
     switch (this.device.model) {
       case 'MSS110-1':
@@ -138,12 +146,8 @@ export class lightBulb {
             this.Brightness = this.On ? 100 : 0;
           }
           if (this.deviceStatus?.payload?.all?.digest?.light?.temperature) {
-            const tmp_temperature = this.deviceStatus.payload.all.digest.light.temperature;
-            let mr_temp = (tmp_temperature / 100) * 360;
-            mr_temp = 360 - mr_temp;
-            mr_temp = mr_temp + 140;
-            mr_temp = Math.round(mr_temp);
-            this.ColorTemperature = mr_temp;
+            const payload_temperature = this.deviceStatus.payload.all.digest.light.temperature;
+            this.ColorTemperature = this.calculateTemperature(payload_temperature);
             this.platform.log.debug(
               'Retrieved temp status successfully: ',
               this.ColorTemperature,
@@ -152,7 +156,7 @@ export class lightBulb {
           if (this.deviceStatus?.payload?.all?.digest?.light) {
             this.platform.log.debug(
               'Retrieved status successfully: ',
-              this.deviceStatus.response.payload.all.digest.light,
+              this.deviceStatus.payload.all.digest.light,
             );
 
             const light_rgb = this.deviceStatus.payload.all.digest.light.rgb;
@@ -166,7 +170,7 @@ export class lightBulb {
           }
           if (this.deviceStatus?.payload?.all?.digest?.light) {
             this.Brightness = this.deviceStatus.payload.all.digest.light.luminance;
-            this.ColorTemperature = this.deviceStatus.payload.all.digest.light.temperature;
+            this.ColorTemperature = this.calculateTemperature(this.deviceStatus.payload.all.digest.light.temperature);
 
             const light_rgb = this.deviceStatus.payload.all.digest.light.rgb;
             const rgb = numberToColour(light_rgb);
@@ -198,7 +202,7 @@ export class lightBulb {
         break;
       case 'MSL-120':
         this.Namespace = 'Appliance.System.All';
-        this.Method = 'GETACK';
+        this.Method = 'GET';
         break;
       default:
         this.Namespace = 'Appliance.System.All';
