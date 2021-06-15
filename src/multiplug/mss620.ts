@@ -11,7 +11,7 @@ export class Outlet {
   OutletInUse?: CharacteristicValue;
 
   UpdateInProgress!: boolean;
-  doUpdate!: Subject<unknown>;
+  doUpdate;
   deviceStatus: any;
   Request!: string;
   Data!: data;

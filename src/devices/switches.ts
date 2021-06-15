@@ -10,7 +10,7 @@ export class Switch {
   On!: CharacteristicValue;
 
   UpdateInProgress!: boolean;
-  doUpdate!: Subject<unknown>;
+  doUpdate;
   deviceStatus: any
   Payload!: payload
   Data!: data
