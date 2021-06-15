@@ -4,13 +4,13 @@
   "version": "5.0.2",
   "description": "A Meross Plugin for Homebridge.",
   "license": "Apache-2.0",
-  "author": "donavanbecker",
+  "author": "homebridge-plugins",
   "repository": {
     "type": "git",
-    "url": "git://github.com/donavanbecker/homebridge-meross.git"
+    "url": "git://github.com/homebridge-plugins/homebridge-meross.git"
   },
   "bugs": {
-    "url": "https://github.com/donavanbecker/homebridge-meross/issues"
+    "url": "https://github.com/homebridge-plugins/homebridge-meross/issues"
   },
   "engines": {
     "node": ">=14.17.1",
@@ -27,7 +27,7 @@
   "funding": [
     {
       "type": "Paypal",
-      "url": "https://www.paypal.me/donavanbecker"
+      "url": "https://www.paypal.me/homebridge-plugins"
     }
   ],
   "keywords": [

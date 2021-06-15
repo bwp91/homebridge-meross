@@ -4,5 +4,5 @@ contact_links:
     url: https://discord.gg/bHjKNkN
     about: Please ask and answer questions here.
   - name: Homebridge-Meross - Pull Requests
-    url: https://github.com/donavanbecker/homebridge-meross/pulls
+    url: https://github.com/homebridge-plugins/homebridge-meross/pulls
     about: Please report security vulnerabilities here.
