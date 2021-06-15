@@ -12,7 +12,7 @@ export class GarageDoor {
   ObstructionDetected?: CharacteristicValue;
 
   UpdateInProgress!: boolean;
-  doUpdate!: Subject<unknown>;
+  doUpdate;
   checkStateInterval!: NodeJS.Timeout;
   deviceStatus: any;
   lastSetTime!: number;

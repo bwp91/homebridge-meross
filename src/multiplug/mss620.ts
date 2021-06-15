@@ -4,17 +4,20 @@ import { interval, Subject } from 'rxjs';
 import { debounceTime, skipWhile, tap } from 'rxjs/operators';
 import { DevicesConfig, data, PLATFORM_NAME, payload } from '../settings';
 
-export class Switch {
+export class Outlet {
   private service: Service;
 
-  On!: CharacteristicValue;
+  On?: CharacteristicValue;
+  OutletInUse?: CharacteristicValue;
 
   UpdateInProgress!: boolean;
   doUpdate;
-  deviceStatus: any
-  Payload!: payload
-  Data!: data
+  deviceStatus: any;
   Request!: string;
+  Data!: data;
+  Payload!: payload;
+  Namespace!: string;
+  outlet2: any;
 
   constructor(
     private readonly platform: Meross,
@@ -23,6 +26,7 @@ export class Switch {
   ) {
     // default placeholders
     this.On = false;
+    this.OutletInUse = true;
 
     // this is subject we use to track when we need to POST changes to the SwitchBot API
     this.doUpdate = new Subject();
@@ -42,8 +46,8 @@ export class Switch {
     // get the WindowCovering service if it exists, otherwise create a new WindowCovering service
     // you can create multiple services for each accessory
     (this.service =
-      accessory.getService(this.platform.Service.Switch) ||
-      accessory.addService(this.platform.Service.Switch)), device.name!;
+      accessory.getService(this.platform.Service.Outlet) ||
+      accessory.addService(this.platform.Service.Outlet)), device.name!;
 
     // Set Name Characteristic
     this.service.setCharacteristic(this.platform.Characteristic.Name, device.name!);
@@ -52,7 +56,14 @@ export class Switch {
     // see https://developers.homebridge.io/#/service/WindowCovering
 
     // create handlers for required characteristics
-    this.service.getCharacteristic(this.platform.Characteristic.On).onSet(this.OnSet.bind(this));
+    this.service
+      .getCharacteristic(this.platform.Characteristic.On)
+      .onSet(this.OnSet.bind(this));
+    this.outlet2
+      .getCharacteristic(this.platform.Characteristic.On)
+      .onSet(this.OnSet.bind(this));
+
+    this.service.setCharacteristic((this.platform.Characteristic.OutletInUse), this.OutletInUse || true);
 
     // Update Homekit
     this.updateHomeKitCharacteristics();
@@ -78,6 +89,7 @@ export class Switch {
         try {
           await this.pushOnChanges();
         } catch (e) {
+          this.apiError(e);
           this.platform.log.error(
             'Failed to POST to the Meross Device %s at %s:',
             this.device.model,
@@ -85,22 +97,35 @@ export class Switch {
             JSON.stringify(e.message),
           );
           this.platform.log.debug('Plug %s -', accessory.displayName, JSON.stringify(e));
-          this.apiError(e);
         }
         this.UpdateInProgress = false;
       });
   }
 
   parseStatus() {
-    if (this.deviceStatus) {
-      if (this.deviceStatus?.payload?.all?.digest?.togglex) {
-        const onOff = this.deviceStatus.payload.all.digest.togglex[`${this.device.channel}`].onoff;
-        this.platform.log.debug('Retrieved status successfully: ', onOff);
-        this.On = onOff;
-      } else {
-        this.platform.log.debug('Retrieved status unsuccessfully.');
-        this.On = false;
-      }
+    switch (this.device.model) {
+      case 'MSS110-1':
+        if (this.deviceStatus) {
+          const onOff = this.deviceStatus.payload.all.control.toggle.onoff;
+
+          this.platform.log.debug('Retrieved status successfully: ', onOff);
+          this.On = onOff;
+        } else {
+          this.platform.log.debug('Retrieved status unsuccessfully.');
+          this.On = false;
+        }
+        break;
+      default:
+        if (this.deviceStatus) {
+          if (this.deviceStatus?.payload?.all?.digest?.togglex) {
+            const onOff = this.deviceStatus.payload.all.digest.togglex[`${this.device.channel}`].onoff;
+            this.platform.log.debug('Retrieved status successfully: ', onOff);
+            this.On = onOff;
+          } else {
+            this.platform.log.debug('Retrieved status unsuccessfully.');
+            this.On = false;
+          }
+        }
     }
   }
 
@@ -150,12 +175,25 @@ export class Switch {
  * Pushes the requested changes to the Meross Device
  */
   async pushOnChanges() {
-    this.Payload = {
-      togglex: {
-        onoff: this.On ? 1 : 0,
-        channel: `${this.device.channel}`,
-      },
-    };
+    switch (this.device.model) {
+      case 'MSS110-1':
+        // Payload
+        this.Payload = {
+          toggle: {
+            onoff: this.On ? 1 : 0,
+          },
+        };
+        this.Namespace = 'Appliance.Control.Toggle';
+        break;
+      default:
+        this.Payload = {
+          togglex: {
+            onoff: this.On ? 1 : 0,
+            channel: `${this.device.channel}`,
+          },
+        };
+        this.Namespace = 'Appliance.Control.ToggleX';
+    }
 
     // Data Info
     this.Data = {
@@ -164,7 +202,7 @@ export class Switch {
         messageId: `${this.device.messageId}`,
         method: 'SET',
         from: `http://${this.device.deviceUrl}/config`,
-        namespace: 'Appliance.Control.ToggleX',
+        namespace: this.Namespace,
         timestamp: this.device.timestamp,
         sign: `${this.device.sign}`,
         payloadVersion: 1,
@@ -195,6 +233,7 @@ export class Switch {
 
   public apiError(e: any) {
     this.service.updateCharacteristic(this.platform.Characteristic.On, e);
+    this.service.updateCharacteristic(this.platform.Characteristic.OutletInUse, e);
     new this.platform.api.hap.HapStatusError(HAPStatus.OPERATION_TIMED_OUT);
   }
 

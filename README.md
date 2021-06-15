@@ -1,6 +1,6 @@
 <span align="center">
 
-<a href="https://github.com/homebridge/verified/blob/master/verified-plugins.json"><img alt="homebridge-verified" src="https://raw.githubusercontent.com/donavanbecker/homebridge-meross/master/meross/Meross_x_Homebridge.svg" width="500px"></a>
+<a href="https://github.com/homebridge/verified/blob/master/verified-plugins.json"><img alt="homebridge-verified" src="https://raw.githubusercontent.com/homebridge-plugins/homebridge-meross/master/meross/Meross_x_Homebridge.svg" width="500px"></a>
 
 # Homebridge Meross
 
@@ -27,4 +27,4 @@ This Plugin allows you to control your Meross Devices from HomeKit.
    typical Meross app for initial setup.
 
 2. You will also have to obtain some information that the Meross mobile
-   app uses in its HTTP request headers. Visit [Credentials Wiki](https://github.com/donavanbecker/homebridge-meross/wiki/Getting-Credentials) for more details.
+   app uses in its HTTP request headers. Visit [Credentials Wiki](https://github.com/homebridge-plugins/homebridge-meross/wiki/Getting-Credentials) for more details.
