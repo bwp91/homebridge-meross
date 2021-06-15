@@ -1,7 +1,7 @@
 {
   "displayName": "Homebridge Meross",
   "name": "homebridge-meross",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "description": "A Meross Plugin for Homebridge.",
   "license": "Apache-2.0",
   "author": "homebridge-plugins",
