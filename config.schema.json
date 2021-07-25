@@ -25,7 +25,7 @@
     "userkey": {
       "title": "Meross Key",
       "type": "string",
-      "description": "Enter your Meross key to enable local devices. You don't need to enter this if you have entered your username and password above. For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Getting-Credentials\" target=\"_blank\">the wiki</a>.",
+      "description": "Enter your Meross key to enable local devices. You don't need to enter this if you have entered your username and password above. For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Local-Devices\" target=\"_blank\">the wiki</a>.",
       "condition": {
         "functionBody": "return !(model.username && model.password);"
       }
@@ -180,7 +180,7 @@
             "title": "Serial Number",
             "type": "string",
             "placeholder": "Serial Number",
-            "description": "The serial number (or uuid) of this device. For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Getting-Credentials\" target=\"_blank\">the wiki</a>.",
+            "description": "The serial number (or uuid) of this device. For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Local-Devices\" target=\"_blank\">the wiki</a>.",
             "required": true,
             "condition": {
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name);"
@@ -349,7 +349,7 @@
             "type": "string",
             "required": true,
             "placeholder": "abcdefghijklmnopqrstuvwxyz123456789",
-            "description": "For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Getting-Credentials\" target=\"_blank\">the wiki</a>.",
+            "description": "For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Local-Devices\" target=\"_blank\">the wiki</a>.",
             "condition": {
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name && model.devices[arrayIndices].model && (!model.username || !model.password) && !model.userkey);"
             }
@@ -359,7 +359,7 @@
             "type": "number",
             "required": true,
             "placeholder": "123456789",
-            "description": "For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Getting-Credentials\" target=\"_blank\">the wiki</a>.",
+            "description": "For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Local-Devices\" target=\"_blank\">the wiki</a>.",
             "condition": {
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name && model.devices[arrayIndices].model && (!model.username || !model.password) && !model.userkey);"
             }
@@ -369,7 +369,7 @@
             "type": "string",
             "required": true,
             "placeholder": "abcdefghijklmnopqrstuvwxyz123456789",
-            "description": "For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Getting-Credentials\" target=\"_blank\">the wiki</a>.",
+            "description": "For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Local-Devices\" target=\"_blank\">the wiki</a>.",
             "condition": {
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name && model.devices[arrayIndices].model && (!model.username || !model.password) && !model.userkey);"
             }
