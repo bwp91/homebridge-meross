@@ -104,14 +104,16 @@ export class Meross implements DynamicPlatformPlugin {
         if (!device.deviceUrl) {
           throw new Error(`The devices config section is missing the deviceUrl the config. This device will be skipped. ${device.name}`);
         }
-        if (!device.messageId) {
-          throw new Error(`The devices config section is missing the messageId the config. This device will be skipped. ${device.name}`);
-        }
-        if (!device.timestamp) {
-          throw new Error(`The devices config section is missing the timestamp the config. This device will be skipped. ${device.name}`);
-        }
-        if (!device.sign) {
-          throw new Error(`The devices config section is missing the sign the config. This device will be skipped. ${device.name}`);
+        if (device.model !== 'MSG100') {
+          if (!device.messageId) {
+            throw new Error(`The devices config section is missing the messageId the config. This device will be skipped. ${device.name}`);
+          }
+          if (!device.timestamp) {
+            throw new Error(`The devices config section is missing the timestamp the config. This device will be skipped. ${device.name}`);
+          }
+          if (!device.sign) {
+            throw new Error(`The devices config section is missing the sign the config. This device will be skipped. ${device.name}`);
+          }
         }
         if (!device.channel) {
           device.channel = 0;

@@ -3,6 +3,7 @@ import { Meross } from '../platform';
 import { interval, Subject } from 'rxjs';
 import { debounceTime, skipWhile, tap } from 'rxjs/operators';
 import { DevicesConfig, data, PLATFORM_NAME, state, payload } from '../settings';
+import { Md5 } from 'md5-typescript';
 
 export class GarageDoor {
   private service: Service;
@@ -158,6 +159,9 @@ export class GarageDoor {
   async refreshStatus() {
     try {
       this.platform.log.debug('%s - Reading', this.device.model, `${this.device.deviceUrl}/status`);
+      const messageId = this.generateMessageId();
+      const timestamp = this.generateTimestamp();
+      const sign = this.generateSign(messageId, timestamp);
       const deviceStatus = (
         await this.platform.axios({
           url: `http://${this.device.deviceUrl}/config`,
@@ -165,17 +169,19 @@ export class GarageDoor {
           data: {
             payload: {},
             header: {
-              messageId: `${this.device.messageId}`,
+              messageId: messageId,
               method: 'GET',
               from: `http://${this.device.deviceUrl}/config`,
-              namespace: 'Appliance.System.All',
-              timestamp: this.device.timestamp,
-              sign: `${this.device.sign}`,
+              timestamp: timestamp,
+              namespace: 'Appliance.GarageDoor.State',
+              uuid: `${this.device.deviceUUID}`,
+              sign: sign,
+              triggerSrc : 'iOSLocal',
               payloadVersion: 1,
             },
           },
-        },
-        )).data;
+        })
+      ).data;
       this.platform.log.debug(
         '%s %s refreshStatus -',
         this.device.model,
@@ -202,37 +208,35 @@ export class GarageDoor {
  */
   async pushTargetDoorStateChanges() {
     this.lastSetTime = Math.floor(Date.now() / 1000);
-    // Payload
-    this.Payload = {
-      state: {
-        channel: `${this.device.channel}`,
-        open: this.Open ? 1 : 0,
-        uuid: `${this.device.deviceUrl}`,
-      },
-    };
-
-    // Data Info
-    this.Data = {
-      payload: this.Payload,
-      header: {
-        messageId: `${this.device.messageId}`,
-        method: 'SET',
-        from: `http://${this.device.deviceUrl}/config`,
-        namespace: 'Appliance.GarageDoor.State',
-        timestamp: this.device.timestamp,
-        sign: `${this.device.sign}`,
-        payloadVersion: 1,
-        triggerSrc: 'iOSLocal',
-      },
-    };
 
     // Make request
+    const messageId = this.generateMessageId();
+    const timestamp = this.generateTimestamp();
+    const sign = this.generateSign(messageId, timestamp);
     const push = await this.platform.axios({
       url: `http://${this.device.deviceUrl}/config`,
       method: 'post',
-      data: this.Data,
-    },
-    );
+      data: {
+        payload: {
+          state: {
+            channel: `${this.device.channel ?? 0}`,
+            open: this.Open ? 1 : 0,
+            uuid: `${this.device.deviceUUID}`,
+          },
+        },
+        header: {
+          messageId: messageId,
+          method: 'SET',
+          from: `http://${this.device.deviceUrl}/config`,
+          timestamp: timestamp,
+          namespace: 'Appliance.GarageDoor.State',
+          uuid: `${this.device.deviceUUID}`,
+          sign: sign,
+          triggerSrc: 'iOSLocal',
+          payloadVersion: 1,
+        },
+      },
+    });
     if (this.Open === 0 ) {
       this.Request = 'Open';
     } else {
@@ -367,5 +371,29 @@ export class GarageDoor {
   stopUpdatingDoorState() {
     clearInterval(this.checkStateInterval);
     this.checkStateInterval;
+  }
+
+  generateMessageId(): string {
+    if (this.device.messageId !== undefined) {
+      return this.device.messageId;
+    }
+    return 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {  
+      const r = Math.floor(Math.random() * 16);  
+      return r.toString(16);  
+    });
+  }
+
+  generateTimestamp(): number {
+    if (this.device.timestamp !== undefined) {
+      return this.device.timestamp;
+    }
+    return Math.floor(Date.now()/1000);
+  }
+
+  generateSign(messageId: string, timestamp: number): string {
+    if (this.device.sign !== undefined) {
+      return this.device.sign;
+    }
+    return Md5.init([messageId, this.device.userKey, timestamp].join()).toString().toLowerCase();
   }
 }

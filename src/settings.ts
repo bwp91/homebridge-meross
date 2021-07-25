@@ -30,6 +30,8 @@ export type DevicesConfig = {
   timestamp?: number;
   sign?: string;
   garageDoorOpeningTime?: number;
+  userKey?: string;
+  deviceUUID?: string;
 };
 
 export type data = {

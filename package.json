@@ -42,6 +42,7 @@
   ],
   "dependencies": {
     "axios": "^0.21.1",
+    "md5-typescript": "^1.0.5",
     "rxjs": "^7.1.0"
   },
   "devDependencies": {

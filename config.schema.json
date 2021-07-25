@@ -202,30 +202,39 @@
                         "format": "ipv4",
                         "placeholder": "192.168.1.1"
                     },
+                    "userKey": {
+                        "title": "User Key",
+                        "type": "string",
+                        "placeholder": "abcdefghijklmnopqrstuvwxyz123456789",
+                        "description": "If you provide the User Key, you don't need to fill messageId, timestamp, sign below."
+                    },
+                    "deviceUUID": {
+                        "title": "Device UUID",
+                        "type": "string",
+                        "placeholder": "abcdefghijklmnopqrstuvwxyz123456789",
+                        "description": "Device UUID is required when User Key is filled."
+                    },
+                    "messageId": {
+                        "title": "MessageID",
+                        "type": "string",
+                        "placeholder": "abcdefghijklmnopqrstuvwxyz123456789"
+                    },
+                    "timestamp": {
+                        "title": "TimeStamp",
+                        "type": "number",
+                        "placeholder": "123456789"
+                    },
+                    "sign": {
+                        "title": "Sign",
+                        "type": "string",
+                        "placeholder": "abcdefghijklmnopqrstuvwxyz123456789"
+                    },
                     "channel": {
                         "title": "Device Channel",
                         "description": "Keep this as 0, Unless you have a device with multiple outlets.",
                         "type": "number",
                         "placeholder": "0",
                         "required": false
-                    },
-                    "messageId": {
-                        "title": "MessageID",
-                        "type": "string",
-                        "required": true,
-                        "placeholder": "abcdefghijklmnopqrstuvwxyz123456789"
-                    },
-                    "timestamp": {
-                        "title": "TimeStamp",
-                        "type": "number",
-                        "required": true,
-                        "placeholder": "123456789"
-                    },
-                    "sign": {
-                        "title": "Sign",
-                        "type": "string",
-                        "required": true,
-                        "placeholder": "abcdefghijklmnopqrstuvwxyz123456789"
                     },
                     "garageDoorOpeningTime": {
                         "title": "Garage Door Opening Time",
@@ -279,10 +288,12 @@
                         "devices[].serialNumber",
                         "devices[].firmwareRevision",
                         "devices[].deviceUrl",
-                        "devices[].channel",
+                        "devices[].userKey",
+                        "devices[].deviceUUID",
                         "devices[].messageId",
                         "devices[].timestamp",
                         "devices[].sign",
+                        "devices[].channel",
                         "devices[].garageDoorOpeningTime"
                     ]
                 }
