@@ -3,11 +3,12 @@
 </p>
 <span align="center">
 
-# homebridge-ewelink
+# homebridge-meross
 
 Homebridge plugin to control Meross devices
 
-[![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)  
+[![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)
+[![hoobs-certified](https://badgen.net/badge/HOOBS/certified/yellow)](https://plugins.hoobs.org/plugin/homebridge-meross)  
 [![npm](https://img.shields.io/npm/v/homebridge-meross/latest?label=latest)](https://www.npmjs.com/package/homebridge-meross)
 [![npm](https://img.shields.io/npm/v/homebridge-meross/beta?label=beta)](https://github.com/bwp91/homebridge-meross/wiki/Beta-Version)  
 [![npm](https://img.shields.io/npm/dt/homebridge-meross)](https://www.npmjs.com/package/homebridge-meross)
