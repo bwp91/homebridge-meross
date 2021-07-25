@@ -15,6 +15,7 @@ All notable changes to homebridge-meross will be documented in this file.
   - The use of this key makes the device `messageId`, `sign` and `timestamp` redundant
   - If neither your Meross credentials nor a key has been configured, then the plugin will continue to use the configured `messageId`, `sign` and `timestamp`
   - When using this key, it is necessary to configure the serial number (uuid) of the device in the configuration
+- Adaptive Lighting for lightbulbs using local control
 - Logging level on a per-accessory basis, which can be helpful when wanting to debug a specific accessory
 - More configuration validation, logging if you have entries that are incorrectly configured or unused
 - Promise-based device control, so the plugin should show a device as 'No Response' if controlling an accessory has failed
