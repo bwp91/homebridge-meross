@@ -70,7 +70,7 @@ export class GarageDoor {
     this.updateHomeKitCharacteristics();
 
     // Start an update interval
-    interval(this.platform.config.refreshRate! * 1000)
+    interval(this.platform.config.refreshRate! * 10000)
       .pipe(skipWhile(() => this.UpdateInProgress))
       .subscribe(() => {
         this.refreshStatus();
