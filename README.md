@@ -48,7 +48,7 @@ Homebridge plugin to control Meross devices
 
 ### Credits
 
-- This is a fork of the work originally done by [Robdel12](https://github.com/Robdel12) and [dylanfrankcom](https://github.com/dylanfrankcom).
+- This is a fork of the work originally done by [@Robdel12](https://github.com/Robdel12) and [@dylanfrankcom](https://github.com/dylanfrankcom).
 - To [@donavanbecker](https://github.com/donavanbecker) the previous maintainer of this plugin.
 - To [@Apollon77](https://github.com/Apollon77) and [@colthreepv](https://github.com/colthreepv) for the [meross-cloud](https://github.com/Apollon77/meross-cloud) library (contained in this plugin).
 - To the creator of the awesome plugin header logo: [Keryan Belahcene](https://www.instagram.com/keryan.me).
