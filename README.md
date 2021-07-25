@@ -3,11 +3,12 @@
 </p>
 <span align="center">
 
-# homebridge-ewelink
+# homebridge-meross
 
 Homebridge plugin to control Meross devices
 
-[![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)  
+[![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)
+[![hoobs-certified](https://badgen.net/badge/HOOBS/certified/yellow)](https://plugins.hoobs.org/plugin/homebridge-meross)  
 [![npm](https://img.shields.io/npm/v/homebridge-meross/latest?label=latest)](https://www.npmjs.com/package/homebridge-meross)
 [![npm](https://img.shields.io/npm/v/homebridge-meross/beta?label=beta)](https://github.com/bwp91/homebridge-meross/wiki/Beta-Version)  
 [![npm](https://img.shields.io/npm/dt/homebridge-meross)](https://www.npmjs.com/package/homebridge-meross)
@@ -47,8 +48,9 @@ Homebridge plugin to control Meross devices
 
 ### Credits
 
-- This is a fork of the work originally done by [Robdel12](https://github.com/Robdel12) and [dylanfrankcom](https://github.com/dylanfrankcom).
+- This is a fork of the work originally done by [@Robdel12](https://github.com/Robdel12) and [@dylanfrankcom](https://github.com/dylanfrankcom).
 - To [@donavanbecker](https://github.com/donavanbecker) the previous maintainer of this plugin.
+- To [@Apollon77](https://github.com/Apollon77) and [@colthreepv](https://github.com/colthreepv) for the [meross-cloud](https://github.com/Apollon77/meross-cloud) library (contained in this plugin).
 - To the creator of the awesome plugin header logo: [Keryan Belahcene](https://www.instagram.com/keryan.me).
 - To the creators/contributors of [Homebridge](https://homebridge.io) who make this plugin possible.
 
