@@ -33,11 +33,16 @@ Homebridge plugin to control Meross devices
 
 - [Installation](https://github.com/bwp91/homebridge-meross/wiki/Installation)
 - [Configuration](https://github.com/bwp91/homebridge-meross/wiki/Configuration)
-- [Getting Credentials](https://github.com/bwp91/homebridge-meross/wiki/Getting-Credentials)
 - [Specific Model Configurations](https://github.com/bwp91/homebridge-meross/wiki/Specific-Model-Configurations)
 - [Beta Version](https://github.com/bwp91/homebridge-meross/wiki/Beta-Version)
 - [Node Version](https://github.com/bwp91/homebridge-meross/wiki/Node-Version)
 - [Uninstallation](https://github.com/bwp91/homebridge-meross/wiki/Uninstallation)
+
+### Features
+
+- [Supported Devices](https://github.com/bwp91/homebridge-meross/wiki/Supported-Devices)
+- [Cloud Devices](https://github.com/bwp91/homebridge-meross/wiki/Cloud-Devices)
+- [Local Devices](https://github.com/bwp91/homebridge-meross/wiki/Local-Devices)
 
 ### Help/About
 
