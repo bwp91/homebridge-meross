@@ -76,9 +76,9 @@
     },
     "cloudDevices": {
       "type": "array",
+      "title": "Cloud Device Settings",
+      "description": "Optional settings for your cloud Meross devices.",
       "items": {
-        "title": "Cloud Device Settings",
-        "description": "Optional settings for your cloud Meross devices.",
         "type": "object",
         "properties": {
           "label": {
@@ -165,9 +165,9 @@
     },
     "devices": {
       "type": "array",
+      "title": "Local Device Settings",
+      "description": "Optional settings for your local Meross devices.",
       "items": {
-        "title": "Device Settings",
-        "description": "Optional settings for your local Meross devices.",
         "type": "object",
         "properties": {
           "name": {
