@@ -234,7 +234,7 @@
           document.getElementById('serial_number').innerHTML = context.serialNumber
           document.getElementById('connection_type').innerHTML = context.connection
           document.getElementById('model').innerHTML = context.model
-          document.getElementById('firmware').innerHTML = context.firmware
+          document.getElementById('firmware').innerHTML = context.firmware || 'N/A'
           document.getElementById('deviceTable').style.display = 'inline-table'
           homebridge.hideSpinner()
         }
