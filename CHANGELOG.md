@@ -31,11 +31,30 @@ All notable changes to this project will be documented in this file. This projec
 - You will have to change you config completely if you update to this version.
   - You can take your current `accessory` and move it to the platform config.
   - See (Specific Model Configurations)[https://github.com/homebridge-plugins/homebridge-meross/wiki/Specific-Model-Configurations] Wiki for more examples.
-  - Example: 
-   #### Before:
-    ```json
-    "accessories": [
-        {
+  - Example:
+  #### Before:
+  ```json
+  "accessories": [
+      {
+        "model": "MSS620",
+        "name": "Outlet",
+        "deviceUrl": "192.168.1.1",
+        "channel": 0,
+        "messageId": "abcdefghijklmnopqrstuvwxyz123456789",
+        "timestamp": 123456789,
+        "sign": "abcdefghijklmnopqrstuvwxyz123456789",
+        "accessory": "Meross"
+      }
+  ]
+  ```
+  #### After:
+  ```json
+  "platforms": [
+      {
+      "name": "Meross",
+      "devices": [
+          <This_is_from_above>
+          {
           "model": "MSS620",
           "name": "Outlet",
           "deviceUrl": "192.168.1.1",
@@ -43,33 +62,14 @@ All notable changes to this project will be documented in this file. This projec
           "messageId": "abcdefghijklmnopqrstuvwxyz123456789",
           "timestamp": 123456789,
           "sign": "abcdefghijklmnopqrstuvwxyz123456789",
-          "accessory": "Meross"
-        }
-    ]
-    ```
-   #### After:
-    ```json
-    "platforms": [
-        {
-        "name": "Meross",
-        "devices": [
-            <This_is_from_above>
-            {
-            "model": "MSS620",
-            "name": "Outlet",
-            "deviceUrl": "192.168.1.1",
-            "channel": 0,
-            "messageId": "abcdefghijklmnopqrstuvwxyz123456789",
-            "timestamp": 123456789,
-            "sign": "abcdefghijklmnopqrstuvwxyz123456789",
-            "accessory": "Meross" <You_Can_Remove_This.>
-            }
-            <Ends_here_from_above>
-          ],
-        "platform": "Meross"
-        }
-    ]
-    ```
+          "accessory": "Meross" <You_Can_Remove_This.>
+          }
+          <Ends_here_from_above>
+        ],
+      "platform": "Meross"
+      }
+  ]
+  ```
 - Added Config for Refresh Rate.
   - default is 5 seconds and if updating to often can be set in the config.
 

@@ -1,48 +1,40 @@
----
-name: Bug Report
-about: Create a report to help us improve
-title: ''
-labels: bug
-assignees: ''
+<!-- PLEASE READ BEFORE POSTING A NEW ISSUE
+ → If you are giving feedback or requesting a new feature then feel free to ignore this template.
+ → If you are experiencing an issue with the plugin then please use this template as well as you can.
+ → Things that may seem unimportant to you are often helpful in finding the cause of the issue.
+-->
 
----
+### What issue do you have? Please be as thorough and explicit as possible.
 
-<!-- You must use the issue template below when submitting a bug -->
 
-**Describe The Bug:**
-<!-- A clear and concise description of what the bug is. -->
 
-**To Reproduce:**
-<!-- Steps to reproduce the behavior. -->
+### Details of your setup.
+* Do you use Homebridge (with config-ui?) or HOOBS? 
 
-**Expected behavior:**
-<!-- A clear and concise description of what you expected to happen. -->
 
-**Logs:**
-<!-- Bug reports that do not contain logs may be closed without warning. -->
+
+* Which version of Homebridge/HOOBS do you have?
+
+
+
+* Which version of this plugin (homebridge-meross) do you have? Has the issue started since upgrading from a previous version?
+
+
+
+* Which Meross devices do you have that are causing issues? Please include product models if applicable.
+
+
+
+### Please paste any relevant logs below.
+<!-- ABOUT LOGS
+ → More thorough logging can be seen by enabling 'Debug Logging' in
+   ...the plugin settings.
+ → If you are posting an error then it is helpful for me to also see
+   ...the previous few lines as this can show the cause of the error.
+ → Please enter the logs between the two ``` lines below so that
+   ...the logs are formatted in a way which is easier to read.
+-->
 
 ```
-Show the Homebridge / Homebridge Config UI X logs here.
+
 ```
-
-**Homebridge Config:**
-
-```json
-Show your homebridge config.json here
-```
-
-**Screenshots:**
-<!-- If applicable, add screenshots to help explain your problem. -->
-
-**Environment:**
-
-* **Node.js Version**: <!-- node -v -->
-* **NPM Version**: <!-- npm -v -->
-* **Homebridge Version**: <!-- homebridge -V -->
-* **Homebridge Meross Plugin Version**:
-* **Homebridge Config UI X Version**:
-* **Operating System**: Raspbian / Ubuntu / Debian / Windows / macOS / Docker
-* **Process Supervisor**: Docker / Systemd / init.d / pm2 / launchctl / hb-service / other / none
-
-
-<!-- Click the "Preview" tab before you submit to ensure the formatting is correct. -->

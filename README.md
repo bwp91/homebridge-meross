@@ -1,30 +1,58 @@
+<p align="center">
+ <a href="https://github.com/bwp91/homebridge-meross"><img alt="Homebridge Verified" src="https://user-images.githubusercontent.com/43026681/126865477-39d9bbe9-9d0a-402a-9484-6cba8875256c.png" width="600px"></a>
+</p>
 <span align="center">
 
-<a href="https://github.com/homebridge/verified/blob/master/verified-plugins.json"><img alt="homebridge-verified" src="https://raw.githubusercontent.com/homebridge-plugins/homebridge-meross/master/meross/Meross_x_Homebridge.svg" width="500px"></a>
+# homebridge-ewelink
 
-# Homebridge Meross
+Homebridge plugin to control Meross devices
 
-<a href="https://www.npmjs.com/package/homebridge-meross"><img title="npm version" src="https://badgen.net/npm/v/homebridge-meross?icon=npm" ></a>
-<a href="https://www.npmjs.com/package/homebridge-meross"><img title="npm downloads" src="https://badgen.net/npm/dt/homebridge-meross?icon=npm" ></a>
-
-<p>The <a href="https://www.meross.com">Meross</a> plugin for
-  <a href="https://homebridge.io">Homebridge</a>.
-
-This Plugin allows you to control your Meross Devices from HomeKit.
-
-</p>
+[![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)
+[![npm](https://img.shields.io/npm/v/homebridge-meross/latest?label=latest)](https://www.npmjs.com/package/homebridge-meross)
+[![npm](https://img.shields.io/npm/v/homebridge-meross/beta?label=beta)](https://github.com/bwp91/homebridge-meross/wiki/Beta-Version)  
+[![npm](https://img.shields.io/npm/dt/homebridge-meross)](https://www.npmjs.com/package/homebridge-meross)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)  
+[![Discord](https://img.shields.io/discord/784827113378676736?color=728ED5&logo=discord&label=bwp91-discord)](https://discord.com/channels/784827113378676736/784827113378676739)
+[![Discord](https://img.shields.io/discord/432663330281226270?color=728ED5&logo=discord&label=hb-discord)](https://discord.com/channels/432663330281226270/742733745743855627)
 
 </span>
 
-## Installation
+### Plugin Information
 
-1. Search for "Meross" on the plugin screen of [Homebridge Config UI X](https://github.com/oznu/homebridge-config-ui-x).
-2. Click **Install**.
+- This plugin allows you to view and control your Meross devices within HomeKit. The plugin:
+  - requires your Meross credentials for cloud device control
+  - supports configuring devices for local control
 
-## Authorization & Configuration
+### Prerequisites
 
-1. If you're setting this plug up fresh, make sure you go through the
-   typical Meross app for initial setup.
+- To use this plugin, you will need to already have [Homebridge](https://homebridge.io) (at least v1.3.3) or [HOOBS](https://hoobs.org) (at least v3.3.4) installed. Please refer to the links for more information and installation instructions.
+- It is recommended to use the current LTS version of Node, currently v14, however Node v12 is also supported.
 
-2. You will also have to obtain some information that the Meross mobile
-   app uses in its HTTP request headers. Visit [Credentials Wiki](https://github.com/homebridge-plugins/homebridge-meross/wiki/Getting-Credentials) for more details.
+### Setup
+
+- [Installation](https://github.com/bwp91/homebridge-meross/wiki/Installation)
+- [Configuration](https://github.com/bwp91/homebridge-meross/wiki/Configuration)
+- [Getting Credentials](https://github.com/bwp91/homebridge-meross/wiki/Getting-Credentials)
+- [Specific Model Configurations](https://github.com/bwp91/homebridge-meross/wiki/Specific-Model-Configurations)
+- [Beta Version](https://github.com/bwp91/homebridge-meross/wiki/Beta-Version)
+- [Node Version](https://github.com/bwp91/homebridge-meross/wiki/Node-Version)
+- [Uninstallation](https://github.com/bwp91/homebridge-meross/wiki/Uninstallation)
+
+### Help/About
+
+- [Common Errors](https://github.com/bwp91/homebridge-meross/wiki/Common-Errors)
+- [Support Request](https://github.com/bwp91/homebridge-meross/issues/new/choose)
+- [Changelog](https://github.com/bwp91/homebridge-meross/blob/latest/CHANGELOG.md)
+- [About Me](https://github.com/sponsors/bwp91)
+
+### Credits
+
+- This is a fork of the work originally done by [Robdel12](https://github.com/Robdel12) and [dylanfrankcom](https://github.com/dylanfrankcom).
+- To [@donavanbecker](https://github.com/donavanbecker) the previous maintainer of this plugin.
+- To the creator of the awesome plugin header logo: [Keryan Belahcene](https://www.instagram.com/keryan.me).
+- To the creators/contributors of [Homebridge](https://homebridge.io) who make this plugin possible.
+
+### Disclaimer
+
+- I am in no way affiliated with Meross and this plugin is a personal project that I maintain in my free time.
+- Use this plugin entirely at your own risk - please see licence for more information.

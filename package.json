@@ -1,35 +1,9 @@
 {
-  "displayName": "Homebridge Meross",
   "name": "homebridge-meross",
+  "alias": "Meross",
   "version": "5.0.3",
-  "description": "A Meross Plugin for Homebridge.",
+  "description": "Homebridge plugin to control Meross devices.",
   "license": "Apache-2.0",
-  "author": "homebridge-plugins",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/homebridge-plugins/homebridge-meross.git"
-  },
-  "bugs": {
-    "url": "https://github.com/homebridge-plugins/homebridge-meross/issues"
-  },
-  "engines": {
-    "node": ">=14.17.1",
-    "homebridge": ">=1.3.4"
-  },
-  "main": "dist/index.js",
-  "scripts": {
-    "update": "npm update",
-    "lint": "eslint src/**.ts",
-    "watch": "npm run build && npm link && nodemon",
-    "build": "rimraf ./dist && tsc",
-    "prepublishOnly": "npm run lint && npm run build"
-  },
-  "funding": [
-    {
-      "type": "Paypal",
-      "url": "https://www.paypal.me/homebridge-plugins"
-    }
-  ],
   "keywords": [
     "homebridge-plugin",
     "meross",
@@ -40,20 +14,32 @@
     "garage-door",
     "homebridge"
   ],
-  "dependencies": {
-    "axios": "^0.21.1",
-    "rxjs": "^7.1.0"
+  "main": "lib/index.js",
+  "engines": {
+    "node": "^14.17.2 || ^16.5.0",
+    "homebridge": "^1.3.3"
   },
-  "devDependencies": {
-    "@types/node": "^15.12.2",
-    "@typescript-eslint/eslint-plugin": "^4.27.0",
-    "@typescript-eslint/parser": "^4.27.0",
-    "eslint": "^7.28.0",
-    "homebridge": "^1.3.4",
-    "nodemon": "^2.0.7",
-    "rimraf": "^3.0.2",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.3.2",
-    "typescript-axios-wb": "^1.0.3"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bwp91/homebridge-meross.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bwp91/homebridge-meross/issues"
+  },
+  "dependencies": {
+    "@homebridge/plugin-ui-utils": "^0.0.19",
+    "axios": "^0.21.1",
+    "mqtt": "^4.2.8",
+    "p-queue": "^6.6.2",
+    "promise-timeout": "^1.3.0"
+  },
+  "prettier": {
+    "printWidth": 100
+  },
+  "standard": {
+    "ignore": [
+      "/lib/device/local/mss425.js",
+      "/lib/device/local/mss620.js"
+    ]
   }
 }
