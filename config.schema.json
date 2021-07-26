@@ -47,13 +47,6 @@
       "placeholder": 5,
       "minimum": 0
     },
-    "pushRate": {
-      "title": "Push Rate",
-      "type": "number",
-      "description": "Indicates the number of seconds between pushes to Meross Device. Must be 0.1 or more.",
-      "placeholder": 0.1,
-      "minimum": 0.1
-    },
     "disableDeviceLogging": {
       "type": "boolean",
       "title": "Disable Device Logging",
@@ -98,14 +91,6 @@
             "required": true,
             "condition": {
               "functionBody": "return (model.cloudDevices && model.cloudDevices[arrayIndices] && model.cloudDevices[arrayIndices].label);"
-            }
-          },
-          "ignoreDevice": {
-            "type": "boolean",
-            "title": "Hide From HomeKit",
-            "description": "If true, this accessory will be removed and ignored from HomeKit.",
-            "condition": {
-              "functionBody": "return (model.cloudDevices && model.cloudDevices[arrayIndices] && model.cloudDevices[arrayIndices].label && model.cloudDevices[arrayIndices].serialNumber);"
             }
           },
           "showAs": {
@@ -165,8 +150,8 @@
     },
     "devices": {
       "type": "array",
-      "title": "Local Device Settings",
-      "description": "Optional settings for your local Meross devices.",
+      "title": "Device Settings",
+      "description": "Optional settings for your Meross devices.",
       "items": {
         "type": "object",
         "properties": {
@@ -180,10 +165,37 @@
             "title": "Serial Number",
             "type": "string",
             "placeholder": "Serial Number",
-            "description": "The serial number (or uuid) of this device. For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Local-Devices\" target=\"_blank\">the wiki</a>.",
+            "description": "The serial number (or uuid) of this device.",
             "required": true,
             "condition": {
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name);"
+            }
+          },
+          "connection": {
+            "title": "Connection Type",
+            "description": "Cloud or local.",
+            "type": "string",
+            "required": true,
+            "oneOf": [
+              {
+                "title": "Cloud",
+                "enum": ["cloud"]
+              },
+              {
+                "title": "Local",
+                "enum": ["local"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32);"
+            }
+          },
+          "ignoreDevice": {
+            "type": "boolean",
+            "title": "Hide From HomeKit",
+            "description": "If true, this accessory will be removed and ignored from HomeKit.",
+            "condition": {
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && model.devices[arrayIndices].connection === 'cloud');"
             }
           },
           "model": {
@@ -294,7 +306,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
           "showAs": {
@@ -311,7 +323,15 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name && model.devices[arrayIndices].model);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "hideChannels": {
+            "type": "string",
+            "title": "Hide Channels",
+            "description": "A comma separated list of channels to hide for this device. For example '0' or '0,1,2'.",
+            "condition": {
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
           "firmwareRevision": {
@@ -320,7 +340,7 @@
             "type": "string",
             "description": "The firmware version of this device.",
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name && model.devices[arrayIndices].model);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
           "deviceUrl": {
@@ -331,47 +351,17 @@
             "format": "ipv4",
             "placeholder": "192.168.1.1",
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name && model.devices[arrayIndices].model);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && model.devices[arrayIndices].connection === 'local' && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
-          "channel": {
-            "title": "Channel",
-            "description": "This should be 0 unless this device has multiple channels/outlets.",
+          "channelCount": {
+            "title": "Channel Count",
+            "description": "The number of separate switches/outlets this device has.",
             "type": "integer",
-            "placeholder": 0,
-            "minimum": 0,
+            "placeholder": 1,
+            "minimum": 1,
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name && model.devices[arrayIndices].model);"
-            }
-          },
-          "messageId": {
-            "title": "Message ID",
-            "type": "string",
-            "required": true,
-            "placeholder": "abcdefghijklmnopqrstuvwxyz123456789",
-            "description": "For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Local-Devices\" target=\"_blank\">the wiki</a>.",
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name && model.devices[arrayIndices].model && (!model.username || !model.password) && !model.userkey);"
-            }
-          },
-          "timestamp": {
-            "title": "Timestamp",
-            "type": "number",
-            "required": true,
-            "placeholder": "123456789",
-            "description": "For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Local-Devices\" target=\"_blank\">the wiki</a>.",
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name && model.devices[arrayIndices].model && (!model.username || !model.password) && !model.userkey);"
-            }
-          },
-          "sign": {
-            "title": "Sign",
-            "type": "string",
-            "required": true,
-            "placeholder": "abcdefghijklmnopqrstuvwxyz123456789",
-            "description": "For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Local-Devices\" target=\"_blank\">the wiki</a>.",
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name && model.devices[arrayIndices].model && (!model.username || !model.password) && !model.userkey);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && model.devices[arrayIndices].connection === 'local' && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
           "garageDoorOpeningTime": {
@@ -381,7 +371,7 @@
             "placeholder": "20",
             "minimum": 1,
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name && ['MSG100', 'MSG200'].includes(model.devices[arrayIndices].model));"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && ['MSG100', 'MSG200'].includes(model.devices[arrayIndices].model) && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
           "overrideLogging": {
@@ -407,7 +397,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name && model.devices[arrayIndices].model);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
             }
           }
         }
@@ -426,37 +416,15 @@
         "userkey",
         "cloudRefreshRate",
         "refreshRate",
-        "pushRate",
         "disableDeviceLogging",
         "debug",
         "disablePlugin"
       ]
     },
     {
-      "key": "cloudDevices",
-      "title": "Cloud Device Settings",
-      "description": "Optional settings for your cloud Meross devices. These settings will not appear until the Meross username and password have been entered above.",
-      "expandable": true,
-      "add": "Add Device",
-      "type": "array",
-      "items": [
-        {
-          "type": "fieldset",
-          "items": [
-            "cloudDevices[].label",
-            "cloudDevices[].serialNumber",
-            "cloudDevices[].ignoreDevice",
-            "cloudDevices[].showAs",
-            "cloudDevices[].firmwareRevision",
-            "cloudDevices[].overrideLogging"
-          ]
-        }
-      ]
-    },
-    {
       "key": "devices",
-      "title": "Local Device Settings",
-      "description": "Optional settings for your local Meross devices.",
+      "title": "Device Settings",
+      "description": "Optional settings for your Meross devices.",
       "expandable": true,
       "add": "Add Device",
       "type": "array",
@@ -466,14 +434,14 @@
           "items": [
             "devices[].name",
             "devices[].serialNumber",
+            "devices[].connection",
+            "devices[].ignoreDevice",
             "devices[].model",
             "devices[].showAs",
+            "devices[].hideChannels",
             "devices[].firmwareRevision",
             "devices[].deviceUrl",
-            "devices[].channel",
-            "devices[].messageId",
-            "devices[].timestamp",
-            "devices[].sign",
+            "devices[].channelCount",
             "devices[].garageDoorOpeningTime",
             "devices[].overrideLogging"
           ]

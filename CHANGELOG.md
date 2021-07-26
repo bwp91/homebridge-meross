@@ -24,7 +24,9 @@ All notable changes to homebridge-meross will be documented in this file.
 
 - All switch/outlet devices will be now exposed to HomeKit by default as a `Switch` (both cloud and local devices)
   - A new configuration setting has been added if you prefer for your device to be exposed as an `Outlet`
-- The renaming of a channel of a multi-channel device via the Meross app will be reflected in HomeKit
+- Cloud multi-channel devices will now appear as separate accessories
+  - An extra 'All On/Off' accessory will be shown in HomeKit
+  - You can use the 'Hide Channels' setting to hide channels you don't use, including the 'All On/Off' accessory
 
 ## 5.0.3 (2021-06-15)
 

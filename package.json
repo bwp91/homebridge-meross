@@ -38,8 +38,8 @@
   },
   "standard": {
     "ignore": [
-      "/lib/device/local/mss425.js",
-      "/lib/device/local/mss620.js"
+      "/lib/device/todo/",
+      "/lib/device/todo/"
     ]
   }
 }
