@@ -77,7 +77,7 @@
     "cloudDevices": {
       "type": "array",
       "title": "Cloud Device Settings",
-      "description": "Optional settings for your cloud Meross devices.",
+      "description": "Optional settings for your cloud Meross devices. These settings will not appear until the Meross username and password have been entered above.",
       "items": {
         "type": "object",
         "properties": {
@@ -435,7 +435,7 @@
     {
       "key": "cloudDevices",
       "title": "Cloud Device Settings",
-      "description": "Optional settings for your cloud Meross devices.",
+      "description": "Optional settings for your cloud Meross devices. These settings will not appear until the Meross username and password have been entered above.",
       "expandable": true,
       "add": "Add Device",
       "type": "array",
