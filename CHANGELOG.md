@@ -11,9 +11,10 @@ All notable changes to homebridge-meross will be documented in this file.
   - This makes cloud polling not so necessary, but this has not been removed
 - The use of an account key for local device control
   - The key will automatically be obtained if your Meross credentials are present
-  - Docs to find this key are available in the wiki
-  - The use of this key makes the device `messageId`, `sign` and `timestamp` redundant and these options have been removed
+  - Docs to find this account key are available in the wiki
+  - The use of this account key makes the device `messageId`, `sign` and `timestamp` redundant and these options have been removed
   - It is necessary to also configure the serial number (uuid) per the device in the configuration
+  - **Your local devices will not work with this version unless you configure the account key and serial number (uuid)**
 - Adaptive Lighting for lightbulbs using local control
 - Logging level on a per-accessory basis, which can be helpful when wanting to debug a specific accessory
 - More configuration validation, logging if you have entries that are incorrectly configured or unused
