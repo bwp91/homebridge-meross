@@ -124,6 +124,10 @@
             "required": true,
             "oneOf": [
               {
+                "title": "MRS-100",
+                "enum": ["MRS100"]
+              },
+              {
                 "title": "MSS-110 1.0",
                 "enum": ["MSS110-1"]
               },
