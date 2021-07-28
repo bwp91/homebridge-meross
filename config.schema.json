@@ -33,8 +33,8 @@
     "cloudRefreshRate": {
       "title": "Cloud Refresh Rate",
       "type": "integer",
-      "description": "Number of seconds between polls to cloud Meross devices. Set to 0 to disable polling, otherwise must be 30 or more.",
-      "placeholder": 300,
+      "description": "Number of seconds between polls to devices using cloud connection. Should not be needed since the plugin supports real-time updates. Leave at 0 to disable polling, otherwise must be 30 or more.",
+      "placeholder": 0,
       "minimum": 0,
       "condition": {
         "functionBody": "return (model.username && model.password);"
