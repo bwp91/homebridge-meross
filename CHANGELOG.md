@@ -6,25 +6,34 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Added
 
-- Support for cloud devices (bringing the functionality of `homebridge-meross-cloud` into this plugin)
-- Device MQTT connections so any external changes to devices should be reflected in HomeKit in real time
-  - This makes cloud polling not so necessary, but this has not been removed
-- The use of an account key for local device control
-  - The key will automatically be obtained if your Meross credentials are present
-  - Docs to find this account key are available in the wiki
-  - The use of this account key makes the device `messageId`, `sign` and `timestamp` redundant and these options have been removed
-  - It is necessary to also configure the serial number (uuid) per the device in the configuration
-  - **⚠️ Your local devices will not work with this version unless you configure the account key and serial number (uuid)**
-- Adaptive Lighting for lightbulbs using local control
-- Logging level on a per-accessory basis, which can be helpful when wanting to debug a specific accessory
-- More configuration validation, logging if you have entries that are incorrectly configured or unused
-- Promise-based device control, so the plugin should show a device as 'No Response' if controlling an accessory has failed
+- **Cloud Control**
+  - Support for cloud devices (bringing the functionality of `homebridge-meross-cloud` into this plugin)
+  - Device MQTT connections so any external changes to devices should be reflected in HomeKit in real time
+    - This makes cloud polling not so necessary, but this has not been removed
+- **Local Control**
+  - The use of an account key for local device control
+    - The key will automatically be obtained if your Meross credentials are present
+    - Docs to find this account key are available in the wiki
+    - The use of this account key makes the device `messageId`, `sign` and `timestamp` redundant and these options have been removed
+    - It is necessary to also configure the serial number (uuid) per the device in the configuration
+    - **⚠️ Your local devices will not work with this version unless you configure the account key and serial number (uuid)**
+- **New Devices**
+  - MSG100 cloud support added
+  - MRS100 cloud and local support added
+- **Adaptive Lighting**
+  - Adaptive Lighting for supported lightbulbs
+- **Logging**
+  - Logging level on a per-accessory basis, which can be helpful when wanting to debug a specific accessory
+- **Configuration Validation**
+  - More configuration validation, logging if you have entries that are incorrectly configured or unused
+- **No Response Label**
+  - Promise-based device control, so the plugin should show a device as 'No Response' if controlling an accessory has failed
 
 ### Changed
 
-- All switch/outlet devices will be now exposed to HomeKit by default as a `Switch` (both cloud and local devices)
+- ⚠️ All switch/outlet devices will be now exposed to HomeKit by default as a `Switch` (both cloud and local devices)
   - A new configuration setting has been added if you prefer for your device to be exposed as an `Outlet`
-- Cloud multi-channel devices will now appear as separate accessories
+- ⚠️ Cloud multi-channel devices will now appear as separate accessories
   - An extra 'All On/Off' accessory will be shown in HomeKit
   - You can use the 'Hide Channels' setting to hide channels you don't use, including the 'All On/Off' accessory
 
