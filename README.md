@@ -1,5 +1,5 @@
 <p align="center">
- <a href="https://github.com/bwp91/homebridge-meross"><img alt="Homebridge Verified" src="https://user-images.githubusercontent.com/43026681/126865477-39d9bbe9-9d0a-402a-9484-6cba8875256c.png" width="600px"></a>
+ <a href="https://github.com/bwp91/homebridge-meross"><img alt="Homebridge Verified" src="https://user-images.githubusercontent.com/43026681/127397024-8b15fc07-f31b-44bd-89e3-51d738d2609a.png" width="600px"></a>
 </p>
 <span align="center">
 
