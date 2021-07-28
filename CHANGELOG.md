@@ -2,7 +2,15 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 6.0.0 (2021-07-28)
+
+### Important Note
+
+- This new release changes the way that locally controlled devices are managed/configured
+- It also brings in the functionality of `homebridge-meross-cloud` plugin
+- When updating from v5, your HomeKit accessories will most likely be reset (due to config changes)
+- It is recommended to use the Homebridge/HOOBS UI to reconfigure your locally controlled devices
+- See the full change log below for more details
 
 ### Added
 
