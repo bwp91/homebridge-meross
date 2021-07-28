@@ -249,23 +249,6 @@
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
-          "hideChannels": {
-            "type": "string",
-            "title": "Hide Channels",
-            "description": "A comma separated list of channels to hide for this device. For example '0' or '0,1,2'.",
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
-            }
-          },
-          "firmwareRevision": {
-            "title": "Firmware Version",
-            "placeholder": "Firmware Version",
-            "type": "string",
-            "description": "The firmware version of this device.",
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
-            }
-          },
           "deviceUrl": {
             "title": "IP Address",
             "description": "The IP address of this device.",
@@ -287,6 +270,14 @@
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && model.devices[arrayIndices].connection === 'local' && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
+          "hideChannels": {
+            "type": "string",
+            "title": "Hide Channels",
+            "description": "A comma separated list of channels to hide for this device. For example '0' or '0,1,2'.",
+            "condition": {
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
+            }
+          },
           "garageDoorOpeningTime": {
             "title": "Garage Door Opening Time",
             "description": "The number of seconds which it takes the garage door to open/close. Only for MSG-100/MSG-200.",
@@ -303,6 +294,15 @@
             "description": "If true, the plugin will reverse the open/close commands that it sends.",
             "condition": {
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && model.devices[arrayIndices].model === 'MRS100' && !model.devices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "firmwareRevision": {
+            "title": "Firmware Version",
+            "placeholder": "Firmware Version",
+            "type": "string",
+            "description": "Optionally override the firmware version for this device.",
+            "condition": {
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
           "overrideLogging": {
@@ -369,12 +369,12 @@
             "devices[].ignoreDevice",
             "devices[].model",
             "devices[].showAs",
-            "devices[].hideChannels",
-            "devices[].firmwareRevision",
             "devices[].deviceUrl",
             "devices[].channelCount",
+            "devices[].hideChannels",
             "devices[].garageDoorOpeningTime",
             "devices[].reversePolarity",
+            "devices[].firmwareRevision",
             "devices[].overrideLogging"
           ]
         }
