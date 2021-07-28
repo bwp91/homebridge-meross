@@ -9,7 +9,7 @@ All notable changes to homebridge-meross will be documented in this file.
 - **Cloud Control**
   - Support for cloud devices (bringing the functionality of `homebridge-meross-cloud` into this plugin)
   - Device MQTT connections so any external changes to devices should be reflected in HomeKit in real time
-    - This makes cloud polling not so necessary, but this has not been removed
+    - This makes cloud polling no longer necessary, so is now disabled by default, you can re-enable this in the plugin settings
 - **Local Control**
   - The use of an account key for local device control
     - The key will automatically be obtained if your Meross credentials are present
