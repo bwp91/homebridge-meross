@@ -25,7 +25,7 @@
     "userkey": {
       "title": "Meross Key",
       "type": "string",
-      "description": "Enter your Meross key to enable local devices. You don't need to enter this if you have entered your username and password above. For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Local-Devices\" target=\"_blank\">the wiki</a>.",
+      "description": "Enter your Meross key to enable local devices. You don't need to enter this if you have entered your username and password above, even for local devices. For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Local-Devices\" target=\"_blank\">the wiki</a>.",
       "condition": {
         "functionBody": "return !(model.username && model.password);"
       }
@@ -57,11 +57,6 @@
       "type": "boolean",
       "description": "Global logging setting for the plugin. If true then debug information will be added to the log. This can also be set per accessory later in the config."
     },
-    "debugMerossCloud": {
-      "title": "Debug Meross-Cloud",
-      "type": "boolean",
-      "description": "If true, the meross-cloud library will debug to the log."
-    },
     "disablePlugin": {
       "title": "Disable Plugin",
       "type": "boolean",
@@ -76,7 +71,7 @@
         "properties": {
           "name": {
             "title": "Name",
-            "description": "The name for the device to be shown in HomeKit.",
+            "description": "A label for this device, will be used as the HomeKit name if setting up a local device.",
             "type": "string",
             "required": true
           },
@@ -97,7 +92,7 @@
             "required": true,
             "oneOf": [
               {
-                "title": "Cloud",
+                "title": "Cloud (Default)",
                 "enum": ["cloud"]
               },
               {
@@ -262,7 +257,7 @@
           },
           "channelCount": {
             "title": "Channel Count",
-            "description": "The number of separate switches/outlets this device has.",
+            "description": "The number of separate controllable switches/outlets this device has.",
             "type": "integer",
             "placeholder": 1,
             "minimum": 1,
@@ -273,14 +268,14 @@
           "hideChannels": {
             "type": "string",
             "title": "Hide Channels",
-            "description": "A comma separated list of channels to hide for this device. For example '0' or '0,1,2'.",
+            "description": "A comma separated list of channels to hide for this device. Use '0' to hide the 'All On/Off' accessory. For example '0' or '0,1,2'.",
             "condition": {
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
           "garageDoorOpeningTime": {
-            "title": "Garage Door Opening Time",
-            "description": "The number of seconds which it takes the garage door to open/close. Only for MSG-100/MSG-200.",
+            "title": "Operation Time",
+            "description": "The number of seconds for which it takes the garage door to open/close.",
             "type": "integer",
             "placeholder": "20",
             "minimum": 1,
@@ -300,7 +295,7 @@
             "title": "Firmware Version",
             "placeholder": "Firmware Version",
             "type": "string",
-            "description": "Optionally override the firmware version for this device.",
+            "description": "Optionally override the firmware version for this device. Can be used to override firmware to hide HomeKit firmware update available messages.",
             "condition": {
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
             }
