@@ -297,6 +297,14 @@
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && ['MSG100', 'MSG200'].includes(model.devices[arrayIndices].model) && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
+          "reversePolarity": {
+            "type": "boolean",
+            "title": "Reverse Polarity",
+            "description": "If true, the plugin will reverse the open/close commands that it sends.",
+            "condition": {
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && model.devices[arrayIndices].model === 'MRS100' && !model.devices[arrayIndices].ignoreDevice);"
+            }
+          },
           "overrideLogging": {
             "type": "string",
             "title": "Override Logging Setting",
@@ -366,6 +374,7 @@
             "devices[].deviceUrl",
             "devices[].channelCount",
             "devices[].garageDoorOpeningTime",
+            "devices[].reversePolarity",
             "devices[].overrideLogging"
           ]
         }
