@@ -33,7 +33,6 @@ Homebridge plugin to control Meross devices
 
 - [Installation](https://github.com/bwp91/homebridge-meross/wiki/Installation)
 - [Configuration](https://github.com/bwp91/homebridge-meross/wiki/Configuration)
-- [Specific Model Configurations](https://github.com/bwp91/homebridge-meross/wiki/Specific-Model-Configurations)
 - [Beta Version](https://github.com/bwp91/homebridge-meross/wiki/Beta-Version)
 - [Node Version](https://github.com/bwp91/homebridge-meross/wiki/Node-Version)
 - [Uninstallation](https://github.com/bwp91/homebridge-meross/wiki/Uninstallation)
