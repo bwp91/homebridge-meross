@@ -5,14 +5,15 @@
   "description": "Homebridge plugin to control Meross devices.",
   "license": "Apache-2.0",
   "keywords": [
+    "homebridge",
     "homebridge-plugin",
+    "homebridge-meross",
+    "hoobs",
+    "hoobs-plugin",
+    "homekit",
+    "siri",
     "meross",
-    "outlets",
-    "switch",
-    "lights",
-    "garage door",
-    "garage-door",
-    "homebridge"
+    "meross-cloud"
   ],
   "main": "lib/index.js",
   "engines": {
@@ -38,7 +39,6 @@
   },
   "standard": {
     "ignore": [
-      "/lib/device/todo/",
       "/lib/device/todo/"
     ]
   }
