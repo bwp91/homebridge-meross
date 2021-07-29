@@ -6,12 +6,20 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Added
 
-- More information per device in the homebridge ui: connection status, IP address, MAC address and hardware & firmware version
-- Initial support for the MOD-100 diffuser - only light control at this stage
+- **Homebridge UI**
+  - More information on the devices tab: connection status, IP address, MAC address and hardware & firmware version
+- **New Devices**
+  - Initial support for the MOD-100 diffuser - only light control at this stage
+- **Configuration**
+  - Plugin will now check for duplicate device ID entries in the config and ignore them
 
 ### Changed
 
-- For single-channel switches/outlets, the plugin will try to detect whether 'Toggle' or 'ToggleX' namespace is used
+- ⚠️ **Platform Versions**
+  - Recommended node version bumped to v14.17.4
+  - Recommended homebridge version bumped to v1.3.4
+- **Single Channel Devices**
+  - The plugin will try to auto detect whether 'Toggle' or 'ToggleX' namespace is used
 
 ## 6.0.0 (2021-07-28)
 
