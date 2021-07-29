@@ -4,6 +4,11 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ## BETA
 
+### Added
+
+- More information per device in the homebridge ui: connection status, IP address, MAC address and hardware & firmware version
+- Initial support for the MOD-100 diffuser - only light control at this stage
+
 ### Changed
 
 - For single-channel switches/outlets, the plugin will try to detect whether 'Toggle' or 'ToggleX' namespace is used
