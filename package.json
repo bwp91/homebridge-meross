@@ -54,10 +54,5 @@
   },
   "prettier": {
     "printWidth": 100
-  },
-  "standard": {
-    "ignore": [
-      "/lib/device/todo/"
-    ]
   }
 }
