@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 6.1.1 (2021-07-29)
+
+### Fixed
+
+- An issue preventing local devices from initialising
+
 ## 6.1.0 (2021-07-29)
 
 ### Added
