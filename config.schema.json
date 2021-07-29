@@ -119,6 +119,10 @@
             "required": true,
             "oneOf": [
               {
+                "title": "MOD-100",
+                "enum": ["MOD100"]
+              },
+              {
                 "title": "MRS-100",
                 "enum": ["MRS100"]
               },
