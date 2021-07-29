@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Changed
+
+- For single-channel switches/outlets, the plugin will try to detect whether 'Toggle' or 'ToggleX' namespace is used
+
 ## 6.0.0 (2021-07-28)
 
 ### Important Note
