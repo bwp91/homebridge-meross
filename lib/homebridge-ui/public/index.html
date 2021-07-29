@@ -58,6 +58,10 @@
       </thead>
       <tbody>
         <tr>
+          <th scope="row">Status</th>
+          <td id="status"></td>
+        </tr>
+        <tr>
           <th scope="row">Connection Type</th>
           <td id="connection_type"></td>
         </tr>
@@ -70,7 +74,19 @@
           <td id="model"></td>
         </tr>
         <tr>
-          <th scope="row">Firmware</th>
+          <th scope="row">IP Address</th>
+          <td id="ip_address"></td>
+        </tr>
+        <tr>
+          <th scope="row">MAC Address</th>
+          <td id="mac_address"></td>
+        </tr>
+        <tr>
+          <th scope="row">Hardware Version</th>
+          <td id="hardware"></td>
+        </tr>
+        <tr>
+          <th scope="row">Firmware Version</th>
           <td id="firmware"></td>
         </tr>
       </tbody>
@@ -240,7 +256,14 @@
           document.getElementById('serial_number').innerHTML = context.serialNumber
           document.getElementById('connection_type').innerHTML =
             context.connection[0].toUpperCase() + context.connection.slice(1)
+          document.getElementById('status').innerHTML = context.isOnline
+            ? '<i class="fas fa-circle mr-1 green-text"></i> Online'
+            : '<i class="fas fa-circle mr-1 red-text"></i> Offline'
+
           document.getElementById('model').innerHTML = context.model
+          document.getElementById('ip_address').innerHTML = context.ipAddress || 'N/A'
+          document.getElementById('mac_address').innerHTML = context.macAddress || 'N/A'
+          document.getElementById('hardware').innerHTML = context.hardware || 'N/A'
           document.getElementById('firmware').innerHTML = context.firmware || 'N/A'
           document.getElementById('deviceTable').style.display = 'inline-table'
           homebridge.hideSpinner()
