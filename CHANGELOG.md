@@ -2,6 +2,15 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Fixed
+
+- An issue preventing diffusers from initialising
+  - Note that diffuser support is still experimental
+- An issue preventing multi-channel devices from updating from polled data when exposed as outlets
+- The Homebridge UI will now show the correct status for sub-accessories of a multi-channel device
+
 ## 6.1.1 (2021-07-29)
 
 ### Fixed
