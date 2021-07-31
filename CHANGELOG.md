@@ -6,10 +6,18 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Added
 
+- **All Devices**
+  - Device online/offline status in the Homebridge log
+  - Plugin will show a local device as offline in the plugin ui if the polling has failed due to `EHOSTUNREACH` (unreachable)
 - **New Devices**
   - Support for MSL120D lightbulb
 - **Diffusers**
   - Switch between 'colour', 'rainbow' and 'temperature' modes using Eve-only characteristics
+- **Single-Channel Outlets**
+  - Plugin will now poll every minute for power data for devices that offer this feature
+  - Current wattage is available to see in the Eve app
+  - Plugin will set the HomeKit 'In Use' status to 'Yes' if the outlet is on and the wattage is above a configurable value
+    - This can be useful to setup automations in the Eve app based on whether the wattage has risen above or dropped below a certain value
 
 ### Fixed
 
