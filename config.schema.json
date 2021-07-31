@@ -259,16 +259,6 @@
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && model.devices[arrayIndices].connection === 'local' && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
-          "channelCount": {
-            "title": "Channel Count",
-            "description": "The number of separate controllable switches/outlets this device has.",
-            "type": "integer",
-            "placeholder": 1,
-            "minimum": 1,
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && model.devices[arrayIndices].connection === 'local' && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
-            }
-          },
           "hideChannels": {
             "type": "string",
             "title": "Hide Channels",
@@ -379,7 +369,6 @@
             "devices[].model",
             "devices[].showAs",
             "devices[].deviceUrl",
-            "devices[].channelCount",
             "devices[].hideChannels",
             "devices[].inUsePowerThreshold",
             "devices[].garageDoorOpeningTime",
