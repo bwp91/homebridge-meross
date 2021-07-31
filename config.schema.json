@@ -279,8 +279,8 @@
           },
           "inUsePowerThreshold": {
             "type": "integer",
-            "title": "'Outlet In Use' Threshold",
-            "description": "HomeKit will set the 'Outlet In Use' status of outlet devices to true when the wattage is above this number. Only applies to models that support power readings. Must be 0 or more.",
+            "title": "'In Use' Threshold",
+            "description": "HomeKit will set the 'In Use' status of outlet devices to true when the wattage is above this number. Only applies to models that support power readings. Must be 0 or more.",
             "placeholder": 0,
             "minimum": 0,
             "condition": {
