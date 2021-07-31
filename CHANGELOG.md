@@ -4,11 +4,20 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ## BETA
 
+### Added
+
+- **New Devices**
+  - Support for MSL120D lightbulb
+- **Diffusers**
+  - Switch between 'colour', 'rainbow' and 'temperature' modes using Eve-only characteristics
+
 ### Fixed
 
-- Bugfixes for diffusers (MOD-100)
-- An issue preventing multi-channel devices from updating from polled data when exposed as outlets
-- The Homebridge UI will now show the correct status for sub-accessories of a multi-channel device
+- **Multi-Channel Outlets**
+  - An issue preventing multi-channel devices from updating from polled data when exposed as outlets
+  - The Homebridge UI will now show the correct status for sub-accessories of a multi-channel device
+- **Diffusers**
+  - Bugfixes for MOD-100
 
 ## 6.1.1 (2021-07-29)
 
