@@ -19,6 +19,11 @@ All notable changes to homebridge-meross will be documented in this file.
   - Plugin will set the HomeKit 'In Use' status to 'Yes' if the outlet is on and the wattage is above a configurable value
     - This can be useful to setup automations in the Eve app based on whether the wattage has risen above or dropped below a certain value
 
+### Changed
+
+- **Light Devices**
+  - On/Off light switches will now be exposed as a `Switch` accessory type (you can change to show it as a light in the Home app)
+
 ### Fixed
 
 - **Multi-Channel Outlets**
