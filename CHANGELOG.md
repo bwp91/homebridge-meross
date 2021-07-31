@@ -15,7 +15,7 @@ All notable changes to homebridge-meross will be documented in this file.
   - Switch between 'colour', 'rainbow' and 'temperature' modes using Eve-only characteristics
 - **Single-Channel Outlets**
   - Plugin will now poll every minute for power data for devices that offer this feature
-  - Current wattage is available to see in the Eve app
+  - Current wattage and voltage is available to see in the Eve app
   - Plugin will set the HomeKit 'In Use' status to 'Yes' if the outlet is on and the wattage is above a configurable value
     - This can be useful to setup automations in the Eve app based on whether the wattage has risen above or dropped below a certain value
 
