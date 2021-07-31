@@ -277,6 +277,16 @@
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
+          "inUsePowerThreshold": {
+            "type": "integer",
+            "title": "'Outlet In Use' Threshold",
+            "description": "HomeKit will set the 'Outlet In Use' status of outlet devices to true when the wattage is above this number. Only applies to models that support power readings. Must be 0 or more.",
+            "placeholder": 0,
+            "minimum": 0,
+            "condition": {
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
+            }
+          },
           "garageDoorOpeningTime": {
             "title": "Operation Time",
             "description": "The number of seconds for which it takes the garage door to open/close.",
@@ -371,6 +381,7 @@
             "devices[].deviceUrl",
             "devices[].channelCount",
             "devices[].hideChannels",
+            "devices[].inUsePowerThreshold",
             "devices[].garageDoorOpeningTime",
             "devices[].reversePolarity",
             "devices[].firmwareRevision",
