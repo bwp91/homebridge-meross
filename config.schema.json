@@ -76,30 +76,22 @@
             "required": true
           },
           "serialNumber": {
-            "title": "Serial Number",
+            "title": "Serial Number (UUID)",
             "type": "string",
             "placeholder": "Serial Number",
-            "description": "The serial number (or uuid) of this device.",
+            "minLength": 32,
+            "maxLength": 32,
             "required": true,
             "condition": {
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name);"
             }
           },
-          "connection": {
+          "deviceUrl": {
             "title": "Connection Type",
-            "description": "Cloud or local.",
+            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
             "type": "string",
-            "required": true,
-            "oneOf": [
-              {
-                "title": "Cloud (Default)",
-                "enum": ["cloud"]
-              },
-              {
-                "title": "Local",
-                "enum": ["local"]
-              }
-            ],
+            "format": "ipv4",
+            "placeholder": "192.168.1.1",
             "condition": {
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32);"
             }
@@ -109,7 +101,7 @@
             "title": "Hide From HomeKit",
             "description": "If true, this accessory will be removed and ignored from HomeKit.",
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && model.devices[arrayIndices].connection === 'cloud');"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].deviceUrl);"
             }
           },
           "model": {
@@ -284,7 +276,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
           "showAs": {
@@ -301,18 +293,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
-            }
-          },
-          "deviceUrl": {
-            "title": "IP Address",
-            "description": "The IP address of this device.",
-            "type": "string",
-            "required": true,
-            "format": "ipv4",
-            "placeholder": "192.168.1.1",
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && model.devices[arrayIndices].connection === 'local' && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice && model.devices[arrayIndices].model && !['MOD100', 'MRS100', 'MSG100'].includes(model.devices[arrayIndices].model));"
             }
           },
           "hideChannels": {
@@ -320,7 +301,7 @@
             "title": "Hide Channels",
             "description": "A comma separated list of channels to hide for this device. Use '0' to hide the 'All On/Off' accessory. For example '0' or '0,1,2'.",
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice && model.devices[arrayIndices].model && !['MOD100', 'MRS100', 'MSG100'].includes(model.devices[arrayIndices].model));"
             }
           },
           "inUsePowerThreshold": {
@@ -330,7 +311,7 @@
             "placeholder": 0,
             "minimum": 0,
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice && model.devices[arrayIndices].model && !['MOD100', 'MRS100', 'MSG100'].includes(model.devices[arrayIndices].model));"
             }
           },
           "garageDoorOpeningTime": {
@@ -340,7 +321,7 @@
             "placeholder": "20",
             "minimum": 1,
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && ['MSG100', 'MSG200'].includes(model.devices[arrayIndices].model) && !model.devices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && ['MSG100', 'MSG200'].includes(model.devices[arrayIndices].model) && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
           "reversePolarity": {
@@ -348,7 +329,7 @@
             "title": "Reverse Polarity",
             "description": "If true, the plugin will reverse the open/close commands that it sends.",
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && model.devices[arrayIndices].model === 'MRS100' && !model.devices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && model.devices[arrayIndices].model === 'MRS100' && !model.devices[arrayIndices].ignoreDevice);"
             }
           },
           "firmwareRevision": {
@@ -357,7 +338,7 @@
             "type": "string",
             "description": "Optionally override the firmware version for this device. Can be used to override firmware to hide HomeKit firmware update available messages.",
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice && model.devices[arrayIndices].model);"
             }
           },
           "overrideLogging": {
@@ -383,7 +364,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].connection && ['cloud', 'local'].includes(model.devices[arrayIndices].connection) && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice && model.devices[arrayIndices].model);"
             }
           }
         }
@@ -420,11 +401,10 @@
           "items": [
             "devices[].name",
             "devices[].serialNumber",
-            "devices[].connection",
+            "devices[].deviceUrl",
             "devices[].ignoreDevice",
             "devices[].model",
             "devices[].showAs",
-            "devices[].deviceUrl",
             "devices[].hideChannels",
             "devices[].inUsePowerThreshold",
             "devices[].garageDoorOpeningTime",
