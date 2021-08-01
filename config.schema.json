@@ -62,10 +62,806 @@
       "type": "boolean",
       "description": "If true, the plugin will remove all accessories and not load the plugin on restart."
     },
-    "devices": {
+    "singleDevices": {
+      "type": "array",
+      "title": "Single-Channel Devices",
+      "description": "Optional settings for single-channel Meross switches/outlets.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "description": "A label for this device, will be used as the HomeKit name if setting up a local device.",
+            "type": "string",
+            "required": true
+          },
+          "serialNumber": {
+            "title": "Serial Number (UUID)",
+            "type": "string",
+            "placeholder": "Serial Number",
+            "minLength": 32,
+            "maxLength": 32,
+            "required": true,
+            "condition": {
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].name);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Connection Type",
+            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "type": "string",
+            "format": "ipv4",
+            "placeholder": "192.168.1.1",
+            "condition": {
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32);"
+            }
+          },
+          "ignoreDevice": {
+            "type": "boolean",
+            "title": "Hide From HomeKit",
+            "description": "If true, this accessory will be removed and ignored from HomeKit.",
+            "condition": {
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "model": {
+            "title": "Model",
+            "description": "The model of this device.",
+            "type": "string",
+            "required": true,
+            "oneOf": [
+              {
+                "title": "HP110A",
+                "enum": ["HP110A"]
+              },
+              {
+                "title": "MSS110",
+                "enum": ["MSS110"]
+              },
+              {
+                "title": "MSS1101",
+                "enum": ["MSS1101"]
+              },
+              {
+                "title": "MSS1102",
+                "enum": ["MSS1102"]
+              },
+              {
+                "title": "MSS210",
+                "enum": ["MSS210"]
+              },
+              {
+                "title": "MSS210N",
+                "enum": ["MSS210N"]
+              },
+              {
+                "title": "MSS310",
+                "enum": ["MSS310"]
+              },
+              {
+                "title": "MSS310H",
+                "enum": ["MSS310H"]
+              },
+              {
+                "title": "MSS310R",
+                "enum": ["MSS310R"]
+              },
+              {
+                "title": "MSS510",
+                "enum": ["MSS510"]
+              },
+              {
+                "title": "MSS510M",
+                "enum": ["MSS510M"]
+              },
+              {
+                "title": "MSS510X",
+                "enum": ["MSS510X"]
+              },
+              {
+                "title": "MSS550",
+                "enum": ["MSS550"]
+              },
+              {
+                "title": "MSS550X",
+                "enum": ["MSS550X"]
+              },
+              {
+                "title": "MSS5X0",
+                "enum": ["MSS5X0"]
+              },
+              {
+                "title": "MSS710",
+                "enum": ["MSS710"]
+              },
+              {
+                "title": "MSS810",
+                "enum": ["MSS810"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "showAs": {
+            "type": "string",
+            "title": "Show As",
+            "oneOf": [
+              {
+                "title": "Switch (Default)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Outlet",
+                "enum": ["outlet"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && model.singleDevices[arrayIndices].model);"
+            }
+          },
+          "inUsePowerThreshold": {
+            "type": "integer",
+            "title": "'In Use' Threshold",
+            "description": "HomeKit will set the 'In Use' status of outlet devices to true when the wattage is above this number. Only applies to models that support power readings. Must be 0 or more.",
+            "placeholder": 0,
+            "minimum": 0,
+            "condition": {
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && model.singleDevices[arrayIndices].model);"
+            }
+          },
+          "firmwareRevision": {
+            "title": "Firmware Version",
+            "placeholder": "Firmware Version",
+            "type": "string",
+            "description": "Optionally override the firmware version for this device. Can be used to override firmware to hide HomeKit firmware update available messages.",
+            "condition": {
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && model.singleDevices[arrayIndices].model);"
+            }
+          },
+          "overrideLogging": {
+            "type": "string",
+            "title": "Override Logging Setting",
+            "description": "Override global logging setting for this device.",
+            "oneOf": [
+              {
+                "title": "Default (Use Global Setting)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Enable Standard Logging",
+                "enum": ["standard"]
+              },
+              {
+                "title": "Enable Debug Logging",
+                "enum": ["debug"]
+              },
+              {
+                "title": "Disable All Logging",
+                "enum": ["disable"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && model.singleDevices[arrayIndices].model);"
+            }
+          }
+        }
+      }
+    },
+    "multiDevices": {
       "type": "array",
       "title": "Device Settings",
-      "description": "Optional settings for your Meross devices.",
+      "description": "Optional settings for multi-channel Meross switches and outlets.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "description": "A label for this device, will be used as the HomeKit name if setting up a local device.",
+            "type": "string",
+            "required": true
+          },
+          "serialNumber": {
+            "title": "Serial Number (UUID)",
+            "type": "string",
+            "placeholder": "Serial Number",
+            "minLength": 32,
+            "maxLength": 32,
+            "required": true,
+            "condition": {
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].name);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Connection Type",
+            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "type": "string",
+            "format": "ipv4",
+            "placeholder": "192.168.1.1",
+            "condition": {
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32);"
+            }
+          },
+          "ignoreDevice": {
+            "type": "boolean",
+            "title": "Hide From HomeKit",
+            "description": "If true, this accessory will be removed and ignored from HomeKit.",
+            "condition": {
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "model": {
+            "title": "Model",
+            "description": "The model of this device.",
+            "type": "string",
+            "required": true,
+            "oneOf": [
+              {
+                "title": "MSS-420",
+                "enum": ["MSS420"]
+              },
+              {
+                "title": "MSS-420F",
+                "enum": ["MSS420F"]
+              },
+              {
+                "title": "MSS-425",
+                "enum": ["MSS425"]
+              },
+              {
+                "title": "MSS-425E",
+                "enum": ["MSS425E"]
+              },
+              {
+                "title": "MSS-425F",
+                "enum": ["MSS425F"]
+              },
+              {
+                "title": "MSS-530",
+                "enum": ["MSS530"]
+              },
+              {
+                "title": "MSS-530H",
+                "enum": ["MSS530H"]
+              },
+              {
+                "title": "MSS-620",
+                "enum": ["MSS620"]
+              },
+              {
+                "title": "MSS-620B",
+                "enum": ["MSS620B"]
+              },
+              {
+                "title": "MSS-620S",
+                "enum": ["MSS620S"]
+              },
+              {
+                "title": "MSS-630",
+                "enum": ["MSS630"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "showAs": {
+            "type": "string",
+            "title": "Show As",
+            "oneOf": [
+              {
+                "title": "Switches (Default)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Outlets",
+                "enum": ["outlet"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && model.multiDevices[arrayIndices].model);"
+            }
+          },
+          "hideChannels": {
+            "type": "string",
+            "title": "Hide Channels",
+            "description": "A comma separated list of channels to hide for this device. Use '0' to hide the 'All On/Off' accessory. For example '0' or '0,1,2'.",
+            "condition": {
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && model.multiDevices[arrayIndices].model);"
+            }
+          },
+          "firmwareRevision": {
+            "title": "Firmware Version",
+            "placeholder": "Firmware Version",
+            "type": "string",
+            "description": "Optionally override the firmware version for this device. Can be used to override firmware to hide HomeKit firmware update available messages.",
+            "condition": {
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && model.multiDevices[arrayIndices].model);"
+            }
+          },
+          "overrideLogging": {
+            "type": "string",
+            "title": "Override Logging Setting",
+            "description": "Override global logging setting for this device.",
+            "oneOf": [
+              {
+                "title": "Default (Use Global Setting)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Enable Standard Logging",
+                "enum": ["standard"]
+              },
+              {
+                "title": "Enable Debug Logging",
+                "enum": ["debug"]
+              },
+              {
+                "title": "Disable All Logging",
+                "enum": ["disable"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && model.multiDevices[arrayIndices].model);"
+            }
+          }
+        }
+      }
+    },
+    "lightDevices": {
+      "type": "array",
+      "title": "Light Devices",
+      "description": "Optional settings for Meross light dimmers/bulbs/strips.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "description": "A label for this device, will be used as the HomeKit name if setting up a local device.",
+            "type": "string",
+            "required": true
+          },
+          "serialNumber": {
+            "title": "Serial Number (UUID)",
+            "type": "string",
+            "placeholder": "Serial Number",
+            "minLength": 32,
+            "maxLength": 32,
+            "required": true,
+            "condition": {
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].name);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Connection Type",
+            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "type": "string",
+            "format": "ipv4",
+            "placeholder": "192.168.1.1",
+            "condition": {
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32);"
+            }
+          },
+          "ignoreDevice": {
+            "type": "boolean",
+            "title": "Hide From HomeKit",
+            "description": "If true, this accessory will be removed and ignored from HomeKit.",
+            "condition": {
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "model": {
+            "title": "Model",
+            "description": "The model of this device.",
+            "type": "string",
+            "required": true,
+            "oneOf": [
+              {
+                "title": "MSL-100",
+                "enum": ["MSL-100"]
+              },
+              {
+                "title": "MSL-100D",
+                "enum": ["MSL-100D"]
+              },
+              {
+                "title": "MSL-120",
+                "enum": ["MSL-120"]
+              },
+              {
+                "title": "MSL-120B",
+                "enum": ["MSL-120B"]
+              },
+              {
+                "title": "MSL-120D",
+                "enum": ["MSL-120D"]
+              },
+              {
+                "title": "MSL-320",
+                "enum": ["MSL-320"]
+              },
+              {
+                "title": "MSL-320M",
+                "enum": ["MSL-320M"]
+              },
+              {
+                "title": "MSL-420",
+                "enum": ["MSL-420"]
+              },
+              {
+                "title": "MSL-430",
+                "enum": ["MSL-430"]
+              },
+              {
+                "title": "MSS-560",
+                "enum": ["MSS560"]
+              },
+              {
+                "title": "MSS-565",
+                "enum": ["MSS565"]
+              },
+              {
+                "title": "MSS-570",
+                "enum": ["MSS570"]
+              },
+              {
+                "title": "MSS-570X",
+                "enum": ["MSS570x"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "firmwareRevision": {
+            "title": "Firmware Version",
+            "placeholder": "Firmware Version",
+            "type": "string",
+            "description": "Optionally override the firmware version for this device. Can be used to override firmware to hide HomeKit firmware update available messages.",
+            "condition": {
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && model.lightDevices[arrayIndices].model);"
+            }
+          },
+          "overrideLogging": {
+            "type": "string",
+            "title": "Override Logging Setting",
+            "description": "Override global logging setting for this device.",
+            "oneOf": [
+              {
+                "title": "Default (Use Global Setting)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Enable Standard Logging",
+                "enum": ["standard"]
+              },
+              {
+                "title": "Enable Debug Logging",
+                "enum": ["debug"]
+              },
+              {
+                "title": "Disable All Logging",
+                "enum": ["disable"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && model.lightDevices[arrayIndices].model);"
+            }
+          }
+        }
+      }
+    },
+    "diffuserDevices": {
+      "type": "array",
+      "title": "Device Settings",
+      "description": "Optional settings for Meross diffuser devices.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "description": "A label for this device, will be used as the HomeKit name if setting up a local device.",
+            "type": "string",
+            "required": true
+          },
+          "serialNumber": {
+            "title": "Serial Number (UUID)",
+            "type": "string",
+            "placeholder": "Serial Number",
+            "minLength": 32,
+            "maxLength": 32,
+            "required": true,
+            "condition": {
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].name);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Connection Type",
+            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "type": "string",
+            "format": "ipv4",
+            "placeholder": "192.168.1.1",
+            "condition": {
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32);"
+            }
+          },
+          "ignoreDevice": {
+            "type": "boolean",
+            "title": "Hide From HomeKit",
+            "description": "If true, this accessory will be removed and ignored from HomeKit.",
+            "condition": {
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "model": {
+            "title": "Model",
+            "description": "The model of this device.",
+            "type": "string",
+            "required": true,
+            "oneOf": [
+              {
+                "title": "MOD-100",
+                "enum": ["MOD100"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "firmwareRevision": {
+            "title": "Firmware Version",
+            "placeholder": "Firmware Version",
+            "type": "string",
+            "description": "Optionally override the firmware version for this device. Can be used to override firmware to hide HomeKit firmware update available messages.",
+            "condition": {
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice && model.diffuserDevices[arrayIndices].model);"
+            }
+          },
+          "overrideLogging": {
+            "type": "string",
+            "title": "Override Logging Setting",
+            "description": "Override global logging setting for this device.",
+            "oneOf": [
+              {
+                "title": "Default (Use Global Setting)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Enable Standard Logging",
+                "enum": ["standard"]
+              },
+              {
+                "title": "Enable Debug Logging",
+                "enum": ["debug"]
+              },
+              {
+                "title": "Disable All Logging",
+                "enum": ["disable"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice && model.diffuserDevices[arrayIndices].model);"
+            }
+          }
+        }
+      }
+    },
+    "garageDevices": {
+      "type": "array",
+      "title": "Garage Devices",
+      "description": "Optional settings for Meross garage devices.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "description": "A label for this device, will be used as the HomeKit name if setting up a local device.",
+            "type": "string",
+            "required": true
+          },
+          "serialNumber": {
+            "title": "Serial Number (UUID)",
+            "type": "string",
+            "placeholder": "Serial Number",
+            "minLength": 32,
+            "maxLength": 32,
+            "required": true,
+            "condition": {
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].name);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Connection Type",
+            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "type": "string",
+            "format": "ipv4",
+            "placeholder": "192.168.1.1",
+            "condition": {
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32);"
+            }
+          },
+          "ignoreDevice": {
+            "type": "boolean",
+            "title": "Hide From HomeKit",
+            "description": "If true, this accessory will be removed and ignored from HomeKit.",
+            "condition": {
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "model": {
+            "title": "Model",
+            "description": "The model of this device.",
+            "type": "string",
+            "required": true,
+            "oneOf": [
+              {
+                "title": "MSG-100",
+                "enum": ["MSG100"]
+              },
+              {
+                "title": "MSG-200",
+                "enum": ["MSG200"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "garageDoorOpeningTime": {
+            "title": "Operation Time",
+            "description": "The number of seconds for which it takes the garage door to open/close.",
+            "type": "integer",
+            "placeholder": "20",
+            "minimum": 1,
+            "condition": {
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && ['MSG100', 'MSG200'].includes(model.garageDevices[arrayIndices].model) && !model.garageDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "firmwareRevision": {
+            "title": "Firmware Version",
+            "placeholder": "Firmware Version",
+            "type": "string",
+            "description": "Optionally override the firmware version for this device. Can be used to override firmware to hide HomeKit firmware update available messages.",
+            "condition": {
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice && model.garageDevices[arrayIndices].model);"
+            }
+          },
+          "overrideLogging": {
+            "type": "string",
+            "title": "Override Logging Setting",
+            "description": "Override global logging setting for this device.",
+            "oneOf": [
+              {
+                "title": "Default (Use Global Setting)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Enable Standard Logging",
+                "enum": ["standard"]
+              },
+              {
+                "title": "Enable Debug Logging",
+                "enum": ["debug"]
+              },
+              {
+                "title": "Disable All Logging",
+                "enum": ["disable"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice && model.garageDevices[arrayIndices].model);"
+            }
+          }
+        }
+      }
+    },
+    "rollerDevices": {
+      "type": "array",
+      "title": "Roller Devices",
+      "description": "Optional settings for Meross rolling motor devices.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "description": "A label for this device, will be used as the HomeKit name if setting up a local device.",
+            "type": "string",
+            "required": true
+          },
+          "serialNumber": {
+            "title": "Serial Number (UUID)",
+            "type": "string",
+            "placeholder": "Serial Number",
+            "minLength": 32,
+            "maxLength": 32,
+            "required": true,
+            "condition": {
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].name);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Connection Type",
+            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "type": "string",
+            "format": "ipv4",
+            "placeholder": "192.168.1.1",
+            "condition": {
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32);"
+            }
+          },
+          "ignoreDevice": {
+            "type": "boolean",
+            "title": "Hide From HomeKit",
+            "description": "If true, this accessory will be removed and ignored from HomeKit.",
+            "condition": {
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "model": {
+            "title": "Model",
+            "description": "The model of this device.",
+            "type": "string",
+            "required": true,
+            "oneOf": [
+              {
+                "title": "MRS-100",
+                "enum": ["MRS100"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "reversePolarity": {
+            "type": "boolean",
+            "title": "Reverse Polarity",
+            "description": "If true, the plugin will reverse the open/close commands that it sends.",
+            "condition": {
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && model.rollerDevices[arrayIndices].model === 'MRS100' && !model.rollerDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "firmwareRevision": {
+            "title": "Firmware Version",
+            "placeholder": "Firmware Version",
+            "type": "string",
+            "description": "Optionally override the firmware version for this device. Can be used to override firmware to hide HomeKit firmware update available messages.",
+            "condition": {
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice && model.rollerDevices[arrayIndices].model);"
+            }
+          },
+          "overrideLogging": {
+            "type": "string",
+            "title": "Override Logging Setting",
+            "description": "Override global logging setting for this device.",
+            "oneOf": [
+              {
+                "title": "Default (Use Global Setting)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Enable Standard Logging",
+                "enum": ["standard"]
+              },
+              {
+                "title": "Enable Debug Logging",
+                "enum": ["debug"]
+              },
+              {
+                "title": "Disable All Logging",
+                "enum": ["disable"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice && model.rollerDevices[arrayIndices].model);"
+            }
+          }
+        }
+      }
+    },
+    "devices": {
+      "type": "array",
+      "title": "Device Settings (Deprecated)",
+      "description": "You should not use this section to add new entries. Move your existing entries from here to the appropriate section above.",
       "items": {
         "type": "object",
         "properties": {
@@ -393,9 +1189,147 @@
       ]
     },
     {
+      "key": "singleDevices",
+      "title": "Single-Channel Devices",
+      "description": "Optional settings for single-channel Meross switches and outlets.",
+      "expandable": true,
+      "add": "Add Device",
+      "type": "array",
+      "items": [
+        {
+          "type": "fieldset",
+          "items": [
+            "singleDevices[].name",
+            "singleDevices[].serialNumber",
+            "singleDevices[].deviceUrl",
+            "singleDevices[].ignoreDevice",
+            "singleDevices[].model",
+            "singleDevices[].showAs",
+            "singleDevices[].inUsePowerThreshold",
+            "singleDevices[].firmwareRevision",
+            "singleDevices[].overrideLogging"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "multiDevices",
+      "title": "Multi-Channel Devices",
+      "description": "Optional settings for multi-channel Meross switches and outlets.",
+      "expandable": true,
+      "add": "Add Device",
+      "type": "array",
+      "items": [
+        {
+          "type": "fieldset",
+          "items": [
+            "multiDevices[].name",
+            "multiDevices[].serialNumber",
+            "multiDevices[].deviceUrl",
+            "multiDevices[].ignoreDevice",
+            "multiDevices[].model",
+            "multiDevices[].showAs",
+            "multiDevices[].hideChannels",
+            "multiDevices[].firmwareRevision",
+            "multiDevices[].overrideLogging"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "lightDevices",
+      "title": "Light Devices",
+      "description": "Optional settings for Meross light dimmers/bulbs/strips.",
+      "expandable": true,
+      "add": "Add Device",
+      "type": "array",
+      "items": [
+        {
+          "type": "fieldset",
+          "items": [
+            "lightDevices[].name",
+            "lightDevices[].serialNumber",
+            "lightDevices[].deviceUrl",
+            "lightDevices[].ignoreDevice",
+            "lightDevices[].model",
+            "lightDevices[].firmwareRevision",
+            "lightDevices[].overrideLogging"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "diffuserDevices",
+      "title": "Diffuser Devices",
+      "description": "Optional settings for Meross diffuser devices.",
+      "expandable": true,
+      "add": "Add Device",
+      "type": "array",
+      "items": [
+        {
+          "type": "fieldset",
+          "items": [
+            "diffuserDevices[].name",
+            "diffuserDevices[].serialNumber",
+            "diffuserDevices[].deviceUrl",
+            "diffuserDevices[].ignoreDevice",
+            "diffuserDevices[].model",
+            "diffuserDevices[].firmwareRevision",
+            "diffuserDevices[].overrideLogging"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "garageDevices",
+      "title": "Garage Devices",
+      "description": "Optional settings for Meross garage devices.",
+      "expandable": true,
+      "add": "Add Device",
+      "type": "array",
+      "items": [
+        {
+          "type": "fieldset",
+          "items": [
+            "garageDevices[].name",
+            "garageDevices[].serialNumber",
+            "garageDevices[].deviceUrl",
+            "garageDevices[].ignoreDevice",
+            "garageDevices[].model",
+            "garageDevices[].garageDoorOpeningTime",
+            "garageDevices[].firmwareRevision",
+            "garageDevices[].overrideLogging"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "rollerDevices",
+      "title": "Roller Devices",
+      "description": "Optional settings for Meross rolling motor devices.",
+      "expandable": true,
+      "add": "Add Device",
+      "type": "array",
+      "items": [
+        {
+          "type": "fieldset",
+          "items": [
+            "rollerDevices[].name",
+            "rollerDevices[].serialNumber",
+            "rollerDevices[].deviceUrl",
+            "rollerDevices[].ignoreDevice",
+            "rollerDevices[].model",
+            "rollerDevices[].reversePolarity",
+            "rollerDevices[].firmwareRevision",
+            "rollerDevices[].overrideLogging"
+          ]
+        }
+      ]
+    },
+    {
       "key": "devices",
-      "title": "Device Settings",
-      "description": "Optional settings for your Meross devices.",
+      "title": "Device Settings (Deprecated)",
+      "description": "You should not use this section to add new entries. Move your existing entries from here to the appropriate section above.",
       "expandable": true,
       "add": "Add Device",
       "type": "array",
