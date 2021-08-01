@@ -4,12 +4,20 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ## BETA
 
+### Added
+
+- **Configuration**
+  - The plugin settings screen now splits up the 'Device Settings' into different sections
+    - You should consider moving the entries from the 'Devices Settings' section (at the bottom) to the appropriate section above
+    - No breaking change has been made, but in a future version of the plugin I would like to remove the general 'Device Settings' section
+- **New Devices**
+  - MSL320M added to supported list
+
 ### Fixed
 
 - **Light Devices**
   - Plugin will update status (when controlled externally) in real time for cloud devices
   - Fixed a `this.colourUtils.mr2hk is not a function` issue
-  - MSL320M added to supported list
 
 ## 6.2.0 (2021-08-01)
 
