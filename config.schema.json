@@ -517,6 +517,26 @@
               "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice);"
             }
           },
+          "brightnessStep": {
+            "title": "Brightness Step",
+            "type": "integer",
+            "description": "A minimum step for the brightness slider in the Home app. Must be 1 or more.",
+            "placeholder": 1,
+            "minimum": 1,
+            "condition": {
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && model.lightDevices[arrayIndices].model);"
+            }
+          },
+          "adaptiveLightingShift": {
+            "title": "Adaptive Lighting Shift",
+            "type": "integer",
+            "description": "The mired for each Adaptive Lighting update will be increased by this value, making the light appear warmer. Set to -1 to remove Adaptive Lighting feature. Must be -1 or more.",
+            "placeholder": 0,
+            "minimum": -1,
+            "condition": {
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && model.lightDevices[arrayIndices].model);"
+            }
+          },
           "firmwareRevision": {
             "title": "Firmware Version",
             "placeholder": "Firmware Version",
@@ -610,6 +630,16 @@
             ],
             "condition": {
               "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "brightnessStep": {
+            "title": "Brightness Step",
+            "type": "integer",
+            "description": "A minimum step for the brightness slider in the Home app. Must be 1 or more.",
+            "placeholder": 1,
+            "minimum": 1,
+            "condition": {
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice && model.diffuserDevices[arrayIndices].model);"
             }
           },
           "firmwareRevision": {
@@ -1260,6 +1290,8 @@
             "lightDevices[].deviceUrl",
             "lightDevices[].ignoreDevice",
             "lightDevices[].model",
+            "lightDevices[].brightnessStep",
+            "lightDevices[].adaptiveLightingShift",
             "lightDevices[].firmwareRevision",
             "lightDevices[].overrideLogging"
           ]
@@ -1282,6 +1314,7 @@
             "diffuserDevices[].deviceUrl",
             "diffuserDevices[].ignoreDevice",
             "diffuserDevices[].model",
+            "diffuserDevices[].brightnessStep",
             "diffuserDevices[].firmwareRevision",
             "diffuserDevices[].overrideLogging"
           ]
