@@ -9,8 +9,6 @@ All notable changes to homebridge-meross will be documented in this file.
 - **All Devices**
   - Device online/offline status in the Homebridge log
   - Plugin will show a local device as offline in the plugin ui if the polling has failed due to `EHOSTUNREACH` (unreachable)
-- **New Devices**
-  - Support for MSL120D lightbulb
 - **Diffusers**
   - Switch between 'colour', 'rainbow' and 'temperature' modes using Eve-only characteristics
 - **Single-Channel Outlets**
