@@ -19,6 +19,9 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Changed
 
+- **Configuration**
+  - Plugin will disable if neither of username & password nor user key has been configured
+  - Device `connection` setting has been removed, plugin will instead check for a configured `deviceUrl` to determine connection mode
 - **Light Devices**
   - On/Off light switches will now be exposed as a `Switch` accessory type (you can change to show it as a light in the Home app)
 
