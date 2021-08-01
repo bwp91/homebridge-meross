@@ -24,6 +24,7 @@ All notable changes to homebridge-meross will be documented in this file.
 ### Changed
 
 - **Diffuser Devices**
+  - Enabled real-time accessory updates when using cloud connection
   - Set logging level back to user-defined now that it's working
 
 ### Fixed
