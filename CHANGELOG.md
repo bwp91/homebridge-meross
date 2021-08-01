@@ -12,7 +12,7 @@ All notable changes to homebridge-meross will be documented in this file.
     - No breaking change has been made, but in a future version of the plugin I would like to remove the general 'Device Settings' section
 - **New Devices**
   - MSL320M added to supported list
-  - [test] MPD100 as a dimmer device
+  - (reinstate) MPD100 as a dimmer device
 
 ### Fixed
 
