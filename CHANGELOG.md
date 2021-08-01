@@ -23,14 +23,15 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Changed
 
+- **Light Devices**
+  - Plugin will update status (when controlled externally) in real time for cloud devices
 - **Diffuser Devices**
-  - Enabled real-time accessory updates when using cloud connection
+  - Plugin will update status (when controlled externally) in real time for cloud devices
   - Set logging level back to user-defined now that it's working
 
 ### Fixed
 
 - **Light Devices**
-  - Plugin will update status (when controlled externally) in real time for cloud devices
   - Fixed a `this.colourUtils.mr2hk is not a function` issue
 
 ## 6.2.0 (2021-08-01)
