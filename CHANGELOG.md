@@ -2,17 +2,17 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 6.2.0 (2021-08-01)
 
 ### Added
 
 - **All Devices**
   - Device online/offline status in the Homebridge log
-  - Plugin will show a local device as offline in the plugin ui if the polling has failed due to `EHOSTUNREACH` (unreachable)
+  - Plugin will show a local device as offline in the plugin ui if the polling has failed due to timeout or `EHOSTUNREACH` (unreachable, normally means the device has lost wifi connection)
 - **Diffusers**
-  - Switch between 'colour', 'rainbow' and 'temperature' modes using Eve-only characteristics
+  - Switch between 'colour', 'rainbow' and 'temperature' modes using Eve-only characteristics (create scenes in the Eve app that will appear in the Home app)
 - **Single-Channel Outlets**
-  - Plugin will now poll every minute for power data for devices that offer this feature
+  - Plugin will now poll every minute for power data for devices that offer this feature (plugin will attempt to check automatically)
   - Current wattage and voltage is available to see in the Eve app
   - Plugin will set the HomeKit 'In Use' status to 'Yes' if the outlet is on and the wattage is above a configurable value
     - This can be useful to setup automations in the Eve app based on whether the wattage has risen above or dropped below a certain value
@@ -23,7 +23,7 @@ All notable changes to homebridge-meross will be documented in this file.
   - Plugin will disable if neither of username & password nor user key has been configured
   - Device `connection` setting has been removed, plugin will instead check for a configured `deviceUrl` to determine connection mode
 - **Light Devices**
-  - On/Off light switches will now be exposed as a `Switch` accessory type (you can change to show it as a light in the Home app)
+  - ⚠️ On/Off light switches will now be exposed as a `Switch` accessory type (you can change to show it as a light in the Home app, or a fan for the sake of it!)
 
 ### Fixed
 
