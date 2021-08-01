@@ -10,6 +10,8 @@ All notable changes to homebridge-meross will be documented in this file.
   - The plugin settings screen now splits up the 'Device Settings' into different sections
     - You should consider moving the entries from the 'Devices Settings' section (at the bottom) to the appropriate section above
     - No breaking change has been made, but in a future version of the plugin I would like to remove the general 'Device Settings' section
+- **All Devices**
+  - Plugin will log the user-configurable options and values per accessory when devices are initialised on startup
 - **Single-Channel Devices**
   - Added option to expose as an `AirPurifier` homekit accessory type (nice to look at in the home app if by chance you have a purifier connected to an outlet)
 - **Light Devices**
