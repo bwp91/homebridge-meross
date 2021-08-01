@@ -4,11 +4,12 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ## BETA
 
-## Fixed
+### Fixed
 
 - **Light Devices**
   - Plugin will update status (when controlled externally) in real time for cloud devices
   - Fixed a `this.colourUtils.mr2hk is not a function` issue
+  - MSL320M added to supported list
 
 ## 6.2.0 (2021-08-01)
 
