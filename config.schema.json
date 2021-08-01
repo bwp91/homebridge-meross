@@ -139,6 +139,10 @@
                 "enum": ["MSL-100"]
               },
               {
+                "title": "MSL-100D",
+                "enum": ["MSL-100D"]
+              },
+              {
                 "title": "MSL-120",
                 "enum": ["MSL-120"]
               },
@@ -159,6 +163,10 @@
                 "enum": ["MSL-420"]
               },
               {
+                "title": "MSL-430",
+                "enum": ["MSL-430"]
+              },
+              {
                 "title": "MSS-110",
                 "enum": ["MSS110"]
               },
@@ -167,8 +175,24 @@
                 "enum": ["MSS210"]
               },
               {
+                "title": "MSS-210N",
+                "enum": ["MSS210N"]
+              },
+              {
                 "title": "MSS-310",
                 "enum": ["MSS310"]
+              },
+              {
+                "title": "MSS-310H",
+                "enum": ["MSS310"]
+              },
+              {
+                "title": "MSS-310R",
+                "enum": ["MSS310"]
+              },
+              {
+                "title": "MSS-420",
+                "enum": ["MSS420"]
               },
               {
                 "title": "MSS-420F",
@@ -195,6 +219,14 @@
                 "enum": ["MSS510M"]
               },
               {
+                "title": "MSS-510X",
+                "enum": ["MSS510X"]
+              },
+              {
+                "title": "MSS-530",
+                "enum": ["MSS530"]
+              },
+              {
                 "title": "MSS-530H",
                 "enum": ["MSS530H"]
               },
@@ -203,8 +235,16 @@
                 "enum": ["MSS550"]
               },
               {
+                "title": "MSS-550X",
+                "enum": ["MSS550X"]
+              },
+              {
                 "title": "MSS-560",
                 "enum": ["MSS560"]
+              },
+              {
+                "title": "MSS-565",
+                "enum": ["MSS565"]
               },
               {
                 "title": "MSS-570",
@@ -223,12 +263,24 @@
                 "enum": ["MSS620"]
               },
               {
+                "title": "MSS-620B",
+                "enum": ["MSS620B"]
+              },
+              {
+                "title": "MSS-620S",
+                "enum": ["MSS620S"]
+              },
+              {
                 "title": "MSS-630",
                 "enum": ["MSS630"]
               },
               {
                 "title": "MSS-710",
                 "enum": ["MSS710"]
+              },
+              {
+                "title": "MSS-810",
+                "enum": ["MSS810"]
               }
             ],
             "condition": {
