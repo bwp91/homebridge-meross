@@ -40,8 +40,8 @@ Homebridge plugin to control Meross devices
 ### Features
 
 - [Supported Devices](https://github.com/bwp91/homebridge-meross/wiki/Supported-Devices)
-- [Cloud Devices](https://github.com/bwp91/homebridge-meross/wiki/Cloud-Devices)
-- [Local Devices](https://github.com/bwp91/homebridge-meross/wiki/Local-Devices)
+- [Cloud Control](https://github.com/bwp91/homebridge-meross/wiki/Cloud-Control)
+- [Local Control](https://github.com/bwp91/homebridge-meross/wiki/Local-Control)
 
 ### Help/About
 
