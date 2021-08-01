@@ -2,6 +2,14 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+## Fixed
+
+- **Light Devices**
+  - Plugin will update status (when controlled externally) in real time for cloud devices
+  - Fixed a `this.colourUtils.mr2hk is not a function` issue
+
 ## 6.2.0 (2021-08-01)
 
 ### Added
@@ -31,7 +39,7 @@ All notable changes to homebridge-meross will be documented in this file.
   - An issue preventing multi-channel devices from updating from polled data when exposed as outlets
   - The Homebridge UI will now show the correct status for sub-accessories of a multi-channel device
 - **Light Devices**
-  - Reinstate 'lost' support for MSL120B 
+  - Reinstate 'lost' support for MSL120B
 - **Diffusers**
   - Bugfixes for MOD-100
 
