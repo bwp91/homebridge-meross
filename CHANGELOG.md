@@ -10,6 +10,8 @@ All notable changes to homebridge-meross will be documented in this file.
   - The plugin settings screen now splits up the 'Device Settings' into different sections
     - You should consider moving the entries from the 'Devices Settings' section (at the bottom) to the appropriate section above
     - No breaking change has been made, but in a future version of the plugin I would like to remove the general 'Device Settings' section
+- **Single-Channel Devices**
+  - Added option to expose as an `AirPurifier` homekit accessory type (nice to look at in the home app if by chance you have a purifier connected to an outlet)
 - **Light Devices**
   - Added 'Brightness Step' option to specify a step-size on the brightness slider
   - Added 'Adaptive Lighting Shift' option to specify a mired-shift, also can be used to remove the adaptive lighting feature
