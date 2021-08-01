@@ -30,6 +30,8 @@ All notable changes to homebridge-meross will be documented in this file.
 - **Multi-Channel Outlets**
   - An issue preventing multi-channel devices from updating from polled data when exposed as outlets
   - The Homebridge UI will now show the correct status for sub-accessories of a multi-channel device
+- **Light Devices**
+  - Reinstate 'lost' support for MSL120B 
 - **Diffusers**
   - Bugfixes for MOD-100
 
