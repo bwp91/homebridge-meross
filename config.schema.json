@@ -194,6 +194,10 @@
               {
                 "title": "Outlet",
                 "enum": ["outlet"]
+              },
+              {
+                "title": "Air Purifier",
+                "enum": ["purifier"]
               }
             ],
             "condition": {
