@@ -953,6 +953,16 @@
               "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice);"
             }
           },
+          "lowBattThreshold": {
+            "type": "integer",
+            "title": "Low Battery Threshold",
+            "description": "HomeKit will set the low battery status for a subdevices when its battery reaches this percentage level. Must be 1 or more.",
+            "placeholder": 20,
+            "minimum": 1,
+            "condition": {
+              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice && model.sensorDevices[arrayIndices].model);"
+            }
+          },
           "firmwareRevision": {
             "title": "Firmware Version",
             "placeholder": "Firmware Version",
@@ -1469,7 +1479,7 @@
     {
       "key": "sensorDevices",
       "title": "Sensor Devices",
-      "description": "Optional settings for Meross sensor hubs and subdevices..",
+      "description": "Optional settings for Meross sensor hubs and subdevices.",
       "expandable": true,
       "add": "Add Device",
       "type": "array",
@@ -1482,6 +1492,7 @@
             "sensorDevices[].deviceUrl",
             "sensorDevices[].ignoreDevice",
             "sensorDevices[].model",
+            "sensorDevices[].lowBattThreshold",
             "sensorDevices[].firmwareRevision",
             "sensorDevices[].overrideLogging"
           ]
