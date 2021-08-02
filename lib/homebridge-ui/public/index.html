@@ -253,7 +253,8 @@
           const thisAcc = cachedAccessories.find(x => x.UUID === UUID)
           const context = thisAcc.context
           document.getElementById('displayName').innerHTML = thisAcc.displayName
-          document.getElementById('serial_number').innerHTML = context.serialNumber
+          document.getElementById('serial_number').innerHTML =
+            context.subSerialNumber || context.serialNumber
           document.getElementById('connection_type').innerHTML =
             context.connection[0].toUpperCase() + context.connection.slice(1)
           document.getElementById('status').innerHTML = context.isOnline
