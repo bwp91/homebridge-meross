@@ -54,9 +54,5 @@
   },
   "prettier": {
     "printWidth": 100
-  },
-  "np": {
-    "branch": "latest",
-    "tests": false
   }
 }
