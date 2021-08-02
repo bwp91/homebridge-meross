@@ -896,6 +896,101 @@
         }
       }
     },
+    "sensorDevices": {
+      "type": "array",
+      "title": "Sensor Devices",
+      "description": "Optional settings for Meross sensor hubs and subdevices.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "description": "A label for this device, will be used as the HomeKit name if setting up a local device.",
+            "type": "string",
+            "required": true
+          },
+          "serialNumber": {
+            "title": "Serial Number (UUID)",
+            "type": "string",
+            "placeholder": "Serial Number",
+            "minLength": 32,
+            "maxLength": 32,
+            "required": true,
+            "condition": {
+              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].name);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Connection Type",
+            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "type": "string",
+            "format": "ipv4",
+            "placeholder": "192.168.1.1",
+            "condition": {
+              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32);"
+            }
+          },
+          "ignoreDevice": {
+            "type": "boolean",
+            "title": "Hide From HomeKit",
+            "description": "If true, this accessory will be removed and ignored from HomeKit.",
+            "condition": {
+              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "model": {
+            "title": "Model",
+            "description": "The model of this device.",
+            "type": "string",
+            "required": true,
+            "oneOf": [
+              {
+                "title": "MSH300",
+                "enum": ["MSH300"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "firmwareRevision": {
+            "title": "Firmware Version",
+            "placeholder": "Firmware Version",
+            "type": "string",
+            "description": "Optionally override the firmware version for this device. Can be used to override firmware to hide HomeKit firmware update available messages.",
+            "condition": {
+              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice && model.sensorDevices[arrayIndices].model);"
+            }
+          },
+          "overrideLogging": {
+            "type": "string",
+            "title": "Override Logging Setting",
+            "description": "Override global logging setting for this device.",
+            "oneOf": [
+              {
+                "title": "Default (Use Global Setting)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Enable Standard Logging",
+                "enum": ["standard"]
+              },
+              {
+                "title": "Enable Debug Logging",
+                "enum": ["debug"]
+              },
+              {
+                "title": "Disable All Logging",
+                "enum": ["disable"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice && model.sensorDevices[arrayIndices].model);"
+            }
+          }
+        }
+      }
+    },
     "devices": {
       "type": "array",
       "title": "Device Settings (Deprecated)",
@@ -1367,6 +1462,28 @@
             "rollerDevices[].reversePolarity",
             "rollerDevices[].firmwareRevision",
             "rollerDevices[].overrideLogging"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "sensorDevices",
+      "title": "Sensor Devices",
+      "description": "Optional settings for Meross sensor hubs and subdevices..",
+      "expandable": true,
+      "add": "Add Device",
+      "type": "array",
+      "items": [
+        {
+          "type": "fieldset",
+          "items": [
+            "sensorDevices[].name",
+            "sensorDevices[].serialNumber",
+            "sensorDevices[].deviceUrl",
+            "sensorDevices[].ignoreDevice",
+            "sensorDevices[].model",
+            "sensorDevices[].firmwareRevision",
+            "sensorDevices[].overrideLogging"
           ]
         }
       ]
