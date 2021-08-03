@@ -2,7 +2,7 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 6.3.0 (2021-08-03)
 
 ### Added
 
@@ -10,6 +10,7 @@ All notable changes to homebridge-meross will be documented in this file.
   - The plugin settings screen now splits up the 'Device Settings' into different sections
     - You should consider moving the entries from the 'Devices Settings' section (at the bottom) to the appropriate section above
     - No breaking change has been made, but in a future version of the plugin I would like to remove the general 'Device Settings' section
+    - Extra configuration options that have been added in this release and in the future will only appear in the specific section to the device type, not the previous 'Device Settings' section
 - **All Devices**
   - Plugin will log the user-configurable options and values per accessory when devices are initialised on startup
 - **Single-Channel Devices**
@@ -22,7 +23,7 @@ All notable changes to homebridge-meross will be documented in this file.
 - **New Devices**
   - MSL320M added to supported list
   - MSS550L added to supported list
-  - (reinstate) MPD100 as a dimmer device
+  - MPD100 (re)added to supported list as a dimmer device
   - Support for MS100 sensor/humidity devices via the MSH300
     - Note that cloud connection is necessary to obtain a subdevice list for the hub
 
