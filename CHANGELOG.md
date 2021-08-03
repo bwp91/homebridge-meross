@@ -17,6 +17,8 @@ All notable changes to homebridge-meross will be documented in this file.
   - Existing accessories will need to be removed from the cache so they are re-added with this new manufacturer
 - **Diffusers & Light Devices**
   - Removed cloud polling force override as real-time updates are now available for these devices
+- **Configuration**
+  - The `model` field in the device sections will only show for local devices (not needed for cloud devices)
 
 ## 6.3.0 (2021-08-03)
 
