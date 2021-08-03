@@ -163,6 +163,10 @@
                 "enum": ["MSS550"]
               },
               {
+                "title": "MSS550L",
+                "enum": ["MSS550L"]
+              },
+              {
                 "title": "MSS550X",
                 "enum": ["MSS550X"]
               },
