@@ -21,6 +21,7 @@ All notable changes to homebridge-meross will be documented in this file.
   - Added 'Brightness Step' option to specify a step-size on the brightness slider
 - **New Devices**
   - MSL320M added to supported list
+  - MSS550L added to supported list
   - (reinstate) MPD100 as a dimmer device
   - Support for MS100 sensor/humidity devices via the MSH300
     - Note that cloud connection is necessary to obtain a subdevice list for the hub
