@@ -10,6 +10,12 @@ All notable changes to homebridge-meross will be documented in this file.
   - MSS110R added to supported list
   - MSS510H added to supported list
 
+### Changed
+
+- Changed 'Manufacturer' from 'Meross' to 'Meross Technology'
+  - This should fix **future** cases of false 'firmware update' alerts
+  - Existing accessories will need to be removed from the cache so they are re-added with this new manufacturer
+
 ## 6.3.0 (2021-08-03)
 
 ### Added
