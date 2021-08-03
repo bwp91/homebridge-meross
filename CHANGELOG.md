@@ -15,6 +15,8 @@ All notable changes to homebridge-meross will be documented in this file.
 - Changed 'Manufacturer' from 'Meross' to 'Meross Technology'
   - This should fix **future** cases of false 'firmware update' alerts
   - Existing accessories will need to be removed from the cache so they are re-added with this new manufacturer
+- **Diffusers & Light Devices**
+  - Removed cloud polling force override as real-time updates are now available for these devices
 
 ## 6.3.0 (2021-08-03)
 
