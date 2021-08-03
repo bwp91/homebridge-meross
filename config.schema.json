@@ -108,7 +108,6 @@
             "title": "Model",
             "description": "The model of this device.",
             "type": "string",
-            "required": true,
             "oneOf": [
               {
                 "title": "HP110A",
@@ -192,7 +191,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && model.singleDevices[arrayIndices].deviceUrl);"
             }
           },
           "showAs": {
@@ -213,7 +212,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && model.singleDevices[arrayIndices].model);"
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice);"
             }
           },
           "inUsePowerThreshold": {
@@ -223,7 +222,7 @@
             "placeholder": 0,
             "minimum": 0,
             "condition": {
-              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && model.singleDevices[arrayIndices].model);"
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice);"
             }
           },
           "firmwareRevision": {
@@ -232,7 +231,7 @@
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
             "condition": {
-              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && model.singleDevices[arrayIndices].model && model.singleDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && model.singleDevices[arrayIndices].deviceUrl);"
             }
           },
           "overrideLogging": {
@@ -258,7 +257,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && model.singleDevices[arrayIndices].model);"
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice);"
             }
           }
         }
@@ -310,7 +309,6 @@
             "title": "Model",
             "description": "The model of this device.",
             "type": "string",
-            "required": true,
             "oneOf": [
               {
                 "title": "MSS420",
@@ -358,7 +356,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && model.multiDevices[arrayIndices].deviceUrl);"
             }
           },
           "showAs": {
@@ -375,7 +373,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && model.multiDevices[arrayIndices].model);"
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice);"
             }
           },
           "hideChannels": {
@@ -383,7 +381,7 @@
             "title": "Hide Channels",
             "description": "A comma separated list of channels to hide for this device. Use '0' to hide the 'All On/Off' accessory. For example '0' or '0,1,2'.",
             "condition": {
-              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && model.multiDevices[arrayIndices].model);"
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice);"
             }
           },
           "firmwareRevision": {
@@ -392,7 +390,7 @@
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
             "condition": {
-              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && model.multiDevices[arrayIndices].model && model.multiDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && model.multiDevices[arrayIndices].deviceUrl);"
             }
           },
           "overrideLogging": {
@@ -418,7 +416,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && model.multiDevices[arrayIndices].model);"
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice);"
             }
           }
         }
@@ -470,7 +468,6 @@
             "title": "Model",
             "description": "The model of this device.",
             "type": "string",
-            "required": true,
             "oneOf": [
               {
                 "title": "MPD100",
@@ -530,7 +527,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && model.lightDevices[arrayIndices].deviceUrl);"
             }
           },
           "brightnessStep": {
@@ -540,7 +537,7 @@
             "placeholder": 1,
             "minimum": 1,
             "condition": {
-              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && model.lightDevices[arrayIndices].model);"
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice);"
             }
           },
           "adaptiveLightingShift": {
@@ -550,7 +547,7 @@
             "placeholder": 0,
             "minimum": -1,
             "condition": {
-              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && model.lightDevices[arrayIndices].model);"
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice);"
             }
           },
           "firmwareRevision": {
@@ -559,7 +556,7 @@
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
             "condition": {
-              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && model.lightDevices[arrayIndices].model && model.lightDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && model.lightDevices[arrayIndices].deviceUrl);"
             }
           },
           "overrideLogging": {
@@ -585,7 +582,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && model.lightDevices[arrayIndices].model);"
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice);"
             }
           }
         }
@@ -637,7 +634,6 @@
             "title": "Model",
             "description": "The model of this device.",
             "type": "string",
-            "required": true,
             "oneOf": [
               {
                 "title": "MOD100",
@@ -645,7 +641,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice && model.diffuserDevices[arrayIndices].deviceUrl);"
             }
           },
           "brightnessStep": {
@@ -655,7 +651,7 @@
             "placeholder": 1,
             "minimum": 1,
             "condition": {
-              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice && model.diffuserDevices[arrayIndices].model);"
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice);"
             }
           },
           "firmwareRevision": {
@@ -664,7 +660,7 @@
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
             "condition": {
-              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice && model.diffuserDevices[arrayIndices].model && model.diffuserDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice && model.diffuserDevices[arrayIndices].deviceUrl);"
             }
           },
           "overrideLogging": {
@@ -690,7 +686,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice && model.diffuserDevices[arrayIndices].model);"
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice);"
             }
           }
         }
@@ -742,7 +738,6 @@
             "title": "Model",
             "description": "The model of this device.",
             "type": "string",
-            "required": true,
             "oneOf": [
               {
                 "title": "MSG100",
@@ -754,7 +749,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice && model.garageDevices[arrayIndices].deviceUrl);"
             }
           },
           "garageDoorOpeningTime": {
@@ -764,7 +759,7 @@
             "placeholder": "20",
             "minimum": 1,
             "condition": {
-              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && ['MSG100', 'MSG200'].includes(model.garageDevices[arrayIndices].model) && !model.garageDevices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice);"
             }
           },
           "firmwareRevision": {
@@ -773,7 +768,7 @@
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
             "condition": {
-              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice && model.garageDevices[arrayIndices].model && model.garageDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice && model.garageDevices[arrayIndices].deviceUrl);"
             }
           },
           "overrideLogging": {
@@ -799,7 +794,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice && model.garageDevices[arrayIndices].model);"
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice);"
             }
           }
         }
@@ -851,7 +846,6 @@
             "title": "Model",
             "description": "The model of this device.",
             "type": "string",
-            "required": true,
             "oneOf": [
               {
                 "title": "MRS100",
@@ -859,7 +853,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice && model.rollerDevices[arrayIndices].deviceUrl);"
             }
           },
           "reversePolarity": {
@@ -867,7 +861,7 @@
             "title": "Reverse Polarity",
             "description": "If true, the plugin will reverse the open/close commands that it sends.",
             "condition": {
-              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && model.rollerDevices[arrayIndices].model === 'MRS100' && !model.rollerDevices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice);"
             }
           },
           "firmwareRevision": {
@@ -876,7 +870,7 @@
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
             "condition": {
-              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice && model.rollerDevices[arrayIndices].model && model.rollerDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice && model.rollerDevices[arrayIndices].deviceUrl);"
             }
           },
           "overrideLogging": {
@@ -902,7 +896,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice && model.rollerDevices[arrayIndices].model);"
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice);"
             }
           }
         }
@@ -954,7 +948,6 @@
             "title": "Model",
             "description": "The model of this device.",
             "type": "string",
-            "required": true,
             "oneOf": [
               {
                 "title": "MSH300",
@@ -962,7 +955,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice && model.sensorDevices[arrayIndices].deviceUrl);"
             }
           },
           "lowBattThreshold": {
@@ -972,7 +965,7 @@
             "placeholder": 20,
             "minimum": 1,
             "condition": {
-              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice && model.sensorDevices[arrayIndices].model);"
+              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice);"
             }
           },
           "firmwareRevision": {
@@ -981,7 +974,7 @@
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
             "condition": {
-              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice && model.sensorDevices[arrayIndices].model && model.sensorDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice && model.sensorDevices[arrayIndices].deviceUrl);"
             }
           },
           "overrideLogging": {
@@ -1007,7 +1000,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice && model.sensorDevices[arrayIndices].model);"
+              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice);"
             }
           }
         }
@@ -1059,7 +1052,6 @@
             "title": "Model",
             "description": "The model of this device.",
             "type": "string",
-            "required": true,
             "oneOf": [
               {
                 "title": "MOD100",
@@ -1235,7 +1227,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice && model.devices[arrayIndices].deviceUrl);"
             }
           },
           "showAs": {
