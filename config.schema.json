@@ -1356,21 +1356,15 @@
     }
   },
   "layout": [
+    "username",
+    "password",
+    "userkey",
     {
       "type": "fieldset",
       "title": "Optional Settings",
       "description": "Optional settings for the plugin, including refresh rates and global logging settings.",
       "expandable": true,
-      "items": [
-        "username",
-        "password",
-        "userkey",
-        "cloudRefreshRate",
-        "refreshRate",
-        "disableDeviceLogging",
-        "debug",
-        "disablePlugin"
-      ]
+      "items": ["cloudRefreshRate", "refreshRate", "disableDeviceLogging", "debug", "disablePlugin"]
     },
     {
       "key": "singleDevices",
