@@ -930,22 +930,12 @@
               "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].name);"
             }
           },
-          "deviceUrl": {
-            "title": "Connection Type",
-            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
-            "type": "string",
-            "format": "ipv4",
-            "placeholder": "192.168.1.1",
-            "condition": {
-              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32);"
-            }
-          },
           "ignoreDevice": {
             "type": "boolean",
             "title": "Hide From HomeKit",
             "description": "If true, this accessory will be removed and ignored from HomeKit.",
             "condition": {
-              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32);"
             }
           },
           "model": {
@@ -970,15 +960,6 @@
             "minimum": 1,
             "condition": {
               "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice);"
-            }
-          },
-          "firmwareRevision": {
-            "title": "Firmware Version",
-            "placeholder": "Firmware Version",
-            "type": "string",
-            "description": "For local devices, HomeKit will show this as the firmware version.",
-            "condition": {
-              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice && model.sensorDevices[arrayIndices].deviceUrl);"
             }
           },
           "overrideLogging": {
@@ -1497,11 +1478,9 @@
           "items": [
             "sensorDevices[].name",
             "sensorDevices[].serialNumber",
-            "sensorDevices[].deviceUrl",
             "sensorDevices[].ignoreDevice",
             "sensorDevices[].model",
             "sensorDevices[].lowBattThreshold",
-            "sensorDevices[].firmwareRevision",
             "sensorDevices[].overrideLogging"
           ]
         }
