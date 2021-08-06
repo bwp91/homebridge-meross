@@ -93,7 +93,7 @@
             "format": "ipv4",
             "placeholder": "192.168.1.1",
             "condition": {
-              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32);"
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
             }
           },
           "ignoreDevice": {
@@ -234,6 +234,14 @@
               "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && model.singleDevices[arrayIndices].deviceUrl);"
             }
           },
+          "userkey": {
+            "title": "Device (User) Key",
+            "type": "string",
+            "description": "Override the user key for this device if it is registered to a different Meross account.",
+            "condition": {
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && model.singleDevices[arrayIndices].deviceUrl);"
+            }
+          },
           "overrideLogging": {
             "type": "string",
             "title": "Override Logging Setting",
@@ -294,7 +302,7 @@
             "format": "ipv4",
             "placeholder": "192.168.1.1",
             "condition": {
-              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32);"
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
             }
           },
           "ignoreDevice": {
@@ -393,6 +401,14 @@
               "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && model.multiDevices[arrayIndices].deviceUrl);"
             }
           },
+          "userkey": {
+            "title": "Device (User) Key",
+            "type": "string",
+            "description": "Override the user key for this device if it is registered to a different Meross account.",
+            "condition": {
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && model.multiDevices[arrayIndices].deviceUrl);"
+            }
+          },
           "overrideLogging": {
             "type": "string",
             "title": "Override Logging Setting",
@@ -453,7 +469,7 @@
             "format": "ipv4",
             "placeholder": "192.168.1.1",
             "condition": {
-              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32);"
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
             }
           },
           "ignoreDevice": {
@@ -563,6 +579,14 @@
               "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && model.lightDevices[arrayIndices].deviceUrl);"
             }
           },
+          "userkey": {
+            "title": "Device (User) Key",
+            "type": "string",
+            "description": "Override the user key for this device if it is registered to a different Meross account.",
+            "condition": {
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && model.lightDevices[arrayIndices].deviceUrl);"
+            }
+          },
           "overrideLogging": {
             "type": "string",
             "title": "Override Logging Setting",
@@ -623,7 +647,7 @@
             "format": "ipv4",
             "placeholder": "192.168.1.1",
             "condition": {
-              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32);"
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
             }
           },
           "ignoreDevice": {
@@ -663,6 +687,14 @@
             "placeholder": "Firmware Version",
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
+            "condition": {
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice && model.diffuserDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "userkey": {
+            "title": "Device (User) Key",
+            "type": "string",
+            "description": "Override the user key for this device if it is registered to a different Meross account.",
             "condition": {
               "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice && model.diffuserDevices[arrayIndices].deviceUrl);"
             }
@@ -727,7 +759,7 @@
             "format": "ipv4",
             "placeholder": "192.168.1.1",
             "condition": {
-              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32);"
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
             }
           },
           "ignoreDevice": {
@@ -771,6 +803,14 @@
             "placeholder": "Firmware Version",
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
+            "condition": {
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice && model.garageDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "userkey": {
+            "title": "Device (User) Key",
+            "type": "string",
+            "description": "Override the user key for this device if it is registered to a different Meross account.",
             "condition": {
               "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice && model.garageDevices[arrayIndices].deviceUrl);"
             }
@@ -835,7 +875,7 @@
             "format": "ipv4",
             "placeholder": "192.168.1.1",
             "condition": {
-              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32);"
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
             }
           },
           "ignoreDevice": {
@@ -873,6 +913,14 @@
             "placeholder": "Firmware Version",
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
+            "condition": {
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice && model.rollerDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "userkey": {
+            "title": "Device (User) Key",
+            "type": "string",
+            "description": "Override the user key for this device if it is registered to a different Meross account.",
             "condition": {
               "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice && model.rollerDevices[arrayIndices].deviceUrl);"
             }
@@ -1022,7 +1070,7 @@
             "format": "ipv4",
             "placeholder": "192.168.1.1",
             "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32);"
+              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
             }
           },
           "ignoreDevice": {
@@ -1343,6 +1391,7 @@
             "singleDevices[].showAs",
             "singleDevices[].inUsePowerThreshold",
             "singleDevices[].firmwareRevision",
+            "singleDevices[].userkey",
             "singleDevices[].overrideLogging"
           ]
         }
@@ -1367,6 +1416,7 @@
             "multiDevices[].showAs",
             "multiDevices[].hideChannels",
             "multiDevices[].firmwareRevision",
+            "multiDevices[].userkey",
             "multiDevices[].overrideLogging"
           ]
         }
@@ -1391,6 +1441,7 @@
             "lightDevices[].brightnessStep",
             "lightDevices[].adaptiveLightingShift",
             "lightDevices[].firmwareRevision",
+            "lightDevices[].userkey",
             "lightDevices[].overrideLogging"
           ]
         }
@@ -1414,6 +1465,7 @@
             "diffuserDevices[].model",
             "diffuserDevices[].brightnessStep",
             "diffuserDevices[].firmwareRevision",
+            "diffuserDevices[].userkey",
             "diffuserDevices[].overrideLogging"
           ]
         }
@@ -1437,6 +1489,7 @@
             "garageDevices[].model",
             "garageDevices[].garageDoorOpeningTime",
             "garageDevices[].firmwareRevision",
+            "garageDevices[].userkey",
             "garageDevices[].overrideLogging"
           ]
         }
@@ -1460,6 +1513,7 @@
             "rollerDevices[].model",
             "rollerDevices[].reversePolarity",
             "rollerDevices[].firmwareRevision",
+            "rollerDevices[].userkey",
             "rollerDevices[].overrideLogging"
           ]
         }
