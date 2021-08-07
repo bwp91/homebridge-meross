@@ -6,15 +6,20 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Added
 
-- Set a user key *per* device, can be useful if the device is registered to a different Meross account that defined in the 'Optional Settings'
+- **New Devices**
+  - MSL120DR added to supported list
+- **All Devices**
+  - Set a user key _per_ device, can be useful if the device is registered to a different Meross account that defined in the 'Optional Settings'
 
 ### Changed
 
-- Credentials settings moved out of 'Optional Settings' section
+- **Plugin UI**
+  - Credentials settings moved out of 'Optional Settings' section
 
 ### Removed
 
-- Device URL and firmware override options for 'Sensor Devices', at least temporarily, whilst local mode is not supported for the MSH300
+- **Plugin UI**
+  - Device URL and firmware override options for 'Sensor Devices', at least temporarily, whilst local mode is not supported for the MSH300
 
 ## 6.5.0 (2021-08-05)
 
