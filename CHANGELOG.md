@@ -8,11 +8,14 @@ All notable changes to homebridge-meross will be documented in this file.
 
 - **New Devices**
   - MSL120DR added to supported list
+  - MSS120B added to supported list
 - **All Devices**
   - Set a user key _per_ device, can be useful if the device is registered to a different Meross account that defined in the 'Optional Settings'
 
 ### Changed
 
+- **Multi-Channel Devices**
+  - Meross channel names will be used for sub-accessories if provided by cloud
 - **Plugin UI**
   - Credentials settings moved out of 'Optional Settings' section
 
