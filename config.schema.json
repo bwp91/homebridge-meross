@@ -319,6 +319,10 @@
             "type": "string",
             "oneOf": [
               {
+                "title": "MSS120B",
+                "enum": ["MSS120B"]
+              },
+              {
                 "title": "MSS420",
                 "enum": ["MSS420"]
               },
