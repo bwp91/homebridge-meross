@@ -14,7 +14,6 @@
     "username": {
       "title": "Meross Username",
       "type": "string",
-      "placeholder": "email@email.com",
       "description": "Enter your Meross username to enable cloud devices."
     },
     "password": {
@@ -83,7 +82,6 @@
           "serialNumber": {
             "title": "Serial Number (UUID)",
             "type": "string",
-            "placeholder": "Serial Number",
             "minLength": 32,
             "maxLength": 32,
             "required": true,
@@ -96,7 +94,6 @@
             "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
             "type": "string",
             "format": "ipv4",
-            "placeholder": "192.168.1.1",
             "condition": {
               "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
             }
@@ -236,7 +233,6 @@
           },
           "firmwareRevision": {
             "title": "Firmware Version",
-            "placeholder": "Firmware Version",
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
             "condition": {
@@ -296,7 +292,6 @@
           "serialNumber": {
             "title": "Serial Number (UUID)",
             "type": "string",
-            "placeholder": "Serial Number",
             "minLength": 32,
             "maxLength": 32,
             "required": true,
@@ -309,7 +304,6 @@
             "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
             "type": "string",
             "format": "ipv4",
-            "placeholder": "192.168.1.1",
             "condition": {
               "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
             }
@@ -407,7 +401,6 @@
           },
           "firmwareRevision": {
             "title": "Firmware Version",
-            "placeholder": "Firmware Version",
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
             "condition": {
@@ -467,7 +460,6 @@
           "serialNumber": {
             "title": "Serial Number (UUID)",
             "type": "string",
-            "placeholder": "Serial Number",
             "minLength": 32,
             "maxLength": 32,
             "required": true,
@@ -480,7 +472,6 @@
             "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
             "type": "string",
             "format": "ipv4",
-            "placeholder": "192.168.1.1",
             "condition": {
               "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
             }
@@ -589,7 +580,6 @@
           },
           "firmwareRevision": {
             "title": "Firmware Version",
-            "placeholder": "Firmware Version",
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
             "condition": {
@@ -649,7 +639,6 @@
           "serialNumber": {
             "title": "Serial Number (UUID)",
             "type": "string",
-            "placeholder": "Serial Number",
             "minLength": 32,
             "maxLength": 32,
             "required": true,
@@ -662,7 +651,6 @@
             "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
             "type": "string",
             "format": "ipv4",
-            "placeholder": "192.168.1.1",
             "condition": {
               "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
             }
@@ -701,7 +689,6 @@
           },
           "firmwareRevision": {
             "title": "Firmware Version",
-            "placeholder": "Firmware Version",
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
             "condition": {
@@ -761,7 +748,6 @@
           "serialNumber": {
             "title": "Serial Number (UUID)",
             "type": "string",
-            "placeholder": "Serial Number",
             "minLength": 32,
             "maxLength": 32,
             "required": true,
@@ -774,7 +760,6 @@
             "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
             "type": "string",
             "format": "ipv4",
-            "placeholder": "192.168.1.1",
             "condition": {
               "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
             }
@@ -825,7 +810,6 @@
           },
           "firmwareRevision": {
             "title": "Firmware Version",
-            "placeholder": "Firmware Version",
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
             "condition": {
@@ -885,7 +869,6 @@
           "serialNumber": {
             "title": "Serial Number (UUID)",
             "type": "string",
-            "placeholder": "Serial Number",
             "minLength": 32,
             "maxLength": 32,
             "required": true,
@@ -898,7 +881,6 @@
             "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
             "type": "string",
             "format": "ipv4",
-            "placeholder": "192.168.1.1",
             "condition": {
               "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
             }
@@ -935,7 +917,6 @@
           },
           "firmwareRevision": {
             "title": "Firmware Version",
-            "placeholder": "Firmware Version",
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
             "condition": {
@@ -995,7 +976,6 @@
           "serialNumber": {
             "title": "Serial Number (UUID)",
             "type": "string",
-            "placeholder": "Serial Number",
             "minLength": 32,
             "maxLength": 32,
             "required": true,
@@ -1080,7 +1060,6 @@
           "serialNumber": {
             "title": "Serial Number (UUID)",
             "type": "string",
-            "placeholder": "Serial Number",
             "minLength": 32,
             "maxLength": 32,
             "required": true,
@@ -1093,7 +1072,6 @@
             "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
             "type": "string",
             "format": "ipv4",
-            "placeholder": "192.168.1.1",
             "condition": {
               "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
             }
@@ -1343,7 +1321,6 @@
           },
           "firmwareRevision": {
             "title": "Firmware Version",
-            "placeholder": "Firmware Version",
             "type": "string",
             "description": "For local devices, HomeKit will show this as the firmware version.",
             "condition": {
