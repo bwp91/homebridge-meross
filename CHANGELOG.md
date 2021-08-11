@@ -26,11 +26,14 @@ All notable changes to homebridge-meross will be documented in this file.
   - MSG200 will now show a separate garage door accessory for the three available channels, you can use the configuration to hide any of the channels you don't use or don't want visible in Homebridge
 - **Plugin UI**
   - Credentials settings moved out of 'Optional Settings' section
+  - Some unnecessary placeholders removed
 - **Platform Versions**
   - Recommended node version bumped to v14.17.5
 
 ### Fixed
 
+- **All Devices**
+  - Plugin did not use default `cloudRefreshRate` or `refreshRate` if not configured by the user
 - **Multi-Channel Devices**
   - Information like firmware, IP and mac address will now show properly in the Homebridge UI, sometimes this info would not be properly saved by the plugin
   - Hidden sub-accessories will no longer be added as hidden Homebridge accessories
