@@ -11,13 +11,22 @@ All notable changes to homebridge-meross will be documented in this file.
   - MSS120B added to supported list
 - **All Devices**
   - Set a user key _per_ device, can be useful if the device is registered to a different Meross account that defined in the 'Optional Settings'
+  - Initial device information will be displayed in the log when an accessory initialises and debug mode is on
 
 ### Changed
 
 - **Multi-Channel Devices**
   - Meross channel names will be used for sub-accessories if provided by cloud
+- **Garage Devices**
+  - MSG200 will now show a separate garage door accessory for the three available channels, you can use the configuration to hide any of the channels you don't use or don't want visible in Homebridge
 - **Plugin UI**
   - Credentials settings moved out of 'Optional Settings' section
+
+### Fixed
+
+- **Multi-Channel Devices**
+  - Information like firmware, IP and mac address will now show properly in the Homebridge UI, sometimes this info would not be properly saved by the plugin
+  - Hidden sub-accessories will no longer be added as hidden Homebridge accessories
 
 ### Removed
 
