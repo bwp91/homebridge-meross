@@ -6,6 +6,11 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Added
 
+- **Hybrid Mode**
+  - This mode can be turned on from the 'Optional Settings' section of the config
+  - If a local IP for a cloud device is provided by Govee, then the plugin will control this device locally. If the local control fails for any reason then the request will be sent via the cloud as before
+  - I would eventually like to remove this option and have this hard-coded as _the way_ the plugin works, but I don't want to make a breaking change for now... likely with a future v7 of the plugin
+  - I think this a nice 'best of both worlds' approach, using cloud real-time updates if a device is controlled externally, and the ability to control locally if for example there is a cloud outage or local internet issues
 - **New Devices**
   - MSL120DR added to supported list
   - MSS120B added to supported list
