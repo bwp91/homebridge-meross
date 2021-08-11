@@ -47,6 +47,11 @@
       "placeholder": 5,
       "minimum": 0
     },
+    "hybridMode": {
+      "type": "boolean",
+      "title": "Use Hybrid Mode",
+      "description": "[Experimental] If true, cloud accessories will try to be controlled locally."
+    },
     "disableDeviceLogging": {
       "type": "boolean",
       "title": "Disable Device Logging",
@@ -1384,7 +1389,14 @@
       "title": "Optional Settings",
       "description": "Optional settings for the plugin, including refresh rates and global logging settings.",
       "expandable": true,
-      "items": ["cloudRefreshRate", "refreshRate", "disableDeviceLogging", "debug", "disablePlugin"]
+      "items": [
+        "cloudRefreshRate",
+        "refreshRate",
+        "hybridMode",
+        "disableDeviceLogging",
+        "debug",
+        "disablePlugin"
+      ]
     },
     {
       "key": "singleDevices",
