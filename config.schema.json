@@ -813,7 +813,7 @@
           "hideChannels": {
             "type": "string",
             "title": "Hide Channels",
-            "description": "Only applies to MSG200. A comma separated list of channels to hide for this device. Use '0' to hide the 'All Open/Close' accessory. For example '0' or '0,1,2'.",
+            "description": "Only applies to MSG200. A comma separated list of channels to hide for this device. For example '2,3'.",
             "condition": {
               "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice);"
             }
