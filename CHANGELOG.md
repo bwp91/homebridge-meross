@@ -24,6 +24,7 @@ All notable changes to homebridge-meross will be documented in this file.
   - Meross channel names will be used for sub-accessories if provided by cloud
 - **Garage Devices**
   - MSG200 will now show a separate garage door accessory for the three available channels, you can use the configuration to hide any of the channels you don't use or don't want visible in Homebridge
+  - For local devices, when closing garage via HomeKit, the plugin will poll every 3 seconds for status update until either the garage has closed or 15 seconds after the configured operation time when the garage will be marked as open again
 - **Plugin UI**
   - Credentials settings moved out of 'Optional Settings' section
   - Some unnecessary placeholders removed
