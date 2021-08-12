@@ -21,6 +21,9 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Changed
 
+- **All Devices**
+  - Option to disable polling has been removed in order to keep cloud device IPs up to date. Cloud and local polling now has a maximum interval of 10 minutes, and if option is set to `0` then this will be increased to 10 minutes.
+  - Cloud device IP will now be checked and updated if necessary on every poll run
 - **Multi-Channel Devices**
   - Meross channel names will be used for sub-accessories if provided by cloud
 - **Garage Devices**
