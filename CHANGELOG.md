@@ -18,6 +18,8 @@ All notable changes to homebridge-meross will be documented in this file.
 - **All Devices**
   - Set a user key _per_ device, can be useful if the device is registered to a different Meross account that defined in the 'Optional Settings'
   - Initial device information will be displayed in the log when an accessory initialises and debug mode is on
+- **Eve History**
+  - On/Off history graphs added for single and multi-channel devices when exposed as `Switch`
 
 ### Changed
 
