@@ -32,7 +32,7 @@
     "cloudRefreshRate": {
       "title": "Cloud Refresh Rate",
       "type": "integer",
-      "description": "Number of seconds between polls to devices using cloud connection. Should not be needed since the plugin supports real-time updates. Leave at 0 to disable polling, otherwise must be 30 or more.",
+      "description": "Number of seconds between polls to cloud devices. Maximum value 600. If set to 0, 600 will be used.",
       "placeholder": 0,
       "minimum": 0,
       "condition": {
@@ -42,7 +42,7 @@
     "refreshRate": {
       "title": "Local Refresh Rate",
       "type": "integer",
-      "description": "Number of seconds between polls to local Meross devices. Set to 0 to disable polling, otherwise must be 5 or more.",
+      "description": "Number of seconds between polls to local devices. Maximum value 600. If set to 0, 600 will be used.",
       "placeholder": 5,
       "minimum": 0
     },
