@@ -2,15 +2,14 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 6.6.0 (2021-08-12)
 
 ### Added
 
 - **Hybrid Mode**
   - This mode can be turned on from the 'Optional Settings' section of the config
-  - If a local IP for a cloud device is provided by Govee, then the plugin will control this device locally. If the local control fails for any reason then the request will be sent via the cloud as before
-  - I would eventually like to remove this option and have this hard-coded as _the way_ the plugin works, but I don't want to make a breaking change for now... likely with a future v7 of the plugin
-  - I think this a nice 'best of both worlds' approach, using cloud real-time updates if a device is controlled externally, and the ability to control locally if for example there is a cloud outage or local internet issues
+  - If a local IP for a cloud device is provided by Meross, then the plugin will attempt to control the device locally. If this fails for any reason then the request will be sent via the cloud as before
+  - I would eventually like to remove this option and have this hard-coded as _the way_ the plugin works, but I don't want to make a breaking change for now
 - **New Devices**
   - MSL100R added to supported list
   - MSL120DR added to supported list
@@ -29,7 +28,7 @@ All notable changes to homebridge-meross will be documented in this file.
 - **Multi-Channel Devices**
   - Meross channel names will be used for sub-accessories if provided by cloud
 - **Garage Devices**
-  - MSG200 will now show a separate garage door accessory for the three available channels, you can use the configuration to hide any of the channels you don't use or don't want visible in Homebridge
+  - ⚠️ MSG200 will now show a separate garage door accessory for the three available channels, you can use the configuration to hide any of the channels you don't use or don't want visible in Homebridge
   - For local devices, when closing garage via HomeKit, the plugin will poll every 3 seconds for status update until either the garage has closed or 15 seconds after the configured operation time when the garage will be marked as open again
 - **Plugin UI**
   - Credentials settings moved out of 'Optional Settings' section
