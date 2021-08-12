@@ -12,6 +12,7 @@ All notable changes to homebridge-meross will be documented in this file.
   - I would eventually like to remove this option and have this hard-coded as _the way_ the plugin works, but I don't want to make a breaking change for now... likely with a future v7 of the plugin
   - I think this a nice 'best of both worlds' approach, using cloud real-time updates if a device is controlled externally, and the ability to control locally if for example there is a cloud outage or local internet issues
 - **New Devices**
+  - MSL100R added to supported list
   - MSL120DR added to supported list
   - MSS120B added to supported list
 - **All Devices**
