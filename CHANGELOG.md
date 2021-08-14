@@ -7,10 +7,11 @@ All notable changes to homebridge-meross will be documented in this file.
 ### Added
 
 - **Eve History**
-- **Single-Channel Devices**
   - For single-channel outlets that have energy monitoring, historical power data is now available, along with an approximate total consumption (kWh) value
   - For garage devices, history data available - last opening time and open count
   - For MS100 sensors, graphs will show with historical temperature and humidity values
+- **New Devices**
+  - MSL120J added to supported list
 
 ## 6.6.0 (2021-08-12)
 
