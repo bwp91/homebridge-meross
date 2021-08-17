@@ -2,6 +2,13 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 6.7.2 (2021-08-17)
+
+### Fixed
+
+- Fixed a polling issue for the MRS100
+- Fixed repeated `reported [offline]` messages for local devices
+
 ## 6.7.1 (2021-08-17)
 
 ### Fixed
