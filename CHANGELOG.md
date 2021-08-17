@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 6.7.1 (2021-08-17)
+
+### Fixed
+
+- Fixed a `Cannot read property 'LastActivation' of undefined` issue
+
 ## 6.7.0 (2021-08-16)
 
 ### Added
