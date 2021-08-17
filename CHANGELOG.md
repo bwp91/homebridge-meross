@@ -2,6 +2,16 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Changed
+
+- Polling errors will now only be shown in debug mode (offline/online entries will still show, as will errors when controlling a device)
+
+### Fixed
+
+- Attempt to fix a couple of small issues when controlling MOD100 diffuser
+
 ## 6.7.2 (2021-08-17)
 
 ### Fixed
