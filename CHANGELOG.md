@@ -6,7 +6,10 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Added
 
-- [Experimental] Option to globally ignore and remove HomeKit-native devices
+- **Configuration**
+  - [Experimental] Option to globally ignore and remove HomeKit-native devices
+- **New Devices**
+  - MSL320C added to supported list
 
 ### Changed
 
