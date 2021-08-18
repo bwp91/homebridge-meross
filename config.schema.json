@@ -51,6 +51,11 @@
       "title": "Use Hybrid Mode",
       "description": "[Experimental] If true, cloud accessories will try to be controlled locally."
     },
+    "ignoreHKNative": {
+      "type": "boolean",
+      "title": "Ignore HomeKit Native Devices",
+      "description": "[Experimental] If true, the plugin will remove and ignore any HomeKit native devices."
+    },
     "disableDeviceLogging": {
       "type": "boolean",
       "title": "Disable Device Logging",
@@ -1382,6 +1387,7 @@
       "items": [
         "cloudRefreshRate",
         "refreshRate",
+        "ignoreHKNative",
         "hybridMode",
         "disableDeviceLogging",
         "debug",
