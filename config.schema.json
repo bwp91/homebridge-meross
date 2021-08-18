@@ -540,6 +540,10 @@
                 "enum": ["MSL-320"]
               },
               {
+                "title": "MSL320C",
+                "enum": ["MSL320C"]
+              },
+              {
                 "title": "MSL320M",
                 "enum": ["MSL-320M"]
               },
