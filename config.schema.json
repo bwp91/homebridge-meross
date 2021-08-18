@@ -54,7 +54,7 @@
     "ignoreHKNative": {
       "type": "boolean",
       "title": "Ignore HomeKit Native Devices",
-      "description": "[Experimental] If true, the plugin will remove and ignore any HomeKit native devices."
+      "description": "[Experimental] If true, the plugin will remove and ignore HomeKit-native cloud devices."
     },
     "disableDeviceLogging": {
       "type": "boolean",
@@ -1391,8 +1391,8 @@
       "items": [
         "cloudRefreshRate",
         "refreshRate",
-        "ignoreHKNative",
         "hybridMode",
+        "ignoreHKNative",
         "disableDeviceLogging",
         "debug",
         "disablePlugin"
