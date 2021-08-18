@@ -4,6 +4,10 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ## BETA
 
+### Added
+
+- [Experimental] Option to globally ignore and remove HomeKit-native devices
+
 ### Changed
 
 - Polling errors will now only be shown in debug mode (offline/online entries will still show, as will errors when controlling a device)
