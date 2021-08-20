@@ -7,7 +7,7 @@ All notable changes to homebridge-meross will be documented in this file.
 ### Added
 
 - **Configuration**
-  - [Experimental] Option to globally ignore and remove HomeKit-native devices
+  - Option to globally ignore and remove HomeKit-native devices (for a small number of models so far, work in progress)
 - **New Devices**
   - MSL320C added to supported list
 
@@ -18,6 +18,7 @@ All notable changes to homebridge-meross will be documented in this file.
 ### Fixed
 
 - Attempt to fix a couple of small issues when controlling MOD100 diffuser
+- Fix a `ResetTotal` characteristic warning for single-channel outlets
 
 ## 6.7.2 (2021-08-17)
 
