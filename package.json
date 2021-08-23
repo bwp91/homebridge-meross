@@ -50,7 +50,7 @@
     "axios": "^0.21.1",
     "mqtt": "^4.2.8",
     "p-queue": "^6.6.2",
-    "p-timeout": "^4.1.0"
+    "p-timeout": "^5.0.0"
   },
   "prettier": {
     "printWidth": 100
