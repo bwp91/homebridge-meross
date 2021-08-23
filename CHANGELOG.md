@@ -4,6 +4,11 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ## BETA
 
+### Added
+
+- **New Devices**
+  - MSL320CP added to supported list
+
 ### Changed
 
 - More understandable logging on timeout when controlling a device
