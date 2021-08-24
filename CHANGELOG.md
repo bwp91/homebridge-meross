@@ -7,6 +7,7 @@ All notable changes to homebridge-meross will be documented in this file.
 ### Added
 
 - **New Devices**
+  - MSS210RTL added to supported list
   - MSL320CP added to supported list
 
 ### Changed
