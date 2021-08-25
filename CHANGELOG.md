@@ -15,6 +15,10 @@ All notable changes to homebridge-meross will be documented in this file.
 - More understandable logging on timeout when controlling a device
 - Use `p-timeout` instead of `promise-timeout` for mqtt timeout
 
+### Fixed
+
+- An issue initialising a multi-channel device when the main accessory has been hidden
+
 ## 6.8.0 (2021-08-22)
 
 ### Added
