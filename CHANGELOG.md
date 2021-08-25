@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Changed
+
+- Make timeout error logging more consistent
+
 ## 6.9.0 (2021-08-25)
 
 ### Added
