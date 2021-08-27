@@ -2,11 +2,16 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 6.9.1 (2021-08-27)
 
 ### Changed
 
 - Make timeout error logging more consistent
+
+### Fixed
+
+- An issue displaying the correct status of MSG100/MSG200
+- An issue that disabled the plugin when the initial http connection failed
 
 ## 6.9.0 (2021-08-25)
 
