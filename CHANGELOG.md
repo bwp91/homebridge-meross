@@ -2,11 +2,15 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 6.9.2 (2021-08-30)
 
 ### Changed
 
 - Updated HomeKit native ignore list
+
+### Fixed
+
+- An issue preventing MSG200 from polling for status
 
 ## 6.9.1 (2021-08-27)
 
