@@ -2,6 +2,13 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Added
+
+- **New Devices**
+  - MSS110RTL added to supported list
+
 ## 6.9.2 (2021-08-30)
 
 ### Changed
