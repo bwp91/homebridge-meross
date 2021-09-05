@@ -13,6 +13,8 @@ All notable changes to homebridge-meross will be documented in this file.
 ### Changed
 
 - Updated HomeKit native ignore list
+- Recommended node version bumped to v14.17.6
+- Bump `axios` to v0.21.3
 
 ## 6.9.2 (2021-08-30)
 
