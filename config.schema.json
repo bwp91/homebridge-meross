@@ -548,6 +548,10 @@
                 "enum": ["MSL120J"]
               },
               {
+                "title": "MSL210",
+                "enum": ["MSL210"]
+              },
+              {
                 "title": "MSL320",
                 "enum": ["MSL-320"]
               },
