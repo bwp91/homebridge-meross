@@ -7,7 +7,7 @@ All notable changes to homebridge-meross will be documented in this file.
 ### Added
 
 - **New Devices**
-- MTS100 added to supported list (MTS100V3)
+  - MTS100 added to supported list (MTS100V3)
 
 ### Changed
 
