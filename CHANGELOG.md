@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## UPCOMING
+
+### Changed
+
+- Bump `axios` to v0.21.4
+
 ## 6.10.0 (2021-09-05)
 
 ### Added
