@@ -1,7 +1,7 @@
 {
   "name": "homebridge-meross",
   "alias": "Meross",
-  "version": "6.10.1-beta.21",
+  "version": "6.10.1-beta.22",
   "description": "Homebridge plugin to control Meross devices.",
   "license": "Apache-2.0",
   "keywords": [
