@@ -2,7 +2,7 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 6.11.0 (2021-09-09)
 
 ### Added
 
@@ -11,7 +11,12 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Changed
 
+- `configureAccessory` function simplified to reduce chance of accessory cache retrieval failing
 - Bump `axios` to v0.21.4
+
+### Fixed
+
+- Colour (rgb, cct) functions for supported bulbs (including response times and adaptive lighting)
 
 ## 6.10.0 (2021-09-05)
 
