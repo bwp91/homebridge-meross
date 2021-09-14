@@ -384,6 +384,10 @@
                 "enum": ["MSS620B"]
               },
               {
+                "title": "MSS620BR",
+                "enum": ["MSS620BR"]
+              },
+              {
                 "title": "MSS620S",
                 "enum": ["MSS620S"]
               },
