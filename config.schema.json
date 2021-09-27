@@ -300,7 +300,7 @@
     },
     "multiDevices": {
       "type": "array",
-      "title": "Device Settings",
+      "title": "Multi-Channel Devices",
       "description": "Optional settings for multi-channel Meross switches and outlets.",
       "items": {
         "type": "object",
@@ -675,7 +675,7 @@
     },
     "diffuserDevices": {
       "type": "array",
-      "title": "Device Settings",
+      "title": "Diffuser Devices",
       "description": "Optional settings for Meross diffuser devices.",
       "items": {
         "type": "object",
@@ -777,6 +777,105 @@
             ],
             "condition": {
               "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice);"
+            }
+          }
+        }
+      }
+    },
+    "purifierDevices": {
+      "type": "array",
+      "title": "Purifier Devices",
+      "description": "Optional settings for Meross purifier devices.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "description": "A label for this device, will be used as the HomeKit name if setting up a local device.",
+            "type": "string",
+            "required": true
+          },
+          "serialNumber": {
+            "title": "Serial Number (UUID)",
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 32,
+            "required": true,
+            "condition": {
+              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].name);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Connection Type",
+            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "type": "string",
+            "format": "ipv4",
+            "condition": {
+              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
+            }
+          },
+          "ignoreDevice": {
+            "type": "boolean",
+            "title": "Hide From HomeKit",
+            "description": "If true, this accessory will be removed and ignored from HomeKit.",
+            "condition": {
+              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && !model.purifierDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "model": {
+            "title": "Model",
+            "description": "The model of this device.",
+            "type": "string",
+            "oneOf": [
+              {
+                "title": "MAP100",
+                "enum": ["MAP100"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && !model.purifierDevices[arrayIndices].ignoreDevice && model.purifierDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "firmwareRevision": {
+            "title": "Firmware Version",
+            "type": "string",
+            "description": "For local devices, HomeKit will show this as the firmware version.",
+            "condition": {
+              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && !model.purifierDevices[arrayIndices].ignoreDevice && model.purifierDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "userkey": {
+            "title": "Device (User) Key",
+            "type": "string",
+            "description": "Override the user key for this device if it is registered to a different Meross account.",
+            "condition": {
+              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && !model.purifierDevices[arrayIndices].ignoreDevice && model.purifierDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "overrideLogging": {
+            "type": "string",
+            "title": "Override Logging Setting",
+            "description": "Override global logging setting for this device.",
+            "oneOf": [
+              {
+                "title": "Default (Use Global Setting)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Enable Standard Logging",
+                "enum": ["standard"]
+              },
+              {
+                "title": "Enable Debug Logging",
+                "enum": ["debug"]
+              },
+              {
+                "title": "Disable All Logging",
+                "enum": ["disable"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && !model.purifierDevices[arrayIndices].ignoreDevice);"
             }
           }
         }
@@ -1521,6 +1620,29 @@
             "diffuserDevices[].firmwareRevision",
             "diffuserDevices[].userkey",
             "diffuserDevices[].overrideLogging"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "purifierDevices",
+      "title": "Purifier Devices",
+      "description": "Optional settings for Meross purifier devices.",
+      "expandable": true,
+      "add": "Add Device",
+      "type": "array",
+      "items": [
+        {
+          "type": "fieldset",
+          "items": [
+            "purifierDevices[].name",
+            "purifierDevices[].serialNumber",
+            "purifierDevices[].deviceUrl",
+            "purifierDevices[].ignoreDevice",
+            "purifierDevices[].model",
+            "purifierDevices[].firmwareRevision",
+            "purifierDevices[].userkey",
+            "purifierDevices[].overrideLogging"
           ]
         }
       ]
