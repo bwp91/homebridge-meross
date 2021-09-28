@@ -2,6 +2,18 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 6.13.0 (2021-09-28)
+
+### Added
+
+- **New Devices**
+  - MAP100 purifier added to supported list
+  - MSS426S added to supported list
+
+### Changed
+
+- Updated HomeKit native ignore list
+
 ## 6.12.0 (2021-09-14)
 
 ### Added
