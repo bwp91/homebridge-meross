@@ -368,6 +368,10 @@
                 "enum": ["MSS425F"]
               },
               {
+                "title": "MSS426S",
+                "enum": ["MSS426S"]
+              },
+              {
                 "title": "MSS530",
                 "enum": ["MSS530"]
               },
