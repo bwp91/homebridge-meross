@@ -2,6 +2,17 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 6.13.1 (2021-09-30)
+
+### Changed
+
+- Recommended node versions bumped to v14.18.0 or v16.10.0
+
+### Fixed
+
+- Increased MSS426S channel count from 6 to 7
+- Fixed a purifier speed mapping issue
+
 ## 6.13.0 (2021-09-28)
 
 ### Added
