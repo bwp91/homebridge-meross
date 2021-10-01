@@ -47,7 +47,7 @@
   ],
   "dependencies": {
     "@homebridge/plugin-ui-utils": "^0.0.19",
-    "axios": "^0.21.4",
+    "axios": "^0.22.0",
     "mqtt": "^4.2.8",
     "p-queue": "^6.6.2",
     "p-timeout": "^4.1.0"
