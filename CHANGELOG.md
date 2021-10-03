@@ -8,6 +8,20 @@ All notable changes to homebridge-meross will be documented in this file.
 
 - **New Devices**
   - MSS620R added to supported list
+- **Configuration**
+  - A `connection` option per device to choose between
+    - `default` (hybrid) - the plugin will attempt local control with the provided IP, and revert to cloud control if necessary
+    - `cloud` - local control will be skipped and the plugin will force cloud control
+    - `local` - the plugin will only attempt local control (the device IP must be configured)
+
+### Changed
+
+- ⚠️ For devices currently using cloud control, the plugin will now first attempt to control the device locally using the network IP provided by Meross. If this local attempt fails for any reason, the plugin will revert to cloud control as before.
+
+### Removed
+
+- The deprecated `devices` setting has been removed
+- `hybridMode` setting has been removed
 
 ## 6.13.2 (2021-10-03)
 
