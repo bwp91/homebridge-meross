@@ -46,11 +46,6 @@
       "placeholder": 5,
       "minimum": 0
     },
-    "hybridMode": {
-      "type": "boolean",
-      "title": "Use Hybrid Mode",
-      "description": "[Experimental] If true, cloud accessories will try to be controlled locally."
-    },
     "ignoreHKNative": {
       "type": "boolean",
       "title": "Ignore HomeKit Native Devices",
@@ -99,13 +94,34 @@
               "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].name);"
             }
           },
-          "deviceUrl": {
+          "connection": {
+            "type": "string",
             "title": "Connection Type",
-            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "oneOf": [
+              {
+                "title": "Hybrid (Default)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Force Cloud Control",
+                "enum": ["cloud"]
+              },
+              {
+                "title": "Force Local Control",
+                "enum": ["local"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Device IP",
+            "description": "Enter the IP address of this device for local connection.",
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && model.singleDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
             }
           },
           "ignoreDevice": {
@@ -113,7 +129,7 @@
             "title": "Hide From HomeKit",
             "description": "If true, this accessory will be removed and ignored from HomeKit.",
             "condition": {
-              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && model.singleDevices[arrayIndices].connection !== 'local' && !model.singleDevices[arrayIndices].deviceUrl);"
             }
           },
           "model": {
@@ -321,13 +337,34 @@
               "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].name);"
             }
           },
-          "deviceUrl": {
+          "connection": {
+            "type": "string",
             "title": "Connection Type",
-            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "oneOf": [
+              {
+                "title": "Hybrid (Default)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Force Cloud Control",
+                "enum": ["cloud"]
+              },
+              {
+                "title": "Force Local Control",
+                "enum": ["local"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Device IP",
+            "description": "Enter the IP address of this device for local connection.",
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && model.multiDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
             }
           },
           "ignoreDevice": {
@@ -335,7 +372,7 @@
             "title": "Hide From HomeKit",
             "description": "If true, this accessory will be removed and ignored from HomeKit.",
             "condition": {
-              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && model.multiDevices[arrayIndices].connection !== 'local' && !model.multiDevices[arrayIndices].deviceUrl);"
             }
           },
           "model": {
@@ -501,13 +538,34 @@
               "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].name);"
             }
           },
-          "deviceUrl": {
+          "connection": {
+            "type": "string",
             "title": "Connection Type",
-            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "oneOf": [
+              {
+                "title": "Hybrid (Default)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Force Cloud Control",
+                "enum": ["cloud"]
+              },
+              {
+                "title": "Force Local Control",
+                "enum": ["local"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Device IP",
+            "description": "Enter the IP address of this device for local connection.",
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && model.lightDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
             }
           },
           "ignoreDevice": {
@@ -515,7 +573,7 @@
             "title": "Hide From HomeKit",
             "description": "If true, this accessory will be removed and ignored from HomeKit.",
             "condition": {
-              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && model.lightDevices[arrayIndices].connection !== 'local' && !model.lightDevices[arrayIndices].deviceUrl);"
             }
           },
           "model": {
@@ -704,13 +762,34 @@
               "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].name);"
             }
           },
-          "deviceUrl": {
+          "connection": {
+            "type": "string",
             "title": "Connection Type",
-            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "oneOf": [
+              {
+                "title": "Hybrid (Default)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Force Cloud Control",
+                "enum": ["cloud"]
+              },
+              {
+                "title": "Force Local Control",
+                "enum": ["local"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Device IP",
+            "description": "Enter the IP address of this device for local connection.",
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && model.diffuserDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
             }
           },
           "ignoreDevice": {
@@ -718,7 +797,7 @@
             "title": "Hide From HomeKit",
             "description": "If true, this accessory will be removed and ignored from HomeKit.",
             "condition": {
-              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && model.diffuserDevices[arrayIndices].connection !== 'local' && !model.diffuserDevices[arrayIndices].deviceUrl);"
             }
           },
           "model": {
@@ -813,13 +892,34 @@
               "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].name);"
             }
           },
-          "deviceUrl": {
+          "connection": {
+            "type": "string",
             "title": "Connection Type",
-            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "oneOf": [
+              {
+                "title": "Hybrid (Default)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Force Cloud Control",
+                "enum": ["cloud"]
+              },
+              {
+                "title": "Force Local Control",
+                "enum": ["local"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && !model.purifierDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Device IP",
+            "description": "Enter the IP address of this device for local connection.",
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && model.purifierDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
             }
           },
           "ignoreDevice": {
@@ -827,7 +927,7 @@
             "title": "Hide From HomeKit",
             "description": "If true, this accessory will be removed and ignored from HomeKit.",
             "condition": {
-              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && !model.purifierDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && model.purifierDevices[arrayIndices].connection !== 'local' && !model.purifierDevices[arrayIndices].deviceUrl);"
             }
           },
           "model": {
@@ -912,13 +1012,34 @@
               "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].name);"
             }
           },
-          "deviceUrl": {
+          "connection": {
+            "type": "string",
             "title": "Connection Type",
-            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "oneOf": [
+              {
+                "title": "Hybrid (Default)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Force Cloud Control",
+                "enum": ["cloud"]
+              },
+              {
+                "title": "Force Local Control",
+                "enum": ["local"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Device IP",
+            "description": "Enter the IP address of this device for local connection.",
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && model.garageDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
             }
           },
           "ignoreDevice": {
@@ -926,7 +1047,7 @@
             "title": "Hide From HomeKit",
             "description": "If true, this accessory will be removed and ignored from HomeKit.",
             "condition": {
-              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && model.garageDevices[arrayIndices].connection !== 'local' && !model.garageDevices[arrayIndices].deviceUrl);"
             }
           },
           "model": {
@@ -1033,13 +1154,34 @@
               "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].name);"
             }
           },
-          "deviceUrl": {
+          "connection": {
+            "type": "string",
             "title": "Connection Type",
-            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
+            "oneOf": [
+              {
+                "title": "Hybrid (Default)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Force Cloud Control",
+                "enum": ["cloud"]
+              },
+              {
+                "title": "Force Local Control",
+                "enum": ["local"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Device IP",
+            "description": "Enter the IP address of this device for local connection.",
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && model.rollerDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
             }
           },
           "ignoreDevice": {
@@ -1047,7 +1189,7 @@
             "title": "Hide From HomeKit",
             "description": "If true, this accessory will be removed and ignored from HomeKit.",
             "condition": {
-              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && model.rollerDevices[arrayIndices].connection !== 'local' && !model.rollerDevices[arrayIndices].deviceUrl);"
             }
           },
           "model": {
@@ -1200,318 +1342,6 @@
           }
         }
       }
-    },
-    "devices": {
-      "type": "array",
-      "title": "Device Settings (Deprecated)",
-      "description": "You should not use this section to add new entries. Move your existing entries from here to the appropriate section above.",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "title": "Name",
-            "description": "A label for this device, will be used as the HomeKit name if setting up a local device.",
-            "type": "string",
-            "required": true
-          },
-          "serialNumber": {
-            "title": "Serial Number (UUID)",
-            "type": "string",
-            "minLength": 32,
-            "maxLength": 32,
-            "required": true,
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].name);"
-            }
-          },
-          "deviceUrl": {
-            "title": "Connection Type",
-            "description": "Leave this field blank for cloud connection or enter the IP address of this device for local connection.",
-            "type": "string",
-            "format": "ipv4",
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && ((model.username && model.password) || model.userkey));"
-            }
-          },
-          "ignoreDevice": {
-            "type": "boolean",
-            "title": "Hide From HomeKit",
-            "description": "If true, this accessory will be removed and ignored from HomeKit.",
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].deviceUrl);"
-            }
-          },
-          "model": {
-            "title": "Model",
-            "description": "The model of this device.",
-            "type": "string",
-            "oneOf": [
-              {
-                "title": "MOD100",
-                "enum": ["MOD100"]
-              },
-              {
-                "title": "MPD100",
-                "enum": ["MPD100"]
-              },
-              {
-                "title": "MRS100",
-                "enum": ["MRS100"]
-              },
-              {
-                "title": "MSG100",
-                "enum": ["MSG100"]
-              },
-              {
-                "title": "MSG200",
-                "enum": ["MSG200"]
-              },
-              {
-                "title": "MSL100",
-                "enum": ["MSL-100"]
-              },
-              {
-                "title": "MSL100D",
-                "enum": ["MSL-100D"]
-              },
-              {
-                "title": "MSL120",
-                "enum": ["MSL-120"]
-              },
-              {
-                "title": "MSL120B",
-                "enum": ["MSL-120B"]
-              },
-              {
-                "title": "MSL120D",
-                "enum": ["MSL-120D"]
-              },
-              {
-                "title": "MSL320",
-                "enum": ["MSL-320"]
-              },
-              {
-                "title": "MSL320M",
-                "enum": ["MSL-320M"]
-              },
-              {
-                "title": "MSL420",
-                "enum": ["MSL-420"]
-              },
-              {
-                "title": "MSL430",
-                "enum": ["MSL-430"]
-              },
-              {
-                "title": "MSS110",
-                "enum": ["MSS110"]
-              },
-              {
-                "title": "MSS210",
-                "enum": ["MSS210"]
-              },
-              {
-                "title": "MSS210N",
-                "enum": ["MSS210N"]
-              },
-              {
-                "title": "MSS310",
-                "enum": ["MSS310"]
-              },
-              {
-                "title": "MSS310H",
-                "enum": ["MSS310"]
-              },
-              {
-                "title": "MSS310R",
-                "enum": ["MSS310"]
-              },
-              {
-                "title": "MSS420",
-                "enum": ["MSS420"]
-              },
-              {
-                "title": "MSS420F",
-                "enum": ["MSS420F"]
-              },
-              {
-                "title": "MSS425",
-                "enum": ["MSS425"]
-              },
-              {
-                "title": "MSS425E",
-                "enum": ["MSS425E"]
-              },
-              {
-                "title": "MSS425F",
-                "enum": ["MSS425F"]
-              },
-              {
-                "title": "MSS510",
-                "enum": ["MSS510"]
-              },
-              {
-                "title": "MSS510M",
-                "enum": ["MSS510M"]
-              },
-              {
-                "title": "MSS510X",
-                "enum": ["MSS510X"]
-              },
-              {
-                "title": "MSS530",
-                "enum": ["MSS530"]
-              },
-              {
-                "title": "MSS530H",
-                "enum": ["MSS530H"]
-              },
-              {
-                "title": "MSS550",
-                "enum": ["MSS550"]
-              },
-              {
-                "title": "MSS550X",
-                "enum": ["MSS550X"]
-              },
-              {
-                "title": "MSS560",
-                "enum": ["MSS560"]
-              },
-              {
-                "title": "MSS565",
-                "enum": ["MSS565"]
-              },
-              {
-                "title": "MSS570",
-                "enum": ["MSS570"]
-              },
-              {
-                "title": "MSS570X",
-                "enum": ["MSS570x"]
-              },
-              {
-                "title": "MSS5X0",
-                "enum": ["MSS5X0"]
-              },
-              {
-                "title": "MSS620",
-                "enum": ["MSS620"]
-              },
-              {
-                "title": "MSS620B",
-                "enum": ["MSS620B"]
-              },
-              {
-                "title": "MSS620S",
-                "enum": ["MSS620S"]
-              },
-              {
-                "title": "MSS630",
-                "enum": ["MSS630"]
-              },
-              {
-                "title": "MSS710",
-                "enum": ["MSS710"]
-              },
-              {
-                "title": "MSS810",
-                "enum": ["MSS810"]
-              }
-            ],
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice && model.devices[arrayIndices].deviceUrl);"
-            }
-          },
-          "showAs": {
-            "type": "string",
-            "title": "Show As",
-            "oneOf": [
-              {
-                "title": "Switch (Default)",
-                "enum": ["default"]
-              },
-              {
-                "title": "Outlet",
-                "enum": ["outlet"]
-              }
-            ],
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice && model.devices[arrayIndices].model && !['MOD100', 'MRS100', 'MSG100'].includes(model.devices[arrayIndices].model));"
-            }
-          },
-          "hideChannels": {
-            "type": "string",
-            "title": "Hide Channels",
-            "description": "A comma separated list of channels to hide for this device. Use '0' to hide the 'All On/Off' accessory. For example '0' or '0,1,2'.",
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice && model.devices[arrayIndices].model && !['MOD100', 'MRS100', 'MSG100'].includes(model.devices[arrayIndices].model));"
-            }
-          },
-          "inUsePowerThreshold": {
-            "type": "integer",
-            "title": "'In Use' Threshold",
-            "description": "HomeKit will set the 'In Use' status of outlet devices to true when the wattage is above this number. Only applies to models that support power readings. Must be 0 or more.",
-            "placeholder": 0,
-            "minimum": 0,
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice && model.devices[arrayIndices].model && !['MOD100', 'MRS100', 'MSG100'].includes(model.devices[arrayIndices].model));"
-            }
-          },
-          "garageDoorOpeningTime": {
-            "title": "Operation Time",
-            "description": "The number of seconds for which it takes the garage door to open/close.",
-            "type": "integer",
-            "placeholder": "20",
-            "minimum": 1,
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && ['MSG100', 'MSG200'].includes(model.devices[arrayIndices].model) && !model.devices[arrayIndices].ignoreDevice);"
-            }
-          },
-          "reversePolarity": {
-            "type": "boolean",
-            "title": "Reverse Polarity",
-            "description": "If true, the plugin will reverse the open/close commands that it sends.",
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && model.devices[arrayIndices].model === 'MRS100' && !model.devices[arrayIndices].ignoreDevice);"
-            }
-          },
-          "firmwareRevision": {
-            "title": "Firmware Version",
-            "type": "string",
-            "description": "For local devices, HomeKit will show this as the firmware version.",
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice && model.devices[arrayIndices].model && model.devices[arrayIndices].deviceUrl);"
-            }
-          },
-          "overrideLogging": {
-            "type": "string",
-            "title": "Override Logging Setting",
-            "description": "Override global logging setting for this device.",
-            "oneOf": [
-              {
-                "title": "Default (Use Global Setting)",
-                "enum": ["default"]
-              },
-              {
-                "title": "Enable Standard Logging",
-                "enum": ["standard"]
-              },
-              {
-                "title": "Enable Debug Logging",
-                "enum": ["debug"]
-              },
-              {
-                "title": "Disable All Logging",
-                "enum": ["disable"]
-              }
-            ],
-            "condition": {
-              "functionBody": "return (model.devices && model.devices[arrayIndices] && model.devices[arrayIndices].serialNumber && model.devices[arrayIndices].serialNumber.length === 32 && !model.devices[arrayIndices].ignoreDevice && model.devices[arrayIndices].model);"
-            }
-          }
-        }
-      }
     }
   },
   "layout": [
@@ -1526,7 +1356,6 @@
       "items": [
         "cloudRefreshRate",
         "refreshRate",
-        "hybridMode",
         "ignoreHKNative",
         "disableDeviceLogging",
         "debug",
@@ -1546,6 +1375,7 @@
           "items": [
             "singleDevices[].name",
             "singleDevices[].serialNumber",
+            "singleDevices[].connection",
             "singleDevices[].deviceUrl",
             "singleDevices[].ignoreDevice",
             "singleDevices[].model",
@@ -1571,6 +1401,7 @@
           "items": [
             "multiDevices[].name",
             "multiDevices[].serialNumber",
+            "multiDevices[].connection",
             "multiDevices[].deviceUrl",
             "multiDevices[].ignoreDevice",
             "multiDevices[].model",
@@ -1596,6 +1427,7 @@
           "items": [
             "lightDevices[].name",
             "lightDevices[].serialNumber",
+            "lightDevices[].connection",
             "lightDevices[].deviceUrl",
             "lightDevices[].ignoreDevice",
             "lightDevices[].model",
@@ -1621,6 +1453,7 @@
           "items": [
             "diffuserDevices[].name",
             "diffuserDevices[].serialNumber",
+            "diffuserDevices[].connection",
             "diffuserDevices[].deviceUrl",
             "diffuserDevices[].ignoreDevice",
             "diffuserDevices[].model",
@@ -1645,6 +1478,7 @@
           "items": [
             "purifierDevices[].name",
             "purifierDevices[].serialNumber",
+            "purifierDevices[].connection",
             "purifierDevices[].deviceUrl",
             "purifierDevices[].ignoreDevice",
             "purifierDevices[].model",
@@ -1668,6 +1502,7 @@
           "items": [
             "garageDevices[].name",
             "garageDevices[].serialNumber",
+            "garageDevices[].connection",
             "garageDevices[].deviceUrl",
             "garageDevices[].ignoreDevice",
             "garageDevices[].model",
@@ -1693,6 +1528,7 @@
           "items": [
             "rollerDevices[].name",
             "rollerDevices[].serialNumber",
+            "rollerDevices[].connection",
             "rollerDevices[].deviceUrl",
             "rollerDevices[].ignoreDevice",
             "rollerDevices[].model",
@@ -1721,33 +1557,6 @@
             "sensorDevices[].model",
             "sensorDevices[].lowBattThreshold",
             "sensorDevices[].overrideLogging"
-          ]
-        }
-      ]
-    },
-    {
-      "key": "devices",
-      "title": "Device Settings (Deprecated)",
-      "description": "You should not use this section to add new entries. Move your existing entries from here to the appropriate section above.",
-      "expandable": true,
-      "add": "Add Device",
-      "type": "array",
-      "items": [
-        {
-          "type": "fieldset",
-          "items": [
-            "devices[].name",
-            "devices[].serialNumber",
-            "devices[].deviceUrl",
-            "devices[].ignoreDevice",
-            "devices[].model",
-            "devices[].showAs",
-            "devices[].hideChannels",
-            "devices[].inUsePowerThreshold",
-            "devices[].garageDoorOpeningTime",
-            "devices[].reversePolarity",
-            "devices[].firmwareRevision",
-            "devices[].overrideLogging"
           ]
         }
       ]
