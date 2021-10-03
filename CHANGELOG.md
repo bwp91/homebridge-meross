@@ -2,10 +2,11 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 6.13.2 (2021-10-03)
 
 ### Changed
 
+- Small changes to RGB light devices
 - Bump `axios` to v0.22.0
 
 ## 6.13.1 (2021-09-30)
