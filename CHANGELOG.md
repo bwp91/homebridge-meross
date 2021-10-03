@@ -2,6 +2,13 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Added
+
+- **New Devices**
+  - MSS620R added to supported list
+
 ## 6.13.2 (2021-10-03)
 
 ### Changed
