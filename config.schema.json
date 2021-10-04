@@ -694,6 +694,14 @@
               "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice);"
             }
           },
+          "capacityOverride": {
+            "title": "Capacity Override",
+            "type": "boolean",
+            "description": "If true, the plugin will only use capacities 5 and 6 for sending colour updates.",
+            "condition": {
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice);"
+            }
+          },
           "firmwareRevision": {
             "title": "Firmware Version",
             "type": "string",
@@ -1433,6 +1441,7 @@
             "lightDevices[].model",
             "lightDevices[].brightnessStep",
             "lightDevices[].adaptiveLightingShift",
+            "lightDevices[].capacityOverride",
             "lightDevices[].firmwareRevision",
             "lightDevices[].userkey",
             "lightDevices[].overrideLogging"
