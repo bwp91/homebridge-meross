@@ -18,6 +18,10 @@ All notable changes to homebridge-meross will be documented in this file.
 
 - ⚠️ For devices currently using cloud control, the plugin will now first attempt to control the device locally using the network IP provided by Meross. If this local attempt fails for any reason, the plugin will revert to cloud control as before.
 
+### Fixed
+
+- An error when trying to unregister a hidden accessory from Homebridge
+
 ### Removed
 
 - The deprecated `devices` setting has been removed
