@@ -19,6 +19,7 @@ All notable changes to homebridge-meross will be documented in this file.
 ### Changed
 
 - ⚠️ For devices currently using cloud control, the plugin will now first attempt to control the device locally using the network IP provided by Meross. If this local attempt fails for any reason, the plugin will revert to cloud control as before.
+- Recommended Homebridge bumped to v1.3.5
 
 ### Fixed
 
