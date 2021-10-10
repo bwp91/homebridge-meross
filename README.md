@@ -21,8 +21,11 @@ Homebridge plugin to integrate Meross devices into HomeKit
 ### Plugin Information
 
 - This plugin allows you to view and control your Meross devices within HomeKit. The plugin:
-  - requires your Meross credentials for cloud device control
-  - supports configuring devices for local control
+  - downloads a device list if your Meross credentials are supplied
+  - attemps to control your devices locally, reverting to cloud control if necessary
+  - listens for real-time device updates when controlled externally
+  - supports configuring devices for local-only control without your Meross credentials
+  - can ignore any HomeKit-native devices you have using the configuration
 
 ### Prerequisites
 
