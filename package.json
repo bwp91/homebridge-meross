@@ -1,7 +1,7 @@
 {
   "name": "homebridge-meross",
   "alias": "Meross",
-  "version": "7.0.0-beta.10",
+  "version": "7.0.0-beta.11",
   "description": "Homebridge plugin to integrate Meross devices into HomeKit.",
   "license": "Apache-2.0",
   "keywords": [
