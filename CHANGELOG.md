@@ -7,9 +7,10 @@ All notable changes to homebridge-meross will be documented in this file.
 ### Added
 
 - **New Devices**
-- MSL320CPR added to supported list
-- MSS426 added to supported list
-- MSS620R added to supported list
+  - MSH300HK added to supported list
+  - MSL320CPR added to supported list
+  - MSS426 added to supported list
+  - MSS620R added to supported list
 - **Configuration**
   - A `connection` option per device to choose between
     - `default` (hybrid) - the plugin will attempt local control with the provided IP, and revert to cloud control if necessary
