@@ -23,8 +23,9 @@ All notable changes to homebridge-meross will be documented in this file.
 - ⚠️ For devices currently using cloud control, the plugin will now first attempt to control the device locally using the network IP provided by Meross. If this local attempt fails for any reason, the plugin will revert to cloud control as before.
 - Updated HomeKit native ignore list
 - Supply more information to the log about an unsupported MSH300 subdevice
-- Recommended node versions bumped to v14.18.0 or v16.11.0
+- Recommended node versions bumped to v14.18.1 or v16.11.1
 - Recommended Homebridge bumped to v1.3.5
+- Bump `axios` to v0.23.0
 
 ### Fixed
 
