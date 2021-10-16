@@ -29,6 +29,7 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Fixed
 
+- An issue showing Eve historical data for garage doors
 - An error when trying to unregister a hidden accessory from Homebridge
 
 ### Removed
