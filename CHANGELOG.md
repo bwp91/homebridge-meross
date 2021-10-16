@@ -2,9 +2,11 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 7.0.0 (2021-10-16)
 
 ### Added
+
+**See ⚠️ for breaking changes**
 
 - **New Devices**
   - MSH300HK added to supported list
