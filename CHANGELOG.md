@@ -36,8 +36,8 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Removed
 
-- The deprecated `devices` setting has been removed
-- `hybridMode` setting has been removed
+- ⚠️ The deprecated `devices` setting has been removed
+- ⚠️ `hybridMode` setting has been removed
 
 ## 6.13.2 (2021-10-03)
 
