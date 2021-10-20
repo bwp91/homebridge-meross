@@ -2,12 +2,16 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 7.1.0 (2021-10-20)
 
 ### Added
 
 - **New Devices**
   - MSS560M added to supported list
+
+### Fixed
+
+- An Eve app 'no data' gap for garage devices when restarting the plugin
 
 ## 7.0.0 (2021-10-16)
 
