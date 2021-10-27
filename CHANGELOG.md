@@ -2,12 +2,16 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## UPCOMING
+## 7.1.1 (2021-10-27)
 
 ### Changed
 
 - Bump `node` recommended versions to v14.18.1 or v16.13.0
 - Bump `axios` to v0.24.0
+
+### Fixed
+
+- Fixed an issue for HOOBS users related to the fakegato library
 
 ## 7.1.0 (2021-10-20)
 
