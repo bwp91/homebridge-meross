@@ -146,6 +146,10 @@
                 "enum": ["MSS110"]
               },
               {
+                "title": "MSS110NR",
+                "enum": ["MSS110NR"]
+              },
+              {
                 "title": "MSS110R",
                 "enum": ["MSS110R"]
               },
