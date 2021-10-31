@@ -2,6 +2,17 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Added
+
+- **New Devices**
+  - MSS110NR added to supported list
+
+### Changed
+
+- Updated HomeKit native ignore list
+
 ## 7.1.2 (2021-10-31)
 
 ### Changed
