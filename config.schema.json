@@ -590,6 +590,10 @@
             "type": "string",
             "oneOf": [
               {
+                "title": "MDL110",
+                "enum": ["MDL110"]
+              },
+              {
                 "title": "MDL110M",
                 "enum": ["MDL110M"]
               },
