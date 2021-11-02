@@ -8,6 +8,7 @@ All notable changes to homebridge-meross will be documented in this file.
 
 - **New Devices**
   - MDL110 added to supported list
+  - MSL120DBR added to supported list
   - MSS110NR added to supported list
 
 ### Changed
