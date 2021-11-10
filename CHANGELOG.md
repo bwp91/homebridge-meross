@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## UPCOMING
+
+### Changed
+
+- Recommended Homebridge bumped to v1.3.6
+
 ## 7.2.0 (2021-11-03)
 
 ### Added
