@@ -2,7 +2,7 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## UPCOMING
+## BETA
 
 ### Changed
 
