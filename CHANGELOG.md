@@ -6,7 +6,8 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Changed
 
-- Recommended Homebridge bumped to v1.3.6
+- Updated HomeKit native ignore list
+- Recommended Homebridge bumped to v1.3.8
 
 ## 7.2.0 (2021-11-03)
 
