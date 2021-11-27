@@ -4,6 +4,11 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ## BETA
 
+### Added
+
+- **New Devices**
+  - MSXH0 humidifier in development
+
 ### Changed
 
 - Updated HomeKit native ignore list
