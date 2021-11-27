@@ -1013,6 +1013,126 @@
         }
       }
     },
+    "humidifierDevices": {
+      "type": "array",
+      "title": "Humidifier Devices",
+      "description": "Optional settings for Meross humidifier devices.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "description": "A label for this device, will be used as the HomeKit name if setting up a local device.",
+            "type": "string",
+            "required": true
+          },
+          "serialNumber": {
+            "title": "Serial Number (UUID)",
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 32,
+            "required": true,
+            "condition": {
+              "functionBody": "return (model.humidifierDevices && model.humidifierDevices[arrayIndices] && model.humidifierDevices[arrayIndices].name);"
+            }
+          },
+          "connection": {
+            "type": "string",
+            "title": "Connection Type",
+            "oneOf": [
+              {
+                "title": "Hybrid (Default)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Force Cloud Control",
+                "enum": ["cloud"]
+              },
+              {
+                "title": "Force Local Control",
+                "enum": ["local"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.humidifierDevices && model.humidifierDevices[arrayIndices] && model.humidifierDevices[arrayIndices].serialNumber && model.humidifierDevices[arrayIndices].serialNumber.length === 32 && !model.humidifierDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Device IP",
+            "description": "Enter the IP address of this device for local connection.",
+            "type": "string",
+            "format": "ipv4",
+            "condition": {
+              "functionBody": "return (model.humidifierDevices && model.humidifierDevices[arrayIndices] && model.humidifierDevices[arrayIndices].serialNumber && model.humidifierDevices[arrayIndices].serialNumber.length === 32 && model.humidifierDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
+            }
+          },
+          "ignoreDevice": {
+            "type": "boolean",
+            "title": "Hide From HomeKit",
+            "description": "If true, this accessory will be removed and ignored from HomeKit.",
+            "condition": {
+              "functionBody": "return (model.humidifierDevices && model.humidifierDevices[arrayIndices] && model.humidifierDevices[arrayIndices].serialNumber && model.humidifierDevices[arrayIndices].serialNumber.length === 32 && model.humidifierDevices[arrayIndices].connection !== 'local' && !model.humidifierDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "model": {
+            "title": "Model",
+            "description": "The model of this device.",
+            "type": "string",
+            "oneOf": [
+              {
+                "title": "MSXH0",
+                "enum": ["MSXH0"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.humidifierDevices && model.humidifierDevices[arrayIndices] && model.humidifierDevices[arrayIndices].serialNumber && model.humidifierDevices[arrayIndices].serialNumber.length === 32 && !model.humidifierDevices[arrayIndices].ignoreDevice && model.humidifierDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "firmwareRevision": {
+            "title": "Firmware Version",
+            "type": "string",
+            "description": "For local devices, HomeKit will show this as the firmware version.",
+            "condition": {
+              "functionBody": "return (model.humidifierDevices && model.humidifierDevices[arrayIndices] && model.humidifierDevices[arrayIndices].serialNumber && model.humidifierDevices[arrayIndices].serialNumber.length === 32 && !model.humidifierDevices[arrayIndices].ignoreDevice && model.humidifierDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "userkey": {
+            "title": "Device (User) Key",
+            "type": "string",
+            "description": "Override the user key for this device if it is registered to a different Meross account.",
+            "condition": {
+              "functionBody": "return (model.humidifierDevices && model.humidifierDevices[arrayIndices] && model.humidifierDevices[arrayIndices].serialNumber && model.humidifierDevices[arrayIndices].serialNumber.length === 32 && !model.humidifierDevices[arrayIndices].ignoreDevice && model.humidifierDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "overrideLogging": {
+            "type": "string",
+            "title": "Override Logging Setting",
+            "description": "Override global logging setting for this device.",
+            "oneOf": [
+              {
+                "title": "Default (Use Global Setting)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Enable Standard Logging",
+                "enum": ["standard"]
+              },
+              {
+                "title": "Enable Debug Logging",
+                "enum": ["debug"]
+              },
+              {
+                "title": "Disable All Logging",
+                "enum": ["disable"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.humidifierDevices && model.humidifierDevices[arrayIndices] && model.humidifierDevices[arrayIndices].serialNumber && model.humidifierDevices[arrayIndices].serialNumber.length === 32 && !model.humidifierDevices[arrayIndices].ignoreDevice);"
+            }
+          }
+        }
+      }
+    },
     "garageDevices": {
       "type": "array",
       "title": "Garage Devices",
@@ -1513,6 +1633,30 @@
             "purifierDevices[].firmwareRevision",
             "purifierDevices[].userkey",
             "purifierDevices[].overrideLogging"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "humidifierDevices",
+      "title": "Humidifier Devices",
+      "description": "Optional settings for Meross humidifier devices.",
+      "expandable": true,
+      "add": "Add Device",
+      "type": "array",
+      "items": [
+        {
+          "type": "fieldset",
+          "items": [
+            "humidifierDevices[].name",
+            "humidifierDevices[].serialNumber",
+            "humidifierDevices[].connection",
+            "humidifierDevices[].deviceUrl",
+            "humidifierDevices[].ignoreDevice",
+            "humidifierDevices[].model",
+            "humidifierDevices[].firmwareRevision",
+            "humidifierDevices[].userkey",
+            "humidifierDevices[].overrideLogging"
           ]
         }
       ]
