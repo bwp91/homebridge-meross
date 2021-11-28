@@ -7,7 +7,7 @@ All notable changes to homebridge-meross will be documented in this file.
 ### Added
 
 - **New Devices**
-  - MSXH0 humidifier in development
+  - MSXH0 humidifier added to supported list
 
 ### Changed
 
