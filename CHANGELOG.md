@@ -14,6 +14,10 @@ All notable changes to homebridge-meross will be documented in this file.
 - Updated HomeKit native ignore list
 - Recommended Homebridge bumped to v1.3.8
 
+### Fixed
+
+- `messageId` increased from 16 to 32 random characters, appears to fix local control for newer device firmware
+
 ## 7.2.0 (2021-11-03)
 
 ### Added
