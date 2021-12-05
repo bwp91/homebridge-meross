@@ -25,6 +25,8 @@
       "title": "Meross Key",
       "type": "string",
       "description": "Enter your Meross key to enable local devices. You don't need to enter this if you have entered your username and password above, even for local devices. For help with obtaining this value see <a href=\"https://github.com/bwp91/homebridge-meross/wiki/Local-Control\" target=\"_blank\">the wiki</a>.",
+      "minLength": 32,
+      "maxLength": 32,
       "condition": {
         "functionBody": "return !(model.username && model.password);"
       }
