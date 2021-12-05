@@ -11,6 +11,7 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Changed
 
+- Plugin will now format and check for valid user key, otherwise will ignore config entry
 - Updated HomeKit native ignore list
 - Bump `homebridge` recommended version to v1.3.8
 - Bump `node` recommended versions to v14.18.2 or v16.13.1
