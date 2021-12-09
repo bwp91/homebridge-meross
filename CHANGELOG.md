@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 7.3.1 (2021-12-09)
+
+### Fixed
+
+- A `disabling plugin` notice when just the userkey is configured
+
 ## 7.3.0 (2021-12-08)
 
 ### Added
