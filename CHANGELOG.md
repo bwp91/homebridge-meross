@@ -8,6 +8,12 @@ All notable changes to homebridge-meross will be documented in this file.
 
 - **New Devices**
   - MSS510K and MSS510S added to supported list
+- **Configuration**
+  - A `connection` option to globally configure which connection type to use (this does **not** take priority over any `connection` option set for an individual device)
+  - To clarify the connection methods:
+    - **`hybrid`** will attempt local connection first using the IP provided by Meross, if control fails then cloud control will be used (only available when Meross username and password are configured)
+    - **`cloud`** will only attempt cloud connection (useful when devices are located on a separate network, only available when Meross username and password are configured)
+    - **`local`** will only attempt local connection using a device IP that **must** be configured (available when meross username and password are configured **or** if the Meross userkey is configured)
 
 ## 7.3.1 (2021-12-09)
 

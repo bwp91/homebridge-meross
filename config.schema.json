@@ -53,6 +53,28 @@
       "title": "Ignore HomeKit Native Devices",
       "description": "If true, the plugin will remove and ignore HomeKit-native cloud devices. This currently only works for known HomeKit model versions."
     },
+    "connection": {
+      "type": "string",
+      "title": "Connection Type",
+      "description": "Global setting for device connection type. This can also be set per accessory later in the config.",
+      "oneOf": [
+        {
+          "title": "Hybrid (Default)",
+          "enum": ["default"]
+        },
+        {
+          "title": "Force Cloud Control",
+          "enum": ["cloud"]
+        },
+        {
+          "title": "Force Local Control (with configured IPs)",
+          "enum": ["local"]
+        }
+      ],
+      "condition": {
+        "functionBody": "return (model.username && model.password);"
+      }
+    },
     "disableDeviceLogging": {
       "type": "boolean",
       "title": "Disable Device Logging",
@@ -109,7 +131,7 @@
                 "enum": ["cloud"]
               },
               {
-                "title": "Force Local Control",
+                "title": "Force Local Control (with configured IP)",
                 "enum": ["local"]
               }
             ],
@@ -364,7 +386,7 @@
                 "enum": ["cloud"]
               },
               {
-                "title": "Force Local Control",
+                "title": "Force Local Control (with configured IP)",
                 "enum": ["local"]
               }
             ],
@@ -569,7 +591,7 @@
                 "enum": ["cloud"]
               },
               {
-                "title": "Force Local Control",
+                "title": "Force Local Control (with configured IP)",
                 "enum": ["local"]
               }
             ],
@@ -809,7 +831,7 @@
                 "enum": ["cloud"]
               },
               {
-                "title": "Force Local Control",
+                "title": "Force Local Control (with configured IP)",
                 "enum": ["local"]
               }
             ],
@@ -939,7 +961,7 @@
                 "enum": ["cloud"]
               },
               {
-                "title": "Force Local Control",
+                "title": "Force Local Control (with configured IP)",
                 "enum": ["local"]
               }
             ],
@@ -1059,7 +1081,7 @@
                 "enum": ["cloud"]
               },
               {
-                "title": "Force Local Control",
+                "title": "Force Local Control (with configured IP)",
                 "enum": ["local"]
               }
             ],
@@ -1179,7 +1201,7 @@
                 "enum": ["cloud"]
               },
               {
-                "title": "Force Local Control",
+                "title": "Force Local Control (with configured IP)",
                 "enum": ["local"]
               }
             ],
@@ -1321,7 +1343,7 @@
                 "enum": ["cloud"]
               },
               {
-                "title": "Force Local Control",
+                "title": "Force Local Control (with configured IP)",
                 "enum": ["local"]
               }
             ],
@@ -1515,6 +1537,7 @@
         "cloudRefreshRate",
         "refreshRate",
         "ignoreHKNative",
+        "connection",
         "disableDeviceLogging",
         "debug",
         "disablePlugin"
