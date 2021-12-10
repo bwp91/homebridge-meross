@@ -15,6 +15,10 @@ All notable changes to homebridge-meross will be documented in this file.
     - **`cloud`** will only attempt cloud connection (useful when devices are located on a separate network, only available when Meross username and password are configured)
     - **`local`** will only attempt local connection using a device IP that **must** be configured (available when meross username and password are configured **or** if the Meross userkey is configured)
 
+### Changed
+
+- Plugin will show an error if local control is forced for a device which does not have a manual IP set
+
 ## 7.3.1 (2021-12-09)
 
 ### Fixed
