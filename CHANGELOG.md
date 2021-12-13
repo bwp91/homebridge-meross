@@ -7,6 +7,7 @@ All notable changes to homebridge-meross will be documented in this file.
 ### Added
 
 - **New Devices**
+  - MSS426F added to supported list
   - MSS510K and MSS510S added to supported list
 - **Configuration**
   - A `connection` option to globally configure which connection type to use (this does **not** take priority over any `connection` option set for an individual device)
