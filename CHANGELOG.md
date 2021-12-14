@@ -20,6 +20,10 @@ All notable changes to homebridge-meross will be documented in this file.
 
 - Plugin will show an error if local control is forced for a device which does not have a manual IP set
 
+### Fixed
+
+- Brightness fix for MSS560M dimmer
+
 ## 7.3.1 (2021-12-09)
 
 ### Fixed
