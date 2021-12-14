@@ -145,7 +145,7 @@
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && model.singleDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && ((!model.username && !model.password && model.userkey) || (model.username && model.password && (model.connection === 'local' || (model.connection !== 'local' && model.singleDevices[arrayIndices].connection === 'local')))));"
             }
           },
           "ignoreDevice": {
@@ -271,7 +271,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && model.singleDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && !model.username && !model.password && model.userkey);"
             }
           },
           "showAs": {
@@ -400,7 +400,7 @@
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && model.multiDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && ((!model.username && !model.password && model.userkey) || (model.username && model.password && (model.connection === 'local' || (model.connection !== 'local' && model.multiDevices[arrayIndices].connection === 'local')))));"
             }
           },
           "ignoreDevice": {
@@ -486,7 +486,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && model.multiDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && !model.username && !model.password && model.userkey);"
             }
           },
           "showAs": {
@@ -609,7 +609,7 @@
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && model.lightDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && ((!model.username && !model.password && model.userkey) || (model.username && model.password && (model.connection === 'local' || (model.connection !== 'local' && model.lightDevices[arrayIndices].connection === 'local')))));"
             }
           },
           "ignoreDevice": {
@@ -731,7 +731,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && model.lightDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && !model.username && !model.password && model.userkey);"
             }
           },
           "brightnessStep": {
@@ -849,7 +849,7 @@
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && model.diffuserDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && ((!model.username && !model.password && model.userkey) || (model.username && model.password && (model.connection === 'local' || (model.connection !== 'local' && model.diffuserDevices[arrayIndices].connection === 'local')))));"
             }
           },
           "ignoreDevice": {
@@ -871,7 +871,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice && model.diffuserDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice && !model.username && !model.password && model.userkey);"
             }
           },
           "brightnessStep": {
@@ -979,7 +979,7 @@
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && model.purifierDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && ((!model.username && !model.password && model.userkey) || (model.username && model.password && (model.connection === 'local' || (model.connection !== 'local' && model.purifierDevices[arrayIndices].connection === 'local')))));"
             }
           },
           "ignoreDevice": {
@@ -1001,7 +1001,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && !model.purifierDevices[arrayIndices].ignoreDevice && model.purifierDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && !model.purifierDevices[arrayIndices].ignoreDevice && !model.username && !model.password && model.userkey);"
             }
           },
           "firmwareRevision": {
@@ -1099,7 +1099,7 @@
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.humidifierDevices && model.humidifierDevices[arrayIndices] && model.humidifierDevices[arrayIndices].serialNumber && model.humidifierDevices[arrayIndices].serialNumber.length === 32 && model.humidifierDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.humidifierDevices && model.humidifierDevices[arrayIndices] && model.humidifierDevices[arrayIndices].serialNumber && model.humidifierDevices[arrayIndices].serialNumber.length === 32 && ((!model.username && !model.password && model.userkey) || (model.username && model.password && (model.connection === 'local' || (model.connection !== 'local' && model.humidifierDevices[arrayIndices].connection === 'local')))));"
             }
           },
           "ignoreDevice": {
@@ -1121,7 +1121,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.humidifierDevices && model.humidifierDevices[arrayIndices] && model.humidifierDevices[arrayIndices].serialNumber && model.humidifierDevices[arrayIndices].serialNumber.length === 32 && !model.humidifierDevices[arrayIndices].ignoreDevice && model.humidifierDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.humidifierDevices && model.humidifierDevices[arrayIndices] && model.humidifierDevices[arrayIndices].serialNumber && model.humidifierDevices[arrayIndices].serialNumber.length === 32 && !model.humidifierDevices[arrayIndices].ignoreDevice && !model.username && !model.password && model.userkey);"
             }
           },
           "firmwareRevision": {
@@ -1219,7 +1219,7 @@
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && model.garageDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && ((!model.username && !model.password && model.userkey) || (model.username && model.password && (model.connection === 'local' || (model.connection !== 'local' && model.garageDevices[arrayIndices].connection === 'local')))));"
             }
           },
           "ignoreDevice": {
@@ -1245,7 +1245,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice && model.garageDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice && !model.username && !model.password && model.userkey);"
             }
           },
           "garageDoorOpeningTime": {
@@ -1361,7 +1361,7 @@
             "type": "string",
             "format": "ipv4",
             "condition": {
-              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && model.rollerDevices[arrayIndices].connection === 'local' && ((model.username && model.password) || model.userkey));"
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && ((!model.username && !model.password && model.userkey) || (model.username && model.password && (model.connection === 'local' || (model.connection !== 'local' && model.rollerDevices[arrayIndices].connection === 'local')))));"
             }
           },
           "ignoreDevice": {
@@ -1383,7 +1383,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice && model.rollerDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice && !model.username && !model.password && model.userkey);"
             }
           },
           "reversePolarity": {
@@ -1485,7 +1485,7 @@
               }
             ],
             "condition": {
-              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice && model.sensorDevices[arrayIndices].deviceUrl);"
+              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice && !model.username && !model.password && model.userkey);"
             }
           },
           "lowBattThreshold": {
