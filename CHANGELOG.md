@@ -22,6 +22,7 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Fixed
 
+- Verify local update for device is for correct device and not different device which has changed IP
 - Brightness fix for MSS560M dimmer
 
 ## 7.3.1 (2021-12-09)
