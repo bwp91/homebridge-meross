@@ -15,6 +15,8 @@ All notable changes to homebridge-meross will be documented in this file.
     - **`hybrid`** will attempt local connection first using the IP provided by Meross, if control fails then cloud control will be used (only available when Meross username and password are configured)
     - **`cloud`** will only attempt cloud connection (useful when devices are located on a separate network, only available when Meross username and password are configured)
     - **`local`** will only attempt local connection using a device IP that **must** be configured (available when meross username and password are configured **or** if the Meross userkey is configured)
+- **Plugin Cache**
+  - Current temperature values from sensors will be cached in the homebridge storage directory to allow my other plugins to create `Heater` and `Cooler` accessories with the temperature values
 
 ### Changed
 
