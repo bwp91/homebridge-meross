@@ -7,6 +7,7 @@ All notable changes to homebridge-meross will be documented in this file.
 ### Added
 
 - **New Devices**
+  - MSS310X added to supported list
   - MSS426F added to supported list
   - MSS510K and MSS510S added to supported list
 - **Configuration**
