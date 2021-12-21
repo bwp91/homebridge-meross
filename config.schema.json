@@ -31,6 +31,49 @@
         "functionBody": "return !(model.username && model.password);"
       }
     },
+    "connection": {
+      "type": "string",
+      "title": "Connection Type",
+      "description": "Global setting for device connection type. This can also be set per accessory later in the config.",
+      "oneOf": [
+        {
+          "title": "Hybrid (Recommended)",
+          "enum": ["default"]
+        },
+        {
+          "title": "Force Cloud Control",
+          "enum": ["cloud"]
+        },
+        {
+          "title": "Force Local Control (with configured IPs)",
+          "enum": ["local"]
+        }
+      ],
+      "condition": {
+        "functionBody": "return (model.username && model.password);"
+      }
+    },
+    "ignoreHKNative": {
+      "type": "boolean",
+      "title": "Ignore HomeKit Native Devices"
+    },
+    "debug": {
+      "title": "Debug Logging",
+      "type": "boolean"
+    },
+    "debugFakegato": {
+      "title": "Debug Fakegato",
+      "type": "boolean"
+    },
+    "disablePlugin": {
+      "title": "Disable Plugin",
+      "type": "boolean"
+    },
+    "disableDeviceLogging": {
+      "type": "boolean",
+      "title": "Disable Device Logging",
+      "description": "Global logging setting for accessory status changes. If true then accessory status changes will not be logged. This can also be set per accessory later in the config."
+    },
     "cloudRefreshRate": {
       "title": "Cloud Refresh Rate",
       "type": "integer",
@@ -47,53 +90,6 @@
       "description": "Number of seconds between polls to local devices. Maximum value 600. If set to 0, 600 will be used.",
       "placeholder": 5,
       "minimum": 0
-    },
-    "ignoreHKNative": {
-      "type": "boolean",
-      "title": "Ignore HomeKit Native Devices",
-      "description": "If true, the plugin will remove and ignore HomeKit-native cloud devices. This currently only works for known HomeKit model versions."
-    },
-    "connection": {
-      "type": "string",
-      "title": "Connection Type",
-      "description": "Global setting for device connection type. This can also be set per accessory later in the config.",
-      "oneOf": [
-        {
-          "title": "Hybrid (Default)",
-          "enum": ["default"]
-        },
-        {
-          "title": "Force Cloud Control",
-          "enum": ["cloud"]
-        },
-        {
-          "title": "Force Local Control (with configured IPs)",
-          "enum": ["local"]
-        }
-      ],
-      "condition": {
-        "functionBody": "return (model.username && model.password);"
-      }
-    },
-    "disableDeviceLogging": {
-      "type": "boolean",
-      "title": "Disable Device Logging",
-      "description": "Global logging setting for accessory status changes. If true then accessory status changes will not be logged. This can also be set per accessory later in the config."
-    },
-    "debug": {
-      "title": "Debug Logging",
-      "type": "boolean",
-      "description": "Global logging setting for the plugin. If true then debug information will be added to the log. This can also be set per accessory later in the config."
-    },
-    "debugFakegato": {
-      "title": "Debug Fakegato",
-      "type": "boolean",
-      "description": "If true, the included Fakegato library will debug to the log."
-    },
-    "disablePlugin": {
-      "title": "Disable Plugin",
-      "type": "boolean",
-      "description": "If true, the plugin will remove all accessories and not load the plugin on restart."
     },
     "singleDevices": {
       "type": "array",
@@ -1552,20 +1548,16 @@
     "username",
     "password",
     "userkey",
+    "ignoreHKNative",
+    "connection",
+    "debug",
+    "disablePlugin",
     {
       "type": "fieldset",
-      "title": "Optional Settings",
-      "description": "Optional settings for the plugin, including refresh rates and global logging settings.",
+      "title": "Advanced Settings",
+      "description": "Advanced settings for the plugin, including refresh rate options.",
       "expandable": true,
-      "items": [
-        "cloudRefreshRate",
-        "refreshRate",
-        "ignoreHKNative",
-        "connection",
-        "disableDeviceLogging",
-        "debug",
-        "disablePlugin"
-      ]
+      "items": ["disableDeviceLogging", "cloudRefreshRate", "refreshRate"]
     },
     {
       "key": "singleDevices",

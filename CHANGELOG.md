@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 7.4.1 (2021-12-21)
+
+### Changed
+
+- Some config options rearranged for easier access
+
 ## 7.4.0 (2021-12-21)
 
 ### Added
