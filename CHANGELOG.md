@@ -11,7 +11,7 @@ All notable changes to homebridge-meross will be documented in this file.
   - MSS426F added to supported list
   - MSS510K and MSS510S added to supported list
 - **Simulations**
-  - Expose a single-channel device as a `Heater` or `Cooler` accessory type, using the current temperature value from another Meross, eWeLink or Govee sensor
+  - Expose a single-channel device as a `Heater` or `Cooler` accessory type, using the current temperature value from another Meross, eWeLink or Govee sensor (eWeLink and Govee sensors will not work with HOOBS)
 - **Configuration**
   - A `connection` option to globally configure which connection type to use (this does **not** take priority over any `connection` option set for an individual device)
   - To clarify the connection methods:
