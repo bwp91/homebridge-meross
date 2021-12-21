@@ -293,6 +293,14 @@
               {
                 "title": "Air Purifier",
                 "enum": ["purifier"]
+              },
+              {
+                "title": "1 Heater",
+                "enum": ["heater"]
+              },
+              {
+                "title": "1 Cooler",
+                "enum": ["cooler"]
               }
             ],
             "condition": {
@@ -307,6 +315,14 @@
             "minimum": 0,
             "condition": {
               "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "temperatureSource": {
+            "type": "string",
+            "title": "Temperature Sensor ID",
+            "description": "Enter a Meross, eWeLink or Govee device ID which provides a current temperature reading.",
+            "condition": {
+              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && ['heater', 'cooler'].includes(model.singleDevices[arrayIndices].showAs) && !model.singleDevices[arrayIndices].ignoreDevice);"
             }
           },
           "firmwareRevision": {
@@ -1570,6 +1586,7 @@
             "singleDevices[].model",
             "singleDevices[].showAs",
             "singleDevices[].inUsePowerThreshold",
+            "singleDevices[].temperatureSource",
             "singleDevices[].firmwareRevision",
             "singleDevices[].userkey",
             "singleDevices[].overrideLogging"
