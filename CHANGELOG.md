@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Fixed
+
+- Brightness fix for MSL100R dimmer
+
 ## 7.4.1 (2021-12-21)
 
 ### Changed
