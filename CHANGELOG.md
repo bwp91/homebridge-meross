@@ -4,6 +4,10 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ## BETA
 
+### Changed
+
+- Bump `mqtt` to v4.3.1
+
 ### Fixed
 
 - Brightness fix for MSL100R dimmer
