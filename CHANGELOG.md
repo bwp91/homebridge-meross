@@ -9,6 +9,10 @@ All notable changes to homebridge-meross will be documented in this file.
 - **New Devices**
   - MSS565X added to supported list
 
+### Changed
+
+- Updated HomeKit native ignore list
+
 ## 7.4.2 (2021-12-26)
 
 ### Changed
