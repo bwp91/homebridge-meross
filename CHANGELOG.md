@@ -6,6 +6,7 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Changed
 
+- Plugin will log HAPNodeJS version on startup
 - Bump `mqtt` to v4.3.2
 - Bump `homebridge` recommended version to v1.3.9
 
