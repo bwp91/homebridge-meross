@@ -55,7 +55,10 @@
     },
     "ignoreHKNative": {
       "type": "boolean",
-      "title": "Ignore HomeKit Native Devices"
+      "title": "Ignore HomeKit Native Devices",
+      "condition": {
+        "functionBody": "return (model.username && model.password);"
+      }
     },
     "debug": {
       "title": "Debug Logging",
