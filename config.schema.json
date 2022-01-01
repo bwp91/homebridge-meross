@@ -1459,6 +1459,126 @@
         }
       }
     },
+    "babyDevices": {
+      "type": "array",
+      "title": "Baby Devices",
+      "description": "Optional settings for Meross baby light/sound devices.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "description": "A label for this device, will be used as the HomeKit name if setting up a local device.",
+            "type": "string",
+            "required": true
+          },
+          "serialNumber": {
+            "title": "Serial Number (UUID)",
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 32,
+            "required": true,
+            "condition": {
+              "functionBody": "return (model.babyDevices && model.babyDevices[arrayIndices] && model.babyDevices[arrayIndices].name);"
+            }
+          },
+          "connection": {
+            "type": "string",
+            "title": "Connection Type",
+            "oneOf": [
+              {
+                "title": "Hybrid (Default)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Force Cloud Control",
+                "enum": ["cloud"]
+              },
+              {
+                "title": "Force Local Control (with configured IP)",
+                "enum": ["local"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.babyDevices && model.babyDevices[arrayIndices] && model.babyDevices[arrayIndices].serialNumber && model.babyDevices[arrayIndices].serialNumber.length === 32 && !model.babyDevices[arrayIndices].ignoreDevice && model.username && model.password);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Device IP",
+            "description": "Enter the IP address of this device for local connection.",
+            "type": "string",
+            "format": "ipv4",
+            "condition": {
+              "functionBody": "return (model.babyDevices && model.babyDevices[arrayIndices] && model.babyDevices[arrayIndices].serialNumber && model.babyDevices[arrayIndices].serialNumber.length === 32 && ((!model.username && !model.password && model.userkey) || (model.username && model.password && ((model.connection === 'local' && [undefined, 'local'].includes(model.babyDevices[arrayIndices].connection)) || (model.connection !== 'local' && model.babyDevices[arrayIndices].connection === 'local')))));"
+            }
+          },
+          "ignoreDevice": {
+            "type": "boolean",
+            "title": "Hide From HomeKit",
+            "description": "If true, this accessory will be removed and ignored from HomeKit.",
+            "condition": {
+              "functionBody": "return (model.babyDevices && model.babyDevices[arrayIndices] && model.babyDevices[arrayIndices].serialNumber && model.babyDevices[arrayIndices].serialNumber.length === 32 && model.babyDevices[arrayIndices].connection !== 'local' && !model.babyDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "model": {
+            "title": "Model",
+            "description": "The model of this device.",
+            "type": "string",
+            "oneOf": [
+              {
+                "title": "HP110AHK",
+                "enum": ["HP110AHK"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.babyDevices && model.babyDevices[arrayIndices] && model.babyDevices[arrayIndices].serialNumber && model.babyDevices[arrayIndices].serialNumber.length === 32 && !model.babyDevices[arrayIndices].ignoreDevice && !model.username && !model.password && model.userkey);"
+            }
+          },
+          "firmwareRevision": {
+            "title": "Firmware Version",
+            "type": "string",
+            "description": "For local devices, HomeKit will show this as the firmware version.",
+            "condition": {
+              "functionBody": "return (model.babyDevices && model.babyDevices[arrayIndices] && model.babyDevices[arrayIndices].serialNumber && model.babyDevices[arrayIndices].serialNumber.length === 32 && !model.babyDevices[arrayIndices].ignoreDevice && model.babyDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "userkey": {
+            "title": "Device (User) Key",
+            "type": "string",
+            "description": "Override the user key for this device if it is registered to a different Meross account.",
+            "condition": {
+              "functionBody": "return (model.babyDevices && model.babyDevices[arrayIndices] && model.babyDevices[arrayIndices].serialNumber && model.babyDevices[arrayIndices].serialNumber.length === 32 && !model.babyDevices[arrayIndices].ignoreDevice && model.babyDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "overrideLogging": {
+            "type": "string",
+            "title": "Override Logging Setting",
+            "description": "Override global logging setting for this device.",
+            "oneOf": [
+              {
+                "title": "Default (Use Global Setting)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Enable Standard Logging",
+                "enum": ["standard"]
+              },
+              {
+                "title": "Enable Debug Logging",
+                "enum": ["debug"]
+              },
+              {
+                "title": "Disable All Logging",
+                "enum": ["disable"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.babyDevices && model.babyDevices[arrayIndices] && model.babyDevices[arrayIndices].serialNumber && model.babyDevices[arrayIndices].serialNumber.length === 32 && !model.babyDevices[arrayIndices].ignoreDevice);"
+            }
+          }
+        }
+      }
+    },
     "sensorDevices": {
       "type": "array",
       "title": "Sensor Devices",
@@ -1762,6 +1882,30 @@
             "rollerDevices[].firmwareRevision",
             "rollerDevices[].userkey",
             "rollerDevices[].overrideLogging"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "babyDevices",
+      "title": "Baby Devices",
+      "description": "Optional settings for Meross baby light/sound devices.",
+      "expandable": true,
+      "add": "Add Device",
+      "type": "array",
+      "items": [
+        {
+          "type": "fieldset",
+          "items": [
+            "babyDevices[].name",
+            "babyDevices[].serialNumber",
+            "babyDevices[].connection",
+            "babyDevices[].deviceUrl",
+            "babyDevices[].ignoreDevice",
+            "babyDevices[].model",
+            "babyDevices[].firmwareRevision",
+            "babyDevices[].userkey",
+            "babyDevices[].overrideLogging"
           ]
         }
       ]
