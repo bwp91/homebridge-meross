@@ -158,10 +158,6 @@
             "type": "string",
             "oneOf": [
               {
-                "title": "HP110A",
-                "enum": ["HP110A"]
-              },
-              {
                 "title": "MSS110",
                 "enum": ["MSS110"]
               },
@@ -1525,6 +1521,10 @@
             "description": "The model of this device.",
             "type": "string",
             "oneOf": [
+              {
+                "title": "HP110A",
+                "enum": ["HP110A"]
+              },
               {
                 "title": "HP110AHK",
                 "enum": ["HP110AHK"]
