@@ -4,6 +4,14 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ## BETA
 
+### Added
+
+- **New Devices**
+  - HP110A and HP110AHK baby light/sound devices added to supported list
+    - This device will be published as an external `Television` service and will need to be added separately to HomeKit
+    - It will let you control the on/off state of the sound, change the music and the volume
+    - These devices can be configured using the new `babyDevices[]` configuration item
+
 ### Changed
 
 - Updated HomeKit native ignore list ([PR #390](https://github.com/bwp91/homebridge-meross/pull/390))
