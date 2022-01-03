@@ -11,6 +11,7 @@ All notable changes to homebridge-meross will be documented in this file.
     - This device will be published as an external `Television` service and will need to be added separately to HomeKit
     - It will let you control the on/off state of the sound, change the music and the volume
     - These devices can be configured using the new `babyDevices[]` configuration item
+  - MSL320CR added to supported list
 
 ### Changed
 
