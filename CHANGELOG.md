@@ -2,7 +2,7 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 7.6.0 (2022-01-05)
 
 ### Added
 
