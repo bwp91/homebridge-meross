@@ -6,7 +6,11 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Changed
 
-- Bump `mqtt` to v4.3.3
+- Bump `mqtt` to v4.3.4
+
+### Fixed
+
+- Plugin crash for older versions of Homebridge
 
 ## 7.6.0 (2022-01-05)
 
