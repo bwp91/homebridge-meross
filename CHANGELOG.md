@@ -4,6 +4,11 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ## BETA
 
+### Added
+
+- **New Devices**
+  - MSS210R added to supported list
+
 ### Changed
 
 - Bump `node` recommended versions to v14.18.3 or v16.13.2
