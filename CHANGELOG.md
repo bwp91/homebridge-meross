@@ -11,6 +11,7 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Changed
 
+- Bump `axios` to v0.25.0
 - Bump `node` recommended versions to v14.18.3 or v16.13.2
 
 ## 7.6.1 (2022-01-08)
