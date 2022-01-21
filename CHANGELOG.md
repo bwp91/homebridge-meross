@@ -8,6 +8,8 @@ All notable changes to homebridge-meross will be documented in this file.
 
 - **New Devices**
   - MSS210R added to supported list
+- **Sensor Hub Devices**
+  - Added option to hide/ignore individual subdevices from Homebridge/HomeKit
 
 ### Changed
 

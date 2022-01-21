@@ -1639,6 +1639,14 @@
               "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice && !model.username && !model.password && model.userkey);"
             }
           },
+          "ignoreSubdevices": {
+            "type": "string",
+            "title": "Ignore Subdevices",
+            "description": "A comma-separated list of subdevice ids to ignore for this device.",
+            "condition": {
+              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice);"
+            }
+          },
           "lowBattThreshold": {
             "type": "integer",
             "title": "Low Battery Threshold",
@@ -1936,6 +1944,7 @@
             "sensorDevices[].serialNumber",
             "sensorDevices[].ignoreDevice",
             "sensorDevices[].model",
+            "sensorDevices[].ignoreSubdevices",
             "sensorDevices[].lowBattThreshold",
             "sensorDevices[].overrideLogging"
           ]
