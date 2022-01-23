@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Added
+
+- Custom characteristics to Meross Baby Monitor to allow setting of the four light effects
+
 ## 7.7.0 (2022-01-22)
 
 ### Added
