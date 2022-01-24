@@ -8,6 +8,10 @@ All notable changes to homebridge-meross will be documented in this file.
 
 - Custom characteristics to Meross Baby Monitor to allow setting of the four light effects
 
+### Changed
+
+- Bump `homebridge` recommended version to v1.4.0
+
 ## 7.7.0 (2022-01-22)
 
 ### Added
