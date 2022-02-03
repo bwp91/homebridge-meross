@@ -6,6 +6,7 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Added
 
+- Support MSL120M
 - Custom characteristics to Meross Baby Monitor to allow setting of the four light effects
 - Template for MTS200 thermostat
 

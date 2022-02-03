@@ -693,6 +693,10 @@
                 "enum": ["MSL120J"]
               },
               {
+                "title": "MSL120M",
+                "enum": ["MSL120M"]
+              },
+              {
                 "title": "MSL210",
                 "enum": ["MSL210"]
               },
