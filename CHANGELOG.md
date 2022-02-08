@@ -2,7 +2,7 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 7.8.0 (2022-02-08)
 
 ### Added
 
@@ -13,6 +13,7 @@ All notable changes to homebridge-meross will be documented in this file.
 ### Changed
 
 - Bump `homebridge` recommended version to v1.4.0
+- Bump `mqtt` to v4.3.5
 
 ## 7.7.0 (2022-01-22)
 
