@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## UPCOMING
+
+### Changed
+
+- Bump `node` recommended versions to v14.19.0 or v16.14.0
+
 ## 7.8.0 (2022-02-08)
 
 ### Added
