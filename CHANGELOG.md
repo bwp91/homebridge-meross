@@ -2,11 +2,13 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## UPCOMING
+## 7.8.1 (2022-02-27)
 
 ### Changed
 
+- Updated HomeKit native ignore list
 - Bump `axios` to v0.26.0
+- Bump `mqtt` to v4.3.6
 - Bump `node` recommended versions to v14.19.0 or v16.14.0
 
 ## 7.8.0 (2022-02-08)
