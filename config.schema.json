@@ -440,6 +440,10 @@
                 "enum": ["MSS120B"]
               },
               {
+                "title": "MSS120BR",
+                "enum": ["MSS120BR"]
+              },
+              {
                 "title": "MSS420",
                 "enum": ["MSS420"]
               },

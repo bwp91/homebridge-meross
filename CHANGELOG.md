@@ -7,6 +7,7 @@ All notable changes to homebridge-meross will be documented in this file.
 ### Added
 
 - Support MSS425EX
+- Support MSS120BR
 
 ## 7.8.1 (2022-02-27)
 
