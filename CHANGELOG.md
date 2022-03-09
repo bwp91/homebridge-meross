@@ -9,6 +9,10 @@ All notable changes to homebridge-meross will be documented in this file.
 - Support MSS425EX
 - Support MSS120BR
 
+### Changed
+
+- Updated HomeKit native ignore list
+
 ## 7.8.1 (2022-02-27)
 
 ### Changed
