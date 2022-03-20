@@ -2,6 +2,14 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 7.9.1 (2022-03-20)
+
+### Changed
+
+- Bump `node` recommended versions to v14.19.1 or v16.14.2
+- Bump `axios` to v0.26.1
+- Bump `mqtt` to v4.3.7
+
 ## 7.9.0 (2022-02-27)
 
 ### Added
