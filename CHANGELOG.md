@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 7.10.0 (2022-03-29)
+
+### Added
+
+- Support MSS510XR
+
 ## 7.9.1 (2022-03-20)
 
 ### Changed
