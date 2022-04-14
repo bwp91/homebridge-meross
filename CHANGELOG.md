@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 7.10.1 (2022-04-14)
+
+### Fixed
+
+- Cloud login issues
+
 ## 7.10.0 (2022-03-29)
 
 ### Added
