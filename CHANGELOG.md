@@ -14,7 +14,7 @@ All notable changes to homebridge-meross will be documented in this file.
 - Changed to ESM package
 - Bump `node` recommended versions to v14.19.3 or v16.15.0
 - Updated HomeKit native ignore list
-- 
+
 ## 7.10.1 (2022-04-14)
 
 ### Fixed
