@@ -7,7 +7,8 @@
     "email": "bwp91@icloud.com"
   },
   "description": "Homebridge plugin to integrate Meross devices into HomeKit.",
-  "license": "Apache-2.0",
+  "type": "module",
+  "license": "MIT",
   "keywords": [
     "homebridge",
     "homebridge-plugin",
@@ -20,13 +21,17 @@
     "meross-cloud"
   ],
   "main": "lib/index.js",
+  "scripts": {
+    "lint": "eslint . --fix",
+    "rebuild": "rm -rf package-lock.json && rm -rf node_modules && npm install"
+  },
   "engines": {
-    "node": "^14.19.1 || ^16.15.0",
+    "node": "^14.19.3 || ^16.15.0",
     "homebridge": "^1.4.0"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bwp91/homebridge-meross.git"
+    "url": "https://github.com/bwp91/homebridge-meross.git"
   },
   "bugs": {
     "url": "https://github.com/bwp91/homebridge-meross/issues"
@@ -54,10 +59,13 @@
     "axios": "^0.27.2",
     "mqtt": "^4.3.7",
     "node-persist": "^3.1.0",
-    "p-queue": "^6.6.2",
-    "p-timeout": "^4.1.0"
+    "p-queue": "^7.2.0",
+    "p-timeout": "^5.0.2"
   },
-  "prettier": {
-    "printWidth": 100
+  "devDependencies": {
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-sort-exports": "^0.6.0",
+    "eslint": "^8.16.0"
   }
 }
