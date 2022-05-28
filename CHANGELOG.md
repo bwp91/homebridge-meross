@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 8.0.1 (2022-05-28)
+
+### Changed
+
+- More fixes and refactoring
+
 ## 8.0.0 (2022-05-28)
 
 ### Potentially Breaking Changes
