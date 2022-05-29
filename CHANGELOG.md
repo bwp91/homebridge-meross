@@ -2,6 +2,13 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Added
+
+- **New Devices**
+  - MSL610 light device
+
 ## 8.0.1 (2022-05-28)
 
 ### Changed
