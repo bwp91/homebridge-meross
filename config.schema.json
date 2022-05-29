@@ -745,6 +745,10 @@
                 "enum": ["MSL-430"]
               },
               {
+                "title": "MSL610",
+                "enum": ["MSL610"]
+              },
+              {
                 "title": "MSS560",
                 "enum": ["MSS560"]
               },
@@ -771,10 +775,6 @@
               {
                 "title": "MSS570X",
                 "enum": ["MSS570x"]
-              },
-              {
-                "title": "MSL610",
-                "enum": ["MSL610"]
               }
             ],
             "condition": {
