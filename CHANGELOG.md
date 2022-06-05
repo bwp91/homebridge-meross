@@ -2,11 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 8.1.1 (2022-06-05)
 
 ### Changed
 
 - Updated HomeKit native ignore list
+- Bump `node` recommended versions to v14.19.3 or v16.15.1
 
 ## 8.1.0 (2022-05-29)
 
