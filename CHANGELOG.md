@@ -2,6 +2,17 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 8.2.0 (2022-06-08)
+
+### Added
+
+- **New Devices**
+  - Model SP425EW
+
+### Fixed
+
+- A potential issue showing errors in the logs
+
 ## 8.1.1 (2022-06-05)
 
 ### Changed
