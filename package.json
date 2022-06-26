@@ -63,9 +63,10 @@
     "p-timeout": "^5.0.2"
   },
   "devDependencies": {
-    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-import-newlines": "^1.2.2",
     "eslint-plugin-sort-exports": "^0.6.0",
-    "eslint": "^8.17.0"
+    "eslint": "^8.18.0"
   }
 }

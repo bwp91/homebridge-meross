@@ -2,6 +2,16 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Added
+
+- Work in progress support for Meross GS559AH smoke alarm
+
+### Changed
+
+- Updated dev dependencies
+
 ## 8.2.0 (2022-06-08)
 
 ### Added
