@@ -2,16 +2,19 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 8.3.0 (2022-09-25)
 
 ### Added
 
+- Support for MTS200B
 - Work in progress support for Meross GS559AH smoke alarm
 
 ### Changed
 
 - Updated HomeKit native ignore list
-- Bump `node` recommended versions to v14.20.0 or v16.16.0
+- Correct parameters for `updatePlatformAccessories()`
+- Updated `homebridge` recommended version to v1.5.0
+- Bump `node` recommended versions to v14.20.1 or v16.17.1
 - Updated dev dependencies
 
 ## 8.2.0 (2022-06-08)
