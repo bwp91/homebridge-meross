@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 8.3.1 (2022-09-26)
+
+### Fixed
+
+- Node versions in package.json (thanks @eburairu!)
+
 ## 8.3.0 (2022-09-25)
 
 ### Added
