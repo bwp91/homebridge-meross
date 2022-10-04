@@ -745,6 +745,10 @@
                 "enum": ["MSL-430"]
               },
               {
+                "title": "MSL450",
+                "enum": ["MSL450"]
+              },
+              {
                 "title": "MSL610",
                 "enum": ["MSL610"]
               },

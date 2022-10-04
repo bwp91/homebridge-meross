@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Added
+
+- Support for MSL450
+
 ## 8.3.1 (2022-09-26)
 
 ### Fixed
