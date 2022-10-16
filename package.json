@@ -26,7 +26,7 @@
     "rebuild": "rm -rf package-lock.json && rm -rf node_modules && npm install"
   },
   "engines": {
-    "node": "^14.20.1 || ^16.17.1 || ^18.10.0",
+    "node": "^14.20.1 || ^16.18.0 || ^18.11.0",
     "homebridge": "^1.5.0"
   },
   "repository": {
@@ -56,10 +56,10 @@
   ],
   "dependencies": {
     "@homebridge/plugin-ui-utils": "^0.0.19",
-    "axios": "^1.1.0",
+    "axios": "^1.1.3",
     "mqtt": "^4.3.7",
     "node-persist": "^3.1.0",
-    "p-queue": "^7.2.0",
+    "p-queue": "^7.3.0",
     "p-timeout": "^6.0.0"
   },
   "devDependencies": {
@@ -67,6 +67,6 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-import-newlines": "^1.2.3",
     "eslint-plugin-sort-exports": "^0.7.0",
-    "eslint": "^8.24.0"
+    "eslint": "^8.25.0"
   }
 }
