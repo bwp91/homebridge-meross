@@ -2,6 +2,8 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+⚠️ Note that Node 14 will no longer be supported after April 2023
+
 ## BETA
 
 ### Added
