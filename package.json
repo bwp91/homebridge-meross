@@ -26,7 +26,7 @@
     "rebuild": "rm -rf package-lock.json && rm -rf node_modules && npm install"
   },
   "engines": {
-    "node": "^14.20.1 || ^16.18.0 || ^18.11.0",
+    "node": "^14.21.1 || ^16.18.1 || ^18.12.1",
     "homebridge": "^1.5.0"
   },
   "repository": {
@@ -67,6 +67,6 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-import-newlines": "^1.2.3",
     "eslint-plugin-sort-exports": "^0.7.0",
-    "eslint": "^8.25.0"
+    "eslint": "^8.27.0"
   }
 }

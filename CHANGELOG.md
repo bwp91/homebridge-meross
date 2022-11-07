@@ -8,6 +8,10 @@ All notable changes to homebridge-meross will be documented in this file.
 
 - Support for MSL450
 
+### Changed
+
+- Bump `node` recommended versions to v14.21.1 or v16.18.1 or v18.12.1
+
 ## 8.3.1 (2022-09-26)
 
 ### Fixed
