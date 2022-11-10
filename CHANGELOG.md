@@ -4,7 +4,7 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ⚠️ Note that Node 14 will no longer be supported after April 2023
 
-## BETA
+## 8.4.0 (2022-11-10)
 
 ### Added
 
@@ -12,6 +12,7 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Changed
 
+- Updated HomeKit native ignore list
 - Bump `node` recommended versions to v14.21.1 or v16.18.1 or v18.12.1
 
 ## 8.3.1 (2022-09-26)
