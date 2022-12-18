@@ -4,6 +4,22 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ⚠️ Note that Node 14 will no longer be supported after April 2023
 
+## 8.5.0 (2022-12-18)
+
+### Added
+
+- Support for MSS425ER and MOD150
+
+### Changed
+
+- `MSH300HK` removed from native HomeKit ignore list as there may be subdevices that are not native
+  - If this change affects you with an unwanted subdevice appearing, please open an issue
+- Allow for homebridge 2.0 beta
+
+### Fixed
+
+- Fixed logic in local model check
+
 ## 8.4.0 (2022-11-10)
 
 ### Added
