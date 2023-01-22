@@ -4,6 +4,12 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ⚠️ Note that Node 14 will no longer be supported after April 2023
 
+## 8.5.2 (2023-01-22)
+
+### Fixed
+
+- Homebridge characteristic warnings for MSH300 hub MS100 subdevices (again!)
+
 ## 8.5.1 (2023-01-20)
 
 ### Changed
