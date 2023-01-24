@@ -56,11 +56,11 @@
   ],
   "dependencies": {
     "@homebridge/plugin-ui-utils": "^0.0.19",
-    "axios": "^1.2.3",
+    "axios": "^1.2.4",
     "mqtt": "^4.3.7",
     "node-persist": "^3.1.0",
     "p-queue": "^7.3.0",
-    "p-timeout": "^6.0.0"
+    "p-timeout": "^6.1.0"
   },
   "devDependencies": {
     "eslint-config-airbnb-base": "^15.0.0",
