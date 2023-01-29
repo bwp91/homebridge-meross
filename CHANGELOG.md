@@ -11,6 +11,10 @@ All notable changes to homebridge-meross will be documented in this file.
 - Updated HomeKit native ignore list
 - Updated dependencies
 
+### Fixed
+
+- Fix brightness command for MSL100D
+
 ## 8.5.3 (2023-01-24)
 
 ### Changed
