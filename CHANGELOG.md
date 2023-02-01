@@ -6,6 +6,10 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ## BETA
 
+### Added
+
+- Support for MSS570M
+
 ### Changed
 
 - Updated HomeKit native ignore list
