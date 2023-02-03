@@ -60,18 +60,6 @@
         "functionBody": "return (model.username && model.password);"
       }
     },
-    "debug": {
-      "title": "Debug Logging",
-      "type": "boolean"
-    },
-    "debugFakegato": {
-      "title": "Debug Fakegato",
-      "type": "boolean"
-    },
-    "disablePlugin": {
-      "title": "Disable Plugin",
-      "type": "boolean"
-    },
     "disableDeviceLogging": {
       "type": "boolean",
       "title": "Disable Device Logging",
@@ -1725,8 +1713,6 @@
     "userkey",
     "ignoreHKNative",
     "connection",
-    "debug",
-    "disablePlugin",
     {
       "type": "fieldset",
       "title": "Advanced Settings",

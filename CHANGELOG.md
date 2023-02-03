@@ -6,14 +6,20 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ## BETA
 
+### Breaking
+
+- Remove official support for Node 14
+- Remove option to disable plugin - this is now available in the Homebridge UI
+- Remove option for debug logging - this will be enabled when using a beta version of the plugin
+
 ### Added
 
-- Support for MSS570M
+- Support for MSS570M as a dimmer switch
 
 ### Changed
 
 - Updated HomeKit native ignore list
-- Bump `node` recommended versions to v14.21.1 or v16.18.1 or v18.14.0
+- Bump `node` recommended versions to v16.19.0 or v18.14.0
 - Updated dependencies
 
 ### Fixed
