@@ -331,32 +331,6 @@
             "condition": {
               "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice && model.singleDevices[arrayIndices].deviceUrl);"
             }
-          },
-          "overrideLogging": {
-            "type": "string",
-            "title": "Override Logging Setting",
-            "description": "Override global logging setting for this device.",
-            "oneOf": [
-              {
-                "title": "Default (Use Global Setting)",
-                "enum": ["default"]
-              },
-              {
-                "title": "Enable Standard Logging",
-                "enum": ["standard"]
-              },
-              {
-                "title": "Enable Debug Logging",
-                "enum": ["debug"]
-              },
-              {
-                "title": "Disable All Logging",
-                "enum": ["disable"]
-              }
-            ],
-            "condition": {
-              "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && !model.singleDevices[arrayIndices].ignoreDevice);"
-            }
           }
         }
       }
@@ -551,32 +525,6 @@
             "description": "Override the user key for this device if it is registered to a different Meross account.",
             "condition": {
               "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice && model.multiDevices[arrayIndices].deviceUrl);"
-            }
-          },
-          "overrideLogging": {
-            "type": "string",
-            "title": "Override Logging Setting",
-            "description": "Override global logging setting for this device.",
-            "oneOf": [
-              {
-                "title": "Default (Use Global Setting)",
-                "enum": ["default"]
-              },
-              {
-                "title": "Enable Standard Logging",
-                "enum": ["standard"]
-              },
-              {
-                "title": "Enable Debug Logging",
-                "enum": ["debug"]
-              },
-              {
-                "title": "Disable All Logging",
-                "enum": ["disable"]
-              }
-            ],
-            "condition": {
-              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice);"
             }
           }
         }
@@ -816,32 +764,6 @@
             "condition": {
               "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice && model.lightDevices[arrayIndices].deviceUrl);"
             }
-          },
-          "overrideLogging": {
-            "type": "string",
-            "title": "Override Logging Setting",
-            "description": "Override global logging setting for this device.",
-            "oneOf": [
-              {
-                "title": "Default (Use Global Setting)",
-                "enum": ["default"]
-              },
-              {
-                "title": "Enable Standard Logging",
-                "enum": ["standard"]
-              },
-              {
-                "title": "Enable Debug Logging",
-                "enum": ["debug"]
-              },
-              {
-                "title": "Disable All Logging",
-                "enum": ["disable"]
-              }
-            ],
-            "condition": {
-              "functionBody": "return (model.lightDevices && model.lightDevices[arrayIndices] && model.lightDevices[arrayIndices].serialNumber && model.lightDevices[arrayIndices].serialNumber.length === 32 && !model.lightDevices[arrayIndices].ignoreDevice);"
-            }
           }
         }
       }
@@ -946,32 +868,6 @@
             "condition": {
               "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice && model.diffuserDevices[arrayIndices].deviceUrl);"
             }
-          },
-          "overrideLogging": {
-            "type": "string",
-            "title": "Override Logging Setting",
-            "description": "Override global logging setting for this device.",
-            "oneOf": [
-              {
-                "title": "Default (Use Global Setting)",
-                "enum": ["default"]
-              },
-              {
-                "title": "Enable Standard Logging",
-                "enum": ["standard"]
-              },
-              {
-                "title": "Enable Debug Logging",
-                "enum": ["debug"]
-              },
-              {
-                "title": "Disable All Logging",
-                "enum": ["disable"]
-              }
-            ],
-            "condition": {
-              "functionBody": "return (model.diffuserDevices && model.diffuserDevices[arrayIndices] && model.diffuserDevices[arrayIndices].serialNumber && model.diffuserDevices[arrayIndices].serialNumber.length === 32 && !model.diffuserDevices[arrayIndices].ignoreDevice);"
-            }
           }
         }
       }
@@ -1066,32 +962,6 @@
             "condition": {
               "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && !model.purifierDevices[arrayIndices].ignoreDevice && model.purifierDevices[arrayIndices].deviceUrl);"
             }
-          },
-          "overrideLogging": {
-            "type": "string",
-            "title": "Override Logging Setting",
-            "description": "Override global logging setting for this device.",
-            "oneOf": [
-              {
-                "title": "Default (Use Global Setting)",
-                "enum": ["default"]
-              },
-              {
-                "title": "Enable Standard Logging",
-                "enum": ["standard"]
-              },
-              {
-                "title": "Enable Debug Logging",
-                "enum": ["debug"]
-              },
-              {
-                "title": "Disable All Logging",
-                "enum": ["disable"]
-              }
-            ],
-            "condition": {
-              "functionBody": "return (model.purifierDevices && model.purifierDevices[arrayIndices] && model.purifierDevices[arrayIndices].serialNumber && model.purifierDevices[arrayIndices].serialNumber.length === 32 && !model.purifierDevices[arrayIndices].ignoreDevice);"
-            }
           }
         }
       }
@@ -1185,32 +1055,6 @@
             "description": "Override the user key for this device if it is registered to a different Meross account.",
             "condition": {
               "functionBody": "return (model.humidifierDevices && model.humidifierDevices[arrayIndices] && model.humidifierDevices[arrayIndices].serialNumber && model.humidifierDevices[arrayIndices].serialNumber.length === 32 && !model.humidifierDevices[arrayIndices].ignoreDevice && model.humidifierDevices[arrayIndices].deviceUrl);"
-            }
-          },
-          "overrideLogging": {
-            "type": "string",
-            "title": "Override Logging Setting",
-            "description": "Override global logging setting for this device.",
-            "oneOf": [
-              {
-                "title": "Default (Use Global Setting)",
-                "enum": ["default"]
-              },
-              {
-                "title": "Enable Standard Logging",
-                "enum": ["standard"]
-              },
-              {
-                "title": "Enable Debug Logging",
-                "enum": ["debug"]
-              },
-              {
-                "title": "Disable All Logging",
-                "enum": ["disable"]
-              }
-            ],
-            "condition": {
-              "functionBody": "return (model.humidifierDevices && model.humidifierDevices[arrayIndices] && model.humidifierDevices[arrayIndices].serialNumber && model.humidifierDevices[arrayIndices].serialNumber.length === 32 && !model.humidifierDevices[arrayIndices].ignoreDevice);"
             }
           }
         }
@@ -1328,32 +1172,6 @@
             "condition": {
               "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice && model.garageDevices[arrayIndices].deviceUrl);"
             }
-          },
-          "overrideLogging": {
-            "type": "string",
-            "title": "Override Logging Setting",
-            "description": "Override global logging setting for this device.",
-            "oneOf": [
-              {
-                "title": "Default (Use Global Setting)",
-                "enum": ["default"]
-              },
-              {
-                "title": "Enable Standard Logging",
-                "enum": ["standard"]
-              },
-              {
-                "title": "Enable Debug Logging",
-                "enum": ["debug"]
-              },
-              {
-                "title": "Disable All Logging",
-                "enum": ["disable"]
-              }
-            ],
-            "condition": {
-              "functionBody": "return (model.garageDevices && model.garageDevices[arrayIndices] && model.garageDevices[arrayIndices].serialNumber && model.garageDevices[arrayIndices].serialNumber.length === 32 && !model.garageDevices[arrayIndices].ignoreDevice);"
-            }
           }
         }
       }
@@ -1456,32 +1274,6 @@
             "condition": {
               "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice && model.rollerDevices[arrayIndices].deviceUrl);"
             }
-          },
-          "overrideLogging": {
-            "type": "string",
-            "title": "Override Logging Setting",
-            "description": "Override global logging setting for this device.",
-            "oneOf": [
-              {
-                "title": "Default (Use Global Setting)",
-                "enum": ["default"]
-              },
-              {
-                "title": "Enable Standard Logging",
-                "enum": ["standard"]
-              },
-              {
-                "title": "Enable Debug Logging",
-                "enum": ["debug"]
-              },
-              {
-                "title": "Disable All Logging",
-                "enum": ["disable"]
-              }
-            ],
-            "condition": {
-              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice);"
-            }
           }
         }
       }
@@ -1580,32 +1372,6 @@
             "condition": {
               "functionBody": "return (model.babyDevices && model.babyDevices[arrayIndices] && model.babyDevices[arrayIndices].serialNumber && model.babyDevices[arrayIndices].serialNumber.length === 32 && !model.babyDevices[arrayIndices].ignoreDevice && model.babyDevices[arrayIndices].deviceUrl);"
             }
-          },
-          "overrideLogging": {
-            "type": "string",
-            "title": "Override Logging Setting",
-            "description": "Override global logging setting for this device.",
-            "oneOf": [
-              {
-                "title": "Default (Use Global Setting)",
-                "enum": ["default"]
-              },
-              {
-                "title": "Enable Standard Logging",
-                "enum": ["standard"]
-              },
-              {
-                "title": "Enable Debug Logging",
-                "enum": ["debug"]
-              },
-              {
-                "title": "Disable All Logging",
-                "enum": ["disable"]
-              }
-            ],
-            "condition": {
-              "functionBody": "return (model.babyDevices && model.babyDevices[arrayIndices] && model.babyDevices[arrayIndices].serialNumber && model.babyDevices[arrayIndices].serialNumber.length === 32 && !model.babyDevices[arrayIndices].ignoreDevice);"
-            }
           }
         }
       }
@@ -1676,32 +1442,6 @@
             "condition": {
               "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice);"
             }
-          },
-          "overrideLogging": {
-            "type": "string",
-            "title": "Override Logging Setting",
-            "description": "Override global logging setting for this device.",
-            "oneOf": [
-              {
-                "title": "Default (Use Global Setting)",
-                "enum": ["default"]
-              },
-              {
-                "title": "Enable Standard Logging",
-                "enum": ["standard"]
-              },
-              {
-                "title": "Enable Debug Logging",
-                "enum": ["debug"]
-              },
-              {
-                "title": "Disable All Logging",
-                "enum": ["disable"]
-              }
-            ],
-            "condition": {
-              "functionBody": "return (model.sensorDevices && model.sensorDevices[arrayIndices] && model.sensorDevices[arrayIndices].serialNumber && model.sensorDevices[arrayIndices].serialNumber.length === 32 && !model.sensorDevices[arrayIndices].ignoreDevice);"
-            }
           }
         }
       }
@@ -1741,8 +1481,7 @@
             "singleDevices[].inUsePowerThreshold",
             "singleDevices[].temperatureSource",
             "singleDevices[].firmwareRevision",
-            "singleDevices[].userkey",
-            "singleDevices[].overrideLogging"
+            "singleDevices[].userkey"
           ]
         }
       ]
@@ -1767,8 +1506,7 @@
             "multiDevices[].showAs",
             "multiDevices[].hideChannels",
             "multiDevices[].firmwareRevision",
-            "multiDevices[].userkey",
-            "multiDevices[].overrideLogging"
+            "multiDevices[].userkey"
           ]
         }
       ]
@@ -1793,8 +1531,7 @@
             "lightDevices[].brightnessStep",
             "lightDevices[].adaptiveLightingShift",
             "lightDevices[].firmwareRevision",
-            "lightDevices[].userkey",
-            "lightDevices[].overrideLogging"
+            "lightDevices[].userkey"
           ]
         }
       ]
@@ -1818,8 +1555,7 @@
             "diffuserDevices[].model",
             "diffuserDevices[].brightnessStep",
             "diffuserDevices[].firmwareRevision",
-            "diffuserDevices[].userkey",
-            "diffuserDevices[].overrideLogging"
+            "diffuserDevices[].userkey"
           ]
         }
       ]
@@ -1842,8 +1578,7 @@
             "purifierDevices[].ignoreDevice",
             "purifierDevices[].model",
             "purifierDevices[].firmwareRevision",
-            "purifierDevices[].userkey",
-            "purifierDevices[].overrideLogging"
+            "purifierDevices[].userkey"
           ]
         }
       ]
@@ -1866,8 +1601,7 @@
             "humidifierDevices[].ignoreDevice",
             "humidifierDevices[].model",
             "humidifierDevices[].firmwareRevision",
-            "humidifierDevices[].userkey",
-            "humidifierDevices[].overrideLogging"
+            "humidifierDevices[].userkey"
           ]
         }
       ]
@@ -1892,8 +1626,7 @@
             "garageDevices[].garageDoorOpeningTime",
             "garageDevices[].hideChannels",
             "garageDevices[].firmwareRevision",
-            "garageDevices[].userkey",
-            "garageDevices[].overrideLogging"
+            "garageDevices[].userkey"
           ]
         }
       ]
@@ -1917,8 +1650,7 @@
             "rollerDevices[].model",
             "rollerDevices[].reversePolarity",
             "rollerDevices[].firmwareRevision",
-            "rollerDevices[].userkey",
-            "rollerDevices[].overrideLogging"
+            "rollerDevices[].userkey"
           ]
         }
       ]
@@ -1941,8 +1673,7 @@
             "babyDevices[].ignoreDevice",
             "babyDevices[].model",
             "babyDevices[].firmwareRevision",
-            "babyDevices[].userkey",
-            "babyDevices[].overrideLogging"
+            "babyDevices[].userkey"
           ]
         }
       ]
@@ -1963,8 +1694,7 @@
             "sensorDevices[].ignoreDevice",
             "sensorDevices[].model",
             "sensorDevices[].ignoreSubdevices",
-            "sensorDevices[].lowBattThreshold",
-            "sensorDevices[].overrideLogging"
+            "sensorDevices[].lowBattThreshold"
           ]
         }
       ]
