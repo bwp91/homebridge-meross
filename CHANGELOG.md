@@ -13,7 +13,9 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Added
 
-- Support for MSS570M as a dimmer switch
+- Support for:
+  - MSS305 outlet (thanks @filipef101!)
+  - MSS570M as a dimmer switch
 
 ### Changed
 
