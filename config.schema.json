@@ -65,11 +65,19 @@
       "title": "Disable Device Logging",
       "description": "Global logging setting for accessory status changes. If true then accessory status changes will not be logged. This can also be set per accessory later in the config."
     },
+    "domain": {
+      "type": "string",
+      "default": "iot.meross.com",
+      "required": true,
+      "title": "Domain",
+      "description": "Used to connect to meross io api, varies by region\nExample: iotx-eu.meross.com is a possible domain on europe. Inpect/snoop api calls to figure this if needed"
+    },
     "cloudRefreshRate": {
       "title": "Cloud Refresh Rate",
       "type": "integer",
       "description": "Number of seconds between polls to cloud devices. Maximum value 600. If set to 0, 600 will be used.",
       "placeholder": 0,
+      "maximum": 600,
       "minimum": 0,
       "condition": {
         "functionBody": "return (model.username && model.password);"
@@ -79,6 +87,7 @@
       "title": "Local Refresh Rate",
       "type": "integer",
       "description": "Number of seconds between polls to local devices. Maximum value 600. If set to 0, 600 will be used.",
+      "maximum": 600,
       "placeholder": 5,
       "minimum": 0
     },
