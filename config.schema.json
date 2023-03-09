@@ -189,6 +189,9 @@
                 "enum": ["MSS210RTL"]
               },
               {
+                "title": "MSS305",
+                "enum": ["MSS305"]
+              }, {
                 "title": "MSS310",
                 "enum": ["MSS310"]
               },
