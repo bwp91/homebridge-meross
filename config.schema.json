@@ -67,10 +67,9 @@
     },
     "domain": {
       "type": "string",
-      "default": "iot.meross.com",
-      "required": true,
       "title": "Domain",
-      "description": "Used to connect to meross io api, varies by region\nExample: iotx-eu.meross.com is a possible domain on europe. Inpect/snoop api calls to figure this if needed"
+      "placeholder": "iot.meross.com",
+      "description": "Used to connect to Meross API, varies by region, example: `iotx-eu.meross.com` is a possible domain in Europe - inspect API calls to figure this if needed."
     },
     "cloudRefreshRate": {
       "title": "Cloud Refresh Rate",
@@ -1470,7 +1469,7 @@
       "title": "Advanced Settings",
       "description": "Advanced settings for the plugin, including refresh rate options.",
       "expandable": true,
-      "items": ["disableDeviceLogging", "cloudRefreshRate", "refreshRate"]
+      "items": ["disableDeviceLogging", "domain", "cloudRefreshRate", "refreshRate"]
     },
     {
       "key": "singleDevices",
