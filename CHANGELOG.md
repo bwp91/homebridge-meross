@@ -2,7 +2,7 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 9.0.0 (2023-03-11)
 
 ### Breaking
 
@@ -16,6 +16,7 @@ All notable changes to homebridge-meross will be documented in this file.
 - Support for:
   - MSS305 outlet (thanks @filipef101!)
   - MSS570M as a dimmer switch
+- Support for custom login domain (thanks @filipef101!)
 
 ### Changed
 
