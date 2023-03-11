@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 9.0.1 (2023-03-11)
+
+### Fixed
+
+- Login issue
+
 ## 9.0.0 (2023-03-11)
 
 ### Breaking
