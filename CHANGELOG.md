@@ -2,6 +2,13 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 9.0.2 (2023-04-05)
+
+### Changed
+
+- Simplify log welcome messages
+- Bump `node` recommended versions to v16.20.0 or v18.15.0
+
 ## 9.0.1 (2023-03-11)
 
 ### Fixed
