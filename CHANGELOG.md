@@ -2,6 +2,14 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 9.0.3 (2023-04-16)
+
+### Changed
+
+- Fix custom configs for cloud devices
+- Reduce minimum `homebridge` version to v1.4
+- Bump `node` recommended versions to v16.20.0 or v18.16.0
+
 ## 9.0.2 (2023-04-05)
 
 ### Changed
