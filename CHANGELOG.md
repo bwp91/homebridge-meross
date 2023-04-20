@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 9.0.4 (2023-04-20)
+
+### Fixed
+
+- Fix to accommodate Meross API change
+
 ## 9.0.3 (2023-04-16)
 
 ### Changed
