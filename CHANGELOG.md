@@ -2,6 +2,13 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## 9.0.5 (2023-04-22)
+
+### Changed
+
+- Bump `node` supported versions to v16.20.0 or v18.16.0 or v20.0.0
+- Updated dependencies
+
 ## 9.0.4 (2023-04-20)
 
 ### Fixed
