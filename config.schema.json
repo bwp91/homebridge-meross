@@ -199,7 +199,8 @@
               {
                 "title": "MSS305",
                 "enum": ["MSS305"]
-              }, {
+              },
+              {
                 "title": "MSS310",
                 "enum": ["MSS310"]
               },
@@ -214,6 +215,10 @@
               {
                 "title": "MSS310X",
                 "enum": ["MSS310X"]
+              },
+              {
+                "title": "MSS315",
+                "enum": ["MSS315"]
               },
               {
                 "title": "MSS510",
