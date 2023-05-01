@@ -2,11 +2,16 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 9.1.0 (2023-05-01)
 
 ### Added
 
 - MSS315 device support
+
+### Changed
+
+- README updates
+- Dependency updates
 
 ## 9.0.5 (2023-04-22)
 
