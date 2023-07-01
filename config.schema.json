@@ -418,6 +418,10 @@
             "type": "string",
             "oneOf": [
               {
+                "title": "MSP843P",
+                "enum": ["MSP843P"]
+              },
+              {
                 "title": "MSS120B",
                 "enum": ["MSS120B"]
               },

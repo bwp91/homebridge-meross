@@ -2,6 +2,17 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Added
+
+- MSP843P device support
+
+### Changed
+
+- Bump `node` recommended versions to v16.20.1 or v18.16.1 or v20.3.1
+- Updated dependencies
+
 ## 9.1.0 (2023-05-01)
 
 ### Added
