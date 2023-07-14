@@ -6,7 +6,7 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Added
 
-- MSP843P and MSL120DA device support
+- MSS210P, MSP843P and MSL120DA device support
 
 ### Changed
 
