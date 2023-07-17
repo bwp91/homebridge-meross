@@ -1282,9 +1282,31 @@
           "reversePolarity": {
             "type": "boolean",
             "title": "Reverse Polarity",
-            "description": "If true, the plugin will reverse the open/close commands that it sends.",
+            "description": "If true, the plugin will reverse the open/close commands that it sends. This does not apply to accessories that appear as Window Blinds/Coverings in HomeKit.",
             "condition": {
               "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice);"
+            }
+          },
+          "showAs": {
+            "type": "string",
+            "title": "Show As",
+            "description": "Select the accessory type to show in HomeKit. Note you can only change this if your device already appears as a Window Blind/Covering in HomeKit.",
+            "oneOf": [
+              {
+                "title": "Window Blind/Covering (Default)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Door",
+                "enum": ["door"]
+              },
+              {
+                "title": "Window",
+                "enum": ["window"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.rollerDevices && model.rollerDevices[arrayIndices] && model.rollerDevices[arrayIndices].serialNumber && model.rollerDevices[arrayIndices].serialNumber.length === 32 && !model.rollerDevices[arrayIndices].ignoreDevice && !model.rollerDevices[arrayIndices].reversePolarity);"
             }
           },
           "firmwareRevision": {
@@ -1677,6 +1699,7 @@
             "rollerDevices[].ignoreDevice",
             "rollerDevices[].model",
             "rollerDevices[].reversePolarity",
+            "rollerDevices[].showAs",
             "rollerDevices[].firmwareRevision",
             "rollerDevices[].userkey"
           ]
