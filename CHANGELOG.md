@@ -2,16 +2,20 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 9.2.0 (2023-10-18)
 
 ### Added
 
 - MSS210P, MSP843P and MSL120DA device support
+- Support for MRS100 models that have % position capabilities
+- Beta support for: MS400 leak sensor and MTS200 thermostat device
 
 ### Changed
 
 - Bump `node` recommended versions to v16.20.1 or v18.16.1 or v20.4.0
 - Updated dependencies
+
+Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of these new device types 🚀
 
 ## 9.1.0 (2023-05-01)
 
