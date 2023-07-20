@@ -2,6 +2,16 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Added
+
+- Support for MSS425FC
+
+### Changed
+
+- Bump `node` recommended versions to v16.20.1 or v18.17.0 or v20.4.0
+
 ## 9.2.0 (2023-10-18)
 
 ### Added
