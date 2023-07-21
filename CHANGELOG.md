@@ -2,7 +2,7 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
-## BETA
+## 9.2.1 (2023-07-21)
 
 ### Added
 
@@ -14,6 +14,7 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Fixed
 
+- Leak device status
 - Initialisation issue with roller device with location devices
 
 ## 9.2.0 (2023-07-18)
