@@ -10,9 +10,13 @@ All notable changes to homebridge-meross will be documented in this file.
 
 ### Changed
 
-- Bump `node` recommended versions to v16.20.1 or v18.17.0 or v20.4.0
+- Bump `node` recommended versions to v16.20.1 or v18.17.0 or v20.5.0
 
-## 9.2.0 (2023-10-18)
+### Fixed
+
+- Initialisation issue with roller device with location devices
+
+## 9.2.0 (2023-07-18)
 
 ### Added
 
