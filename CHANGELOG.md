@@ -2,6 +2,12 @@
 
 All notable changes to homebridge-meross will be documented in this file.
 
+## BETA
+
+### Changed
+
+- Updated HomeKit native ignore list
+
 ## 9.2.1 (2023-07-21)
 
 ### Added
