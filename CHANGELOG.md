@@ -8,6 +8,13 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - `MINOR` version when a new device type is added, or when a new feature is added that is backwards-compatible
 - `PATCH` version when backwards-compatible bug fixes are implemented
 
+## BETA
+
+### Changed
+
+- Config UI: changed "Serial Number (UUID)" to "Device UUID" to prevent any confusion about what to enter
+  - Also added a description to these fields to explain that these appear in the Homebridge log when the plugin starts
+
 ## 9.2.2 (2023-07-24)
 
 ### Changed

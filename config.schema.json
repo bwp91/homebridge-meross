@@ -104,7 +104,8 @@
             "required": true
           },
           "serialNumber": {
-            "title": "Serial Number (UUID)",
+            "title": "Device UUID",
+            "description": "Device UUIDs are 32 characters long, and can be found in the Homebridge log when the plugin starts.",
             "type": "string",
             "minLength": 32,
             "maxLength": 32,
@@ -369,7 +370,8 @@
             "required": true
           },
           "serialNumber": {
-            "title": "Serial Number (UUID)",
+            "title": "Device UUID",
+            "description": "Device UUIDs are 32 characters long, and can be found in the Homebridge log when the plugin starts.",
             "type": "string",
             "minLength": 32,
             "maxLength": 32,
@@ -572,7 +574,8 @@
             "required": true
           },
           "serialNumber": {
-            "title": "Serial Number (UUID)",
+            "title": "Device UUID",
+            "description": "Device UUIDs are 32 characters long, and can be found in the Homebridge log when the plugin starts.",
             "type": "string",
             "minLength": 32,
             "maxLength": 32,
@@ -814,7 +817,8 @@
             "required": true
           },
           "serialNumber": {
-            "title": "Serial Number (UUID)",
+            "title": "Device UUID",
+            "description": "Device UUIDs are 32 characters long, and can be found in the Homebridge log when the plugin starts.",
             "type": "string",
             "minLength": 32,
             "maxLength": 32,
@@ -918,7 +922,8 @@
             "required": true
           },
           "serialNumber": {
-            "title": "Serial Number (UUID)",
+            "title": "Device UUID",
+            "description": "Device UUIDs are 32 characters long, and can be found in the Homebridge log when the plugin starts.",
             "type": "string",
             "minLength": 32,
             "maxLength": 32,
@@ -1012,7 +1017,8 @@
             "required": true
           },
           "serialNumber": {
-            "title": "Serial Number (UUID)",
+            "title": "Device UUID",
+            "description": "Device UUIDs are 32 characters long, and can be found in the Homebridge log when the plugin starts.",
             "type": "string",
             "minLength": 32,
             "maxLength": 32,
@@ -1106,7 +1112,8 @@
             "required": true
           },
           "serialNumber": {
-            "title": "Serial Number (UUID)",
+            "title": "Device UUID",
+            "description": "Device UUIDs are 32 characters long, and can be found in the Homebridge log when the plugin starts.",
             "type": "string",
             "minLength": 32,
             "maxLength": 32,
@@ -1222,7 +1229,8 @@
             "required": true
           },
           "serialNumber": {
-            "title": "Serial Number (UUID)",
+            "title": "Device UUID",
+            "description": "Device UUIDs are 32 characters long, and can be found in the Homebridge log when the plugin starts.",
             "type": "string",
             "minLength": 32,
             "maxLength": 32,
@@ -1346,7 +1354,8 @@
             "required": true
           },
           "serialNumber": {
-            "title": "Serial Number (UUID)",
+            "title": "Device UUID",
+            "description": "Device UUIDs are 32 characters long, and can be found in the Homebridge log when the plugin starts.",
             "type": "string",
             "minLength": 32,
             "maxLength": 32,
@@ -1444,7 +1453,8 @@
             "required": true
           },
           "serialNumber": {
-            "title": "Serial Number (UUID)",
+            "title": "Device UUID",
+            "description": "Device UUIDs are 32 characters long, and can be found in the Homebridge log when the plugin starts.",
             "type": "string",
             "minLength": 32,
             "maxLength": 32,
