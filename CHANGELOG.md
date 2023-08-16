@@ -15,6 +15,10 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - Config UI: changed "Serial Number (UUID)" to "Device UUID" to prevent any confusion about what to enter
   - Also added a description to these fields to explain that these appear in the Homebridge log when the plugin starts
 
+### Fixed
+
+- Also use MRS100 roller positioning for hardware versions `8.0.0`
+
 ## 9.2.2 (2023-07-24)
 
 ### Changed
