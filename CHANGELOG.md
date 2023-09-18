@@ -8,12 +8,19 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - `MINOR` version when a new device type is added, or when a new feature is added that is backwards-compatible
 - `PATCH` version when backwards-compatible bug fixes are implemented
 
-## 9.2.5 (2023-08-28)
+## 9.2.6 (2023-09-18)
 
 ⚠️ Note this will be the last version of the plugin to support Node 16.
 - Node 16 moves to 'end of life' on 2023-09-11 ([more info](https://nodejs.org/en/blog/announcements/nodejs16-eol))
 - This is in-line with the Homebridge guidelines on supporting node versions ([more info](https://github.com/homebridge/homebridge/wiki/How-To-Update-Node.js/))
 - If you are currently using Node 16, now is a good time to upgrade to Node 18 or 20 (see the link above for more info)
+
+### Changed
+
+- Allow roller percentage position for MRS100 hardware version `7.0.0`
+- Added template for MFC100 fan controller, although ignored if HK ignore list is set to true
+
+## 9.2.5 (2023-08-28)
 
 ### Changed
 
