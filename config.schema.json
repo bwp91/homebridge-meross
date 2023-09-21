@@ -60,6 +60,13 @@
         "functionBody": "return (model.username && model.password);"
       }
     },
+    "ignoreMatter": {
+      "type": "boolean",
+      "title": "Ignore Matter Devices",
+      "condition": {
+        "functionBody": "return (model.username && model.password);"
+      }
+    },
     "disableDeviceLogging": {
       "type": "boolean",
       "title": "Disable Device Logging",
@@ -1611,6 +1618,7 @@
     "password",
     "userkey",
     "ignoreHKNative",
+    "ignoreMatter",
     "connection",
     {
       "type": "fieldset",
