@@ -10,6 +10,10 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 
 ## BETA
 
+### Added
+
+- Support for `MSS120`
+
 ### Changed
 
 - Updated HomeKit native ignore list
