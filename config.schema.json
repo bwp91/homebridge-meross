@@ -165,8 +165,16 @@
             "type": "string",
             "oneOf": [
               {
+                "title": "MSS105",
+                "enum": ["MSS105"]
+              },
+              {
                 "title": "MSS110",
                 "enum": ["MSS110"]
+              },
+              {
+                "title": "MSS115",
+                "enum": ["MSS115"]
               },
               {
                 "title": "MSS110NR",
