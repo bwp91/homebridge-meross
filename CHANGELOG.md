@@ -8,6 +8,17 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - `MINOR` version when a new device type is added, or when a new feature is added that is backwards-compatible
 - `PATCH` version when backwards-compatible bug fixes are implemented
 
+## 10.2.0 (2023-12-15)
+
+### Added
+
+- Support for fan device `MFC100`
+
+### Changed
+
+- Bump `node` supported versions to v18.19.0 or v20.10.0
+- Updated dependencies
+
 ## 10.1.0 (2023-12-03)
 
 ### Added
