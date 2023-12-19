@@ -165,8 +165,16 @@
             "type": "string",
             "oneOf": [
               {
+                "title": "MSS105",
+                "enum": ["MSS105"]
+              },
+              {
                 "title": "MSS110",
                 "enum": ["MSS110"]
+              },
+              {
+                "title": "MSS115",
+                "enum": ["MSS115"]
               },
               {
                 "title": "MSS110NR",
@@ -882,8 +890,8 @@
             "type": "string",
             "oneOf": [
               {
-                "title": "MDL110",
-                "enum": ["MDL110"]
+                "title": "MFC100",
+                "enum": ["MFC100"]
               }
             ],
             "condition": {
@@ -1709,7 +1717,7 @@
     },
     {
       "key": "fanDevices",
-      "title": "Light Devices",
+      "title": "Fan Devices",
       "description": "Optional settings for Meross fan controllers.",
       "expandable": true,
       "add": "Add Device",
