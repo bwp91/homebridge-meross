@@ -8,6 +8,13 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - `MINOR` version when a new device type is added, or when a new feature is added that is backwards-compatible
 - `PATCH` version when backwards-compatible bug fixes are implemented
 
+## BETA
+
+### Changed
+
+- Updated HomeKit native ignore list
+  - Adding MSS120BR as a HomeKit device (#553) (@djpadz)
+
 ## 10.2.0 (2023-12-15)
 
 ### Added
