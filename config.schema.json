@@ -1212,6 +1212,105 @@
         }
       }
     },
+    "thermostatDevices":  {
+      "type": "array",
+      "title": "Humidifier Devices",
+      "description": "Optional settings for Meross thermostat devices.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "description": "A label for this device, will be used as the HomeKit name if setting up a local device.",
+            "type": "string",
+            "required": true
+          },
+          "serialNumber": {
+            "title": "Device UUID",
+            "description": "Device UUIDs are 32 characters long, and can be found in the Homebridge log when the plugin starts.",
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 32,
+            "required": true,
+            "condition": {
+              "functionBody": "return (model.thermostatDevices && model.thermostatDevices[arrayIndices] && model.thermostatDevices[arrayIndices].name);"
+            }
+          },
+          "connection": {
+            "type": "string",
+            "title": "Connection Type",
+            "oneOf": [
+              {
+                "title": "Hybrid (Default)",
+                "enum": ["default"]
+              },
+              {
+                "title": "Force Cloud Control",
+                "enum": ["cloud"]
+              },
+              {
+                "title": "Force Local Control (with configured IP)",
+                "enum": ["local"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.thermostatDevices && model.thermostatDevices[arrayIndices] && model.thermostatDevices[arrayIndices].serialNumber && model.thermostatDevices[arrayIndices].serialNumber.length === 32 && !model.thermostatDevices[arrayIndices].ignoreDevice && model.username && model.password);"
+            }
+          },
+          "deviceUrl": {
+            "title": "Device IP",
+            "description": "Enter the IP address of this device for local connection.",
+            "type": "string",
+            "format": "ipv4",
+            "condition": {
+              "functionBody": "return (model.thermostatDevices && model.thermostatDevices[arrayIndices] && model.thermostatDevices[arrayIndices].serialNumber && model.thermostatDevices[arrayIndices].serialNumber.length === 32 && ((!model.username && !model.password && model.userkey) || (model.username && model.password && ((model.connection === 'local' && [undefined, 'local'].includes(model.thermostatDevices[arrayIndices].connection)) || || (model.connection !== 'local' && model.thermostatDevices[arrayIndices].connection === 'local')))));"
+            }
+          },
+          "ignoreDevice": {
+            "type": "boolean",
+            "title": "Hide From HomeKit",
+            "description": "If true, this accessory will be removed and ignored from HomeKit.",
+            "condition": {
+              "functionBody": "return (model.thermostatDevices && model.thermostatDevices[arrayIndices] && model.thermostatDevices[arrayIndices].serialNumber && model.thermostatDevices[arrayIndices].serialNumber.length === 32 && model.thermostatDevices[arrayIndices].connection !== 'local' && !model.thermostatDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "model": {
+            "title": "Model",
+            "description": "The model of this device.",
+            "type": "string",
+            "oneOf": [
+              {
+                "title": "MTS200",
+                "enum": ["MTS200"]
+              },
+              {
+                "title": "MTS200B",
+                "enum": ["MTS200B"]
+              }
+            ],
+            "condition": {
+              "functionBody": "return (model.thermostatDevices && model.thermostatDevices[arrayIndices] && model.thermostatDevices[arrayIndices].serialNumber && model.thermostatDevices[arrayIndices].serialNumber.length === 32 && !model.thermostatDevices[arrayIndices].ignoreDevice && !model.username && !model.password && model.userkey);"
+            }
+          },
+          "firmwareRevision": {
+            "title": "Firmware Version",
+            "type": "string",
+            "description": "For local devices, HomeKit will show this as the firmware version.",
+            "condition": {
+              "functionBody": "return (model.thermostatDevices && model.thermostatDevices[arrayIndices] && model.thermostatDevices[arrayIndices].serialNumber && model.thermostatDevices[arrayIndices].serialNumber.length === 32 && !model.thermostatDevices[arrayIndices].ignoreDevice && model.thermostatDevices[arrayIndices].deviceUrl);"
+            }
+          },
+          "userkey": {
+            "title": "Device (User) Key",
+            "type": "string",
+            "description": "Override the user key for this device if it is registered to a different Meross account.",
+            "condition": {
+              "functionBody": "return (model.thermostatDevices && model.thermostatDevices[arrayIndices] && model.thermostatDevices[arrayIndices].serialNumber && model.thermostatDevices[arrayIndices].serialNumber.length === 32 && !model.thermostatDevices[arrayIndices].ignoreDevice && model.thermostatDevices[arrayIndices].deviceUrl);"
+            }
+          }
+        }
+      }
+    },
     "garageDevices": {
       "type": "array",
       "title": "Garage Devices",
@@ -1804,6 +1903,29 @@
             "humidifierDevices[].model",
             "humidifierDevices[].firmwareRevision",
             "humidifierDevices[].userkey"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "thermostatDevices",
+      "title": "Thermostat Devices",
+      "description": "Optional settings for Meross Thermostat devices.",
+      "expandable": true,
+      "add": "Add Device",
+      "type": "array",
+      "items": [
+        {
+          "type": "fieldset",
+          "items": [
+            "thermostatDevices[].name",
+            "thermostatDevices[].serialNumber",
+            "thermostatDevices[].connection",
+            "thermostatDevices[].deviceUrl",
+            "thermostatDevices[].ignoreDevice",
+            "thermostatDevices[].model",
+            "thermostatDevices[].firmwareRevision",
+            "thermostatDevices[].userkey"
           ]
         }
       ]
