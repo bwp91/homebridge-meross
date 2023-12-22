@@ -14,6 +14,13 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 
 - Updated HomeKit native ignore list
   - Adding MSS120BR as a HomeKit device (#553) (@djpadz)
+  - also added MSS630
+- updated dependencies
+
+### Fixed
+
+- fix devices not appearing when forcing local control but credentials still in config
+- Mixed case UUIDs are not found in the deviceConf object (#547) (@mrBudgie)
 
 ## 10.2.0 (2023-12-15)
 
