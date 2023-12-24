@@ -75,7 +75,7 @@
     "domain": {
       "type": "string",
       "title": "Domain",
-      "placeholder": "iot.meross.com",
+      "placeholder": "iotx.meross.com",
       "description": "Used to connect to Meross API, varies by region, example: `iotx-eu.meross.com` is a possible domain in Europe - inspect API calls to figure this if needed."
     },
     "cloudRefreshRate": {

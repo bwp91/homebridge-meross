@@ -8,6 +8,16 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - `MINOR` version when a new device type is added, or when a new feature is added that is backwards-compatible
 - `PATCH` version when backwards-compatible bug fixes are implemented
 
+## BETA
+
+### Changed
+
+- API endpoints
+
+### Fixed
+
+- Fan device configuration
+
 ## 10.2.2 (2023-12-22)
 
 ### Fixed
