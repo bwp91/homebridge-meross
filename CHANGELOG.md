@@ -12,7 +12,7 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 
 ### Changed
 
-- API endpoints
+- API URLs
 
 ### Fixed
 
@@ -631,7 +631,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 ### Fixed
 
-- Github issue link for devices awaiting support
+- GitHub issue link for devices awaiting support
 
 ## 6.11.0 (2021-09-09)
 
@@ -699,7 +699,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 ### Fixed
 
-- An issue initialising a multi-channel device when the main accessory has been hidden
+- An issue initialising a multichannel device when the main accessory has been hidden
 
 ## 6.8.0 (2021-08-22)
 
@@ -759,7 +759,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
   - Set a user key _per_ device, can be useful if the device is registered to a different Meross account that defined in the 'Optional Settings'
   - Initial device information will be displayed in the log when an accessory initialises and debug mode is on
 - **Eve History**
-  - On/Off history graphs added for single and multi-channel devices when exposed as `Switch`
+  - On/Off history graphs added for single and multichannel devices when exposed as `Switch`
 
 ### Changed
 
@@ -809,7 +809,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - Changed 'Manufacturer' from 'Meross' to 'Meross Technology'
   - This should fix **future** cases of false 'firmware update' alerts
-  - Existing accessories will need to be removed from the cache so they are re-added with this new manufacturer
+  - Existing accessories will need to be removed from the cache, so they are re-added with this new manufacturer
 - **Diffusers & Light Devices**
   - Removed cloud polling force override as real-time updates are now available for these devices
 - **Configuration**
@@ -859,14 +859,14 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - **All Devices**
   - Device online/offline status in the Homebridge log
-  - Plugin will show a local device as offline in the plugin ui if the polling has failed due to timeout or `EHOSTUNREACH` (unreachable, normally means the device has lost wifi connection)
+  - Plugin will show a local device as offline in the plugin ui if the polling has failed due to timeout or `EHOSTUNREACH` (unreachable, normally means the device has lost Wi-Fi connection)
 - **Diffusers**
   - Switch between 'colour', 'rainbow' and 'temperature' modes using Eve-only characteristics (create scenes in the Eve app that will appear in the Home app)
 - **Single-Channel Outlets**
   - Plugin will now poll every minute for power data for devices that offer this feature (plugin will attempt to check automatically)
   - Current wattage and voltage is available to see in the Eve app
   - Plugin will set the HomeKit 'In Use' status to 'Yes' if the outlet is on and the wattage is above a configurable value
-    - This can be useful to setup automations in the Eve app based on whether the wattage has risen above or dropped below a certain value
+    - This can be useful to set up automations in the Eve app based on whether the wattage has risen above or dropped below a certain value
 
 ### Changed
 
@@ -879,8 +879,8 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 ### Fixed
 
 - **Multi-Channel Outlets**
-  - An issue preventing multi-channel devices from updating from polled data when exposed as outlets
-  - The Homebridge UI will now show the correct status for sub-accessories of a multi-channel device
+  - An issue preventing multichannel devices from updating from polled data when exposed as outlets
+  - The Homebridge UI will now show the correct status for sub-accessories of a multichannel device
 - **Light Devices**
   - Reinstate 'lost' support for MSL120B
 - **Diffusers**
@@ -909,7 +909,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
   - Recommended node version bumped to v14.17.4
   - Recommended homebridge version bumped to v1.3.4
 - **Single Channel Devices**
-  - The plugin will try to auto detect whether 'Toggle' or 'ToggleX' namespace is used
+  - The plugin will try to auto-detect whether 'Toggle' or 'ToggleX' namespace is used
 
 ## 6.0.0 (2021-07-28)
 
@@ -938,7 +938,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
   - MSG100 cloud support added
   - MRS100 cloud and local support added
 - **Adaptive Lighting**
-  - Adaptive Lighting for supported lightbulbs
+  - Adaptive Lighting for supported light bulbs
 - **Logging**
   - Logging level on a per-accessory basis, which can be helpful when wanting to debug a specific accessory
 - **Configuration Validation**
@@ -979,7 +979,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 ### Breaking Changes
 
-- The Plugin has been been changed from an `accessory` type to a `platform` type.
+- The Plugin has been changed from an `accessory` type to a `platform` type.
 - You will have to change you config completely if you update to this version.
   - You can take your current `accessory` and move it to the platform config.
   - See (Specific Model Configurations)[https://github.com/homebridge-plugins/homebridge-meross/wiki/Specific-Model-Configurations] Wiki for more examples.
@@ -1037,7 +1037,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - Homebridge support has moved to v1.3.1
   - Homebridge v1.3.1 must be installed before updating to this version.
-  - Support for the new onGet/onSet introdcued in Homebridge v1.3.0.
+  - Support for the new onGet/onSet introduced in Homebridge v1.3.0.
 
 ### Changed
 
