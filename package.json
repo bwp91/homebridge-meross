@@ -1,7 +1,7 @@
 {
   "name": "homebridge-meross",
   "alias": "Meross",
-  "version": "10.2.6",
+  "version": "10.2.7-beta.0",
   "author": {
     "name": "bwp91",
     "email": "bwp91@icloud.com"
