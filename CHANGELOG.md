@@ -8,6 +8,20 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - `MINOR` version when a new device type is added, or when a new feature is added that is backwards-compatible
 - `PATCH` version when backwards-compatible bug fixes are implemented
 
+## 10.2.8 (2023-12-29)
+
+⚠️ A note for users using MFA/2FA with Meross
+
+- If you are not using MFA/2FA, you can ignore this message
+- If you are using MFA/2FA:
+  - You will need to update the plugin config to include the current code from your authenticator app, otherwise the plugin will not be able to log in
+  - The code is only valid for 30 seconds, so you will need to update your config and restart Homebridge within this time
+  - You will currently need to do this every time you restart Homebridge, until I can find a better way to handle this
+
+### Fixed
+
+- Login issues
+
 ## 10.2.7 (2023-12-28)
 
 ### Fixed

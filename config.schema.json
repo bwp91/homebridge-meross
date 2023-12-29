@@ -21,6 +21,15 @@
       "type": "string",
       "description": "Enter your Meross password to enable cloud devices."
     },
+    "mfaCode": {
+      "title": "Meross MFA Key",
+      "type": "string",
+      "description": "Enter the 6 digit code from your MFA app.",
+      "maxLength": 6,
+      "condition": {
+        "functionBody": "return model.username && model.password;"
+      }
+    },
     "userkey": {
       "title": "Meross Key",
       "type": "string",
@@ -28,7 +37,7 @@
       "minLength": 32,
       "maxLength": 32,
       "condition": {
-        "functionBody": "return !(model.username && model.password);"
+        "functionBody": "return !(model.username || model.password);"
       }
     },
     "connection": {
@@ -1727,6 +1736,7 @@
   "layout": [
     "username",
     "password",
+    "mfaCode",
     "userkey",
     "ignoreHKNative",
     "ignoreMatter",
