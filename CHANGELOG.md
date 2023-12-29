@@ -8,21 +8,36 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - `MINOR` version when a new device type is added, or when a new feature is added that is backwards-compatible
 - `PATCH` version when backwards-compatible bug fixes are implemented
 
-## BETA
+## 10.3.0 (2023-12-30)
+
+⚠️ Some things of note:
+
+- The recent updates to the plugin are in response to upcoming changes to the Meross API
+  - You may have received an email from Meross about this ([#556](https://github.com/bwp91/homebridge-meross/issues/556))
+- The plugin will now store your Meross access token (when using cloud/hybrid connection) in the Homebridge storage directory:
+  - This allows the plugin to persist your access token between Homebridge restarts
+  - The plugin no longer needs to create a login session every time Homebridge starts
+  - The plugin should initialise slightly faster when the token is available
+  - Users using MFA/2FA on their Meross account will no longer need to update their config every time they restart Homebridge
+  - If the stored token has expired, the plugin will attempt once to refresh the token when initialising and store the new one (when MFA/2FA is not enabled on your Meross account)
+- If you are using MFA/2FA on your Meross account:
+  - You will need to update the plugin config to include the current code from your authenticator app, otherwise the plugin will not be able to log in
+  - The code is only valid for 30 seconds, so you will need to update your config and restart Homebridge within this time
+  - If your stored access token becomes invalid/expires, you will need to update your config with the current code and restart Homebridge
+  - I am unsure right now how long the access token is valid for!
 
 ### Added
 
 - persist access token for fewer logins
+- config option to show Meross user key in the log when logging in
+  - this used to only show when running beta versions of the plugin
+  - for some security, this has been made an option in the config rather than always showing it
 
 ## 10.2.8 (2023-12-29)
 
-⚠️ A note for users using MFA/2FA with Meross
+### Changed
 
-- If you are not using MFA/2FA, you can ignore this message
-- If you are using MFA/2FA:
-  - You will need to update the plugin config to include the current code from your authenticator app, otherwise the plugin will not be able to log in
-  - The code is only valid for 30 seconds, so you will need to update your config and restart Homebridge within this time
-  - You will currently need to do this every time you restart Homebridge, until I can find a better way to handle this
+- Updated HomeKit native ignore list
 
 ### Fixed
 

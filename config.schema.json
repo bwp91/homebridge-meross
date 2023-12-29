@@ -30,6 +30,13 @@
         "functionBody": "return model.username && model.password;"
       }
     },
+    "showUserKey": {
+      "title": "Show Meross User Key",
+      "type": "boolean",
+      "condition": {
+        "functionBody": "return model.username && model.password;"
+      }
+    },
     "userkey": {
       "title": "Meross Key",
       "type": "string",
@@ -1737,6 +1744,7 @@
     "username",
     "password",
     "mfaCode",
+    "showUserKey",
     "userkey",
     "ignoreHKNative",
     "ignoreMatter",
