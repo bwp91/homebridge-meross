@@ -8,6 +8,12 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - `MINOR` version when a new device type is added, or when a new feature is added that is backwards-compatible
 - `PATCH` version when backwards-compatible bug fixes are implemented
 
+## BETA
+
+### Added
+
+- persist access token for fewer logins
+
 ## 10.2.8 (2023-12-29)
 
 ⚠️ A note for users using MFA/2FA with Meross

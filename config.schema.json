@@ -22,7 +22,7 @@
       "description": "Enter your Meross password to enable cloud devices."
     },
     "mfaCode": {
-      "title": "Meross MFA Key",
+      "title": "Meross MFA Code",
       "type": "string",
       "description": "Enter the 6 digit code from your MFA app.",
       "maxLength": 6,
