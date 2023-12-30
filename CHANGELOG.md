@@ -32,6 +32,11 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - config option to show Meross user key in the log when logging in
   - this used to only show when running beta versions of the plugin
   - for some security, this has been made an option in the config rather than always showing it
+- auto-redirect http calls for users needing different Meross domain
+
+### Fixed
+
+- device config setup
 
 ## 10.2.8 (2023-12-29)
 
