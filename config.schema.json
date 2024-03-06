@@ -84,10 +84,8 @@
       }
     },
     "enablePowerStrip": {
-      "title": "Enable Power Strip",
+      "title": "Enable Power Strips",
       "type": "boolean",
-      "default": false,
-      "description": "If enabled, multi-outlet devices will be created as a single power strip accessory. If disabled, each outlet will be created as an individual accessory.",
       "condition": {
         "functionBody": "return (model.username && model.password);"
       }
