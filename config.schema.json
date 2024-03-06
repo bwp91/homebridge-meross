@@ -83,6 +83,15 @@
         "functionBody": "return (model.username && model.password);"
       }
     },
+    "enablePowerStrip": {
+      "title": "Enable Power Strip",
+      "type": "boolean",
+      "default": false,
+      "description": "If enabled, multi-outlet devices will be created as a single power strip accessory. If disabled, each outlet will be created as an individual accessory.",
+      "condition": {
+        "functionBody": "return (model.username && model.password);"
+      }
+    },
     "disableDeviceLogging": {
       "type": "boolean",
       "title": "Disable Device Logging",
@@ -174,12 +183,6 @@
             "condition": {
               "functionBody": "return (model.singleDevices && model.singleDevices[arrayIndices] && model.singleDevices[arrayIndices].serialNumber && model.singleDevices[arrayIndices].serialNumber.length === 32 && model.singleDevices[arrayIndices].connection !== 'local' && !model.singleDevices[arrayIndices].deviceUrl);"
             }
-          },
-          "enablePowerStrip": {
-            "title": "Enable Power Strip",
-            "type": "boolean",
-            "default": false,
-            "description": "If enabled, multi-outlet devices will be created as a single power strip accessory. If disabled, each outlet will be created as an individual accessory."
           },
           "model": {
             "title": "Model",
