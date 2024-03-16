@@ -83,6 +83,13 @@
         "functionBody": "return (model.username && model.password);"
       }
     },
+    "enablePowerStrip": {
+      "title": "Enable Power Strips",
+      "type": "boolean",
+      "condition": {
+        "functionBody": "return (model.username && model.password);"
+      }
+    },
     "disableDeviceLogging": {
       "type": "boolean",
       "title": "Disable Device Logging",
@@ -1748,6 +1755,7 @@
     "userkey",
     "ignoreHKNative",
     "ignoreMatter",
+    "enablePowerStrip",
     "connection",
     {
       "type": "fieldset",
