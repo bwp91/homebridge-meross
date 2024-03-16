@@ -577,7 +577,7 @@
             "title": "Hide Channels",
             "description": "A comma separated list of channels to hide for this device. Use '0' to hide the 'All On/Off' accessory. For example '0' or '0,1,2'.",
             "condition": {
-              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && !model.multiDevices[arrayIndices].ignoreDevice);"
+              "functionBody": "return (model.multiDevices && model.multiDevices[arrayIndices] && model.multiDevices[arrayIndices].serialNumber && model.multiDevices[arrayIndices].serialNumber.length === 32 && (!model.multiDevices[arrayIndices].showAs || model.multiDevices[arrayIndices].showAs !== 'power-strip') && !model.multiDevices[arrayIndices].ignoreDevice);"
             }
           },
           "firmwareRevision": {
