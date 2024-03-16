@@ -83,13 +83,6 @@
         "functionBody": "return (model.username && model.password);"
       }
     },
-    "enablePowerStrip": {
-      "title": "Enable Power Strips",
-      "type": "boolean",
-      "condition": {
-        "functionBody": "return (model.username && model.password);"
-      }
-    },
     "disableDeviceLogging": {
       "type": "boolean",
       "title": "Disable Device Logging",
@@ -502,7 +495,7 @@
                 "enum": ["MSS425EX"]
               },
               {
-                "title": "MSS425F",
+                "title": "MSS425F/SP425FW",
                 "enum": ["MSS425F"]
               },
               {
@@ -569,6 +562,10 @@
               {
                 "title": "Outlets",
                 "enum": ["outlet"]
+              },
+              {
+                "title": "Power Strip",
+                "enum": ["power-strip"]
               }
             ],
             "condition": {
@@ -1755,7 +1752,6 @@
     "userkey",
     "ignoreHKNative",
     "ignoreMatter",
-    "enablePowerStrip",
     "connection",
     {
       "type": "fieldset",

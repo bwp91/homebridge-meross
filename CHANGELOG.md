@@ -10,6 +10,12 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 
 ## BETA
 
+### Added
+
+- Support `SP425FW`
+- Enable Power Strips (#569) (@ZeliardM)
+  - Expose multichannel switch/outlet devices as a single HomeKit power strip accessory
+
 ### Changed
 
 - Bump `node` supported versions to v18.19.1 or v20.11.1
