@@ -27,7 +27,7 @@
   },
   "engines": {
     "homebridge": "^1.6.0",
-    "node": "^18.19.1 || ^20.11.1"
+    "node": "^18.20.4 || ^20.15.1"
   },
   "repository": {
     "type": "git",
@@ -55,9 +55,9 @@
     }
   ],
   "dependencies": {
-    "@homebridge/plugin-ui-utils": "^1.0.1",
-    "axios": "^1.6.8",
-    "mqtt": "^5.5.0",
+    "@homebridge/plugin-ui-utils": "^1.0.3",
+    "axios": "^1.7.2",
+    "mqtt": "^5.8.0",
     "node-persist": "^4.0.1",
     "p-queue": "^8.0.1",
     "p-timeout": "^6.1.2"
