@@ -10,6 +10,10 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 
 ## BETA
 
+### Added
+
+- Support `MSP844` power strip
+
 ### Changed
 
 - Updated `eslint` and use new code style

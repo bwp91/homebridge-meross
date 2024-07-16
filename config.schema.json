@@ -459,6 +459,10 @@
                 "enum": ["MSP843P"]
               },
               {
+                "title": "MSP844",
+                "enum": ["MSP844"]
+              },
+              {
                 "title": "MSS120",
                 "enum": ["MSS120"]
               },
