@@ -8,6 +8,16 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - `MINOR` version when a new device type is added, or when a new feature is added that is backwards-compatible
 - `PATCH` version when backwards-compatible bug fixes are implemented
 
+## 10.6.1 (2024-07-20)
+
+### Fixed
+
+- Do not require a new 2FA code when restarting plugin when a valid access token still exists
+
+### Changed
+
+- Updated `eslint` and use new code style
+
 ## 10.6.0 (2024-07-20)
 
 ### Added
