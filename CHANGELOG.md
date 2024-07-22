@@ -8,6 +8,12 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - `MINOR` version when a new device type is added, or when a new feature is added that is backwards-compatible
 - `PATCH` version when backwards-compatible bug fixes are implemented
 
+## 10.7.0 (2024-07-22)
+
+### Added
+
+- Support for `MS600` presence sensor
+
 ## 10.6.1 (2024-07-20)
 
 ### Fixed
