@@ -48,7 +48,7 @@
   "main": "lib/index.js",
   "engines": {
     "homebridge": "^1.6.0 || ^2.0.0-alpha.0",
-    "node": "^18.20.4 || ^20.15.1"
+    "node": "^18.20.4 || ^20.16.0 || ^22.5.1"
   },
   "scripts": {
     "lint": "eslint . --fix",
@@ -57,7 +57,7 @@
   "dependencies": {
     "@homebridge/plugin-ui-utils": "^1.0.3",
     "axios": "^1.7.2",
-    "mqtt": "^5.8.1",
+    "mqtt": "^5.9.0",
     "node-persist": "^4.0.2",
     "p-queue": "^8.0.1",
     "p-timeout": "^6.1.2"
