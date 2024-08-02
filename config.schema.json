@@ -1726,6 +1726,10 @@
                 "enum": ["MSH300HK"]
               },
               {
+                "title": "MSH400",
+                "enum": ["MSH400"]
+              },
+              {
                 "title": "MS600",
                 "enum": ["MS600"]
               }
