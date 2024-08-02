@@ -2,7 +2,7 @@
   "name": "homebridge-meross",
   "alias": "Meross",
   "type": "module",
-  "version": "10.7.1-beta.1",
+  "version": "10.7.1-beta.2",
   "description": "Homebridge plugin to integrate Meross devices into HomeKit.",
   "author": {
     "name": "bwp91",
