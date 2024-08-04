@@ -47,7 +47,7 @@
   ],
   "main": "lib/index.js",
   "engines": {
-    "homebridge": "^1.6.0 || ^2.0.0-alpha.0",
+    "homebridge": "^1.6.0 || ^2.0.0-beta.0",
     "node": "^18.20.4 || ^20.16.0 || ^22.5.1"
   },
   "scripts": {
@@ -64,6 +64,6 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.24.1",
-    "eslint": "^9.7.0"
+    "eslint": "^9.8.0"
   }
 }
