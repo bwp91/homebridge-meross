@@ -63,7 +63,7 @@
     "p-timeout": "^6.1.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.24.1",
+    "@antfu/eslint-config": "^3.5.1",
     "eslint": "^9.8.0"
   }
 }
