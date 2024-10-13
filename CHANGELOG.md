@@ -8,19 +8,32 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - `MINOR` version when a new device type is added, or when a new feature is added that is backwards-compatible
 - `PATCH` version when backwards-compatible bug fixes are implemented
 
-## 10.7.0 (2024-07-22)
+## v10.8.0 (2024-10-13)
+
+### Added
+
+- Support for `MS200` and `MSH400`
+
+### Changed
+
+- Support node 22
+- Bump `node` recommended versions to `v18.20.4` or `v20.18.0` or `v22.9.0`
+- Updated HomeKit and Matter native ignore list
+- Updated dependencies
+
+## v10.7.0 (2024-07-22)
 
 ### Added
 
 - Support for `MS600` presence sensor
 
-## 10.6.1 (2024-07-20)
+## v10.6.1 (2024-07-20)
 
 ### Fixed
 
 - Do not require a new 2FA code when restarting plugin when a valid access token still exists
 
-## 10.6.0 (2024-07-20)
+## v10.6.0 (2024-07-20)
 
 ### Added
 
@@ -30,13 +43,13 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 
 - Updated `eslint` and use new code style
 
-## 10.5.1 (2024-07-13)
+## v10.5.1 (2024-07-13)
 
 ### Fixed
 
 - fix a login issue with using 2fa
 
-## 10.5.0 (2024-07-13)
+## v10.5.0 (2024-07-13)
 
 ### Added
 
@@ -47,7 +60,7 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 
 - Add MSH300HK to IgnoreHKNative in constants.js (#572) (@LWatso99)
 
-## 10.4.1 (2024-07-13)
+## v10.4.1 (2024-07-13)
 
 ### Changed
 
@@ -55,7 +68,7 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - Updated dependencies
 - Bump `node` recommended versions to v18.20.4 or v20.15.1
 
-## 10.4.0 (2024-03-25)
+## v10.4.0 (2024-03-25)
 
 ### Added
 
@@ -68,7 +81,7 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 - Bump `node` supported versions to v18.19.1 or v20.11.1
 - Updated dependencies
 
-## 10.3.0 (2023-12-30)
+## v10.3.0 (2023-12-30)
 
 ⚠️ Some things of note:
 
@@ -98,7 +111,7 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 
 - device config setup
 
-## 10.2.8 (2023-12-29)
+## v10.2.8 (2023-12-29)
 
 ### Changed
 
@@ -108,26 +121,26 @@ This project tries to adhere to [Semantic Versioning](http://semver.org/). In pr
 
 - Login issues
 
-## 10.2.7 (2023-12-28)
+## v10.2.7 (2023-12-28)
 
 ### Fixed
 
 - Assume local connection when `userkey` is present in config
 
-## 10.2.6 (2023-12-27)
+## v10.2.6 (2023-12-27)
 
 ### Changed
 
 - Updated dependencies
 - Updated sign-in API
 
-## 10.2.5 (2023-12-25)
+## v10.2.5 (2023-12-25)
 
 ### Fixed
 
 - Initialisation issue - incorrectly logging plugin as disabled
 
-## 10.2.4 (2023-12-25)
+## v10.2.4 (2023-12-25)
 
 Merry Christmas! :christmas_tree:
 
@@ -135,7 +148,7 @@ Merry Christmas! :christmas_tree:
 
 - Fix a setup combination of cloud and local devices
 
-## 10.2.3 (2023-12-24)
+## v10.2.3 (2023-12-24)
 
 ### Changed
 
@@ -145,13 +158,13 @@ Merry Christmas! :christmas_tree:
 
 - Fan device configuration
 
-## 10.2.2 (2023-12-22)
+## v10.2.2 (2023-12-22)
 
 ### Fixed
 
 - Added configuration section for thermostat devices
 
-## 10.2.1 (2023-12-22)
+## v10.2.1 (2023-12-22)
 
 ### Changed
 
@@ -165,7 +178,7 @@ Merry Christmas! :christmas_tree:
 - fix devices not appearing when forcing local control but credentials still in config
 - Mixed case UUIDs are not found in the deviceConf object (#547) (@mrBudgie)
 
-## 10.2.0 (2023-12-15)
+## v10.2.0 (2023-12-15)
 
 ### Added
 
@@ -176,7 +189,7 @@ Merry Christmas! :christmas_tree:
 - Bump `node` supported versions to v18.19.0 or v20.10.0
 - Updated dependencies
 
-## 10.1.0 (2023-12-03)
+## v10.1.0 (2023-12-03)
 
 ### Added
 
@@ -189,7 +202,7 @@ Merry Christmas! :christmas_tree:
 - Bump `node` supported versions to v18.18.2 or v20.10.0
 - Updated dependencies
 
-## 10.0.0 (2023-10-17)
+## v10.0.0 (2023-10-17)
 
 ### Added
 
@@ -205,7 +218,7 @@ Merry Christmas! :christmas_tree:
 
 - Support for node 16
 
-## 9.2.6 (2023-09-18)
+## v9.2.6 (2023-09-18)
 
 ⚠️ Note this will be the last version of the plugin to support Node 16.
 - Node 16 moves to 'end of life' on 2023-09-11 ([more info](https://nodejs.org/en/blog/announcements/nodejs16-eol))
@@ -217,19 +230,19 @@ Merry Christmas! :christmas_tree:
 - Allow roller percentage position for MRS100 hardware version `7.0.0`
 - Added template for MFC100 fan controller, although ignored if HK ignore list is set to true
 
-## 9.2.5 (2023-08-28)
+## v9.2.5 (2023-08-28)
 
 ### Changed
 
 - Update `axios` to `v1.5.0`
 
-## 9.2.4 (2023-08-26)
+## v9.2.4 (2023-08-26)
 
 ### Changed
 
 - Improve error logging for locally configured devices when missing the `model` config property
 
-## 9.2.3 (2023-08-19)
+## v9.2.3 (2023-08-19)
 
 ### Changed
 
@@ -241,13 +254,13 @@ Merry Christmas! :christmas_tree:
 
 - Also use MRS100 roller positioning for hardware versions `8.0.0`
 
-## 9.2.2 (2023-07-24)
+## v9.2.2 (2023-07-24)
 
 ### Changed
 
 - Updated HomeKit native ignore list
 
-## 9.2.1 (2023-07-21)
+## v9.2.1 (2023-07-21)
 
 ### Added
 
@@ -262,7 +275,7 @@ Merry Christmas! :christmas_tree:
 - Leak device status
 - Initialisation issue with roller device with location devices
 
-## 9.2.0 (2023-07-18)
+## v9.2.0 (2023-07-18)
 
 ### Added
 
@@ -277,7 +290,7 @@ Merry Christmas! :christmas_tree:
 
 Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of these new device types 🚀
 
-## 9.1.0 (2023-05-01)
+## v9.1.0 (2023-05-01)
 
 ### Added
 
@@ -288,20 +301,20 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - README updates
 - Dependency updates
 
-## 9.0.5 (2023-04-22)
+## v9.0.5 (2023-04-22)
 
 ### Changed
 
 - Bump `node` supported versions to v16.20.0 or v18.16.0 or v20.0.0
 - Updated dependencies
 
-## 9.0.4 (2023-04-20)
+## v9.0.4 (2023-04-20)
 
 ### Fixed
 
 - Fix to accommodate Meross API change
 
-## 9.0.3 (2023-04-16)
+## v9.0.3 (2023-04-16)
 
 ### Changed
 
@@ -309,20 +322,20 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Reduce minimum `homebridge` version to v1.4
 - Bump `node` recommended versions to v16.20.0 or v18.16.0
 
-## 9.0.2 (2023-04-05)
+## v9.0.2 (2023-04-05)
 
 ### Changed
 
 - Simplify log welcome messages
 - Bump `node` recommended versions to v16.20.0 or v18.15.0
 
-## 9.0.1 (2023-03-11)
+## v9.0.1 (2023-03-11)
 
 ### Fixed
 
 - Login issue
 
-## 9.0.0 (2023-03-11)
+## v9.0.0 (2023-03-11)
 
 ### Breaking
 
@@ -349,20 +362,20 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - Fix brightness command for MSL100D
 
-## 8.5.3 (2023-01-24)
+## v8.5.3 (2023-01-24)
 
 ### Changed
 
 - Remove debug (error) logging from hubs
 - Updated dependencies
 
-## 8.5.2 (2023-01-22)
+## v8.5.2 (2023-01-22)
 
 ### Fixed
 
 - Homebridge characteristic warnings for MSH300 hub MS100 subdevices (again!)
 
-## 8.5.1 (2023-01-20)
+## v8.5.1 (2023-01-20)
 
 ### Changed
 
@@ -373,7 +386,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - Homebridge characteristic warnings for MSH300 hub MS100 subdevices
 
-## 8.5.0 (2022-12-18)
+## v8.5.0 (2022-12-18)
 
 ### Added
 
@@ -389,7 +402,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - Fixed logic in local model check
 
-## 8.4.0 (2022-11-10)
+## v8.4.0 (2022-11-10)
 
 ### Added
 
@@ -400,13 +413,13 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Updated HomeKit native ignore list
 - Bump `node` recommended versions to v14.21.1 or v16.18.1 or v18.12.1
 
-## 8.3.1 (2022-09-26)
+## v8.3.1 (2022-09-26)
 
 ### Fixed
 
 - Node versions in package.json (thanks @eburairu!)
 
-## 8.3.0 (2022-09-25)
+## v8.3.0 (2022-09-25)
 
 ### Added
 
@@ -421,7 +434,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Bump `node` recommended versions to v14.20.1 or v16.17.1
 - Updated dev dependencies
 
-## 8.2.0 (2022-06-08)
+## v8.2.0 (2022-06-08)
 
 ### Added
 
@@ -432,27 +445,27 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - A potential issue showing errors in the logs
 
-## 8.1.1 (2022-06-05)
+## v8.1.1 (2022-06-05)
 
 ### Changed
 
 - Updated HomeKit native ignore list
 - Bump `node` recommended versions to v14.19.3 or v16.15.1
 
-## 8.1.0 (2022-05-29)
+## v8.1.0 (2022-05-29)
 
 ### Added
 
 - **New Devices**
   - MSL610 light device
 
-## 8.0.1 (2022-05-28)
+## v8.0.1 (2022-05-28)
 
 ### Changed
 
 - More fixes and refactoring
 
-## 8.0.0 (2022-05-28)
+## v8.0.0 (2022-05-28)
 
 ### Potentially Breaking Changes
 
@@ -465,19 +478,19 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Bump `node` recommended versions to v14.19.3 or v16.15.0
 - Updated HomeKit native ignore list
 
-## 7.10.1 (2022-04-14)
+## v7.10.1 (2022-04-14)
 
 ### Fixed
 
 - Cloud login issues
 
-## 7.10.0 (2022-03-29)
+## v7.10.0 (2022-03-29)
 
 ### Added
 
 - Support MSS510XR
 
-## 7.9.1 (2022-03-20)
+## v7.9.1 (2022-03-20)
 
 ### Changed
 
@@ -485,7 +498,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Bump `axios` to v0.26.1
 - Bump `mqtt` to v4.3.7
 
-## 7.9.0 (2022-02-27)
+## v7.9.0 (2022-02-27)
 
 ### Added
 
@@ -496,7 +509,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - Updated HomeKit native ignore list
 
-## 7.8.1 (2022-02-27)
+## v7.8.1 (2022-02-27)
 
 ### Changed
 
@@ -505,7 +518,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Bump `mqtt` to v4.3.6
 - Bump `node` recommended versions to v14.19.0 or v16.14.0
 
-## 7.8.0 (2022-02-08)
+## v7.8.0 (2022-02-08)
 
 ### Added
 
@@ -518,7 +531,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Bump `homebridge` recommended version to v1.4.0
 - Bump `mqtt` to v4.3.5
 
-## 7.7.0 (2022-01-22)
+## v7.7.0 (2022-01-22)
 
 ### Added
 
@@ -532,7 +545,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Bump `axios` to v0.25.0
 - Bump `node` recommended versions to v14.18.3 or v16.13.2
 
-## 7.6.1 (2022-01-08)
+## v7.6.1 (2022-01-08)
 
 ### Changed
 
@@ -543,7 +556,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - Plugin crash for older versions of Homebridge
 
-## 7.6.0 (2022-01-05)
+## v7.6.0 (2022-01-05)
 
 ### Added
 
@@ -561,7 +574,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Bump `mqtt` to v4.3.2
 - Bump `homebridge` recommended version to v1.3.9
 
-## 7.5.0 (2021-12-29)
+## v7.5.0 (2021-12-29)
 
 ### Added
 
@@ -573,7 +586,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Updated HomeKit native ignore list
 - Updated dependencies
 
-## 7.4.2 (2021-12-26)
+## v7.4.2 (2021-12-26)
 
 ### Changed
 
@@ -583,13 +596,13 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - Brightness fix for MSL100R dimmer
 
-## 7.4.1 (2021-12-21)
+## v7.4.1 (2021-12-21)
 
 ### Changed
 
 - Some config options rearranged for easier access
 
-## 7.4.0 (2021-12-21)
+## v7.4.0 (2021-12-21)
 
 ### Added
 
@@ -616,13 +629,13 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Verify local update for device is for correct device and not different device which has changed IP
 - Brightness fix for MSS560M dimmer
 
-## 7.3.1 (2021-12-09)
+## v7.3.1 (2021-12-09)
 
 ### Fixed
 
 - A `disabling plugin` notice when just the userkey is configured (issue #376)
 
-## 7.3.0 (2021-12-08)
+## v7.3.0 (2021-12-08)
 
 ### Added
 
@@ -640,7 +653,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - `messageId` increased from 16 to 32 random characters, appears to fix local control for newer device firmware
 
-## 7.2.0 (2021-11-03)
+## v7.2.0 (2021-11-03)
 
 ### Added
 
@@ -653,13 +666,13 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - Updated HomeKit native ignore list
 
-## 7.1.2 (2021-10-31)
+## v7.1.2 (2021-10-31)
 
 ### Changed
 
 - Updated HomeKit native ignore list
 
-## 7.1.1 (2021-10-27)
+## v7.1.1 (2021-10-27)
 
 ### Changed
 
@@ -670,7 +683,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - Fixed an issue for HOOBS users related to the fakegato library
 
-## 7.1.0 (2021-10-20)
+## v7.1.0 (2021-10-20)
 
 ### Added
 
@@ -681,7 +694,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - An Eve app 'no data' gap for garage devices when restarting the plugin
 
-## 7.0.0 (2021-10-16)
+## v7.0.0 (2021-10-16)
 
 ### Added
 
@@ -718,14 +731,14 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - ⚠️ The deprecated `devices` setting has been removed
 - ⚠️ `hybridMode` setting has been removed
 
-## 6.13.2 (2021-10-03)
+## v6.13.2 (2021-10-03)
 
 ### Changed
 
 - Small changes to RGB light devices
 - Bump `axios` to v0.22.0
 
-## 6.13.1 (2021-09-30)
+## v6.13.1 (2021-09-30)
 
 ### Changed
 
@@ -736,7 +749,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Increased MSS426S channel count from 6 to 7
 - Fixed a purifier speed mapping issue
 
-## 6.13.0 (2021-09-28)
+## v6.13.0 (2021-09-28)
 
 ### Added
 
@@ -748,7 +761,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - Updated HomeKit native ignore list
 
-## 6.12.0 (2021-09-14)
+## v6.12.0 (2021-09-14)
 
 ### Added
 
@@ -760,7 +773,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - GitHub issue link for devices awaiting support
 
-## 6.11.0 (2021-09-09)
+## v6.11.0 (2021-09-09)
 
 ### Added
 
@@ -776,7 +789,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - Colour (rgb, cct) functions for supported bulbs (including response times and adaptive lighting)
 
-## 6.10.0 (2021-09-05)
+## v6.10.0 (2021-09-05)
 
 ### Added
 
@@ -790,7 +803,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Recommended node version bumped to v14.17.6
 - Bump `axios` to v0.21.3
 
-## 6.9.2 (2021-08-30)
+## v6.9.2 (2021-08-30)
 
 ### Changed
 
@@ -800,7 +813,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - An issue preventing MSG200 from polling for status
 
-## 6.9.1 (2021-08-27)
+## v6.9.1 (2021-08-27)
 
 ### Changed
 
@@ -811,7 +824,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - An issue displaying the correct status of MSG100/MSG200
 - An issue that disabled the plugin when the initial http connection failed
 
-## 6.9.0 (2021-08-25)
+## v6.9.0 (2021-08-25)
 
 ### Added
 
@@ -828,7 +841,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - An issue initialising a multichannel device when the main accessory has been hidden
 
-## 6.8.0 (2021-08-22)
+## v6.8.0 (2021-08-22)
 
 ### Added
 
@@ -846,20 +859,20 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Attempt to fix a couple of small issues when controlling MOD100 diffuser
 - Fix a `ResetTotal` characteristic warning for single-channel outlets
 
-## 6.7.2 (2021-08-17)
+## v6.7.2 (2021-08-17)
 
 ### Fixed
 
 - Fixed a polling issue for the MRS100
 - Fixed repeated `reported [offline]` messages for local devices
 
-## 6.7.1 (2021-08-17)
+## v6.7.1 (2021-08-17)
 
 ### Fixed
 
 - Fixed a `Cannot read property 'LastActivation' of undefined` issue
 
-## 6.7.0 (2021-08-16)
+## v6.7.0 (2021-08-16)
 
 ### Added
 
@@ -870,7 +883,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - **New Devices**
   - MSL120J added to supported list
 
-## 6.6.0 (2021-08-12)
+## v6.6.0 (2021-08-12)
 
 ### Added
 
@@ -917,14 +930,14 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - **Plugin UI**
   - Device URL and firmware override options for 'Sensor Devices', at least temporarily, whilst local mode is not supported for the MSH300
 
-## 6.5.0 (2021-08-05)
+## v6.5.0 (2021-08-05)
 
 ### Added
 
 - **New Devices**
   - MSS560X added to supported list
 
-## 6.4.0 (2021-08-04)
+## v6.4.0 (2021-08-04)
 
 ### Added
 
@@ -942,7 +955,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - **Configuration**
   - The `model` field in the device sections will only show for local devices (not needed for cloud devices)
 
-## 6.3.0 (2021-08-03)
+## v6.3.0 (2021-08-03)
 
 ### Added
 
@@ -980,7 +993,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - **Light Devices**
   - Fixed a `this.colourUtils.mr2hk is not a function` issue
 
-## 6.2.0 (2021-08-01)
+## v6.2.0 (2021-08-01)
 
 ### Added
 
@@ -1013,13 +1026,13 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - **Diffusers**
   - Bugfixes for MOD-100
 
-## 6.1.1 (2021-07-29)
+## v6.1.1 (2021-07-29)
 
 ### Fixed
 
 - An issue preventing local devices from initialising
 
-## 6.1.0 (2021-07-29)
+## v6.1.0 (2021-07-29)
 
 ### Added
 
@@ -1038,7 +1051,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - **Single Channel Devices**
   - The plugin will try to auto-detect whether 'Toggle' or 'ToggleX' namespace is used
 
-## 6.0.0 (2021-07-28)
+## v6.0.0 (2021-07-28)
 
 ### Important Note
 
@@ -1081,20 +1094,20 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
   - An extra 'All On/Off' accessory will be shown in HomeKit
   - You can use the 'Hide Channels' setting to hide channels you don't use, including the 'All On/Off' accessory
 
-## 5.0.3 (2021-06-15)
+## v5.0.3 (2021-06-15)
 
 ### Changed
 
 - Housekeeping and updated dependencies.
 
-## 5.0.2 (2020-03-25)
+## v5.0.2 (2020-03-25)
 
 ### Changed
 
 - Fixed an issue where MSL-120 payload fails to be read.
 - Updated dependencies.
 
-## 5.0.1 (2020-03-19)
+## v5.0.1 (2020-03-19)
 
 ### Changed
 
@@ -1102,7 +1115,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Added the ability to enter a custom value for `garageDoorOpeningTime`.
 - Updated dependencies.
 
-## 5.0.0 (2021-03-14)
+## v5.0.0 (2021-03-14)
 
 ### Breaking Changes
 
@@ -1152,13 +1165,13 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Added Config for Refresh Rate.
   - default is 5 seconds and if updating to often can be set in the config.
 
-## 4.0.1 (2020-03-12)
+## v4.0.1 (2020-03-12)
 
 ### Changed
 
 - Fixes a bug that does not retrieve the status of an outlet device.
 
-## 4.0.0 (2021-03-02)
+## v4.0.0 (2021-03-02)
 
 ### Major Changes
 
@@ -1170,7 +1183,7 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 
 - Adding in MSL-320
 
-## 3.5.0 (2021-02-13)
+## v3.5.0 (2021-02-13)
 
 ### Changed
 
@@ -1178,14 +1191,14 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Fixed MSS110-1 and MSS110-2 Type Error (#170), Thanks @MrJer!
 - Adds support for MSS630 device (#196), Thanks @rcoletti116!
 
-## 3.4.1 (2020-12-19)
+## v3.4.1 (2020-12-19)
 
 ### Changed
 
 - Add option to change accessory `Firmware Revision` and `Serial Number`.
   - This fixes [#121](https://github.com/homebridge-plugins/homebridge-meross/issues/121) - `HomeKit showing as "Update Available"`.
 
-## 3.4.0 (2020-11-19)
+## v3.4.0 (2020-11-19)
 
 ### Changed
 
@@ -1194,13 +1207,13 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
   - The MSG100 uses channel 0, for the single door, but the MSG200 uses channels 1, 2, and 3.
   - FWIW, setting channel 0 on the MSG200 to open or closed appears to control all doors.
 
-## 3.3.0 (2020-11-06)
+## v3.3.0 (2020-11-06)
 
 ### Changed
 
 - Added basic support for MSL-100, MSL-120.
 
-## 3.2.0 (2020-10-15)
+## v3.2.0 (2020-10-15)
 
 ### Changed
 
@@ -1210,37 +1223,37 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
     - Channel 2 the bottom left.
     - Channel 3 the bottom right.
 
-## 3.1.0 (2020-10-02)
+## v3.1.0 (2020-10-02)
 
 ### Changed
 
 - Added brightness changing support to the MSS560 switch.
 
-## 3.0.0 (2020-09-17)
+## v3.0.0 (2020-09-17)
 
 ### Changed
 
 - Converted Project to Typescript.
 
-## 2.3.1 (2020-07-21)
+## v2.3.1 (2020-07-21)
 
 ### Changed
 
 - Change garage door status check interval to 5s.
 
-## 2.3.0 (2020-06-22)
+## v2.3.0 (2020-06-22)
 
 ### Changed
 
 - Get garage door status change notification by requesting status every 2s all the time. (#41) Thanks CocoaBob!
 
-## 2.2.0 (2020-06-16)
+## v2.2.0 (2020-06-16)
 
 ### Changed
 
 - Add support for garage door opening time parameter. (#36) Thanks CocoaBob!
 
-## 2.1.0 (2020-04-13)
+## v2.1.0 (2020-04-13)
 
 ### Changed
 
@@ -1248,19 +1261,19 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - Compressed all other logging to debug.
   - To View This logging, turn on Homebridge Debug (-D) in Homebridge Settings of Config UI X.
 
-## 2.0.0 (2020-05-27)
+## v2.0.0 (2020-05-27)
 
 ### Changed
 
 - added Support for MSG-100 (Garage Door Opener).
 
-## IMPORTANT
+## vIMPORTANT
 
 ### Homebridge v1.0.0
 
 - Changed homebridge requirement to be v1.0.0 or higher.
 
-## 1.1.0 (2020-04-13)
+## v1.1.0 (2020-04-13)
 
 ### Changed
 
@@ -1276,57 +1289,57 @@ Thanks to @ggfunnn, @Rowbby and @DeadlyVirez for help with implementing some of 
 - We also changed the `deviceUrl` to only require the device IP Address.
 - You will have to change your config to match the new config.schema.json layout.
 
-## 1.0.4 (2020-04-13)
+## v1.0.4 (2020-04-13)
 
 ### Changed
 
 - fix config.schema.json
 
-## 1.0.3 (2020-04-13)
+## v1.0.3 (2020-04-13)
 
 ### Changed
 
 - fix config.schema.json
 - update engine dependencies
 
-## 1.0.2 (2020-04-11)
+## v1.0.2 (2020-04-11)
 
 ### Changed
 
 - remove devDependencies homebridge-config-ui-x and homebridge
 - update engine dependencies
 
-## 1.0.1 (2020-04-08)
+## v1.0.1 (2020-04-08)
 
 ### Changed
 
 - Update devDependencies homebridge-config-ui-x and homebridge
 
-## 1.0.0 (2020-04-06)
+## v1.0.0 (2020-04-06)
 
 ### Changed
 
 - Update Readme
 
-## 0.1.0 (2020-03-21)
+## v0.1.0 (2020-03-21)
 
 ### Changed
 
 - Bump request from 2.88.0 to 2.88.2 [#8](https://github.com/homebridge-plugins/homebridge-meross/pull/8)
 
-## 0.0.8 (2020-01-30)
+## v0.0.8 (2020-01-30)
 
 ### Changed
 
 - Fixed config.schema.json
 
-## 0.0.7 (2020-01-30)
+## v0.0.7 (2020-01-30)
 
 ### Changed
 
 - Update dependencies
 
-## 0.0.6 (2020-01-30)
+## v0.0.6 (2020-01-30)
 
 ### Changed
 
